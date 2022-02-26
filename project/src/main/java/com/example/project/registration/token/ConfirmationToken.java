@@ -34,7 +34,8 @@ public class ConfirmationToken {
 
     @Column(nullable = false)
     private LocalDateTime expiresAt;
-    private LocalDateTime confirmed;
+
+    private LocalDateTime confirmedAt;
 
     @ManyToOne
     @JoinColumn(
