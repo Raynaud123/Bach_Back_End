@@ -32,11 +32,19 @@ public class SubjectProvider{
     private String Email;
     private Long PhoneNumber;
 
-    public SubjectProvider(Long id) {
+    public SubjectProvider(Long id, String typeProvider, int postNumber, String city, String streetName, int streetNumber, boolean approved, String passwordHash, String userName, String email, Long phoneNumber) {
         this.id = id;
+        this.TypeProvider = typeProvider;
+        this.PostNumber = postNumber;
+        this.City = city;
+        this.StreetName = streetName;
+        this.StreetNumber = streetNumber;
+        this.Approved = approved;
+        this.PasswordHash = passwordHash;
+        this.UserName = userName;
+        this.Email = email;
+        this.PhoneNumber = phoneNumber;
     }
-
-
 
 
     public Long getId() {
@@ -46,11 +54,5 @@ public class SubjectProvider{
     public void setId(Long id) {
         this.id = id;
     }
-
-
-
-
-
-
 
 }
