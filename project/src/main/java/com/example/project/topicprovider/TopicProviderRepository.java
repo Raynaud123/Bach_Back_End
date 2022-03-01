@@ -1,4 +1,4 @@
-package com.example.project.subjectprovider;
+package com.example.project.topicprovider;
 
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -7,6 +7,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Transactional(readOnly = true)
 @Repository
-public interface SubjectProviderRepository extends JpaRepository<SubjectProvider, Long> {
+public interface TopicProviderRepository extends JpaRepository<TopicProvider, Long> {
 
 }

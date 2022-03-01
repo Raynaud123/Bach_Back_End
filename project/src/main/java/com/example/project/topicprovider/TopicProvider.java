@@ -1,4 +1,4 @@
-package com.example.project.subjectprovider;
+package com.example.project.topicprovider;
 
 
 
@@ -8,7 +8,7 @@ import javax.persistence.*;
 
 @NoArgsConstructor
 @Entity
-public class SubjectProvider{
+public class TopicProvider{
 
     @SequenceGenerator(
             name = "subjectProvider_sequence",
@@ -21,7 +21,7 @@ public class SubjectProvider{
             generator = "subjectProvider_sequence"
     )
 
-    private Long SubjectProvider_id;
+    private Long TopicProvider_id;
     private String TypeProvider;
     private int PostNumber;
     private String City;
@@ -33,8 +33,8 @@ public class SubjectProvider{
     private String email;
     private Long PhoneNumber;
 
-    public SubjectProvider(Long id, String typeProvider, int postNumber, String city, String streetName, int streetNumber, boolean approved, String passwordHash, String userName, String email, Long phoneNumber) {
-        this.SubjectProvider_id = id;
+    public TopicProvider(Long id, String typeProvider, int postNumber, String city, String streetName, int streetNumber, boolean approved, String passwordHash, String userName, String email, Long phoneNumber) {
+        this.TopicProvider_id = id;
         this.TypeProvider = typeProvider;
         this.PostNumber = postNumber;
         this.City = city;
@@ -49,11 +49,11 @@ public class SubjectProvider{
 
 
     public Long getId() {
-        return SubjectProvider_id;
+        return TopicProvider_id;
     }
 
     public void setId(Long id) {
-        this.SubjectProvider_id = id;
+        this.TopicProvider_id = id;
     }
 
 }

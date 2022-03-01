@@ -1,4 +1,4 @@
-package com.example.project.subjectprovider;
+package com.example.project.topicprovider;
 
 
 import lombok.NoArgsConstructor;
@@ -8,7 +8,7 @@ import javax.persistence.Entity;
 
 @NoArgsConstructor
 @Entity
-public class Company extends SubjectProvider{
+public class Company extends TopicProvider{
     private int PhoneContact;
     private String firstNameMentor;
     private String lastNameMentor;
