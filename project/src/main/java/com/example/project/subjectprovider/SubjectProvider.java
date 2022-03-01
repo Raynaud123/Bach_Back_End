@@ -9,6 +9,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Entity
 public class SubjectProvider{
+
     @SequenceGenerator(
             name = "subjectProvider_sequence",
             sequenceName = "subjectProvider_sequence",
