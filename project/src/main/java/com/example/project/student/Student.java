@@ -31,21 +31,35 @@ public class Student {
             generator = "student_sequence"
     )
     private Long student_id;
-    private Long top3_id;
-    private Long mentor_id;
+    private Long top3_student_id;
+    private Long mentor_student_id;
 
     public Student(Long top3_id, Long mentor_id) {
-        this.top3_id = top3_id;
-        this.mentor_id = mentor_id;
+        this.top3_student_id = top3_id;
+        this.mentor_student_id = mentor_id;
     }
 
-    public Long getTop3IdStudent() {
-        return top3_id;
+    public Long getStudent_id() {
+        return student_id;
     }
 
-    public Long getMentorIdStudent() {
-        return mentor_id;
+    public void setStudent_id(Long student_id) {
+        this.student_id = student_id;
     }
 
-    public void setIdStudent() {this.student_id = student_id;}
+    public Long getTop3_student_id() {
+        return top3_student_id;
+    }
+
+    public void setTop3_student_id(Long top3_student_id) {
+        this.top3_student_id = top3_student_id;
+    }
+
+    public Long getMentor_student_id() {
+        return mentor_student_id;
+    }
+
+    public void setMentor_student_id(Long mentor_student_id) {
+        this.mentor_student_id = mentor_student_id;
+    }
 }
