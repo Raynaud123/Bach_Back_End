@@ -21,7 +21,7 @@ public class SubjectProvider{
             generator = "subjectProvider_sequence"
     )
 
-    private Long id;
+    private Long SubjectProvider_id;
     private String TypeProvider;
     private int PostNumber;
     private String City;
@@ -34,7 +34,7 @@ public class SubjectProvider{
     private Long PhoneNumber;
 
     public SubjectProvider(Long id, String typeProvider, int postNumber, String city, String streetName, int streetNumber, boolean approved, String passwordHash, String userName, String email, Long phoneNumber) {
-        this.id = id;
+        this.SubjectProvider_id = id;
         this.TypeProvider = typeProvider;
         this.PostNumber = postNumber;
         this.City = city;
@@ -49,11 +49,11 @@ public class SubjectProvider{
 
 
     public Long getId() {
-        return id;
+        return SubjectProvider_id;
     }
 
     public void setId(Long id) {
-        this.id = id;
+        this.SubjectProvider_id = id;
     }
 
 }
