@@ -30,7 +30,7 @@ public class SubjectProvider{
     private boolean Approved;
     private String PasswordHash;
     private String UserName;
-    private String Email;
+    private String email;
     private Long PhoneNumber;
 
     public SubjectProvider(Long id, String typeProvider, int postNumber, String city, String streetName, int streetNumber, boolean approved, String passwordHash, String userName, String email, Long phoneNumber) {
@@ -43,7 +43,7 @@ public class SubjectProvider{
         this.Approved = approved;
         this.PasswordHash = passwordHash;
         this.UserName = userName;
-        this.Email = email;
+        this.email = email;
         this.PhoneNumber = phoneNumber;
     }
 
