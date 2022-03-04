@@ -1,6 +1,6 @@
-package com.example.project.appuser;
-
-public enum AppUserRole {
-    USER,
-    ADMIN
-}
+//package com.example.project.appuser;
+//
+//public enum AppUserRole {
+//    USER,
+//    ADMIN
+//}
