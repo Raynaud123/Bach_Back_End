@@ -9,6 +9,5 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository
 public interface TopicProviderRepository extends JpaRepository<TopicProvider, Long> {
 
-    TopicProvider findById(long id);
 
 }

@@ -47,6 +47,19 @@ public class TopicProvider{
         this.PhoneNumber = phoneNumber;
     }
 
+    public TopicProvider(String typeProvider, int postNumber, String city, String streetName, int streetNumber, boolean approved, String passwordHash, String userName, String email, Long phoneNumber) {
+        this.TypeProvider = typeProvider;
+        this.PostNumber = postNumber;
+        this.City = city;
+        this.StreetName = streetName;
+        this.StreetNumber = streetNumber;
+        this.Approved = approved;
+        this.PasswordHash = passwordHash;
+        this.UserName = userName;
+        this.email = email;
+        this.PhoneNumber = phoneNumber;
+    }
+
 
     public Long getId() {
         return TopicProvider_id;
@@ -56,4 +69,43 @@ public class TopicProvider{
         this.TopicProvider_id = id;
     }
 
+    public String getTypeProvider() {
+        return TypeProvider;
+    }
+
+    public int getPostNumber() {
+        return PostNumber;
+    }
+
+    public String getCity() {
+        return City;
+    }
+
+    public String getStreetName() {
+        return StreetName;
+    }
+
+    public int getStreetNumber() {
+        return StreetNumber;
+    }
+
+    public boolean isApproved() {
+        return Approved;
+    }
+
+    public String getPasswordHash() {
+        return PasswordHash;
+    }
+
+    public String getUserName() {
+        return UserName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public Long getPhoneNumber() {
+        return PhoneNumber;
+    }
 }
