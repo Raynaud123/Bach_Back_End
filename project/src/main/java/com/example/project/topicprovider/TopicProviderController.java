@@ -17,10 +17,16 @@ public class TopicProviderController {
         this.service = service;
     }
 
+    @GetMapping
+    public List<TopicProvider> getAllTopicProviders(){
+        return service.findAll();
+    }
+
+
     @GetMapping(path = "/{id}")
     public List<TopicProvider> getById(@PathVariable long id) {
-
-
         return service.findById(id);
     }
+
+
 }

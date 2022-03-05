@@ -22,4 +22,8 @@ public class TopicProviderService {
     public List<TopicProvider> findById(long id) {
         return repository.findAllById(Collections.singleton(id));
     }
+
+    public List<TopicProvider> findAll() {
+        return repository.findAll();
+    }
 }
