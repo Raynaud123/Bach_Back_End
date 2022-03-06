@@ -34,6 +34,17 @@ public class Student {
     private Topic assignedTopic_id;
     @OneToMany
     private List<Topic> prefferedTopic_ids;
+    @OneToMany
+    @Column(length = 3)
+    private List<Topic> top3Topic_ids;
+
+    public List<Topic> getTop3Topic_ids() {
+        return top3Topic_ids;
+    }
+
+    public void setTop3Topic_ids(List<Topic> top3Topic_ids) {
+        this.top3Topic_ids = top3Topic_ids;
+    }
 
     public Long getStudent_id() {
         return student_id;
