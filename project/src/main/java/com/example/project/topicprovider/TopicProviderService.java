@@ -30,7 +30,7 @@ public class TopicProviderService {
         Optional<TopicProvider> topicProviderEmail = repository.findTopicProviderByEmail(topicProvider.getEmail());
         if(topicProviderEmail.isPresent()){
             throw new IllegalStateException("Email is Taken");
-         }
+        }
         repository.saveAndFlush(topicProvider);
     }
 
