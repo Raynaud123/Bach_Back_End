@@ -30,13 +30,9 @@ public class Student {
     private Long student_id;
     private Long top3_student_id;
     private Long mentor_student_id;
-
     @ManyToOne
-    @JoinColumn(name = "assignedTopic_id_student")
     private Topic assignedTopic_id;
-
     @OneToMany
-    @JoinColumn(name = "prefferedTopic_ids_student")
     private List<Topic> prefferedTopic_ids;
 
     public Long getStudent_id() {
