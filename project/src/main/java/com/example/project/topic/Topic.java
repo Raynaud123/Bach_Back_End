@@ -41,17 +41,17 @@ public class Topic implements Serializable {
     private List<TargetAudience> targetAudience_id;
     private Boolean approved_topic;
     private Boolean hide_topic;
-    private String description_topic_id;
+    private String description_topic;
 
     public Topic(Long provider_id, Long promotor_id, Long coordinator_id,
-                 List<Keyword> keyword_id, Boolean approved_topic, Boolean hide_topic, String description_topic_id) {
+                 List<Keyword> keyword_id, Boolean approved_topic, Boolean hide_topic, String description_topic) {
         this.promotor_id = promotor_id;
         this.provider_id = provider_id;
         this.coordinator_id = coordinator_id;
         this.keyword_id = keyword_id;
         this.approved_topic = approved_topic;
         this.hide_topic = hide_topic;
-        this.description_topic_id = description_topic_id;
+        this.description_topic = description_topic;
     }
 
     public Long getTopic_id() {
@@ -126,11 +126,11 @@ public class Topic implements Serializable {
         this.hide_topic = hide_topic;
     }
 
-    public String getDescription_topic_id() {
-        return description_topic_id;
+    public String getDescription_topic() {
+        return description_topic;
     }
 
-    public void setDescription_topic_id(String description_topic_id) {
-        this.description_topic_id = description_topic_id;
+    public void setDescription_topic(String description_topic) {
+        this.description_topic = description_topic;
     }
 }
