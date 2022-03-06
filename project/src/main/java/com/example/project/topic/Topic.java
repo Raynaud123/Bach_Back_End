@@ -4,13 +4,10 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import java.util.Collection;
-import java.util.Collections;
+import java.io.Serializable;
+import java.util.List;
 
 
 @Getter
@@ -18,7 +15,7 @@ import java.util.Collections;
 @EqualsAndHashCode
 @NoArgsConstructor
 @Entity
-public class Topic {
+public class Topic implements Serializable {
 
     @SequenceGenerator(
             name = "topic_sequence",
@@ -34,6 +31,7 @@ public class Topic {
     private Long provider_topic_id;
     private Long promotor_topic_id;
     private Long coordinator_topic_id;
+    //@OneToMany
     private Long keyword_topic_id;
     private Boolean approved_topic;
     private Boolean hide_topic;
@@ -89,7 +87,6 @@ public class Topic {
     public void setKeyword_topic_id(Long keyword_topic_id) {
         this.keyword_topic_id = keyword_topic_id;
     }
-
     public Boolean getApproved_topic() {
         return approved_topic;
     }

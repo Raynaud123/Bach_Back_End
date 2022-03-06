@@ -1,16 +1,12 @@
 package com.example.project.student;
 
+import com.example.project.topic.Topic;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import java.util.Collection;
-import java.util.Collections;
 
 
 @Getter
@@ -33,11 +29,11 @@ public class Student {
     private Long student_id;
     private Long top3_student_id;
     private Long mentor_student_id;
+    //private Long topic_student_id;
 
-    public Student(Long top3_id, Long mentor_id) {
-        this.top3_student_id = top3_id;
-        this.mentor_student_id = mentor_id;
-    }
+    @ManyToOne
+    @JoinColumn(name = "topic_id_student_id")
+    private Topic topic_id;
 
     public Long getStudent_id() {
         return student_id;
@@ -61,5 +57,13 @@ public class Student {
 
     public void setMentor_student_id(Long mentor_student_id) {
         this.mentor_student_id = mentor_student_id;
+    }
+
+    public Topic getTopic_id() {
+        return topic_id;
+    }
+
+    public void setTopic_id(Topic topic_id) {
+        this.topic_id = topic_id;
     }
 }
