@@ -28,23 +28,14 @@ public class Student {
             generator = "student_sequence"
     )
     private Long student_id;
-    private Long top3_student_id;
-    private Long mentor_student_id;
+    private Long mentor_id;
     @ManyToOne
     private Topic assignedTopic_id;
     @OneToMany
-    private List<Topic> prefferedTopic_ids;
+    private List<Topic> prefferedTopics;
     @OneToMany
     @Column(length = 3)
     private List<Topic> top3Topic_ids;
-
-    public List<Topic> getTop3Topic_ids() {
-        return top3Topic_ids;
-    }
-
-    public void setTop3Topic_ids(List<Topic> top3Topic_ids) {
-        this.top3Topic_ids = top3Topic_ids;
-    }
 
     public Long getStudent_id() {
         return student_id;
@@ -54,20 +45,12 @@ public class Student {
         this.student_id = student_id;
     }
 
-    public Long getTop3_student_id() {
-        return top3_student_id;
+    public Long getMentor_id() {
+        return mentor_id;
     }
 
-    public void setTop3_student_id(Long top3_student_id) {
-        this.top3_student_id = top3_student_id;
-    }
-
-    public Long getMentor_student_id() {
-        return mentor_student_id;
-    }
-
-    public void setMentor_student_id(Long mentor_student_id) {
-        this.mentor_student_id = mentor_student_id;
+    public void setMentor_id(Long mentor_id) {
+        this.mentor_id = mentor_id;
     }
 
     public Topic getAssignedTopic_id() {
@@ -78,11 +61,19 @@ public class Student {
         this.assignedTopic_id = assignedTopic_id;
     }
 
-    public List<Topic> getPrefferedTopic_ids() {
-        return prefferedTopic_ids;
+    public List<Topic> getPrefferedTopics() {
+        return prefferedTopics;
     }
 
-    public void setPrefferedTopic_ids(List<Topic> prefferedTopic_ids) {
-        this.prefferedTopic_ids = prefferedTopic_ids;
+    public void setPrefferedTopics(List<Topic> prefferedTopics) {
+        this.prefferedTopics = prefferedTopics;
+    }
+
+    public List<Topic> getTop3Topic_ids() {
+        return top3Topic_ids;
+    }
+
+    public void setTop3Topic_ids(List<Topic> top3Topic_ids) {
+        this.top3Topic_ids = top3Topic_ids;
     }
 }

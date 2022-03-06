@@ -1,6 +1,8 @@
 package com.example.project.topic;
 
 import com.example.project.keyword.Keyword;
+import com.example.project.student.Student;
+import com.example.project.targetAudience.TargetAudience;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,7 +15,6 @@ import java.util.List;
 
 @Getter
 @Setter
-@EqualsAndHashCode
 @NoArgsConstructor
 @Entity
 public class Topic implements Serializable {
@@ -29,21 +30,25 @@ public class Topic implements Serializable {
             generator = "topic_sequence"
     )
     private Long topic_id;
-    private Long provider_topic_id;
-    private Long promotor_topic_id;
-    private Long coordinator_topic_id;
+    private Long provider_id;
+    private Long promotor_id;
+    private Long coordinator_id;
     @ManyToMany
-    private List<Keyword> keyword_topic_id;
+    private List<Keyword> keyword_id;
+    @OneToMany
+    private List<Student> student_id;
+    @ManyToMany
+    private List<TargetAudience> targetAudience_id;
     private Boolean approved_topic;
     private Boolean hide_topic;
     private String description_topic_id;
 
-    public Topic(Long provider_topic_id, Long promotor_topic_id, Long coordinator_topic_id,
-                 List<Keyword> keyword_topic_id, Boolean approved_topic, Boolean hide_topic, String description_topic_id) {
-        this.promotor_topic_id = promotor_topic_id;
-        this.provider_topic_id = provider_topic_id;
-        this.coordinator_topic_id = coordinator_topic_id;
-        this.keyword_topic_id = keyword_topic_id;
+    public Topic(Long provider_id, Long promotor_id, Long coordinator_id,
+                 List<Keyword> keyword_id, Boolean approved_topic, Boolean hide_topic, String description_topic_id) {
+        this.promotor_id = promotor_id;
+        this.provider_id = provider_id;
+        this.coordinator_id = coordinator_id;
+        this.keyword_id = keyword_id;
         this.approved_topic = approved_topic;
         this.hide_topic = hide_topic;
         this.description_topic_id = description_topic_id;
@@ -57,37 +62,54 @@ public class Topic implements Serializable {
         this.topic_id = topic_id;
     }
 
-    public Long getProvider_topic_id() {
-        return provider_topic_id;
+    public Long getProvider_id() {
+        return provider_id;
     }
 
-    public void setProvider_topic_id(Long provider_topic_id) {
-        this.provider_topic_id = provider_topic_id;
+    public void setProvider_id(Long provider_id) {
+        this.provider_id = provider_id;
     }
 
-    public Long getPromotor_topic_id() {
-        return promotor_topic_id;
+    public Long getPromotor_id() {
+        return promotor_id;
     }
 
-    public void setPromotor_topic_id(Long promotor_topic_id) {
-        this.promotor_topic_id = promotor_topic_id;
+    public void setPromotor_id(Long promotor_id) {
+        this.promotor_id = promotor_id;
     }
 
-    public Long getCoordinator_topic_id() {
-        return coordinator_topic_id;
+    public Long getCoordinator_id() {
+        return coordinator_id;
     }
 
-    public void setCoordinator_topic_id(Long coordinator_topic_id) {
-        this.coordinator_topic_id = coordinator_topic_id;
+    public void setCoordinator_id(Long coordinator_id) {
+        this.coordinator_id = coordinator_id;
     }
 
-    public List<Keyword> getKeyword_topic_id() {
-        return keyword_topic_id;
+    public List<Keyword> getKeyword_id() {
+        return keyword_id;
     }
 
-    public void setKeyword_topic_id(List<Keyword> keyword_topic_id) {
-        this.keyword_topic_id = keyword_topic_id;
+    public void setKeyword_id(List<Keyword> keyword_id) {
+        this.keyword_id = keyword_id;
     }
+
+    public List<Student> getStudent_id() {
+        return student_id;
+    }
+
+    public void setStudent_id(List<Student> student_id) {
+        this.student_id = student_id;
+    }
+
+    public List<TargetAudience> getTargetAudience_id() {
+        return targetAudience_id;
+    }
+
+    public void setTargetAudience_id(List<TargetAudience> targetAudience_id) {
+        this.targetAudience_id = targetAudience_id;
+    }
+
     public Boolean getApproved_topic() {
         return approved_topic;
     }
