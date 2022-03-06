@@ -4,9 +4,7 @@ package com.example.project.topicprovider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class TopicProviderService {
@@ -26,4 +24,14 @@ public class TopicProviderService {
     public List<TopicProvider> findAll() {
         return repository.findAll();
     }
+
+    public void addNewTopicProvider(TopicProvider topicProvider) {
+
+        Optional<TopicProvider> topicProviderEmail = repository.findTopicProviderByEmail(topicProvider.getEmail());
+        if(topicProviderEmail.isPresent()){
+            throw new IllegalStateException("Email is Taken");
+         }
+        repository.saveAndFlush(topicProvider);
+    }
+
 }

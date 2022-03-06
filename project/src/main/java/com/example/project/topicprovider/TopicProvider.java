@@ -108,4 +108,44 @@ public class TopicProvider{
     public Long getPhoneNumber() {
         return PhoneNumber;
     }
+
+    public void setTypeProvider(String typeProvider) {
+        TypeProvider = typeProvider;
+    }
+
+    public void setPostNumber(int postNumber) {
+        PostNumber = postNumber;
+    }
+
+    public void setCity(String city) {
+        City = city;
+    }
+
+    public void setStreetName(String streetName) {
+        StreetName = streetName;
+    }
+
+    public void setStreetNumber(int streetNumber) {
+        StreetNumber = streetNumber;
+    }
+
+    public void setApproved(boolean approved) {
+        Approved = approved;
+    }
+
+    public void setPasswordHash(String passwordHash) {
+        PasswordHash = passwordHash;
+    }
+
+    public void setUserName(String userName) {
+        UserName = userName;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setPhoneNumber(Long phoneNumber) {
+        PhoneNumber = phoneNumber;
+    }
 }

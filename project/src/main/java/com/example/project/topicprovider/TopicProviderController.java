@@ -28,5 +28,10 @@ public class TopicProviderController {
         return service.findById(id);
     }
 
+    @PostMapping
+    public void registerNewTopicProvider(@RequestBody TopicProvider TopicProvider) {
+        service.addNewTopicProvider(TopicProvider);
+    }
+
 
 }

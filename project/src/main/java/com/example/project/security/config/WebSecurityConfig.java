@@ -22,10 +22,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity security) throws Exception
     {
         security.httpBasic().disable();
+        security.csrf().disable();
     }
- //   @Override
- //   protected void configure(HttpSecurity http) throws Exception {
-//        http
+
+//   protected void configure(HttpSecurity http) throws Exception {
+//       http
 //                .csrf().disable()
 //                .authorizeRequests()
 //                    .antMatchers("/api/v*/registration/**")
@@ -33,7 +34,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //                .anyRequest()
 //                .authenticated().and()
 //                .formLogin();
-//    }
+//  }
 //
 //    @Override
 //    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
