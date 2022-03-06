@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 
 @Getter
@@ -29,11 +30,14 @@ public class Student {
     private Long student_id;
     private Long top3_student_id;
     private Long mentor_student_id;
-    //private Long topic_student_id;
 
     @ManyToOne
-    @JoinColumn(name = "topic_id_student_id")
-    private Topic topic_id;
+    @JoinColumn(name = "assignedTopic_id_student")
+    private Topic assignedTopic_id;
+
+    @OneToMany
+    @JoinColumn(name = "prefferedTopic_ids_student")
+    private List<Topic> prefferedTopic_ids;
 
     public Long getStudent_id() {
         return student_id;
@@ -59,11 +63,19 @@ public class Student {
         this.mentor_student_id = mentor_student_id;
     }
 
-    public Topic getTopic_id() {
-        return topic_id;
+    public Topic getAssignedTopic_id() {
+        return assignedTopic_id;
     }
 
-    public void setTopic_id(Topic topic_id) {
-        this.topic_id = topic_id;
+    public void setAssignedTopic_id(Topic assignedTopic_id) {
+        this.assignedTopic_id = assignedTopic_id;
+    }
+
+    public List<Topic> getPrefferedTopic_ids() {
+        return prefferedTopic_ids;
+    }
+
+    public void setPrefferedTopic_ids(List<Topic> prefferedTopic_ids) {
+        this.prefferedTopic_ids = prefferedTopic_ids;
     }
 }
