@@ -1,5 +1,6 @@
 package com.example.project.topic;
 
+import com.example.project.keyword.Keyword;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -31,14 +32,14 @@ public class Topic implements Serializable {
     private Long provider_topic_id;
     private Long promotor_topic_id;
     private Long coordinator_topic_id;
-    //@OneToMany
-    private Long keyword_topic_id;
+    @ManyToMany
+    private List<Keyword> keyword_topic_id;
     private Boolean approved_topic;
     private Boolean hide_topic;
     private String description_topic_id;
 
     public Topic(Long provider_topic_id, Long promotor_topic_id, Long coordinator_topic_id,
-                    Long keyword_topic_id, Boolean approved_topic, Boolean hide_topic, String description_topic_id) {
+                 List<Keyword> keyword_topic_id, Boolean approved_topic, Boolean hide_topic, String description_topic_id) {
         this.promotor_topic_id = promotor_topic_id;
         this.provider_topic_id = provider_topic_id;
         this.coordinator_topic_id = coordinator_topic_id;
@@ -80,11 +81,11 @@ public class Topic implements Serializable {
         this.coordinator_topic_id = coordinator_topic_id;
     }
 
-    public Long getKeyword_topic_id() {
+    public List<Keyword> getKeyword_topic_id() {
         return keyword_topic_id;
     }
 
-    public void setKeyword_topic_id(Long keyword_topic_id) {
+    public void setKeyword_topic_id(List<Keyword> keyword_topic_id) {
         this.keyword_topic_id = keyword_topic_id;
     }
     public Boolean getApproved_topic() {
