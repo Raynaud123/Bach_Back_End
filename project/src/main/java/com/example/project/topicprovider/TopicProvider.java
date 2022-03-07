@@ -27,7 +27,6 @@ public class TopicProvider{
     private String City;
     private String StreetName;
     private int StreetNumber;
-    private boolean Approved;
     private String PasswordHash;
     private String UserName;
     private String email;
@@ -40,7 +39,6 @@ public class TopicProvider{
         this.City = city;
         this.StreetName = streetName;
         this.StreetNumber = streetNumber;
-        this.Approved = approved;
         this.PasswordHash = passwordHash;
         this.UserName = userName;
         this.email = email;
@@ -53,7 +51,6 @@ public class TopicProvider{
         this.City = city;
         this.StreetName = streetName;
         this.StreetNumber = streetNumber;
-        this.Approved = approved;
         this.PasswordHash = passwordHash;
         this.UserName = userName;
         this.email = email;
@@ -89,9 +86,6 @@ public class TopicProvider{
         return StreetNumber;
     }
 
-    public boolean isApproved() {
-        return Approved;
-    }
 
     public String getPasswordHash() {
         return PasswordHash;
@@ -129,9 +123,6 @@ public class TopicProvider{
         StreetNumber = streetNumber;
     }
 
-    public void setApproved(boolean approved) {
-        Approved = approved;
-    }
 
     public void setPasswordHash(String passwordHash) {
         PasswordHash = passwordHash;

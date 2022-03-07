@@ -9,6 +9,8 @@ import javax.persistence.Entity;
 @NoArgsConstructor
 @Entity
 public class Company extends TopicProvider{
+
+    private boolean Approved;
     private int phoneContact;
     private String firstNameMentor;
     private String lastNameMentor;

@@ -1,5 +1,7 @@
 package com.example.project.admin;
 
-public class Admin {
+import com.example.project.person.Person;
+
+public class Admin extends Person {
 
 }
