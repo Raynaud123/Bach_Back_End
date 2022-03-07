@@ -30,6 +30,8 @@ public class Topic implements Serializable {
             generator = "topic_sequence"
     )
     private Long topic_id;
+
+    private String topicName;
     //@ManyToOne
     private Long provider_id;
     //@ManyToMany
@@ -46,12 +48,18 @@ public class Topic implements Serializable {
     private Boolean hide_topic;
     private String description_topic;
 
-    public Topic(Long provider_id, Long promotor_id, Long coordinator_id,
-                 List<Keyword> keyword_id, Boolean approved_topic, Boolean hide_topic, String description_topic) {
-        this.promotor_id = promotor_id;
+
+    public Topic(Long topic_id, String topicName, Long provider_id, Long promotor_id, Long coordinator_id,
+                 List<Keyword> keyword_id, List<Student> student_id, List<TargetAudience> targetAudience_id,
+                 Boolean approved_topic, Boolean hide_topic, String description_topic) {
+        this.topic_id = topic_id;
+        this.topicName = topicName;
         this.provider_id = provider_id;
+        this.promotor_id = promotor_id;
         this.coordinator_id = coordinator_id;
         this.keyword_id = keyword_id;
+        this.student_id = student_id;
+        this.targetAudience_id = targetAudience_id;
         this.approved_topic = approved_topic;
         this.hide_topic = hide_topic;
         this.description_topic = description_topic;
@@ -63,6 +71,14 @@ public class Topic implements Serializable {
 
     public void setTopic_id(Long topic_id) {
         this.topic_id = topic_id;
+    }
+
+    public String getTopicName() {
+        return topicName;
+    }
+
+    public void setTopicName(String topicName) {
+        this.topicName = topicName;
     }
 
     public Long getProvider_id() {
