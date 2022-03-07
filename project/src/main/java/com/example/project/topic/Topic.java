@@ -32,6 +32,7 @@ public class Topic implements Serializable {
     private Long topic_id;
     private Long provider_id;
     private Long promotor_id;
+    //@ManyToOne
     private Long coordinator_id;
     @ManyToMany
     private List<Keyword> keyword_id;
