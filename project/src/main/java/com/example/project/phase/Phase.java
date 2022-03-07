@@ -26,8 +26,20 @@ public class Phase {
     )
     private Long phase_id;
     private String phase_name;
-    private Date deadline;
+
+    private Date begin_deadline;
+
+    private Date end_deadline;
     private Boolean firstRound;
+
+
+    public Phase(Long phase_id, String phase_name, Date begin_deadline, Date end_deadline, Boolean firstRound) {
+        this.phase_id = phase_id;
+        this.phase_name = phase_name;
+        this.begin_deadline = begin_deadline;
+        this.end_deadline = end_deadline;
+        this.firstRound = firstRound;
+    }
 
     public Long getPhase_id() {
         return phase_id;
@@ -45,12 +57,20 @@ public class Phase {
         this.phase_name = phase_name;
     }
 
-    public Date getDeadline() {
-        return deadline;
+    public Date getBegin_deadline() {
+        return begin_deadline;
     }
 
-    public void setDeadline(Date deadline) {
-        this.deadline = deadline;
+    public void setBegin_deadline(Date begin_deadline) {
+        this.begin_deadline = begin_deadline;
+    }
+
+    public Date getEnd_deadline() {
+        return end_deadline;
+    }
+
+    public void setEnd_deadline(Date end_deadline) {
+        this.end_deadline = end_deadline;
     }
 
     public Boolean getFirstRound() {
