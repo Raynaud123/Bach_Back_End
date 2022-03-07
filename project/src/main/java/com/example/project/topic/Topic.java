@@ -30,9 +30,11 @@ public class Topic implements Serializable {
             generator = "topic_sequence"
     )
     private Long topic_id;
-    private Long provider_id;
-    private Long promotor_id;
     //@ManyToOne
+    private Long provider_id;
+    //@ManyToMany
+    private Long promotor_id;
+    //@ManyToMany
     private Long coordinator_id;
     @ManyToMany
     private List<Keyword> keyword_id;
