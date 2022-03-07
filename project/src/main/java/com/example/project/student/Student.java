@@ -1,5 +1,6 @@
 package com.example.project.student;
 
+import com.example.project.person.Person;
 import com.example.project.topic.Topic;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -12,11 +13,11 @@ import java.util.List;
 
 @Getter
 @Setter
-@EqualsAndHashCode
 @NoArgsConstructor
 @Entity
-public class Student {
-
+@DiscriminatorValue("1")
+public class Student extends Person {
+/*
     @SequenceGenerator(
             name = "student_sequence",
             sequenceName = "student_sequence",
@@ -27,7 +28,7 @@ public class Student {
             strategy = GenerationType.SEQUENCE,
             generator = "student_sequence"
     )
-    private Long student_id;
+    private Long student_id;*/
     //@ManyToOne + Promotor
     private Long mentor_id;
     @ManyToOne
@@ -37,14 +38,6 @@ public class Student {
     @OneToMany
     @Column(length = 3)
     private List<Topic> top3Topic_ids;
-
-    public Long getStudent_id() {
-        return student_id;
-    }
-
-    public void setStudent_id(Long student_id) {
-        this.student_id = student_id;
-    }
 
     public Long getMentor_id() {
         return mentor_id;
