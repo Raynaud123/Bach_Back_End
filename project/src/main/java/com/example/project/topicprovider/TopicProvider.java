@@ -10,6 +10,7 @@ import javax.persistence.*;
 @Entity
 public class TopicProvider{
 
+
     @SequenceGenerator(
             name = "subjectProvider_sequence",
             sequenceName = "subjectProvider_sequence",
@@ -21,6 +22,7 @@ public class TopicProvider{
             generator = "subjectProvider_sequence"
     )
 
+    private boolean Approved;
     private Long TopicProvider_id;
     private String TypeProvider;
     private int PostNumber;
@@ -33,6 +35,7 @@ public class TopicProvider{
     private Long PhoneNumber;
 
     public TopicProvider(Long id, String typeProvider, int postNumber, String city, String streetName, int streetNumber, boolean approved, String passwordHash, String userName, String email, Long phoneNumber) {
+        this.Approved = approved;
         this.TopicProvider_id = id;
         this.TypeProvider = typeProvider;
         this.PostNumber = postNumber;
@@ -138,5 +141,9 @@ public class TopicProvider{
 
     public void setPhoneNumber(Long phoneNumber) {
         PhoneNumber = phoneNumber;
+    }
+
+    public boolean isApproved() {
+        return Approved;
     }
 }

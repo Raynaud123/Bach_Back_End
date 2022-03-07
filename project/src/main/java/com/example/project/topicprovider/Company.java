@@ -3,6 +3,7 @@ package com.example.project.topicprovider;
 
 import lombok.NoArgsConstructor;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 
 
@@ -10,7 +11,6 @@ import javax.persistence.Entity;
 @Entity
 public class Company extends TopicProvider{
 
-    private boolean Approved;
     private int phoneContact;
     private String firstNameMentor;
     private String lastNameMentor;
@@ -23,5 +23,21 @@ public class Company extends TopicProvider{
         this.firstNameMentor = firstNameMentor;
         this.lastNameMentor = lastNameMentor;
         this.emailMentor = email1;
+    }
+
+    public int getPhoneContact() {
+        return phoneContact;
+    }
+
+    public String getFirstNameMentor() {
+        return firstNameMentor;
+    }
+
+    public String getLastNameMentor() {
+        return lastNameMentor;
+    }
+
+    public String getEmailMentor() {
+        return emailMentor;
     }
 }

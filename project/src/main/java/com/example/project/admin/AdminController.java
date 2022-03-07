@@ -16,12 +16,15 @@ public class AdminController {
     @Autowired
     private AdminService service;
 
- //   public AdminController(AdminService service) {
- //       this.service = service;
- //   }
 
     @GetMapping(path = "/topicprovider")
     public List<TopicProvider> getAllTopicProviders() {
         return service.findAllTopicProviders();
     }
+
+    @GetMapping(path = "/topicprovider/approved")
+    public List<TopicProvider> getAllApprovedTopicProviders() {
+        return service.findAllApprovedTopicProviders();
+    }
+
 }
