@@ -29,6 +29,7 @@ public class Student extends Person {
             generator = "student_sequence"
     )
     private Long student_id;*/
+
     //@ManyToOne + Promotor
     private Long mentor_id;
     @ManyToOne
