@@ -28,6 +28,7 @@ public class Student {
             generator = "student_sequence"
     )
     private Long student_id;
+    //@ManyToOne + Promotor
     private Long mentor_id;
     @ManyToOne
     private Topic assignedTopic_id;
