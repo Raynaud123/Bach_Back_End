@@ -16,8 +16,8 @@ import java.util.List;
 public class Phase_Config {
 
 
-    String dateString = "10-09-2001";
-    SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+    String dateString = "10/09/2001";
+    SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
     Date date = format.parse(dateString);
 
     public Phase_Config() throws ParseException {

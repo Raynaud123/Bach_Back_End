@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.sql.Date;
 import java.util.List;
@@ -59,6 +61,8 @@ public class AdminService {
 
         java.util.Date bDate = format.parse(test.get("test"));
         java.util.Date eDate = format.parse(test.get("eindDatum"));
+
+
 
         if(faseResponse.isPresent()){
             Phase fase = faseResponse.get();

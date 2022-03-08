@@ -1,13 +1,13 @@
 package com.example.project.phase;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Getter
@@ -30,12 +30,12 @@ public class Phase {
     private String phase_name;
 
 
-    @JsonFormat(pattern = "dd-mm-yy")
-    @DateTimeFormat(pattern = "dd-mm-yy")
+    @JsonFormat(pattern = "dd/MM/yy")
+    @DateTimeFormat(pattern = "dd/MM/yy")
     private Date begin_deadline;
 
-    @JsonFormat(pattern = "dd-mm-yy")
-    @DateTimeFormat(pattern = "dd-mm-yy")
+    @JsonFormat(pattern = "dd/MM/yy")
+    @DateTimeFormat(pattern = "dd/MM/yy")
     private Date end_deadline;
     private Boolean firstRound;
 
