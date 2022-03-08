@@ -12,6 +12,13 @@ import java.util.List;
 public class StudentService {
 
     @Autowired
+    private StudentRepository studentRepository;
+    @Autowired
+    public StudentService(StudentRepository studentRepository) {
+        this.studentRepository = studentRepository;
+    }
+
+    @Autowired
     private TopicRepository topicRepository;
 
     public List<Topic> findAllApprovedTopics() {
