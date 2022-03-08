@@ -152,4 +152,6 @@ public class Topic implements Serializable {
     public void setDescription_topic(String description_topic) {
         this.description_topic = description_topic;
     }
+
+    public boolean isApproved() { return approved_topic; }
 }
