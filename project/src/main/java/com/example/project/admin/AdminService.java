@@ -1,5 +1,7 @@
 package com.example.project.admin;
 
+import com.example.project.phase.Phase;
+import com.example.project.phase.PhaseRepository;
 import com.example.project.topicprovider.Company;
 import com.example.project.topicprovider.TopicProvider;
 import com.example.project.topicprovider.TopicProviderRepository;
@@ -16,6 +18,8 @@ public class AdminService {
     private AdminRepository repository;
     @Autowired
     private TopicProviderRepository topicProviderRepository;
+    @Autowired
+    private PhaseRepository phaseRepository;
 
     public List<TopicProvider> findAllTopicProviders() {
 
@@ -25,7 +29,7 @@ public class AdminService {
 
     public List<TopicProvider> findAllApprovedTopicProviders() {
 
-        List<TopicProvider> appr = new ArrayList<TopicProvider>();
+        List<TopicProvider> appr = new ArrayList<>();
         List<TopicProvider> all = topicProviderRepository.findAll();
 
         for(TopicProvider top: all){
@@ -36,5 +40,9 @@ public class AdminService {
 
         return appr;
 
+    }
+
+    public List<Phase> getAllPhases() {
+        return phaseRepository.findAll();
     }
 }

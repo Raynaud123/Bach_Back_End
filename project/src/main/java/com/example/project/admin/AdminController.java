@@ -1,6 +1,7 @@
 package com.example.project.admin;
 
 
+import com.example.project.phase.Phase;
 import com.example.project.topicprovider.TopicProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,6 +26,12 @@ public class AdminController {
     @GetMapping(path = "/topicprovider/approved")
     public List<TopicProvider> getAllApprovedTopicProviders() {
         return service.findAllApprovedTopicProviders();
+    }
+
+
+    @GetMapping(path = "/phase")
+    public List<Phase> getAllPhases(){
+        return service.getAllPhases();
     }
 
 }
