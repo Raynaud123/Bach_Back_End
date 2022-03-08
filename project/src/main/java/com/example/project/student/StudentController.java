@@ -8,7 +8,7 @@ import java.util.List;
 
 @RestController
 @ResponseBody
-@RequestMapping(path = "student")
+@RequestMapping
 public class StudentController {
 
     @Autowired
