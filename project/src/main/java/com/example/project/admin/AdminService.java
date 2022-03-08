@@ -63,7 +63,6 @@ public class AdminService {
         java.util.Date eDate = format.parse(test.get("eindDatum"));
 
 
-
         if(faseResponse.isPresent()){
             Phase fase = faseResponse.get();
             fase.setBegin_deadline(bDate);
