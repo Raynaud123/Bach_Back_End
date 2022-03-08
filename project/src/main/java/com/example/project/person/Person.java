@@ -13,7 +13,7 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-@Entity(name = "persons")
+@Entity(name = "person")
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 //@DiscriminatorColumn(name = "person_type", discriminatorType = DiscriminatorType.INTEGER)
 public class Person implements Serializable {           // extends AppUser
