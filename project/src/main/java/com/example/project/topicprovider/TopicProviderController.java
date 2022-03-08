@@ -30,6 +30,8 @@ public class TopicProviderController {
 
     @PostMapping
     public void registerNewTopicProvider(@RequestBody TopicProvider TopicProvider) {
+
+
         service.addNewTopicProvider(TopicProvider);
     }
 
