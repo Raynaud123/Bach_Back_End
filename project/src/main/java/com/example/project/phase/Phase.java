@@ -1,9 +1,11 @@
 package com.example.project.phase;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -27,8 +29,13 @@ public class Phase {
     private Long phase_id;
     private String phase_name;
 
+
+    @JsonFormat(pattern = "dd-mm-yy")
+    @DateTimeFormat(pattern = "dd-mm-yy")
     private Date begin_deadline;
 
+    @JsonFormat(pattern = "dd-mm-yy")
+    @DateTimeFormat(pattern = "dd-mm-yy")
     private Date end_deadline;
     private Boolean firstRound;
 
@@ -40,6 +47,14 @@ public class Phase {
         this.end_deadline = end_deadline;
         this.firstRound = firstRound;
     }
+
+    public Phase(String phase_name, Date begin_deadline, Date end_deadline, Boolean firstRound) {
+        this.phase_name = phase_name;
+        this.begin_deadline = begin_deadline;
+        this.end_deadline = end_deadline;
+        this.firstRound = firstRound;
+    }
+
 
     public Long getPhase_id() {
         return phase_id;

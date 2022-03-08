@@ -4,11 +4,12 @@ package com.example.project.admin;
 import com.example.project.phase.Phase;
 import com.example.project.topicprovider.TopicProvider;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.sql.Date;
+import java.text.ParseException;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping(path = "admin")
@@ -32,6 +33,14 @@ public class AdminController {
     @GetMapping(path = "/phase")
     public List<Phase> getAllPhases(){
         return service.getAllPhases();
+    }
+
+    @PutMapping(path = "/phase/{id}")
+    @ResponseBody
+    public void updatePhaseDeadlines(@PathVariable long id,@RequestBody Map<String,String> test) throws ParseException {
+
+         service.updatePhase(id,test);
+
     }
 
 }
