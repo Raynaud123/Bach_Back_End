@@ -18,6 +18,8 @@ import java.util.Collections;
 @EqualsAndHashCode
 @NoArgsConstructor
 @Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+//@DiscriminatorColumn(name="type",discriminatorType=DiscriminatorType.STRING)
 public class AppUser implements UserDetails {
 
     @SequenceGenerator(
@@ -31,22 +33,43 @@ public class AppUser implements UserDetails {
             generator = "appUser_sequence"
     )
     private Long id;
-    private String firstName;
-    private String lastName;
-    private String email;
+    private String userName;
     private String password;
+    private String email;
+    private Integer phoneNumber;
     @Enumerated(EnumType.STRING)
     private AppUserRole appUserRole;
     private Boolean locked = false;
     private Boolean enabled = false;
 
-    public AppUser(String firstName, String lastName, String email, String password,
-                   AppUserRole appUserRole) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
+    private String country;
+    private String city;
+    private String streetName;
+    private Integer postNumber;
+    private Integer streetNumber;
+
+
+    public AppUser(String userName, String password, String email, Integer phoneNumber, AppUserRole appUserRole, Boolean locked, Boolean enabled, String country, String city, String streetName, Integer postNumber, Integer streetNumber) {
+        this.userName = userName;
         this.password = password;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
         this.appUserRole = appUserRole;
+        this.locked = locked;
+        this.enabled = enabled;
+        this.country = country;
+        this.city = city;
+        this.streetName = streetName;
+        this.postNumber = postNumber;
+        this.streetNumber = streetNumber;
+    }
+
+    public AppUser(String userName, String password, String email, Integer phoneNumber, AppUserRole user) {
+        this.userName = userName;
+        this.password = password;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.appUserRole = user;
     }
 
     @Override
@@ -56,40 +79,131 @@ public class AppUser implements UserDetails {
     }
 
     @Override
-    public String getPassword() {
-        return password;
-    }
-
-    @Override
     public String getUsername() {
-        return email;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
+        return null;
     }
 
     @Override
     public boolean isAccountNonExpired() {
-        return true;
+        return false;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return !locked;
+        return false;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return true;
+        return false;
     }
 
     @Override
     public boolean isEnabled() {
+        return false;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Integer getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(Integer phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public AppUserRole getAppUserRole() {
+        return appUserRole;
+    }
+
+    public void setAppUserRole(AppUserRole appUserRole) {
+        this.appUserRole = appUserRole;
+    }
+
+    public Boolean getLocked() {
+        return locked;
+    }
+
+    public void setLocked(Boolean locked) {
+        this.locked = locked;
+    }
+
+    public Boolean getEnabled() {
         return enabled;
+    }
+
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getStreetName() {
+        return streetName;
+    }
+
+    public void setStreetName(String streetName) {
+        this.streetName = streetName;
+    }
+
+    public Integer getPostNumber() {
+        return postNumber;
+    }
+
+    public void setPostNumber(Integer postNumber) {
+        this.postNumber = postNumber;
+    }
+
+    public Integer getStreetNumber() {
+        return streetNumber;
+    }
+
+    public void setStreetNumber(Integer streetNumber) {
+        this.streetNumber = streetNumber;
     }
 }

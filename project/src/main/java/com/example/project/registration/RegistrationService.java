@@ -28,16 +28,16 @@ public class RegistrationService {
         }
         String token = appUserService.singUpUser(
                 new AppUser(
-                        request.getFirstName(),
-                        request.getLastName(),
-                        request.getEmail(),
+                        request.getUserName(),
                         request.getPassword(),
+                        request.getEmail(),
+                        request.getPhoneNumber(),
                         AppUserRole.USER
                 )
         );
         String link = "http://localhost:8080/api/v1/registration/confirm?token=" + token;
         emailSender.send(request.getEmail(),
-                buildEmail(request.getFirstName(), link));
+                buildEmail(request.getUserName(), link));
         return token;
     }
 

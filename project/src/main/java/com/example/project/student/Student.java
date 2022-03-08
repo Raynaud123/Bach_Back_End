@@ -1,6 +1,8 @@
 package com.example.project.student;
 
+import com.example.project.appuser.AppUserRole;
 import com.example.project.person.Person;
+import com.example.project.targetAudience.TargetAudience;
 import com.example.project.topic.Topic;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -8,6 +10,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 
@@ -15,8 +18,8 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @Entity
-@DiscriminatorValue("1")
-public class Student extends Person {
+@DiscriminatorValue("student")
+public class Student extends Person implements Serializable {
 /*
     @SequenceGenerator(
             name = "student_sequence",
@@ -39,6 +42,37 @@ public class Student extends Person {
     @OneToMany
     @Column(length = 3)
     private List<Topic> top3Topic_ids;
+
+    public Student(Long mentor_id, Topic assignedTopic_id, List<Topic> prefferedTopics, List<Topic> top3Topic_ids) {
+        this.mentor_id = mentor_id;
+        this.assignedTopic_id = assignedTopic_id;
+        this.prefferedTopics = prefferedTopics;
+        this.top3Topic_ids = top3Topic_ids;
+    }
+
+    public Student(String firstName, String lastName, Boolean approved, List<TargetAudience> targetAudience_id, Long mentor_id, Topic assignedTopic_id, List<Topic> prefferedTopics, List<Topic> top3Topic_ids) {
+        super(firstName, lastName, approved, targetAudience_id);
+        this.mentor_id = mentor_id;
+        this.assignedTopic_id = assignedTopic_id;
+        this.prefferedTopics = prefferedTopics;
+        this.top3Topic_ids = top3Topic_ids;
+    }
+
+    public Student(String userName, String password, String email, Integer phoneNumber, AppUserRole appUserRole, Boolean locked, Boolean enabled, String country, String city, String streetName, Integer postNumber, Integer streetNumber, String firstName, String lastName, Boolean approved, List<TargetAudience> targetAudience_id, Long mentor_id, Topic assignedTopic_id, List<Topic> prefferedTopics, List<Topic> top3Topic_ids) {
+        super(userName, password, email, phoneNumber, appUserRole, locked, enabled, country, city, streetName, postNumber, streetNumber, firstName, lastName, approved, targetAudience_id);
+        this.mentor_id = mentor_id;
+        this.assignedTopic_id = assignedTopic_id;
+        this.prefferedTopics = prefferedTopics;
+        this.top3Topic_ids = top3Topic_ids;
+    }
+
+    public Student(String userName, String password, String email, Integer phoneNumber, AppUserRole user, String firstName, String lastName, Boolean approved, List<TargetAudience> targetAudience_id, Long mentor_id, Topic assignedTopic_id, List<Topic> prefferedTopics, List<Topic> top3Topic_ids) {
+        super(userName, password, email, phoneNumber, user, firstName, lastName, approved, targetAudience_id);
+        this.mentor_id = mentor_id;
+        this.assignedTopic_id = assignedTopic_id;
+        this.prefferedTopics = prefferedTopics;
+        this.top3Topic_ids = top3Topic_ids;
+    }
 
     public Long getMentor_id() {
         return mentor_id;
