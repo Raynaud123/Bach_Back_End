@@ -4,7 +4,6 @@ import com.example.project.appuser.AppUser;
 import com.example.project.appuser.AppUserRole;
 import com.example.project.appuser.AppUserService;
 import com.example.project.email.EmailSender;
-import com.example.project.email.EmailService;
 import com.example.project.registration.token.ConfirmationToken;
 import com.example.project.registration.token.ConfirmationTokenService;
 import lombok.AllArgsConstructor;

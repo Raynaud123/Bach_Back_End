@@ -1,6 +1,5 @@
 package com.example.project.admin;
 
-import com.example.project.topicprovider.Company;
 import com.example.project.topicprovider.TopicProvider;
 import com.example.project.topicprovider.TopicProviderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
