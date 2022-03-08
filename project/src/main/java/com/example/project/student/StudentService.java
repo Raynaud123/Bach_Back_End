@@ -25,9 +25,8 @@ public class StudentService {
 
         List<Topic> appr = new ArrayList<Topic>();
         List<Topic> all = topicRepository.findAll();
-
         for(Topic top: all){
-            if(top.isApproved()){
+            if(top.getApproved_topic()){
                 appr.add(top);
             }
         }

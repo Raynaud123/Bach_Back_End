@@ -153,5 +153,4 @@ public class Topic implements Serializable {
         this.description_topic = description_topic;
     }
 
-    public boolean isApproved() { return approved_topic; }
 }
