@@ -23,6 +23,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     {
         security.httpBasic().disable();
         security.csrf().disable();
+        // nodig om h2 console te tonen (anders "Refused to display 'url' in a frame because it set 'X-Frame-Options' to 'DENY'")
+        security.headers().frameOptions().disable();
     }
 
 //   protected void configure(HttpSecurity http) throws Exception {

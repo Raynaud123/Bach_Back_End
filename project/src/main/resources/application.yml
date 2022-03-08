@@ -5,9 +5,18 @@ server:
 
 spring:
   datasource:
-    password: root
-    url: jdbc:postgresql://localhost:5432/postgres
-    username: postgres
+    # h2 console
+    url: jdbc:h2:mem:testdb
+    username: sa
+    password:
+    # dit was er voor de h2 console:
+      # password: root
+      # url: jdbc:postgresql://localhost:5432/postgres
+      # username: postgres
+  h2:
+    # wordt anders by default niet getoond
+    console:
+      enabled: true
   jpa:
     hibernate:
       ddl-auto: update
