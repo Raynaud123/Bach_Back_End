@@ -3,13 +3,13 @@ package com.example.project.topic;
 import com.example.project.keyword.Keyword;
 import com.example.project.student.Student;
 import com.example.project.targetAudience.TargetAudience;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 
@@ -48,10 +48,10 @@ public class Topic implements Serializable {
     private Boolean hide_topic;
     private String description_topic;
 
+    private Date release_date; // en enkel jaar weergeven
 
-    public Topic(Long topic_id, String topicName, Long provider_id, Long promotor_id, Long coordinator_id,
-                 List<Keyword> keyword_id, List<Student> student_id, List<TargetAudience> targetAudience_id,
-                 Boolean approved_topic, Boolean hide_topic, String description_topic) {
+
+    public Topic(Long topic_id, String topicName, Long provider_id, Long promotor_id, Long coordinator_id, List<Keyword> keyword_id, List<Student> student_id, List<TargetAudience> targetAudience_id, Boolean approved_topic, Boolean hide_topic, String description_topic, Date release_date) {
         this.topic_id = topic_id;
         this.topicName = topicName;
         this.provider_id = provider_id;
@@ -63,6 +63,21 @@ public class Topic implements Serializable {
         this.approved_topic = approved_topic;
         this.hide_topic = hide_topic;
         this.description_topic = description_topic;
+        this.release_date = release_date;
+    }
+
+    public Topic(String topicName, Long provider_id, Long promotor_id, Long coordinator_id, List<Keyword> keyword_id, List<Student> student_id, List<TargetAudience> targetAudience_id, Boolean approved_topic, Boolean hide_topic, String description_topic, Date release_date) {
+        this.topicName = topicName;
+        this.provider_id = provider_id;
+        this.promotor_id = promotor_id;
+        this.coordinator_id = coordinator_id;
+        this.keyword_id = keyword_id;
+        this.student_id = student_id;
+        this.targetAudience_id = targetAudience_id;
+        this.approved_topic = approved_topic;
+        this.hide_topic = hide_topic;
+        this.description_topic = description_topic;
+        this.release_date = release_date;
     }
 
     public Long getTopic_id() {
@@ -153,4 +168,11 @@ public class Topic implements Serializable {
         this.description_topic = description_topic;
     }
 
+    public Date getRelease_date() {
+        return release_date;
+    }
+
+    public void setRelease_date(Date release_date) {
+        this.release_date = release_date;
+    }
 }

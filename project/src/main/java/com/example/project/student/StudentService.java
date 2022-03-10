@@ -21,16 +21,6 @@ public class StudentService {
     @Autowired
     private TopicRepository topicRepository;
 
-    public List<Topic> findAllApprovedTopics() {
 
-        List<Topic> appr = new ArrayList<Topic>();
-        List<Topic> all = topicRepository.findAll();
-        for(Topic top: all){
-            if(top.getApproved_topic()){
-                appr.add(top);
-            }
-        }
-        return appr;
-    }
 
 }

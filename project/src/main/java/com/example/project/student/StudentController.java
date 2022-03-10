@@ -17,11 +17,4 @@ public class StudentController {
     @Autowired
     private TopicService topicService;
 
-    @CrossOrigin(origins = "http://localhost:3000")
-    @GetMapping(path = "/topics/approved")
-    public List<Topic> getAllApprovedTopics() { return studentService.findAllApprovedTopics(); }
-
-    @CrossOrigin(origins = "http://localhost:3000")
-    @PostMapping
-    public void registerNewTopic(@RequestBody Topic topic) { topicService.addNewTopic(topic); }
-}
+    }
