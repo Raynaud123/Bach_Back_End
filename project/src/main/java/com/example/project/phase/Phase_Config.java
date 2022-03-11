@@ -21,8 +21,15 @@
 //    String dateString7 = "15/05/2022";
 //    String dateString8 = "16/05/2022";
 //    String dateString9 = "20/05/2022";
-//    String dateString10 = "21/05/2022";
-//    String dateString11 = "30/08/2022";
+
+//
+//    String dateString10 = "15/08/2022";
+//    String dateString11 = "10/09/2022";
+//    String dateString12 = "12/09/2022";
+//    String dateString13 = "18/09/2022";
+//    String dateString14 = "19/09/2022";
+//    String dateString15 = "28/09/2022";
+
 //    SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
 //    //Date date = format.parse(dateString);
 //
@@ -47,10 +54,16 @@
 //                    "Assignment Topic to Students", format.parse(dateString8), format.parse(dateString9),true
 //            );
 //            Phase fase6 = new Phase(
-//                    "Submit topics", format.parse(dateString10), format.parse(dateString11),false
+//                    "Preferences Students", format.parse(dateString10), format.parse(dateString11),false
+//            );
+//            Phase fase7 = new Phase(
+//                    "Preferences Promotors", format.parse(dateString12), format.parse(dateString13),false
+//            );
+//            Phase fase8 = new Phase(
+//                    "Assignment Topic to Students", format.parse(dateString14), format.parse(dateString15),false
 //            );
 //            repository.saveAll(
-//                    List.of(fase1,fase2,fase3,fase4,fase5,fase6)
+//                    List.of(fase1,fase2,fase3,fase4,fase5,fase6,fase7,fase8)
 //            );
 //        };
 //    }
