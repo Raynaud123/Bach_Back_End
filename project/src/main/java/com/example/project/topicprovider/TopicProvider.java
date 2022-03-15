@@ -2,13 +2,14 @@ package com.example.project.topicprovider;
 
 
 
+import com.example.project.appuser.AppUser;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @NoArgsConstructor
 @Entity
-public class TopicProvider{
+public class TopicProvider extends AppUser {
 
 
     @SequenceGenerator(
@@ -73,9 +74,9 @@ public class TopicProvider{
         return TypeProvider;
     }
 
-    public int getPostNumber() {
-        return PostNumber;
-    }
+ //   public int getPostNumber() {
+   //     return PostNumber;
+   // }
 
     public String getCity() {
         return City;
@@ -85,9 +86,9 @@ public class TopicProvider{
         return StreetName;
     }
 
-    public int getStreetNumber() {
-        return StreetNumber;
-    }
+    //public int getStreetNumber() {
+        //return StreetNumber;
+    //}
 
 
     public String getPasswordHash() {
@@ -98,13 +99,13 @@ public class TopicProvider{
         return UserName;
     }
 
-    public String getEmail() {
-        return email;
-    }
+    //public String getEmail() {
+      //  return email;
+    //}
 
-    public Long getPhoneNumber() {
-        return PhoneNumber;
-    }
+    //public Long getPhoneNumber() {
+      //  return PhoneNumber;
+    //}
 
     public void setTypeProvider(String typeProvider) {
         TypeProvider = typeProvider;
