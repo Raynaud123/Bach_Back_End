@@ -9,7 +9,7 @@ import javax.persistence.*;
 
 @NoArgsConstructor
 @Entity
-public class TopicProvider extends AppUser {
+public class TopicProvider{
 
 
     @SequenceGenerator(
@@ -99,9 +99,9 @@ public class TopicProvider extends AppUser {
         return UserName;
     }
 
-    //public String getEmail() {
-      //  return email;
-    //}
+    public String getEmail() {
+        return email;
+    }
 
     //public Long getPhoneNumber() {
       //  return PhoneNumber;

@@ -18,16 +18,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 //    private final AppUserService appUserService;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
-    @Override
-    protected void configure(HttpSecurity security) throws Exception
-    {
-        security.httpBasic().disable();
-        security.csrf().disable();
-        // nodig om h2 console te tonen (anders "Refused to display 'url' in a frame because it set 'X-Frame-Options' to 'DENY'")
-        security.headers().frameOptions().disable();
-    }
-
-//   protected void configure(HttpSecurity http) throws Exception {
+//    @Override
+//    protected void configure(HttpSecurity security) throws Exception
+//    {
+//        security.httpBasic().disable();
+//        security.csrf().disable();
+//        // nodig om h2 console te tonen (anders "Refused to display 'url' in a frame because it set 'X-Frame-Options' to 'DENY'")
+//        security.headers().frameOptions().disable();
+//    }
+@Override
+protected void configure(HttpSecurity http) throws Exception {
 //       http
 //                .csrf().disable()
 //                .authorizeRequests()
@@ -50,5 +50,5 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //        provider.setPasswordEncoder(bCryptPasswordEncoder);
 //        provider.setUserDetailsService(appUserService);
 //        return provider;
-//    }
+   }
 }
