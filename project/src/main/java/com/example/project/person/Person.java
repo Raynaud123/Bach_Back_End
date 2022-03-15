@@ -19,8 +19,7 @@ import java.util.List;
 @DiscriminatorValue("person")
 //@DiscriminatorColumn(name = "person_type", discriminatorType = DiscriminatorType.INTEGER)
 public class Person extends AppUser implements Serializable {
-/*
-    @SequenceGenerator(
+    /*@SequenceGenerator(
             name = "person_sequence",
             sequenceName = "person_sequence",
             allocationSize = 1
@@ -30,8 +29,7 @@ public class Person extends AppUser implements Serializable {
             strategy = GenerationType.SEQUENCE,
             generator = "person_sequence"
     )
-    private Long person_id;
-*/
+    private Long person_id;*/
     private String firstName;
 
     private String lastName;
