@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class TopicService {
@@ -27,4 +28,16 @@ public class TopicService {
         }
         return appr;
     }
+
+    public String updateApprove(ApproveRequest request) {
+        Long id = request.getTopic_id();
+        if (topicRepository.findById(id).isPresent()) {
+            Topic testObject = topicRepository.findById(id).get();
+            testObject.setApproved_topic(request.getApproved());
+            topicRepository.save(testObject);
+            return "Topic approved status is updated";
+        }
+        else return "Topic not found";
+    }
+
 }
