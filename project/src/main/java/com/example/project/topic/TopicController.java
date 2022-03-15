@@ -23,6 +23,11 @@ public class TopicController {
     public String updateApprove(@RequestBody ApproveRequest request) {
         return topicService.updateApprove(request);
     }
+/*
+    @PutMapping
+    public String updatePromotor(@RequestBody PromotorRequest request) {
+        return topicService.updatePromotor(request);
+    }*/
 
     @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping(path = "/approved")
