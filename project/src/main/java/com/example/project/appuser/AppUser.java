@@ -15,7 +15,6 @@ import java.util.Collections;
 
 @Getter
 @Setter
-@EqualsAndHashCode
 @NoArgsConstructor
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -36,7 +35,7 @@ public class AppUser implements UserDetails {
     private String userName;
     private String password;
     private String email;
-    private Integer phoneNumber;
+    private String phoneNumber;
     @Enumerated(EnumType.STRING)
     private AppUserRole appUserRole;
     private Boolean locked = false;
@@ -49,7 +48,7 @@ public class AppUser implements UserDetails {
     private Integer streetNumber;
 
 
-    public AppUser(String userName, String password, String email, Integer phoneNumber, AppUserRole appUserRole, Boolean locked, Boolean enabled, String country, String city, String streetName, Integer postNumber, Integer streetNumber) {
+    public AppUser(String userName, String password, String email, String phoneNumber, AppUserRole appUserRole, Boolean locked, Boolean enabled, String country, String city, String streetName, Integer postNumber, Integer streetNumber) {
         this.userName = userName;
         this.password = password;
         this.email = email;
@@ -64,7 +63,7 @@ public class AppUser implements UserDetails {
         this.streetNumber = streetNumber;
     }
 
-    public AppUser(String userName, String password, String email, Integer phoneNumber, AppUserRole user) {
+    public AppUser(String userName, String password, String email, String phoneNumber, AppUserRole user) {
         this.userName = userName;
         this.password = password;
         this.email = email;
@@ -135,11 +134,11 @@ public class AppUser implements UserDetails {
         this.email = email;
     }
 
-    public Integer getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(Integer phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 

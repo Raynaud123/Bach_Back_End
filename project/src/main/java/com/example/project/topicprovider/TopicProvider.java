@@ -1,8 +1,6 @@
 package com.example.project.topicprovider;
 
 
-
-import com.example.project.appuser.AppUser;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -31,7 +29,6 @@ public class TopicProvider{
     private String StreetName;
     private int StreetNumber;
     private String PasswordHash;
-    private String UserName;
     private String email;
     private Long PhoneNumber;
 
@@ -44,7 +41,6 @@ public class TopicProvider{
         this.StreetName = streetName;
         this.StreetNumber = streetNumber;
         this.PasswordHash = passwordHash;
-        this.UserName = userName;
         this.email = email;
         this.PhoneNumber = phoneNumber;
     }
@@ -56,7 +52,6 @@ public class TopicProvider{
         this.StreetName = streetName;
         this.StreetNumber = streetNumber;
         this.PasswordHash = passwordHash;
-        this.UserName = userName;
         this.email = email;
         this.PhoneNumber = phoneNumber;
     }
@@ -95,9 +90,7 @@ public class TopicProvider{
         return PasswordHash;
     }
 
-    public String getUserName() {
-        return UserName;
-    }
+
 
     public String getEmail() {
         return email;
@@ -132,9 +125,7 @@ public class TopicProvider{
         PasswordHash = passwordHash;
     }
 
-    public void setUserName(String userName) {
-        UserName = userName;
-    }
+
 
     public void setEmail(String email) {
         this.email = email;

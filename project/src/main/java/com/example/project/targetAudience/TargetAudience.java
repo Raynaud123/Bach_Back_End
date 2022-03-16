@@ -1,8 +1,5 @@
 package com.example.project.targetAudience;
 
-import com.example.project.keyword.Keyword;
-import com.example.project.student.Student;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

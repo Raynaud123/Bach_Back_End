@@ -4,7 +4,6 @@ import com.example.project.appuser.AppUserRole;
 import com.example.project.person.Person;
 import com.example.project.targetAudience.TargetAudience;
 import com.example.project.topic.Topic;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -58,7 +57,7 @@ public class Student extends Person implements Serializable {
         this.top3Topic_ids = top3Topic_ids;
     }
 
-    public Student(String userName, String password, String email, Integer phoneNumber, AppUserRole appUserRole, Boolean locked, Boolean enabled, String country, String city, String streetName, Integer postNumber, Integer streetNumber, String firstName, String lastName, Boolean approved, List<TargetAudience> targetAudience_id, Long mentor_id, Topic assignedTopic_id, List<Topic> prefferedTopics, List<Topic> top3Topic_ids) {
+    public Student(String userName, String password, String email, String phoneNumber, AppUserRole appUserRole, Boolean locked, Boolean enabled, String country, String city, String streetName, Integer postNumber, Integer streetNumber, String firstName, String lastName, Boolean approved, List<TargetAudience> targetAudience_id, Long mentor_id, Topic assignedTopic_id, List<Topic> prefferedTopics, List<Topic> top3Topic_ids) {
         super(userName, password, email, phoneNumber, appUserRole, locked, enabled, country, city, streetName, postNumber, streetNumber, firstName, lastName, approved, targetAudience_id);
         this.mentor_id = mentor_id;
         this.assignedTopic_id = assignedTopic_id;
@@ -66,7 +65,7 @@ public class Student extends Person implements Serializable {
         this.top3Topic_ids = top3Topic_ids;
     }
 
-    public Student(String userName, String password, String email, Integer phoneNumber, AppUserRole user, String firstName, String lastName, Boolean approved, List<TargetAudience> targetAudience_id, Long mentor_id, Topic assignedTopic_id, List<Topic> prefferedTopics, List<Topic> top3Topic_ids) {
+    public Student(String userName, String password, String email, String phoneNumber, AppUserRole user, String firstName, String lastName, Boolean approved, List<TargetAudience> targetAudience_id, Long mentor_id, Topic assignedTopic_id, List<Topic> prefferedTopics, List<Topic> top3Topic_ids) {
         super(userName, password, email, phoneNumber, user, firstName, lastName, approved, targetAudience_id);
         this.mentor_id = mentor_id;
         this.assignedTopic_id = assignedTopic_id;

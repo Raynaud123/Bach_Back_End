@@ -19,7 +19,7 @@ spring:
 #      enabled: true
   jpa:
     hibernate:
-      ddl-auto: update #niet create
+      ddl-auto: create-drop #niet create
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
