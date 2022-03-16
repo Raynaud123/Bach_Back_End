@@ -41,9 +41,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.csrf().disable();
         http.sessionManagement().sessionCreationPolicy(STATELESS);
-        http.authorizeRequests().antMatchers("/login","/appuser/refreshtoken/**").permitAll();
-        http.authorizeRequests().antMatchers(HttpMethod.GET, "/admin").hasAnyAuthority("ADMIN");
-        http.authorizeRequests().anyRequest().authenticated();
+        http.authorizeRequests().anyRequest().permitAll();
+//        http.authorizeRequests().antMatchers("/login","/appuser/refreshtoken/**").permitAll();
+//        http.authorizeRequests().antMatchers(HttpMethod.GET, "/admin").hasAnyAuthority("ADMIN");
+//        http.authorizeRequests().anyRequest().authenticated();
         http.addFilter(new CustomAuthenticationFIlter(authenticationManagerBean()));
         http.addFilterBefore(new CustomAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
     }
