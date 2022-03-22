@@ -39,11 +39,11 @@ public class Topic implements Serializable {
     //@ManyToMany
     private Long coordinator_id;
     @ManyToMany
-    private List<Keyword> keyword_id;
+    private List<Keyword> keyword_list;
     @OneToMany
-    private List<Student> student_id;
+    private List<Student> student_list;
     @ManyToMany
-    private List<TargetAudience> targetAudience_id;
+    private List<TargetAudience> targetAudience_list;
     private Boolean approved_topic;
     private Boolean hide_topic;
     private String description_topic;
@@ -51,29 +51,29 @@ public class Topic implements Serializable {
     private Date release_date; // en enkel jaar weergeven
 
 
-    public Topic(Long topic_id, String topicName, Long provider_id, Long promotor_id, Long coordinator_id, List<Keyword> keyword_id, List<Student> student_id, List<TargetAudience> targetAudience_id, Boolean approved_topic, Boolean hide_topic, String description_topic, Date release_date) {
+    public Topic(Long topic_id, String topicName, Long provider_id, Long promotor_id, Long coordinator_id, List<Keyword> keyword_list, List<Student> student_list, List<TargetAudience> targetAudience_list, Boolean approved_topic, Boolean hide_topic, String description_topic, Date release_date) {
         this.topic_id = topic_id;
         this.topicName = topicName;
         this.provider_id = provider_id;
         this.promotor_id = promotor_id;
         this.coordinator_id = coordinator_id;
-        this.keyword_id = keyword_id;
-        this.student_id = student_id;
-        this.targetAudience_id = targetAudience_id;
+        this.keyword_list = keyword_list;
+        this.student_list = student_list;
+        this.targetAudience_list = targetAudience_list;
         this.approved_topic = approved_topic;
         this.hide_topic = hide_topic;
         this.description_topic = description_topic;
         this.release_date = release_date;
     }
 
-    public Topic(String topicName, Long provider_id, Long promotor_id, Long coordinator_id, List<Keyword> keyword_id, List<Student> student_id, List<TargetAudience> targetAudience_id, Boolean approved_topic, Boolean hide_topic, String description_topic, Date release_date) {
+    public Topic(String topicName, Long provider_id, Long promotor_id, Long coordinator_id, List<Keyword> keyword_list, List<Student> student_list, List<TargetAudience> targetAudience_list, Boolean approved_topic, Boolean hide_topic, String description_topic, Date release_date) {
         this.topicName = topicName;
         this.provider_id = provider_id;
         this.promotor_id = promotor_id;
         this.coordinator_id = coordinator_id;
-        this.keyword_id = keyword_id;
-        this.student_id = student_id;
-        this.targetAudience_id = targetAudience_id;
+        this.keyword_list = keyword_list;
+        this.student_list = student_list;
+        this.targetAudience_list = targetAudience_list;
         this.approved_topic = approved_topic;
         this.hide_topic = hide_topic;
         this.description_topic = description_topic;
@@ -120,28 +120,32 @@ public class Topic implements Serializable {
         this.coordinator_id = coordinator_id;
     }
 
-    public List<Keyword> getKeyword_id() {
-        return keyword_id;
+    public List<Keyword> getKeyword_list() {
+        return keyword_list;
     }
 
-    public void setKeyword_id(List<Keyword> keyword_id) {
-        this.keyword_id = keyword_id;
+    public void setKeyword_list(List<Keyword> keyword_id) {
+        this.keyword_list = keyword_id;
     }
 
-    public List<Student> getStudent_id() {
-        return student_id;
+    public List<Student> getStudent_list() {
+        return student_list;
     }
 
-    public void setStudent_id(List<Student> student_id) {
-        this.student_id = student_id;
+    public void setStudent_list(List<Student> student_id) {
+        this.student_list = student_id;
     }
 
-    public List<TargetAudience> getTargetAudience_id() {
-        return targetAudience_id;
+    public void addStudent(Student student) {
+        this.student_list.add(student);
     }
 
-    public void setTargetAudience_id(List<TargetAudience> targetAudience_id) {
-        this.targetAudience_id = targetAudience_id;
+    public List<TargetAudience> getTargetAudience_list() {
+        return targetAudience_list;
+    }
+
+    public void setTargetAudience_list(List<TargetAudience> targetAudience_id) {
+        this.targetAudience_list = targetAudience_id;
     }
 
     public Boolean getApproved_topic() {

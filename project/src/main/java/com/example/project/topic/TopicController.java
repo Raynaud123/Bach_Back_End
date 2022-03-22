@@ -14,8 +14,6 @@ import java.util.List;
 @AllArgsConstructor
 public class TopicController {
 
-    //private final TopicService topicService;
-
     @Autowired
     private TopicService topicService;
 
@@ -25,8 +23,8 @@ public class TopicController {
     }
 
     @PutMapping(path = "/{topic_id}", consumes = {MediaType.APPLICATION_JSON_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE})
-    public String updateTopicAssignment(@PathVariable Long topic_id, @Valid @RequestBody UpdateTopicStudentsRequest topicDetails) {
-        return "Update topic was called";
+    public Topic updateTopicAssignment(@PathVariable Long topic_id, @Valid @RequestBody UpdateTopicStudentsRequest request) {
+        return topicService.updateTopicAssignment(topic_id, request);
     }
 
 
