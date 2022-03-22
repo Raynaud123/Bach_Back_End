@@ -19,7 +19,7 @@ public class TopicController {
     @Autowired
     private TopicService topicService;
 
-    @PutMapping
+    @PutMapping(path = "/putApprove")
     public String updateApprove(@RequestBody ApproveRequest request) {
         return topicService.updateApprove(request);
     }
@@ -28,6 +28,8 @@ public class TopicController {
     public String updatePromotor(@RequestBody PromotorRequest request) {
         return topicService.updatePromotor(request);
     }*/
+
+
 
     @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping(path = "/approved")
