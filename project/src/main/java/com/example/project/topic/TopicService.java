@@ -4,7 +4,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 @Service
 public class TopicService {
@@ -29,7 +28,7 @@ public class TopicService {
         return appr;
     }
 
-    public String updateApprove(ApproveRequest request) {
+    public String updateApprove(UpdateTopicApproveRequest request) {
         Long id = request.getTopic_id();
         if (topicRepository.findById(id).isPresent()) {
             Topic testObject = topicRepository.findById(id).get();

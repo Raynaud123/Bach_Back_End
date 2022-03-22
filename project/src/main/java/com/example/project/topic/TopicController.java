@@ -2,10 +2,10 @@ package com.example.project.topic;
 
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -20,12 +20,19 @@ public class TopicController {
     private TopicService topicService;
 
     @PutMapping(path = "/putApprove")
-    public String updateApprove(@RequestBody ApproveRequest request) {
+    public String updateApprove(@RequestBody UpdateTopicApproveRequest request) {
         return topicService.updateApprove(request);
     }
+
+    @PutMapping(path = "/{topic_id}", consumes = {MediaType.APPLICATION_JSON_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE})
+    public String updateTopicAssignment(@PathVariable Long topic_id, @Valid @RequestBody UpdateTopicStudentsRequest topicDetails) {
+        return "Update topic was called";
+    }
+
+
 /*
     @PutMapping
-    public String updatePromotor(@RequestBody PromotorRequest request) {
+    public String updatePromotor(@RequestBody UpdateTopicPromotorRequest request) {
         return topicService.updatePromotor(request);
     }*/
 

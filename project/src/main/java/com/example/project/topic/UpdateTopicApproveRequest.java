@@ -7,8 +7,8 @@ import lombok.ToString;
 @Getter
 @AllArgsConstructor
 @ToString
-public class PromotorRequest {
+public class UpdateTopicApproveRequest {
     private final Long topic_id;
-    private final Long promotor_id;
-    // is het mogelijk om op de promotor toevoegen pagina uit lijst met beschikbare promotors te kiezen
+    private final Boolean approved;
+
 }
