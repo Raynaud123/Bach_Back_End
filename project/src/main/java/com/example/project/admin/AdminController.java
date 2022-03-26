@@ -2,6 +2,7 @@ package com.example.project.admin;
 
 
 import com.example.project.phase.Phase;
+import com.example.project.targetAudience.TargetAudience;
 import com.example.project.topicprovider.TopicProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -36,10 +37,13 @@ public class AdminController {
 
     @PutMapping(path = "/phase/{id}")
     @ResponseBody
-    public void updatePhaseDeadlines(@PathVariable long id,@RequestBody Map<String,String> test) throws ParseException {
+    public void updatePhaseDeadlines(@PathVariable long id,@RequestBody Map<String,String> test) throws ParseException {service.updatePhase(id,test);}
 
-        service.updatePhase(id,test);
-
+    @GetMapping(path = "/targetAudience")
+    public List<TargetAudience> getAllTargetAudiences() {
+        return service.findAllTargetAudience();
     }
+
+
 
 }

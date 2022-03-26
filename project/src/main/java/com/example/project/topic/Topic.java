@@ -38,6 +38,7 @@ public class Topic implements Serializable {
     private Long promotor_id;
     //@ManyToMany
     private Long coordinator_id;
+    private Long aantal_studenten;
     @ManyToMany
     private List<Keyword> keyword_list;
     @OneToMany
@@ -51,35 +52,16 @@ public class Topic implements Serializable {
     private Date release_date; // en enkel jaar weergeven
 
 
-    public Topic(Long topic_id, String topicName, Long provider_id, Long promotor_id, Long coordinator_id, List<Keyword> keyword_list, List<Student> student_list, List<TargetAudience> targetAudience_list, Boolean approved_topic, Boolean hide_topic, String description_topic, Date release_date) {
-        this.topic_id = topic_id;
-        this.topicName = topicName;
-        this.provider_id = provider_id;
-        this.promotor_id = promotor_id;
-        this.coordinator_id = coordinator_id;
-        this.keyword_list = keyword_list;
-        this.student_list = student_list;
-        this.targetAudience_list = targetAudience_list;
-        this.approved_topic = approved_topic;
-        this.hide_topic = hide_topic;
-        this.description_topic = description_topic;
-        this.release_date = release_date;
+
+
+
+    public Long getAantal_studenten() {
+        return aantal_studenten;
     }
 
-    public Topic(String topicName, Long provider_id, Long promotor_id, Long coordinator_id, List<Keyword> keyword_list, List<Student> student_list, List<TargetAudience> targetAudience_list, Boolean approved_topic, Boolean hide_topic, String description_topic, Date release_date) {
-        this.topicName = topicName;
-        this.provider_id = provider_id;
-        this.promotor_id = promotor_id;
-        this.coordinator_id = coordinator_id;
-        this.keyword_list = keyword_list;
-        this.student_list = student_list;
-        this.targetAudience_list = targetAudience_list;
-        this.approved_topic = approved_topic;
-        this.hide_topic = hide_topic;
-        this.description_topic = description_topic;
-        this.release_date = release_date;
+    public void setAantal_studenten(Long aantal_studenten) {
+        this.aantal_studenten = aantal_studenten;
     }
-
     public Long getTopic_id() {
         return topic_id;
     }

@@ -17,7 +17,7 @@ import java.util.Collections;
 @Setter
 @NoArgsConstructor
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@Inheritance(strategy = InheritanceType.JOINED)
 //@DiscriminatorColumn(name="type",discriminatorType=DiscriminatorType.STRING)
 public class AppUser implements UserDetails {
 

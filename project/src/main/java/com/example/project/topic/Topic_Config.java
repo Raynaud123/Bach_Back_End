@@ -28,8 +28,14 @@
 //            Topic topic3 = new Topic(
 //                    3L,"Topic3", 3L, null, null, null, null, null, true, true, "Description3", format.parse(dateString1)
 //            );
+//            Topic topic4 = new Topic(
+//                    4L,"Topic4", 3L, null, null, null, null, null, true, true, "Description4", format.parse(dateString1)
+//            );
+//            Topic topic5 = new Topic(
+//                    5L,"Topic5", 3L, null, null, null, null, null, true, true, "Description5", format.parse(dateString1)
+//            );
 //            repository.saveAll(
-//                    List.of(topic1,topic2,topic3)
+//                    List.of(topic1,topic2,topic3,topic4,topic5)
 //            );
 //        };
 //    }
