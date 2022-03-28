@@ -9,14 +9,9 @@ import java.util.UUID;
 @Service
 public class PromotorService {
 
-    private final PromotorRepository promotorRepository;
+    private PromotorRepository promotorRepository;
 
     public PromotorService(PromotorRepository promotorRepository) { this.promotorRepository = promotorRepository; }
 
-    public List<Promotor> findAllPromotors() {
-        List<Promotor> all = promotorRepository.findAll();
-        return all;
-    }
-
-
+    public List<Promotor> findAllPromotors() { return promotorRepository.findAll(); }
 }

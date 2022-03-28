@@ -2,6 +2,8 @@ package com.example.project.admin;
 
 import com.example.project.phase.Phase;
 import com.example.project.phase.PhaseRepository;
+import com.example.project.promotor.Promotor;
+import com.example.project.promotor.PromotorRepository;
 import com.example.project.targetAudience.TargetAudience;
 import com.example.project.targetAudience.TargetAudienceRepository;
 import com.example.project.topicprovider.TopicProvider;
@@ -29,11 +31,11 @@ public class AdminService {
     @Autowired
     private TargetAudienceRepository targetAudienceRepository;
 
+    @Autowired
+    private PromotorRepository promotorRepository;
 
     public List<TopicProvider> findAllTopicProviders() {
-
         return topicProviderRepository.findAll();
-
     }
 
     public List<TopicProvider> findAllApprovedTopicProviders() {
@@ -46,9 +48,7 @@ public class AdminService {
                 appr.add(top);
             }
         }
-
         return appr;
-
     }
 
     public List<Phase> getAllPhases() {
@@ -78,4 +78,6 @@ public class AdminService {
     public List<TargetAudience> findAllTargetAudience() {
         return targetAudienceRepository.findAll();
     }
+
+    public List<Promotor> findAllPromotors() { return promotorRepository.findAll(); }
 }
