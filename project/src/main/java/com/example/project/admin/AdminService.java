@@ -2,6 +2,10 @@ package com.example.project.admin;
 
 import com.example.project.phase.Phase;
 import com.example.project.phase.PhaseRepository;
+import com.example.project.promotor.Promotor;
+import com.example.project.promotor.PromotorRepository;
+import com.example.project.targetAudience.TargetAudience;
+import com.example.project.targetAudience.TargetAudienceRepository;
 import com.example.project.topicprovider.TopicProvider;
 import com.example.project.topicprovider.TopicProviderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,10 +28,14 @@ public class AdminService {
     @Autowired
     private PhaseRepository phaseRepository;
 
+    @Autowired
+    private TargetAudienceRepository targetAudienceRepository;
+
+    @Autowired
+    private PromotorRepository promotorRepository;
+
     public List<TopicProvider> findAllTopicProviders() {
-
         return topicProviderRepository.findAll();
-
     }
 
     public List<TopicProvider> findAllApprovedTopicProviders() {
@@ -40,9 +48,7 @@ public class AdminService {
                 appr.add(top);
             }
         }
-
         return appr;
-
     }
 
     public List<Phase> getAllPhases() {
@@ -68,4 +74,10 @@ public class AdminService {
             throw new IllegalStateException();
         }
     }
+
+    public List<TargetAudience> findAllTargetAudience() {
+        return targetAudienceRepository.findAll();
+    }
+
+    public List<Promotor> findAllPromotors() { return promotorRepository.findAll(); }
 }

@@ -16,7 +16,7 @@ import java.util.Collections;
 @Setter
 @NoArgsConstructor
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@Inheritance(strategy = InheritanceType.JOINED)
 //@DiscriminatorColumn(name="type",discriminatorType=DiscriminatorType.STRING)
 public class AppUser implements UserDetails {
 
@@ -61,12 +61,32 @@ public class AppUser implements UserDetails {
         this.postNumber = postNumber;
         this.streetNumber = streetNumber;
     }
+    public AppUser(String userName, String password, String email, AppUserRole appUserRole, Boolean locked, Boolean enabled, String country, String city, String streetName, Integer postNumber, Integer streetNumber) {
+        this.userName = userName;
+        this.password = password;
+        this.email = email;
+        this.appUserRole = appUserRole;
+        this.locked = locked;
+        this.enabled = enabled;
+        this.country = country;
+        this.city = city;
+        this.streetName = streetName;
+        this.postNumber = postNumber;
+        this.streetNumber = streetNumber;
+    }
 
     public AppUser(String userName, String password, String email, String phoneNumber, AppUserRole user) {
         this.userName = userName;
         this.password = password;
         this.email = email;
         this.phoneNumber = phoneNumber;
+        this.appUserRole = user;
+    }
+
+    public AppUser(String userName, String password, String email, AppUserRole user) {
+        this.userName = userName;
+        this.password = password;
+        this.email = email;
         this.appUserRole = user;
     }
 

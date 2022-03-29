@@ -1,11 +1,13 @@
 package com.example.project.topic;
 
 import com.example.project.student.StudentRepository;
+import com.example.project.topicprovider.TopicProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -55,4 +57,14 @@ public class TopicService {
         topicRepository.save(storedTopic);
         return storedTopic;
     }
+
+    public List<Topic> findById(long id) {
+        return topicRepository.findAllById(Collections.singleton(id));
+    }
+
+    public List<Topic> findAll() {
+        return topicRepository.findAll();
+    }
+
+
 }

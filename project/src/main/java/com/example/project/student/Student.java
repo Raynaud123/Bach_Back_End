@@ -37,7 +37,7 @@ public class Student extends Person implements Serializable {
     @ManyToOne
     private Topic assignedTopic_id;
     @OneToMany
-    private List<Topic> prefferedTopics;
+    private List<Topic> preferredTopics;
     @OneToMany
     @Column(length = 3)
     private List<Topic> top3Topic_ids;
@@ -45,7 +45,7 @@ public class Student extends Person implements Serializable {
     public Student(Long mentor_id, Topic assignedTopic_id, List<Topic> prefferedTopics, List<Topic> top3Topic_ids) {
         this.mentor_id = mentor_id;
         this.assignedTopic_id = assignedTopic_id;
-        this.prefferedTopics = prefferedTopics;
+        this.preferredTopics = prefferedTopics;
         this.top3Topic_ids = top3Topic_ids;
     }
 
@@ -53,7 +53,7 @@ public class Student extends Person implements Serializable {
         super(firstName, lastName, approved, targetAudience_id);
         this.mentor_id = mentor_id;
         this.assignedTopic_id = assignedTopic_id;
-        this.prefferedTopics = prefferedTopics;
+        this.preferredTopics = prefferedTopics;
         this.top3Topic_ids = top3Topic_ids;
     }
 
@@ -61,7 +61,7 @@ public class Student extends Person implements Serializable {
         super(userName, password, email, phoneNumber, appUserRole, locked, enabled, country, city, streetName, postNumber, streetNumber, firstName, lastName, approved, targetAudience_id);
         this.mentor_id = mentor_id;
         this.assignedTopic_id = assignedTopic_id;
-        this.prefferedTopics = prefferedTopics;
+        this.preferredTopics = prefferedTopics;
         this.top3Topic_ids = top3Topic_ids;
     }
 
@@ -69,7 +69,7 @@ public class Student extends Person implements Serializable {
         super(userName, password, email, phoneNumber, user, firstName, lastName, approved, targetAudience_id);
         this.mentor_id = mentor_id;
         this.assignedTopic_id = assignedTopic_id;
-        this.prefferedTopics = prefferedTopics;
+        this.preferredTopics = prefferedTopics;
         this.top3Topic_ids = top3Topic_ids;
     }
 
@@ -89,12 +89,12 @@ public class Student extends Person implements Serializable {
         this.assignedTopic_id = assignedTopic_id;
     }
 
-    public List<Topic> getPrefferedTopics() {
-        return prefferedTopics;
+    public List<Topic> getPreferredTopics() {
+        return preferredTopics;
     }
 
-    public void setPrefferedTopics(List<Topic> prefferedTopics) {
-        this.prefferedTopics = prefferedTopics;
+    public void setPreferredTopics(List<Topic> preferredTopics) {
+        this.preferredTopics = preferredTopics;
     }
 
     public List<Topic> getTop3Topic_ids() {
