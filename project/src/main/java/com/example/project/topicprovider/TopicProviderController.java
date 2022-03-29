@@ -35,5 +35,10 @@ public class TopicProviderController {
         service.addNewTopicProvider(TopicProvider);
     }
 
+    @GetMapping(path= "topics/{id}")
+    public void getTopicsSubmittedByTopicProvider(@PathVariable long id){
+            //return service.findTopicsFromTopicProviderById(id);
+    }
+
 
 }

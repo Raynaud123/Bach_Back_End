@@ -1,10 +1,5 @@
 package com.example.project.topic;
 
-import com.example.project.student.Student;
-
-import javax.persistence.OneToMany;
-import java.util.List;
-
 public class UpdateTopicStudentsRequest {
 
     Long student_id;

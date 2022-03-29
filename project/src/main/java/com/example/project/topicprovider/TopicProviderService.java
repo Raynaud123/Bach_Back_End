@@ -36,4 +36,7 @@ public class TopicProviderService {
         repository.saveAndFlush(topicProvider);
     }
 
+    public void findTopicsFromTopicProviderById(long id) {
+
+    }
 }

@@ -1,12 +1,11 @@
 package com.example.project.topic;
 
-import com.example.project.appuser.AppUserRepository;
-import com.example.project.student.Student;
 import com.example.project.student.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -23,14 +22,18 @@ public class TopicService {
 
     public List<Topic> findAllApprovedTopics() {
 
-        List<Topic> appr = new ArrayList<Topic>();
         List<Topic> all = topicRepository.findAll();
+
+        ArrayList<Topic> app = new ArrayList<>();
+
         for(Topic top: all){
             if(top.getApproved_topic()){
-                appr.add(top);
+                app.add(top);
             }
         }
-        return appr;
+
+
+        return app;
     }
 
     public String updateApprove(UpdateTopicApproveRequest request) {

@@ -1,6 +1,5 @@
 package com.example.project.appuser;
 
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
