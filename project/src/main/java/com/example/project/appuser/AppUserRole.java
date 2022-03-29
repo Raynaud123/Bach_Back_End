@@ -1,6 +1,8 @@
 package com.example.project.appuser;
 
 public enum AppUserRole {
-    USER,
-    ADMIN
+    STUDENT,
+    ADMIN,
+    MASTER,
+    COMPANY
 }

@@ -36,15 +36,14 @@ public class TopicController {
 
 
 
-    @CrossOrigin(origins = "http://localhost:3000")
+ //   @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping(path = "/approved")
     public List<Topic> getAllApprovedTopics() { return topicService.findAllApprovedTopics(); }
 
-    /* werkt nog niet -> geblokt door CORS
+//     werkt nog niet -> geblokt door CORS
     @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping
     public void registerNewTopic(@RequestBody Topic topic) { topicService.addNewTopic(topic); }
-    */
 
 
 
