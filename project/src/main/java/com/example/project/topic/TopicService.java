@@ -29,7 +29,7 @@ public class TopicService {
         ArrayList<Topic> app = new ArrayList<>();
 
         for(Topic top: all){
-            if(top.getApproved_topic()){
+            if(top.getApproved_topic() != null && top.getApproved_topic()){
                 app.add(top);
             }
         }
