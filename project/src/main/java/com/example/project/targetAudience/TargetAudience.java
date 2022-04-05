@@ -23,26 +23,26 @@ public class TargetAudience {
             generator = "targetAudience_sequence"
     )
     private Long targetAudience_id;
-    @OneToMany
-    private List<Campus> campus;
-    @OneToMany
-    private List<Course> course;
+    @OneToOne
+    private Campus campus;
+    @OneToOne
+    private Course course;
     private Boolean hide_targetAudience;
 
 
-    public TargetAudience(Long targetAudience_id, List<Campus> campus, List<Course> course, Boolean hide_targetAudience) {
+    public TargetAudience(Long targetAudience_id, Campus campus, Course course, Boolean hide_targetAudience) {
         this.targetAudience_id = targetAudience_id;
         this.campus = campus;
         this.course = course;
         this.hide_targetAudience = hide_targetAudience;
     }
 
-    public void addCampus(Campus c){
-        campus.add(c);
-    }
-    public void addCourse(Course c){
-        course.add(c);
-    }
+//    public void addCampus(Campus c){
+//        campus.add(c);
+//    }
+//    public void addCourse(Course c){
+//        course.add(c);
+//    }
     public Long getTargetAudience_id() {
         return targetAudience_id;
     }
@@ -51,19 +51,19 @@ public class TargetAudience {
         this.targetAudience_id = targetAudience_id;
     }
 
-    public List<Campus> getCampus() {
+    public Campus getCampus() {
         return campus;
     }
 
-    public void setCampus(List<Campus> campus) {
+    public void setCampus(Campus campus) {
         this.campus = campus;
     }
 
-    public List<Course> getCourse() {
+    public Course getCourse() {
         return course;
     }
 
-    public void setCourse(List<Course> course) {
+    public void setCourse(Course course) {
         this.course = course;
     }
 

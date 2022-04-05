@@ -5,10 +5,7 @@ import com.example.project.topicprovider.TopicProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class TopicService {
@@ -67,4 +64,13 @@ public class TopicService {
     }
 
 
+    public Topic getTopic(Long id) {
+        List<Topic> all = topicRepository.findAll();
+        for(Topic top: all){
+            if(Objects.equals(top.getTopic_id(), id)){
+                return top;
+            }
+        }
+        return null;
+    }
 }

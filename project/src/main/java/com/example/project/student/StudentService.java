@@ -5,6 +5,8 @@ import com.example.project.topicprovider.TopicProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class StudentService {
 
@@ -14,9 +16,10 @@ public class StudentService {
     public StudentService(StudentRepository studentRepository) {
         this.studentRepository = studentRepository;
     }
-
     @Autowired
     private TopicRepository topicRepository;
+
+    public List<Student> findAllStudents() { return studentRepository.findAll();}
 
 
 //    public List<Topic> findPreferredTopics() {

@@ -2,8 +2,11 @@ package com.example.project.admin;
 
 import com.example.project.phase.Phase;
 import com.example.project.phase.PhaseRepository;
+import com.example.project.phase.PhaseService;
 import com.example.project.promotor.Promotor;
 import com.example.project.promotor.PromotorRepository;
+import com.example.project.student.Student;
+import com.example.project.student.StudentRepository;
 import com.example.project.targetAudience.TargetAudience;
 import com.example.project.targetAudience.TargetAudienceRepository;
 import com.example.project.topicprovider.TopicProvider;
@@ -27,12 +30,12 @@ public class AdminService {
     private TopicProviderRepository topicProviderRepository;
     @Autowired
     private PhaseRepository phaseRepository;
-
     @Autowired
     private TargetAudienceRepository targetAudienceRepository;
-
     @Autowired
     private PromotorRepository promotorRepository;
+    @Autowired
+    private StudentRepository studentRepository;
 
     public List<TopicProvider> findAllTopicProviders() {
         return topicProviderRepository.findAll();
@@ -54,7 +57,6 @@ public class AdminService {
     public List<Phase> getAllPhases() {
         return phaseRepository.findAll();
     }
-
 
     public void updatePhase(long id, Map<String,String> test) throws ParseException {
         Optional<Phase> faseResponse = phaseRepository.findById(id);
@@ -80,4 +82,5 @@ public class AdminService {
     }
 
     public List<Promotor> findAllPromotors() { return promotorRepository.findAll(); }
+
 }

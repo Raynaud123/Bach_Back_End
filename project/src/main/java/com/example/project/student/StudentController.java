@@ -16,7 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @ResponseBody
-@RequestMapping
+@CrossOrigin(origins = "http://localhost:3000")
+@RequestMapping(path = "student")
 public class StudentController {
 
     @Autowired
@@ -32,6 +33,11 @@ public class StudentController {
     @GetMapping(path = "/{id}")
     public List<Topic> getById(@PathVariable long id) {
         return topicService.findById(id);
+    }
+
+    @GetMapping(path = "/all")
+    public List<Student> getAllStudents() {
+        return studentService.findAllStudents();
     }
 
 }

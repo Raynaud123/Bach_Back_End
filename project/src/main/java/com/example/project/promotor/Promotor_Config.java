@@ -11,7 +11,7 @@
 //import java.text.SimpleDateFormat;
 //import java.util.List;
 //
-//import static com.example.project.appuser.AppUserRole.USER;
+//import static com.example.project.appuser.AppUserRole.MASTER;
 //
 //@Configuration
 //public class Promotor_Config {
@@ -24,10 +24,9 @@
 //    CommandLineRunner commandLineRunner(PromotorRepository repository) {
 //        return args -> {
 //            Promotor promotor1 = new Promotor(
-//                    "userProm1", "Prompassword1", "prom@email.com", "000000000000", USER, false, true, "Belgium", "Gent", "street1", 9000, 1, "Prom1", "otor1", true, null, null, null
-//            );
+//                    "userName1", "password", "prom1@email.com", null, MASTER, false, true, "Belgium", "Gent", "street2", 9000, 1, "Prom2", "otor2", true, null, null, null);
 //            Promotor promotor2 = new Promotor(
-//                    "userProm2", "Prompassword21", "prom2@email.com", "000000000000", USER, false, true, "Belgium", "Gent", "street2", 9000, 1, "Prom2", "otor2", true, null, null, null
+//                    "userProm2", "Prompassword21", "prom2@email.com", null, MASTER, false, true, "Belgium", "Gent", "street2", 9000, 1, "Prom2", "otor2", true, null, null, null
 //            );
 //            repository.saveAll(
 //                    List.of(promotor1, promotor2)

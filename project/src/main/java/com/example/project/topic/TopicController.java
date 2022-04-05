@@ -10,7 +10,7 @@ import java.util.List;
 
 @RestController
 @ResponseBody
-@RequestMapping(path = "topics")
+@RequestMapping(path = "topic")
 @AllArgsConstructor
 public class TopicController {
 
@@ -26,6 +26,11 @@ public class TopicController {
     public Topic updateTopicAssignment(@PathVariable Long topic_id, @Valid @RequestBody UpdateTopicStudentsRequest request) {
         return topicService.updateTopicAssignment(topic_id, request);
     }
+    @CrossOrigin(origins = "http://localhost:3000")
+    @GetMapping("/info/{id}")
+    public Topic getTopic(@PathVariable Long id) {
+        return topicService.getTopic(id);
+    }
 
 
 /*
@@ -35,8 +40,7 @@ public class TopicController {
     }*/
 
 
-
- //   @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping(path = "/approved")
     public List<Topic> getAllApprovedTopics() { return topicService.findAllApprovedTopics(); }
 

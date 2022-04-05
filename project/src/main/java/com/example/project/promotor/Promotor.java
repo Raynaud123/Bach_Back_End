@@ -46,6 +46,8 @@ public class Promotor extends Person {
         this.topic = topic;
         this.boostedStudent = boostedStudent;
     }
+
+
     public Topic getTopic() {
         return topic;
     }
