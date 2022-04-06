@@ -73,4 +73,14 @@ public class TopicService {
         }
         return null;
     }
+
+    public Topic getTopicByString(String topicName) {
+        List<Topic> all = topicRepository.findAll();
+        for(Topic top: all){
+            if(Objects.equals(top.getTopicName(), topicName)){
+                return top;
+            }
+        }
+        return null;
+    }
 }

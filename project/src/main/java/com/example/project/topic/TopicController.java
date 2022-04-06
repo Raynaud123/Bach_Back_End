@@ -27,9 +27,14 @@ public class TopicController {
         return topicService.updateTopicAssignment(topic_id, request);
     }
     @CrossOrigin(origins = "http://localhost:3000")
-    @GetMapping("/info/{id}")
+    @GetMapping("/{id}")
     public Topic getTopic(@PathVariable Long id) {
         return topicService.getTopic(id);
+    }
+    @CrossOrigin(origins = "http://localhost:3000")
+    @GetMapping("/info/{topicName}")
+    public Topic getTopic(@PathVariable String topicName) {
+        return topicService.getTopicByString(topicName);
     }
 
 

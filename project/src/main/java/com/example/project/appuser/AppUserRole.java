@@ -4,5 +4,6 @@ public enum AppUserRole {
     STUDENT,
     ADMIN,
     MASTER,
-    COMPANY
+    COMPANY,
+    PROMOTOR
 }
