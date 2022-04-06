@@ -1,42 +1,72 @@
 package com.example.project.topicprovider;
 
 
+import com.example.project.appuser.AppUserRole;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import java.io.Serializable;
 
 
+@Getter
+@Setter
 @NoArgsConstructor
 @Entity
-public class Company extends TopicProvider{
+@DiscriminatorValue("company")
+public class Company extends TopicProvider implements Serializable {
 
     private int phoneContact;
     private String firstNameMentor;
     private String lastNameMentor;
     private String emailMentor;
 
-
-    public Company(Long id, String typeProvider, int postNumber, String city, String streetName, int streetNumber, boolean approved, String passwordHash, String userName, String email, Long phoneNumber, int phoneContact, String firstNameMentor, String lastNameMentor, String email1) {
-        super(id, typeProvider, postNumber, city, streetName, streetNumber, approved, passwordHash, userName, email, phoneNumber);
+    public Company(int phoneContact, String firstNameMentor, String lastNameMentor, String emailMentor) {
         this.phoneContact = phoneContact;
         this.firstNameMentor = firstNameMentor;
         this.lastNameMentor = lastNameMentor;
-        this.emailMentor = email1;
+        this.emailMentor = emailMentor;
     }
 
-    public int getPhoneContact() {
-        return phoneContact;
+    public Company(boolean approved, String typeProvider, int phoneContact, String firstNameMentor, String lastNameMentor, String emailMentor) {
+        super(approved, typeProvider);
+        this.phoneContact = phoneContact;
+        this.firstNameMentor = firstNameMentor;
+        this.lastNameMentor = lastNameMentor;
+        this.emailMentor = emailMentor;
     }
 
-    public String getFirstNameMentor() {
-        return firstNameMentor;
+    public Company(String userName, String password, String email, String phoneNumber, AppUserRole appUserRole, Boolean locked, Boolean enabled, String country, String city, String streetName, Integer postNumber, Integer streetNumber, boolean approved, String typeProvider, int phoneContact, String firstNameMentor, String lastNameMentor, String emailMentor) {
+        super(userName, password, email, phoneNumber, appUserRole, locked, enabled, country, city, streetName, postNumber, streetNumber, approved, typeProvider);
+        this.phoneContact = phoneContact;
+        this.firstNameMentor = firstNameMentor;
+        this.lastNameMentor = lastNameMentor;
+        this.emailMentor = emailMentor;
     }
 
-    public String getLastNameMentor() {
-        return lastNameMentor;
+    public Company(String userName, String password, String email, AppUserRole appUserRole, Boolean locked, Boolean enabled, String country, String city, String streetName, Integer postNumber, Integer streetNumber, boolean approved, String typeProvider, int phoneContact, String firstNameMentor, String lastNameMentor, String emailMentor) {
+        super(userName, password, email, appUserRole, locked, enabled, country, city, streetName, postNumber, streetNumber, approved, typeProvider);
+        this.phoneContact = phoneContact;
+        this.firstNameMentor = firstNameMentor;
+        this.lastNameMentor = lastNameMentor;
+        this.emailMentor = emailMentor;
     }
 
-    public String getEmailMentor() {
-        return emailMentor;
+    public Company(String userName, String password, String email, String phoneNumber, AppUserRole user, boolean approved, String typeProvider, int phoneContact, String firstNameMentor, String lastNameMentor, String emailMentor) {
+        super(userName, password, email, phoneNumber, user, approved, typeProvider);
+        this.phoneContact = phoneContact;
+        this.firstNameMentor = firstNameMentor;
+        this.lastNameMentor = lastNameMentor;
+        this.emailMentor = emailMentor;
+    }
+
+    public Company(String userName, String password, String email, AppUserRole user, boolean approved, String typeProvider, int phoneContact, String firstNameMentor, String lastNameMentor, String emailMentor) {
+        super(userName, password, email, user, approved, typeProvider);
+        this.phoneContact = phoneContact;
+        this.firstNameMentor = firstNameMentor;
+        this.lastNameMentor = lastNameMentor;
+        this.emailMentor = emailMentor;
     }
 }

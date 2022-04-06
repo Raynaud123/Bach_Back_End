@@ -9,15 +9,18 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
+import java.io.Serializable;
 import java.util.List;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @Entity
-public class Promotor extends Person {
+@DiscriminatorValue("promotor")
+public class Promotor extends Person implements Serializable {
 
     @OneToOne
     Topic topic;
