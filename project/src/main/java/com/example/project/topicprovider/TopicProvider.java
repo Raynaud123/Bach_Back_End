@@ -33,33 +33,39 @@ public class TopicProvider extends AppUser implements Serializable{
 //    private Long TopicProvider_id;
     private boolean Approved;
     private String TypeProvider;    //Company of Onderzoeksgroep
+    private String Name;
 
-    public TopicProvider(boolean approved, String typeProvider) {
+    public TopicProvider(boolean approved, String typeProvider, String name) {
         Approved = approved;
         TypeProvider = typeProvider;
+        Name = name;
     }
 
-    public TopicProvider(String userName, String password, String email, String phoneNumber, AppUserRole appUserRole, Boolean locked, Boolean enabled, String country, String city, String streetName, Integer postNumber, Integer streetNumber, boolean approved, String typeProvider) {
+    public TopicProvider(String userName, String password, String email, String phoneNumber, AppUserRole appUserRole, Boolean locked, Boolean enabled, String country, String city, String streetName, Integer postNumber, Integer streetNumber, boolean approved, String typeProvider, String name) {
         super(userName, password, email, phoneNumber, appUserRole, locked, enabled, country, city, streetName, postNumber, streetNumber);
         Approved = approved;
         TypeProvider = typeProvider;
+        Name = name;
     }
 
-    public TopicProvider(String userName, String password, String email, AppUserRole appUserRole, Boolean locked, Boolean enabled, String country, String city, String streetName, Integer postNumber, Integer streetNumber, boolean approved, String typeProvider) {
+    public TopicProvider(String userName, String password, String email, AppUserRole appUserRole, Boolean locked, Boolean enabled, String country, String city, String streetName, Integer postNumber, Integer streetNumber, boolean approved, String typeProvider, String name) {
         super(userName, password, email, appUserRole, locked, enabled, country, city, streetName, postNumber, streetNumber);
         Approved = approved;
         TypeProvider = typeProvider;
+        Name = name;
     }
 
-    public TopicProvider(String userName, String password, String email, String phoneNumber, AppUserRole user, boolean approved, String typeProvider) {
+    public TopicProvider(String userName, String password, String email, String phoneNumber, AppUserRole user, boolean approved, String typeProvider, String name) {
         super(userName, password, email, phoneNumber, user);
         Approved = approved;
         TypeProvider = typeProvider;
+        Name = name;
     }
 
-    public TopicProvider(String userName, String password, String email, AppUserRole user, boolean approved, String typeProvider) {
+    public TopicProvider(String userName, String password, String email, AppUserRole user, boolean approved, String typeProvider, String name) {
         super(userName, password, email, user);
         Approved = approved;
         TypeProvider = typeProvider;
+        Name = name;
     }
 }

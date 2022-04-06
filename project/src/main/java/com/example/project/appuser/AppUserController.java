@@ -5,11 +5,11 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
+import com.example.project.topicprovider.TopicProvider;
+import com.example.project.topicprovider.TopicProviderService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -27,9 +27,15 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 public class AppUserController {
 
     @Autowired
-    private AppUserService service;
-
-
-
+    private AppUserService appUserService;
+//
+//    @Autowired
+//    private TopicProviderService topicProviderService;
+//
+//    @CrossOrigin(origins = "http://localhost:3000")
+//    @GetMapping("/{id}")
+//    public TopicProvider getTopicprovider(@PathVariable Long id) {
+//        return topicProviderService.getTopicProvider(id);
+//    }
 
 }

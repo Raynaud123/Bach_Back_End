@@ -224,4 +224,5 @@ public class AppUser implements UserDetails {
     public void setStreetNumber(Integer streetNumber) {
         this.streetNumber = streetNumber;
     }
+
 }
