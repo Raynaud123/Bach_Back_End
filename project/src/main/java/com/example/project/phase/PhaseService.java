@@ -15,7 +15,7 @@ public class PhaseService {
 
     public Phase getPhase() {
         List<Phase> all = phaseRepository.findAll();
-        var today = new Date();
+        Date today = new Date();
 
         for(Phase p: all){
             if(today.getTime() <= p.getEnd_deadline().getTime()){
