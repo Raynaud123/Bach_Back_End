@@ -2,9 +2,7 @@ package com.example.project.person;
 
 import com.example.project.appuser.AppUser;
 import com.example.project.appuser.AppUserRole;
-import com.example.project.student.Student;
 import com.example.project.targetAudience.TargetAudience;
-import com.example.project.topic.Topic;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

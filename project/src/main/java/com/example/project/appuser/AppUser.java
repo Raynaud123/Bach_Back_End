@@ -31,7 +31,7 @@ public class AppUser implements UserDetails {
             generator = "appUser_sequence"
     )
     private Long id;
-    private String userName;
+    private String username;
     private String password;
     private String email;
     private String phoneNumber;
@@ -48,7 +48,7 @@ public class AppUser implements UserDetails {
 
 
     public AppUser(String userName, String password, String email, String phoneNumber, AppUserRole appUserRole, Boolean locked, Boolean enabled, String country, String city, String streetName, Integer postNumber, Integer streetNumber) {
-        this.userName = userName;
+        this.username = userName;
         this.password = password;
         this.email = email;
         this.phoneNumber = phoneNumber;
@@ -62,7 +62,7 @@ public class AppUser implements UserDetails {
         this.streetNumber = streetNumber;
     }
     public AppUser(String userName, String password, String email, AppUserRole appUserRole, Boolean locked, Boolean enabled, String country, String city, String streetName, Integer postNumber, Integer streetNumber) {
-        this.userName = userName;
+        this.username = userName;
         this.password = password;
         this.email = email;
         this.appUserRole = appUserRole;
@@ -76,7 +76,7 @@ public class AppUser implements UserDetails {
     }
 
     public AppUser(String userName, String password, String email, String phoneNumber, AppUserRole user) {
-        this.userName = userName;
+        this.username = userName;
         this.password = password;
         this.email = email;
         this.phoneNumber = phoneNumber;
@@ -84,7 +84,7 @@ public class AppUser implements UserDetails {
     }
 
     public AppUser(String userName, String password, String email, AppUserRole user) {
-        this.userName = userName;
+        this.username = userName;
         this.password = password;
         this.email = email;
         this.appUserRole = user;
@@ -96,10 +96,6 @@ public class AppUser implements UserDetails {
         return Collections.singletonList(authority);
     }
 
-    @Override
-    public String getUsername() {
-        return null;
-    }
 
     @Override
     public boolean isAccountNonExpired() {
@@ -129,16 +125,21 @@ public class AppUser implements UserDetails {
         this.id = id;
     }
 
-    public String getUserName() {
-        return userName;
-    }
+ //   public String getUserName() {
+ //       return username;
+ //   }
 
     public void setUserName(String userName) {
-        this.userName = userName;
+        this.username = userName;
     }
 
     public String getPassword() {
         return password;
+    }
+
+    @Override
+    public String getUsername() {
+        return username;
     }
 
     public void setPassword(String password) {

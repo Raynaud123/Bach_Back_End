@@ -2,10 +2,8 @@ package com.example.project.admin;
 
 import com.example.project.phase.Phase;
 import com.example.project.phase.PhaseRepository;
-import com.example.project.phase.PhaseService;
 import com.example.project.promotor.Promotor;
 import com.example.project.promotor.PromotorRepository;
-import com.example.project.student.Student;
 import com.example.project.student.StudentRepository;
 import com.example.project.targetAudience.TargetAudience;
 import com.example.project.targetAudience.TargetAudienceRepository;

@@ -45,7 +45,6 @@ public class TopicController {
     }*/
 
 
-    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping(path = "/approved")
     public List<Topic> getAllApprovedTopics() { return topicService.findAllApprovedTopics(); }
 

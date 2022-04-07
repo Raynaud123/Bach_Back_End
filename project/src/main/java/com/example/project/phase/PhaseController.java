@@ -1,11 +1,7 @@
 package com.example.project.phase;
 
-import com.example.project.admin.AdminService;
-import com.example.project.promotor.Promotor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @ResponseBody

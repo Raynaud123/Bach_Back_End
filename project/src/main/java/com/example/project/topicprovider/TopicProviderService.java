@@ -1,7 +1,6 @@
 package com.example.project.topicprovider;
 
 
-import com.example.project.topic.Topic;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

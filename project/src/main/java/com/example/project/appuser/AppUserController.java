@@ -1,41 +1,53 @@
 package com.example.project.appuser;
 
 
-import com.auth0.jwt.JWT;
-import com.auth0.jwt.JWTVerifier;
-import com.auth0.jwt.algorithms.Algorithm;
-import com.auth0.jwt.interfaces.DecodedJWT;
-import com.example.project.topicprovider.TopicProvider;
-import com.example.project.topicprovider.TopicProviderService;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.example.project.security.AuthenticationRequest;
+import com.example.project.security.AuthenticationResponse;
+import com.example.project.security.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.util.*;
-
-import static org.springframework.http.HttpHeaders.AUTHORIZATION;
-import static org.springframework.http.HttpStatus.FORBIDDEN;
-import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
+import java.util.ArrayList;
 
 @RestController
 @RequestMapping(path = "appuser")
 public class AppUserController {
 
+
     @Autowired
-    private AppUserService appUserService;
-//
-//    @Autowired
-//    private TopicProviderService topicProviderService;
-//
-//    @CrossOrigin(origins = "http://localhost:3000")
-//    @GetMapping("/{id}")
-//    public TopicProvider getTopicprovider(@PathVariable Long id) {
-//        return topicProviderService.getTopicProvider(id);
-//    }
+    private AuthenticationManager authenticationManager;
+
+    @Autowired
+    private AppUserService service;
+
+
+    @Autowired
+    private JwtUtil jwtTokenUtil;
+
+
+    @PostMapping(path = "/authenticate")
+    public ResponseEntity<?> createAuthenticationToken(@RequestBody AuthenticationRequest authenticationrequest) throws Exception{
+
+        try{
+            authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(authenticationrequest.getUsername(), authenticationrequest.getPassword(),new ArrayList<>()));
+        }
+        catch (BadCredentialsException e){
+            throw new Exception("Incorrect username or password", e);
+        }
+        // Misschien appuser inplaats an userDetails?
+        final UserDetails appUser = service.loadUserByUsername(authenticationrequest.getUsername());
+        final String jwt = jwtTokenUtil.generateToken(appUser);
+        return ResponseEntity.ok(new AuthenticationResponse(jwt));
+
+    };
 
 }
