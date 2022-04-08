@@ -11,6 +11,7 @@ import java.util.List;
 @RestController
 @ResponseBody
 @RequestMapping(path = "topic")
+@CrossOrigin(origins = "http://localhost:3000")
 @AllArgsConstructor
 public class TopicController {
 
@@ -26,12 +27,11 @@ public class TopicController {
     public Topic updateTopicAssignment(@PathVariable Long topic_id, @Valid @RequestBody UpdateTopicStudentsRequest request) {
         return topicService.updateTopicAssignment(topic_id, request);
     }
-    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/{id}")
     public Topic getTopic(@PathVariable Long id) {
         return topicService.getTopic(id);
     }
-    @CrossOrigin(origins = "http://localhost:3000")
+
     @GetMapping("/info/{topicName}")
     public Topic getTopic(@PathVariable String topicName) {
         return topicService.getTopicByString(topicName);
