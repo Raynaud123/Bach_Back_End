@@ -19,27 +19,16 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @DiscriminatorValue("person")
-//@DiscriminatorColumn(name = "person_type", discriminatorType = DiscriminatorType.INTEGER)
 public class Person extends AppUser implements Serializable {
-    /*@SequenceGenerator(
-            name = "person_sequence",
-            sequenceName = "person_sequence",
-            allocationSize = 1
-    )
-    @Id
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "person_sequence"
-    )
-    private Long person_id;*/
+
     private String firstName;
-
     private String lastName;
-
     private Boolean approved;
-
     @ManyToMany
     private List<TargetAudience> targetAudience_id;
+
+
+
 
     public Person(String firstName, String lastName, Boolean approved, List<TargetAudience> targetAudience_id) {
         this.firstName = firstName;
@@ -48,38 +37,21 @@ public class Person extends AppUser implements Serializable {
         this.targetAudience_id = targetAudience_id;
     }
 
-    public Person(String userName, String password, String email, String phoneNumber, AppUserRole appUserRole, Boolean locked, Boolean enabled, String country, String city, String streetName, Integer postNumber, Integer streetNumber, String firstName, String lastName, Boolean approved, List<TargetAudience> targetAudience_id) {
-        super(userName, password, email, phoneNumber,appUserRole, locked, enabled, country, city, streetName, postNumber, streetNumber);
+    public Person(Long id, String username, String password, String email, String phoneNumber, AppUserRole appUserRole, Boolean locked, Boolean enabled, String country, String city, String streetName, Integer postNumber, Integer streetNumber, String firstName, String lastName, Boolean approved, List<TargetAudience> targetAudience_id) {
+        super(id, username, password, email, phoneNumber, appUserRole, locked, enabled, country, city, streetName, postNumber, streetNumber);
         this.firstName = firstName;
         this.lastName = lastName;
         this.approved = approved;
         this.targetAudience_id = targetAudience_id;
     }
 
-    public Person(String userName, String password, String email, String phoneNumber, AppUserRole user, String firstName, String lastName, Boolean approved, List<TargetAudience> targetAudience_id) {
-        super(userName, password, email, phoneNumber, user);
+    public Person(String username, String password, String email, String firstName, String lastName, Boolean approved, List<TargetAudience> targetAudience_id) {
+        super(username, password, email);
         this.firstName = firstName;
         this.lastName = lastName;
         this.approved = approved;
         this.targetAudience_id = targetAudience_id;
     }
-
-    public Person(String userName, String password, String email, AppUserRole appUserRole, Boolean locked, Boolean enabled, String country, String city, String streetName, Integer postNumber, Integer streetNumber, String firstName, String lastName, Boolean approved, List<TargetAudience> targetAudience_id) {
-        super(userName, password, email,appUserRole, locked, enabled, country, city, streetName, postNumber, streetNumber);
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.approved = approved;
-        this.targetAudience_id = targetAudience_id;
-    }
-
-    //getters en setters
-    /*public Long getPerson_id() {
-        return person_id;
-    }
-
-    public void setPerson_id(Long person_id) {
-        this.person_id = person_id;
-    }*/
 
     public String getFirstName() {
         return firstName;

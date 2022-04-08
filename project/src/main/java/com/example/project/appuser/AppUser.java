@@ -47,8 +47,9 @@ public class AppUser implements UserDetails {
     private Integer streetNumber;
 
 
-    public AppUser(String userName, String password, String email, String phoneNumber, AppUserRole appUserRole, Boolean locked, Boolean enabled, String country, String city, String streetName, Integer postNumber, Integer streetNumber) {
-        this.username = userName;
+    public AppUser(Long id, String username, String password, String email, String phoneNumber, AppUserRole appUserRole, Boolean locked, Boolean enabled, String country, String city, String streetName, Integer postNumber, Integer streetNumber) {
+        this.id = id;
+        this.username = username;
         this.password = password;
         this.email = email;
         this.phoneNumber = phoneNumber;
@@ -61,41 +62,11 @@ public class AppUser implements UserDetails {
         this.postNumber = postNumber;
         this.streetNumber = streetNumber;
     }
-    public AppUser(String userName, String password, String email, AppUserRole appUserRole, Boolean locked, Boolean enabled, String country, String city, String streetName, Integer postNumber, Integer streetNumber) {
-        this.username = userName;
-        this.password = password;
-        this.email = email;
-        this.appUserRole = appUserRole;
-        this.locked = locked;
-        this.enabled = enabled;
-        this.country = country;
-        this.city = city;
-        this.streetName = streetName;
-        this.postNumber = postNumber;
-        this.streetNumber = streetNumber;
-    }
 
-    public AppUser(String userName, String password, String email, String phoneNumber, AppUserRole user) {
-        this.username = userName;
+    public AppUser(String username, String password, String email) {
+        this.username = username;
         this.password = password;
         this.email = email;
-        this.phoneNumber = phoneNumber;
-        this.appUserRole = user;
-    }
-
-    public AppUser(String userName, String password, String email, AppUserRole user) {
-        this.username = userName;
-        this.password = password;
-        this.email = email;
-        this.appUserRole = user;
-    }
-    public AppUser(String userName, String password, String email) {
-        this.username = userName;
-        this.password = password;
-        this.email = email;
-        this.locked =false;
-        this.enabled= false;
-        this.appUserRole= AppUserRole.NOTAPPROVED;
     }
 
     @Override
@@ -233,5 +204,6 @@ public class AppUser implements UserDetails {
     public void setStreetNumber(Integer streetNumber) {
         this.streetNumber = streetNumber;
     }
+
 
 }

@@ -41,29 +41,15 @@ public class TopicProvider extends AppUser implements Serializable{
         Name = name;
     }
 
-    public TopicProvider(String userName, String password, String email, String phoneNumber, AppUserRole appUserRole, Boolean locked, Boolean enabled, String country, String city, String streetName, Integer postNumber, Integer streetNumber, boolean approved, String typeProvider, String name) {
-        super(userName, password, email, phoneNumber, appUserRole, locked, enabled, country, city, streetName, postNumber, streetNumber);
+    public TopicProvider(Long id, String username, String password, String email, String phoneNumber, AppUserRole appUserRole, Boolean locked, Boolean enabled, String country, String city, String streetName, Integer postNumber, Integer streetNumber, boolean approved, String typeProvider, String name) {
+        super(id, username, password, email, phoneNumber, appUserRole, locked, enabled, country, city, streetName, postNumber, streetNumber);
         Approved = approved;
         TypeProvider = typeProvider;
         Name = name;
     }
 
-    public TopicProvider(String userName, String password, String email, AppUserRole appUserRole, Boolean locked, Boolean enabled, String country, String city, String streetName, Integer postNumber, Integer streetNumber, boolean approved, String typeProvider, String name) {
-        super(userName, password, email, appUserRole, locked, enabled, country, city, streetName, postNumber, streetNumber);
-        Approved = approved;
-        TypeProvider = typeProvider;
-        Name = name;
-    }
-
-    public TopicProvider(String userName, String password, String email, String phoneNumber, AppUserRole user, boolean approved, String typeProvider, String name) {
-        super(userName, password, email, phoneNumber, user);
-        Approved = approved;
-        TypeProvider = typeProvider;
-        Name = name;
-    }
-
-    public TopicProvider(String userName, String password, String email, AppUserRole user, boolean approved, String typeProvider, String name) {
-        super(userName, password, email, user);
+    public TopicProvider(String username, String password, String email, boolean approved, String typeProvider, String name) {
+        super(username, password, email);
         Approved = approved;
         TypeProvider = typeProvider;
         Name = name;

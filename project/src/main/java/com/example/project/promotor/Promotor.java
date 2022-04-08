@@ -38,18 +38,17 @@ public class Promotor extends Person implements Serializable {
         this.boostedStudent = boostedStudent;
     }
 
-    public Promotor(String userName, String password, String email, String phoneNumber, AppUserRole appUserRole, Boolean locked, Boolean enabled, String country, String city, String streetName, Integer postNumber, Integer streetNumber, String firstName, String lastName, Boolean approved, List<TargetAudience> targetAudience_id, Topic topic, Student boostedStudent) {
-        super(userName, password, email, phoneNumber, appUserRole, locked, enabled, country, city, streetName, postNumber, streetNumber, firstName, lastName, approved, targetAudience_id);
+    public Promotor(Long id, String username, String password, String email, String phoneNumber, AppUserRole appUserRole, Boolean locked, Boolean enabled, String country, String city, String streetName, Integer postNumber, Integer streetNumber, String firstName, String lastName, Boolean approved, List<TargetAudience> targetAudience_id, Topic topic, Student boostedStudent) {
+        super(id, username, password, email, phoneNumber, appUserRole, locked, enabled, country, city, streetName, postNumber, streetNumber, firstName, lastName, approved, targetAudience_id);
         this.topic = topic;
         this.boostedStudent = boostedStudent;
     }
 
-    public Promotor(String userName, String password, String email, String phoneNumber, AppUserRole user, String firstName, String lastName, Boolean approved, List<TargetAudience> targetAudience_id, Topic topic, Student boostedStudent) {
-        super(userName, password, email, phoneNumber, user, firstName, lastName, approved, targetAudience_id);
+    public Promotor(String username, String password, String email, String firstName, String lastName, Boolean approved, List<TargetAudience> targetAudience_id, Topic topic, Student boostedStudent) {
+        super(username, password, email, firstName, lastName, approved, targetAudience_id);
         this.topic = topic;
         this.boostedStudent = boostedStudent;
     }
-
 
     public Topic getTopic() {
         return topic;

@@ -38,32 +38,16 @@ public class Company extends TopicProvider implements Serializable {
         this.emailMentor = emailMentor;
     }
 
-    public Company(String userName, String password, String email, String phoneNumber, AppUserRole appUserRole, Boolean locked, Boolean enabled, String country, String city, String streetName, Integer postNumber, Integer streetNumber, boolean approved, String typeProvider, String name, int phoneContact, String firstNameMentor, String lastNameMentor, String emailMentor) {
-        super(userName, password, email, phoneNumber, appUserRole, locked, enabled, country, city, streetName, postNumber, streetNumber, approved, typeProvider, name);
+    public Company(Long id, String username, String password, String email, String phoneNumber, AppUserRole appUserRole, Boolean locked, Boolean enabled, String country, String city, String streetName, Integer postNumber, Integer streetNumber, boolean approved, String typeProvider, String name, int phoneContact, String firstNameMentor, String lastNameMentor, String emailMentor) {
+        super(id, username, password, email, phoneNumber, appUserRole, locked, enabled, country, city, streetName, postNumber, streetNumber, approved, typeProvider, name);
         this.phoneContact = phoneContact;
         this.firstNameMentor = firstNameMentor;
         this.lastNameMentor = lastNameMentor;
         this.emailMentor = emailMentor;
     }
 
-    public Company(String userName, String password, String email, AppUserRole appUserRole, Boolean locked, Boolean enabled, String country, String city, String streetName, Integer postNumber, Integer streetNumber, boolean approved, String typeProvider, String name, int phoneContact, String firstNameMentor, String lastNameMentor, String emailMentor) {
-        super(userName, password, email, appUserRole, locked, enabled, country, city, streetName, postNumber, streetNumber, approved, typeProvider, name);
-        this.phoneContact = phoneContact;
-        this.firstNameMentor = firstNameMentor;
-        this.lastNameMentor = lastNameMentor;
-        this.emailMentor = emailMentor;
-    }
-
-    public Company(String userName, String password, String email, String phoneNumber, AppUserRole user, boolean approved, String typeProvider, String name, int phoneContact, String firstNameMentor, String lastNameMentor, String emailMentor) {
-        super(userName, password, email, phoneNumber, user, approved, typeProvider, name);
-        this.phoneContact = phoneContact;
-        this.firstNameMentor = firstNameMentor;
-        this.lastNameMentor = lastNameMentor;
-        this.emailMentor = emailMentor;
-    }
-
-    public Company(String userName, String password, String email, AppUserRole user, boolean approved, String typeProvider, String name, int phoneContact, String firstNameMentor, String lastNameMentor, String emailMentor) {
-        super(userName, password, email, user, approved, typeProvider, name);
+    public Company(String username, String password, String email, boolean approved, String typeProvider, String name, int phoneContact, String firstNameMentor, String lastNameMentor, String emailMentor) {
+        super(username, password, email, approved, typeProvider, name);
         this.phoneContact = phoneContact;
         this.firstNameMentor = firstNameMentor;
         this.lastNameMentor = lastNameMentor;

@@ -42,34 +42,34 @@ public class Student extends Person implements Serializable {
     @Column(length = 3)
     private List<Topic> top3Topic_ids;
 
-    public Student(Long mentor_id, Topic assignedTopic_id, List<Topic> prefferedTopics, List<Topic> top3Topic_ids) {
+    public Student(Long mentor_id, Topic assignedTopic_id, List<Topic> preferredTopics, List<Topic> top3Topic_ids) {
         this.mentor_id = mentor_id;
         this.assignedTopic_id = assignedTopic_id;
-        this.preferredTopics = prefferedTopics;
+        this.preferredTopics = preferredTopics;
         this.top3Topic_ids = top3Topic_ids;
     }
 
-    public Student(String firstName, String lastName, Boolean approved, List<TargetAudience> targetAudience_id, Long mentor_id, Topic assignedTopic_id, List<Topic> prefferedTopics, List<Topic> top3Topic_ids) {
+    public Student(String firstName, String lastName, Boolean approved, List<TargetAudience> targetAudience_id, Long mentor_id, Topic assignedTopic_id, List<Topic> preferredTopics, List<Topic> top3Topic_ids) {
         super(firstName, lastName, approved, targetAudience_id);
         this.mentor_id = mentor_id;
         this.assignedTopic_id = assignedTopic_id;
-        this.preferredTopics = prefferedTopics;
+        this.preferredTopics = preferredTopics;
         this.top3Topic_ids = top3Topic_ids;
     }
 
-    public Student(String userName, String password, String email, String phoneNumber, AppUserRole appUserRole, Boolean locked, Boolean enabled, String country, String city, String streetName, Integer postNumber, Integer streetNumber, String firstName, String lastName, Boolean approved, List<TargetAudience> targetAudience_id, Long mentor_id, Topic assignedTopic_id, List<Topic> prefferedTopics, List<Topic> top3Topic_ids) {
-        super(userName, password, email, phoneNumber, appUserRole, locked, enabled, country, city, streetName, postNumber, streetNumber, firstName, lastName, approved, targetAudience_id);
+    public Student(Long id, String username, String password, String email, String phoneNumber, AppUserRole appUserRole, Boolean locked, Boolean enabled, String country, String city, String streetName, Integer postNumber, Integer streetNumber, String firstName, String lastName, Boolean approved, List<TargetAudience> targetAudience_id, Long mentor_id, Topic assignedTopic_id, List<Topic> preferredTopics, List<Topic> top3Topic_ids) {
+        super(id, username, password, email, phoneNumber, appUserRole, locked, enabled, country, city, streetName, postNumber, streetNumber, firstName, lastName, approved, targetAudience_id);
         this.mentor_id = mentor_id;
         this.assignedTopic_id = assignedTopic_id;
-        this.preferredTopics = prefferedTopics;
+        this.preferredTopics = preferredTopics;
         this.top3Topic_ids = top3Topic_ids;
     }
 
-    public Student(String userName, String password, String email, String phoneNumber, AppUserRole user, String firstName, String lastName, Boolean approved, List<TargetAudience> targetAudience_id, Long mentor_id, Topic assignedTopic_id, List<Topic> prefferedTopics, List<Topic> top3Topic_ids) {
-        super(userName, password, email, phoneNumber, user, firstName, lastName, approved, targetAudience_id);
+    public Student(String username, String password, String email, String firstName, String lastName, Boolean approved, List<TargetAudience> targetAudience_id, Long mentor_id, Topic assignedTopic_id, List<Topic> preferredTopics, List<Topic> top3Topic_ids) {
+        super(username, password, email, firstName, lastName, approved, targetAudience_id);
         this.mentor_id = mentor_id;
         this.assignedTopic_id = assignedTopic_id;
-        this.preferredTopics = prefferedTopics;
+        this.preferredTopics = preferredTopics;
         this.top3Topic_ids = top3Topic_ids;
     }
 
