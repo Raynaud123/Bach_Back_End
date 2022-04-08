@@ -39,7 +39,7 @@ private JwtRequestFilter jwtRequestFilter;
         http
                 .cors().configurationSource(corsConfigurationSource()).and()
                 .csrf().disable()
-                    .authorizeRequests().antMatchers("/appuser/authenticate").permitAll().anyRequest().authenticated().and()
+                    .authorizeRequests().antMatchers("/appuser/authenticate", "/appuser/register").permitAll().anyRequest().authenticated().and()
                     .exceptionHandling().and().sessionManagement().sessionCreationPolicy(STATELESS).and()
                 .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
 //        http.cors().configurationSource(corsConfigurationSource());

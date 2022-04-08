@@ -4,6 +4,7 @@ package com.example.project.appuser;
 import com.example.project.security.AuthenticationRequest;
 import com.example.project.security.AuthenticationResponse;
 import com.example.project.security.JwtUtil;
+import com.squareup.okhttp.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -49,5 +50,18 @@ public class AppUserController {
         return ResponseEntity.ok(new AuthenticationResponse(jwt));
 
     };
+
+    @PostMapping(path = "/register")
+    public AppUser register(@RequestBody RegisterRequest registerRequest) throws Exception {
+        AppUser test;
+        try {
+            test = new AppUser(registerRequest.getUsername(), registerRequest.getPassword(), registerRequest.getEmail());
+            service.singUpUser(test);
+        } catch (Exception e) {
+            throw new Exception("Registration Failed");
+        }
+
+        return test;
+    }
 
 }

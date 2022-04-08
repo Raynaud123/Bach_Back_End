@@ -47,14 +47,17 @@ public class AppUserService implements UserDetailsService {
         boolean userExists = appUserRepository
                 .findByEmail(appUser.getEmail())
                 .isPresent();
+        boolean userNameExists = appUserRepository.findByUsername(appUser.getUsername()).isPresent();
         if (userExists) {
             // TODO: check if attributes are the same and
 
             throw new IllegalStateException("email already taken");
+        }else if(userNameExists){
+            throw new IllegalStateException("Username already taken");
         }
 
-        String encodedPassword =appUser.getPassword();
-        appUser.setPassword(encodedPassword);
+//        String encodedPassword =appUser.getPassword();
+//        appUser.setPassword(encodedPassword);
 
         appUserRepository.save(appUser);
 

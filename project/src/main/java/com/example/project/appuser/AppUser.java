@@ -89,6 +89,14 @@ public class AppUser implements UserDetails {
         this.email = email;
         this.appUserRole = user;
     }
+    public AppUser(String userName, String password, String email) {
+        this.username = userName;
+        this.password = password;
+        this.email = email;
+        this.locked =false;
+        this.enabled= false;
+        this.appUserRole= AppUserRole.NOTAPPROVED;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

@@ -5,5 +5,6 @@ public enum AppUserRole {
     ADMIN,
     MASTER,
     COMPANY,
-    PROMOTOR
+    PROMOTOR,
+    NOTAPPROVED
 }
