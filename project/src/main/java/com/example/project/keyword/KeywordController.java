@@ -11,7 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class KeywordController {
 
     @Autowired
-    private KeywordService Service;
+    private KeywordService keywordService;
 
 
+    public Keyword getKeyword(long l) { return keywordService.findById(l); }
 }

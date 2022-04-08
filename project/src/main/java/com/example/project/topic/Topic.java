@@ -68,21 +68,6 @@ public class Topic implements Serializable {
         this.release_date = release_date;
     }
 
-    public Topic(String topicName, Long provider_id, Long promotor_id, Long coordinator_id, Long aantal_studenten, List<Keyword> keyword_list, List<Student> student_list, List<TargetAudience> targetAudience_list, Boolean approved_topic, Boolean hide_topic, String description_topic, Date release_date) {
-        this.topicName = topicName;
-        this.provider_id = provider_id;
-        this.promotor_id = promotor_id;
-        this.coordinator_id = coordinator_id;
-        this.aantal_studenten = aantal_studenten;
-        this.keyword_list = keyword_list;
-        this.student_list = student_list;
-        this.targetAudience_list = targetAudience_list;
-        this.approved_topic = approved_topic;
-        this.hide_topic = hide_topic;
-        this.description_topic = description_topic;
-        this.release_date = release_date;
-    }
-
     public Long getAantal_studenten() {
         return aantal_studenten;
     }

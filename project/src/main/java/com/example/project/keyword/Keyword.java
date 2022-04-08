@@ -23,4 +23,10 @@ public class Keyword {
     )
     private Long keyword_id;
     private String keyword_name;
+
+
+    public Keyword(Long keyword_id, String keyword_name) {
+        this.keyword_id = keyword_id;
+        this.keyword_name = keyword_name;
+    }
 }

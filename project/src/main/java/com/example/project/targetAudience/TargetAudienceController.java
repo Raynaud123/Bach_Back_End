@@ -20,4 +20,5 @@ public class TargetAudienceController {
     @GetMapping(path = "/all")
     public List<TargetAudience> findAllTargetAudiences() { return targetAudienceService.findAll(); }
 
+    public TargetAudience getTargetAudience(long i) { return targetAudienceService.findById(i); }
 }
