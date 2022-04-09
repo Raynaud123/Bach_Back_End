@@ -1,6 +1,6 @@
 package com.example.project.promotor;
 
-import com.example.project.topic.Topic;
+import com.example.project.appuser.AppUser;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -18,7 +18,7 @@ public class PromotorController {
     private PromotorService promotorService;
 
     @GetMapping(path = "/all")
-    public List<Promotor> getAllPromotors() { return promotorService.findAllPromotors(); }
+    public List<AppUser> getAllPromotors() { return promotorService.findAllPromotors(); }
 
     @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping(path = "/withtopic")

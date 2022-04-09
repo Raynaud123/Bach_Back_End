@@ -43,4 +43,12 @@ public class StudentController {
         return studentService.findBoolPreferredTopicByName(id, topicname);
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
+    @PostMapping(path = "/{id}/submitpreferrencetopic/{topicName}")
+    public void setPreferenceTopic(@PathVariable Long id, @PathVariable String topicName) { studentService.setPreferrence(id, topicName);
+        System.out.println("Topic: " + topicName);
+    }
+
+
+
 }

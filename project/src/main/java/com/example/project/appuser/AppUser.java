@@ -205,5 +205,4 @@ public class AppUser implements UserDetails {
         this.streetNumber = streetNumber;
     }
 
-
 }
