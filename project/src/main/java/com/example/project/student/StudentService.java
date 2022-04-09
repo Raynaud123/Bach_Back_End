@@ -3,6 +3,7 @@ package com.example.project.student;
 import com.example.project.keyword.Keyword;
 import com.example.project.topic.Topic;
 import com.example.project.topic.TopicRepository;
+import com.example.project.topic.TopicService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +21,8 @@ public class StudentService {
     }
     @Autowired
     private TopicRepository topicRepository;
+    @Autowired
+    private TopicService topicService;
 
     public List<Student> findAllStudents() { return studentRepository.findAll();}
 
@@ -29,6 +32,18 @@ public class StudentService {
             if(Objects.equals(s.getId(), id)){
                 topicRepository.getById(topicid);
                 if (s.getPreferredTopics().contains(topicRepository.getById(topicid)))
+                    return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean findBoolPreferredTopicByName(long id, String topicname) {
+        List<Student> all = studentRepository.findAll();
+        for(Student s: all){
+            if(Objects.equals(s.getId(), id)){
+                topicService.getTopicByString(topicname);
+                if (s.getPreferredTopics().contains(topicService.getTopicByString(topicname)))
                     return true;
             }
         }
