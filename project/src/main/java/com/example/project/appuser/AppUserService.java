@@ -33,6 +33,15 @@ public class AppUserService implements UserDetailsService {
 
     }
 
+    public Optional<AppUser> loadUserByUsernameApp(String username) throws UsernameNotFoundException{
+        Optional<AppUser> user = appUserRepository.findByUsername(username);
+
+        if(user.isEmpty()){
+            throw new UsernameNotFoundException("User not found");
+        }
+        return user;
+    }
+
     public Optional<AppUser> getUser(String email){
         return appUserRepository.findByEmail(email);
     }

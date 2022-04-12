@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "appuser")
@@ -44,9 +45,10 @@ public class AppUserController {
             throw new Exception("Incorrect username or password", e);
         }
         // Misschien appuser inplaats an userDetails?
-        final UserDetails appUser = service.loadUserByUsername(authenticationrequest.getUsername());
-        final String jwt = jwtTokenUtil.generateToken(appUser);
-        return ResponseEntity.ok(new AuthenticationResponse(jwt, appUser.getAuthorities()));
+        final UserDetails userDetails = service.loadUserByUsername(authenticationrequest.getUsername());
+        Optional<AppUser> appUser = service.loadUserByUsernameApp(authenticationrequest.getUsername());
+        final String jwt = jwtTokenUtil.generateToken(userDetails);
+        return ResponseEntity.ok(new AuthenticationResponse(jwt, userDetails.getAuthorities(), appUser.get().getId()));
 
     };
 
