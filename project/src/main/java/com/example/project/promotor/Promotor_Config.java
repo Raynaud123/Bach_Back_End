@@ -2,6 +2,7 @@
 //import com.example.project.appuser.AppUserRole;
 //import com.example.project.student.Student;
 //import com.example.project.targetAudience.TargetAudience;
+//import com.example.project.targetAudience.TargetAudienceRepository;
 //import com.example.project.topic.Topic;
 //import org.springframework.boot.CommandLineRunner;
 //import org.springframework.context.annotation.Bean;
@@ -12,6 +13,7 @@
 //import java.util.List;
 //
 //import static com.example.project.appuser.AppUserRole.MASTER;
+//import static com.example.project.appuser.AppUserRole.PROMOTOR;
 //
 //@Configuration
 //public class Promotor_Config {
@@ -20,16 +22,13 @@
 //
 //    public Promotor_Config() throws ParseException {
 //    }
+//
 //    @Bean
-//    CommandLineRunner commandLineRunner(PromotorRepository repository) {
+//    CommandLineRunner commandLineRunner(PromotorRepository repository, TargetAudienceRepository targetAudienceRepository) {
 //        return args -> {
-//            Promotor promotor1 = new Promotor(
-//                    "userName1", "password", "prom1@email.com", null, MASTER, false, true, "Belgium", "Gent", "street2", 9000, 1, "Prom2", "otor2", true, null, null, null);
-//            Promotor promotor2 = new Promotor(
-//                    "userProm2", "Prompassword21", "prom2@email.com", null, MASTER, false, true, "Belgium", "Gent", "street2", 9000, 1, "Prom2", "otor2", true, null, null, null
-//            );
+//            Promotor promotor1 = new Promotor(1L, "promotor", "1234", "promotor@gmail.com", "000000", PROMOTOR, false, false, "Belgie", "Gent", "Rembertstraat", 8820, 99, "prom", "otor", false, List.of(targetAudienceRepository.getById(52L)));
 //            repository.saveAll(
-//                    List.of(promotor1, promotor2)
+//                    List.of(promotor1)
 //            );
 //        };
 //    }
