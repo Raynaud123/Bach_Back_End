@@ -19,17 +19,17 @@ import java.util.List;
 @DiscriminatorValue("master")
 public class Master extends Person implements Serializable {
 
-    @SequenceGenerator(
-            name = "master_sequence",
-            sequenceName = "master_sequence",
-            allocationSize = 1
-    )
-    @Id
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "master_sequence"
-    )
-    private Long master_id;
+//    @SequenceGenerator(
+//            name = "master_sequence",
+//            sequenceName = "master_sequence",
+//            allocationSize = 1
+//    )
+//    @Id
+//    @GeneratedValue(
+//            strategy = GenerationType.SEQUENCE,
+//            generator = "master_sequence"
+//    )
+//    private Long master_id;
 
     @ManyToMany
     private List<Topic> topic_list;
