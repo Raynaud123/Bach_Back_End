@@ -1,6 +1,5 @@
-package com.example.project.Coordinator;
+package com.example.project.Master;
 
-import com.example.project.keyword.Keyword;
 import com.example.project.person.Person;
 import com.example.project.promotor.Promotor;
 import com.example.project.topic.Topic;
@@ -18,7 +17,7 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @DiscriminatorValue("master")
-public class Coordinator extends Person implements Serializable {
+public class Master extends Person implements Serializable {
 
     @SequenceGenerator(
             name = "master_sequence",
