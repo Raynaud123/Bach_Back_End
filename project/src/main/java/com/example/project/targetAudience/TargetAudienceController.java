@@ -16,7 +16,17 @@ public class TargetAudienceController {
     private TargetAudienceService targetAudienceService;
 
 
-    @CrossOrigin(origins = "http://localhost:3000")
+    @GetMapping(path="/campus")
+    public List<Campus> findAllCampus(){
+            return  targetAudienceService.getAllCampus();
+    }
+
+    @GetMapping(path = "/courses")
+    public List<Course> findAllCoursesByCampus(){
+            return null;
+    }
+
+
     @GetMapping(path = "/all")
     public List<TargetAudience> findAllTargetAudiences() { return targetAudienceService.findAll(); }
 

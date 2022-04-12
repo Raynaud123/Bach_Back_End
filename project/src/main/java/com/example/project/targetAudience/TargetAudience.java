@@ -22,9 +22,9 @@ public class TargetAudience {
             generator = "targetAudience_sequence"
     )
     private Long targetAudience_id;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private Campus campus;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private Course course;
     private Boolean hide_targetAudience;
 

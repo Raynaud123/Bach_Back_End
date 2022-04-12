@@ -30,8 +30,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private final AppUserService appUserService;
 
-@Autowired
-private JwtRequestFilter jwtRequestFilter;
+    @Autowired
+    private JwtRequestFilter jwtRequestFilter;
 
 
     @Override
@@ -42,10 +42,7 @@ private JwtRequestFilter jwtRequestFilter;
                     .authorizeRequests().antMatchers("/appuser/authenticate", "/appuser/register").permitAll().anyRequest().authenticated().and()
                     .exceptionHandling().and().sessionManagement().sessionCreationPolicy(STATELESS).and()
                 .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
-//        http.cors().configurationSource(corsConfigurationSource());
-//        http.authorizeRequests().anyRequest().permitAll();
-//        http.exceptionHandling().authenticationEntryPoint(
-                //new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED));
+
     }
 
     @Override

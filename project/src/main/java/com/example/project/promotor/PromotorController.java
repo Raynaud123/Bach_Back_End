@@ -18,7 +18,7 @@ public class PromotorController {
     private PromotorService promotorService;
 
     @GetMapping(path = "/all")
-    public List<AppUser> getAllPromotors() { return promotorService.findAllPromotors(); }
+    public List<Promotor> getAllPromotors() { return promotorService.findAllPromotors(); }
 
     @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping(path = "/withtopic")

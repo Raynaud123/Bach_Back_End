@@ -12,6 +12,8 @@ import java.util.Optional;
 @Repository
 public interface TopicProviderRepository extends JpaRepository<TopicProvider, Long> {
 
+    Optional<TopicProvider> findTopicProviderByEmail(String email);
+
 //
 //    @Query("SELECT t FROM TopicProvider t where t.email =?1")
 //    Optional<TopicProvider> findTopicProviderByEmail(String Email);

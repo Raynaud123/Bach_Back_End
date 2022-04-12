@@ -4,7 +4,6 @@ package com.example.project.appuser;
 import com.example.project.security.AuthenticationRequest;
 import com.example.project.security.AuthenticationResponse;
 import com.example.project.security.JwtUtil;
-import com.squareup.okhttp.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -47,7 +46,7 @@ public class AppUserController {
         // Misschien appuser inplaats an userDetails?
         final UserDetails appUser = service.loadUserByUsername(authenticationrequest.getUsername());
         final String jwt = jwtTokenUtil.generateToken(appUser);
-        return ResponseEntity.ok(new AuthenticationResponse(jwt));
+        return ResponseEntity.ok(new AuthenticationResponse(jwt, appUser.getAuthorities()));
 
     };
 

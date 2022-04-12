@@ -13,6 +13,8 @@ public class TargetAudienceService {
 
     @Autowired
     private TargetAudienceRepository targetAudienceRepository;
+    @Autowired
+    private CampusRepository campusRepository;
 
 
     public List<TargetAudience> findAll() { return targetAudienceRepository.findAll(); }
@@ -26,4 +28,10 @@ public class TargetAudienceService {
         }
         return null;
     }
+
+    public List<Campus> getAllCampus() {
+        return campusRepository.findAll();
+    }
+
+
 }
