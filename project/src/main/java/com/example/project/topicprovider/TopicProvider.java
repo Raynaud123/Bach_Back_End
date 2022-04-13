@@ -21,30 +21,31 @@ import java.io.Serializable;
 public class TopicProvider extends AppUser implements Serializable{
 
     private boolean Approved;
-    private String TypeProvider;    //Company of Onderzoeksgroep
+    private Boolean isCompany;    //Company of Onderzoeksgroep
     private String Name;
     @ManyToOne
     private Campus campus;          //Enkel nodig als het een onderzoeksgroep is
 
-    public TopicProvider(boolean approved, String typeProvider, String name, Campus campus) {
+
+    public TopicProvider(boolean approved, Boolean isCompany, String name, Campus campus) {
         Approved = approved;
-        TypeProvider = typeProvider;
+        this.isCompany = isCompany;
         Name = name;
         this.campus = campus;
     }
 
-    public TopicProvider(Long id, String username, String password, String email, String phoneNumber, AppUserRole appUserRole, Boolean locked, Boolean enabled, String country, String city, String streetName, Integer postNumber, Integer streetNumber, boolean approved, String typeProvider, String name, Campus campus) {
+    public TopicProvider(Long id, String username, String password, String email, String phoneNumber, AppUserRole appUserRole, Boolean locked, Boolean enabled, String country, String city, String streetName, Integer postNumber, Integer streetNumber, boolean approved, Boolean isCompany, String name, Campus campus) {
         super(id, username, password, email, phoneNumber, appUserRole, locked, enabled, country, city, streetName, postNumber, streetNumber);
         Approved = approved;
-        TypeProvider = typeProvider;
+        this.isCompany = isCompany;
         Name = name;
         this.campus = campus;
     }
 
-    public TopicProvider(String username, String password, String email, boolean approved, String typeProvider, String name, Campus campus) {
+    public TopicProvider(String username, String password, String email, boolean approved, Boolean isCompany, String name, Campus campus) {
         super(username, password, email);
         Approved = approved;
-        TypeProvider = typeProvider;
+        this.isCompany = isCompany;
         Name = name;
         this.campus = campus;
     }
@@ -57,12 +58,12 @@ public class TopicProvider extends AppUser implements Serializable{
         Approved = approved;
     }
 
-    public String getTypeProvider() {
-        return TypeProvider;
+    public Boolean getCompany() {
+        return isCompany;
     }
 
-    public void setTypeProvider(String typeProvider) {
-        TypeProvider = typeProvider;
+    public void setCompany(Boolean company) {
+        isCompany = company;
     }
 
     public String getName() {
