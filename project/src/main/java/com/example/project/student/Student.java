@@ -32,13 +32,12 @@ public class Student extends Person implements Serializable {
     )
     private Long student_id;*/
 
-    //@ManyToOne + Promotor
     private Long mentor_id;
-    @ManyToOne
+    @OneToOne
     private Topic assignedTopic_id;
-    @OneToMany
+    @ManyToMany
     private List<Topic> preferredTopics;
-    @OneToMany
+    @ManyToMany
     @Column(length = 3)
     private List<Topic> top3Topic_ids;
 
