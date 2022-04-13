@@ -32,10 +32,11 @@ public class TopicController {
         return topicService.getTopic(id);
     }
 
-//    @GetMapping("/info/{topicId}")
-//    public Topic getTopic(@PathVariable String topicName) {
-//        return topicService.getTopicByString(topicName);
-//    }
+    @GetMapping("/all")
+    public List<Topic> getAllTopics() {
+        System.out.println(topicService.findAll());
+        return topicService.findAll();
+    }
 
     @GetMapping("/info/{topicId}")
     public Topic getTopicForInfo(@PathVariable Long topicId) { return topicService.getTopic(topicId); }
@@ -49,7 +50,8 @@ public class TopicController {
 
 
     @GetMapping(path = "/approved")
-    public List<Topic> getAllApprovedTopics() { return topicService.findAllApprovedTopics(); }
+    public List<Topic> getAllApprovedTopics() { System.out.println(topicService.findAllApprovedTopics());
+        return topicService.findAllApprovedTopics();  }
 
 //     werkt nog niet -> geblokt door CORS
     @CrossOrigin(origins = "http://localhost:3000")

@@ -3,12 +3,9 @@
 //import com.example.project.Master.MasterRepository;
 //import com.example.project.keyword.Keyword;
 //import com.example.project.keyword.KeywordController;
-//import com.example.project.promotor.PromotorRepository;
 //import com.example.project.targetAudience.TargetAudience;
 //import com.example.project.targetAudience.TargetAudienceController;
-//import com.example.project.topicprovider.TopicProvider;
 //import com.example.project.topicprovider.TopicProviderController;
-//import com.example.project.topicprovider.TopicProviderRepository;
 //import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.boot.CommandLineRunner;
 //import org.springframework.context.annotation.Bean;
@@ -24,12 +21,6 @@
 //    private TargetAudienceController targetAudienceController;
 //    @Autowired
 //    private KeywordController keywordController;
-//    @Autowired
-//    private TopicProviderRepository topicProviderRepository;
-//    @Autowired
-//    private PromotorRepository promotorRepository;
-//    @Autowired
-//    private TopicProviderController topicProviderController;
 //
 //    String dateString1 = "10/03/2022";
 //    SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
@@ -62,8 +53,7 @@
 //        return args -> {
 //            Topic topic1 = new Topic(
 //                    1L, "Device Security Management",
-//                    topicProviderRepository.getById(11L), promotorRepository.getById(4L),
-////                    null, null,
+//                    11L, 4L,
 //                    2L, lijstK1, null, lijstTA1, true, false,
 //
 ////                    "Steeds meer systemen zijn verbonden met het internet, gaande van een slimme weegschaal of vaatwasmachine tot slimme auto’s.\n" +
@@ -77,8 +67,7 @@
 //
 //            Topic topic2 = new Topic(
 //                    2L,"ONTWIKKELING VAN DE AANSTURING VAN EEN MAGNETISCH LAGER IN EEN SMALLSAT REACTIEWIEL/DEVELOPMENT OF A CONTROL SYSTEM FOR MAGNETIC REACTION WHEEL BEARINGS",
-//                    topicProviderRepository.getById(12L), promotorRepository.getById(5L),
-////                    null, null,
+//                    12L, 5L,
 //                    1L, lijstK2, null, lijstTA2, true, false,
 //
 ////                    "Arcsec ontwikkelt standbepaling- en controlesystemen (Attitude Determination and Control System, ADCS) voor satellieten. Het ADCS is het systeem aan boord van de satelliet dat de oriëntatie van de satelliet kan controleren. Hiermee kunnen payloads gericht worden, of kunnen\n" +
@@ -97,8 +86,7 @@
 //
 //            Topic topic3 = new Topic(
 //                    3L,"Development of an Efficient Wirelessly Rechargeable Utility Robot",
-//                    topicProviderRepository.getById(13L), promotorRepository.getById(6L),
-////                    null, null,
+//                    13L, 6L,
 //                    2L, lijstK3, null, lijstTA3, true, false,
 //
 ////                    "Ontwikkeling van een draadloos oplaadbare autonome huishoudrobot. Zie bijlage voor meer details.",
@@ -108,8 +96,7 @@
 //
 //            Topic topic4 = new Topic(
 //                    4L,"Security analysis of a digital exam SAAS-platform",
-//                    topicProviderRepository.getById(14L), promotorRepository.getById(7L),
-////                    null, null,
+//                    14L, 7L,
 //                    1L, lijstK4, null, lijstTA4, true, false,
 //
 ////                    "AssessmentQ is a digital exam platform developed and maintained by Televic Education. 250+ customers are using assessmentQ for organizing online and digital (practice) exams.\n" +
@@ -123,8 +110,7 @@
 //
 //            Topic topic5 = new Topic(
 //                    5L,"POWER SAVINGS VIA SMART POWER SETTINGS BASED ON THE ANALYSIS OF NETWORK USAGE",
-//                    topicProviderRepository.getById(15L), promotorRepository.getById(4L),
-////                    null, null,
+//                    15L, 4L,
 //                    1L, lijstK5, null, lijstTA5, true, false,
 //
 ////                    "Networking components, such as modems, routers, access points, are typically permanently active at maximal performance. Energy savings can be achieved by tuning the energy consumption of these devices to the actual needs of the users. Users do not need connectivity 24x7 at every single location in the home. Today's approaches to reduce energy are very coarse grained and include rime-based power reduction options such as disabling a device between midnight and 5AM. Other options require manual interventions such as disabling network components in a study after working hours. The disadvantage of these brute force approaches is that he user QoE can be negatively impacted in case someone wants to use the network outside of the foreseen schedule.\n" +
