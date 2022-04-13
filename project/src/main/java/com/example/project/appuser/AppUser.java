@@ -46,6 +46,20 @@ public class AppUser implements UserDetails {
     private Integer postNumber;
     private Integer streetNumber;
 
+    public AppUser(String username, String password, String email, String phoneNumber, AppUserRole appUserRole, Boolean locked, Boolean enabled, String country, String city, String streetName, Integer postNumber, Integer streetNumber) {
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.appUserRole = appUserRole;
+        this.locked = locked;
+        this.enabled = enabled;
+        this.country = country;
+        this.city = city;
+        this.streetName = streetName;
+        this.postNumber = postNumber;
+        this.streetNumber = streetNumber;
+    }
 
     public AppUser(Long id, String username, String password, String email, String phoneNumber, AppUserRole appUserRole, Boolean locked, Boolean enabled, String country, String city, String streetName, Integer postNumber, Integer streetNumber) {
         this.id = id;

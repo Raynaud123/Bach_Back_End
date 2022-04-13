@@ -1,6 +1,7 @@
 package com.example.project.topicprovider;
 
 
+import com.example.project.topic.Topic;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -50,4 +51,8 @@ public class TopicProviderService {
         }
         return null;
     }
+
+//    public void addTopic(long id, Topic topic) {
+//        topicProviderRepository.getById(id).getTopic_list().add(topic);
+//    }
 }

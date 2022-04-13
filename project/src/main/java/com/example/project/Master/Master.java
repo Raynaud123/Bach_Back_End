@@ -57,6 +57,14 @@ public class Master extends Person implements Serializable {
         this.awaitApproved_promotor_list = awaitApproved_promotor_list;
     }
 
+    public Master(String username, String password, String email, String phoneNumber, AppUserRole appUserRole, Boolean locked, Boolean enabled, String country, String city, String streetName, Integer postNumber, Integer streetNumber, String firstName, String lastName, Boolean approved, List<TargetAudience> targetAudience_id, List<Topic> asPromotor_topic_list, List<Topic> awaitApproved_topic_list, List<TopicProvider> awaitApproved_topicProvider_list, List<Promotor> awaitApproved_promotor_list) {
+        super(username, password, email, phoneNumber, appUserRole, locked, enabled, country, city, streetName, postNumber, streetNumber, firstName, lastName, approved, targetAudience_id);
+        this.asPromotor_topic_list = asPromotor_topic_list;
+        this.awaitApproved_topic_list = awaitApproved_topic_list;
+        this.awaitApproved_topicProvider_list = awaitApproved_topicProvider_list;
+        this.awaitApproved_promotor_list = awaitApproved_promotor_list;
+    }
+
     public Master(Long id, String username, String password, String email, String phoneNumber, AppUserRole appUserRole, Boolean locked, Boolean enabled, String country, String city, String streetName, Integer postNumber, Integer streetNumber, String firstName, String lastName, Boolean approved, List<TargetAudience> targetAudience_id, List<Topic> asPromotor_topic_list, List<Topic> awaitApproved_topic_list, List<TopicProvider> awaitApproved_topicProvider_list, List<Promotor> awaitApproved_promotor_list) {
         super(id, username, password, email, phoneNumber, appUserRole, locked, enabled, country, city, streetName, postNumber, streetNumber, firstName, lastName, approved, targetAudience_id);
         this.asPromotor_topic_list = asPromotor_topic_list;

@@ -25,32 +25,38 @@ public class Person extends AppUser implements Serializable {
     private String lastName;
     private Boolean approved;
     @ManyToMany
-    private List<TargetAudience> targetAudience_id;
+    private List<TargetAudience> targetAudience;
 
 
-
-
-    public Person(String firstName, String lastName, Boolean approved, List<TargetAudience> targetAudience_id) {
+    public Person(String firstName, String lastName, Boolean approved, List<TargetAudience> targetAudience) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.approved = approved;
-        this.targetAudience_id = targetAudience_id;
+        this.targetAudience = targetAudience;
     }
 
-    public Person(Long id, String username, String password, String email, String phoneNumber, AppUserRole appUserRole, Boolean locked, Boolean enabled, String country, String city, String streetName, Integer postNumber, Integer streetNumber, String firstName, String lastName, Boolean approved, List<TargetAudience> targetAudience_id) {
+    public Person(String username, String password, String email, String phoneNumber, AppUserRole appUserRole, Boolean locked, Boolean enabled, String country, String city, String streetName, Integer postNumber, Integer streetNumber, String firstName, String lastName, Boolean approved, List<TargetAudience> targetAudience) {
+        super(username, password, email, phoneNumber, appUserRole, locked, enabled, country, city, streetName, postNumber, streetNumber);
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.approved = approved;
+        this.targetAudience = targetAudience;
+    }
+
+    public Person(Long id, String username, String password, String email, String phoneNumber, AppUserRole appUserRole, Boolean locked, Boolean enabled, String country, String city, String streetName, Integer postNumber, Integer streetNumber, String firstName, String lastName, Boolean approved, List<TargetAudience> targetAudience) {
         super(id, username, password, email, phoneNumber, appUserRole, locked, enabled, country, city, streetName, postNumber, streetNumber);
         this.firstName = firstName;
         this.lastName = lastName;
         this.approved = approved;
-        this.targetAudience_id = targetAudience_id;
+        this.targetAudience = targetAudience;
     }
 
-    public Person(String username, String password, String email, String firstName, String lastName, Boolean approved, List<TargetAudience> targetAudience_id) {
+    public Person(String username, String password, String email, String firstName, String lastName, Boolean approved, List<TargetAudience> targetAudience) {
         super(username, password, email);
         this.firstName = firstName;
         this.lastName = lastName;
         this.approved = approved;
-        this.targetAudience_id = targetAudience_id;
+        this.targetAudience = targetAudience;
     }
 
     public String getFirstName() {
@@ -77,12 +83,12 @@ public class Person extends AppUser implements Serializable {
         this.approved = approved;
     }
 
-    public List<TargetAudience> getTargetAudience_id() {
-        return targetAudience_id;
+    public List<TargetAudience> getTargetAudience() {
+        return targetAudience;
     }
 
-    public void setTargetAudience_id(List<TargetAudience> targetAudience_id) {
-        this.targetAudience_id = targetAudience_id;
+    public void setTargetAudience(List<TargetAudience> targetAudience) {
+        this.targetAudience = targetAudience;
     }
 
 

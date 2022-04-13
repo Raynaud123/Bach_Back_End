@@ -28,6 +28,7 @@ public class Promotor extends Person implements Serializable {
     @OneToOne
     Student boostedStudent;
 
+
     public Promotor(List<Topic> topic_lijst, Student boostedStudent) {
         this.topic_lijst = topic_lijst;
         this.boostedStudent = boostedStudent;
@@ -41,6 +42,12 @@ public class Promotor extends Person implements Serializable {
 
     public Promotor(String firstName, String lastName, Boolean approved, List<TargetAudience> targetAudience_id, List<Topic> topic_lijst, Student boostedStudent) {
         super(firstName, lastName, approved, targetAudience_id);
+        this.topic_lijst = topic_lijst;
+        this.boostedStudent = boostedStudent;
+    }
+
+    public Promotor(String username, String password, String email, String phoneNumber, AppUserRole appUserRole, Boolean locked, Boolean enabled, String country, String city, String streetName, Integer postNumber, Integer streetNumber, String firstName, String lastName, Boolean approved, List<TargetAudience> targetAudience_id, List<Topic> topic_lijst, Student boostedStudent) {
+        super(username, password, email, phoneNumber, appUserRole, locked, enabled, country, city, streetName, postNumber, streetNumber, firstName, lastName, approved, targetAudience_id);
         this.topic_lijst = topic_lijst;
         this.boostedStudent = boostedStudent;
     }

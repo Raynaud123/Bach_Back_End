@@ -33,15 +33,16 @@ public class StudentController {
         return studentService.findAllStudents();
     }
 
-//    @GetMapping(path = "/{id}/preferred/{topicid}")
-//    public boolean getBoolPreferredTopic(@PathVariable long id, @PathVariable long topicid) {
-//        return studentService.findBoolPreferredTopicByID(id, topicid);
+    @GetMapping(path = "/{id}/preferred/{topicid}")
+    public boolean getBoolPreferredTopic(@PathVariable long id, @PathVariable long topicid) {
+        return studentService.findBoolPreferredTopicByID(id, topicid);
+    }
+
+//    @GetMapping(path = "/{id}/preferred/{topicname}")
+//    public boolean getBoolPreferredTopicWithName(@PathVariable long id, @PathVariable String topicname) {
+//        return studentService.findBoolPreferredTopicByName(id, topicname);
 //    }
 
-    @GetMapping(path = "/{id}/preferred/{topicname}")
-    public boolean getBoolPreferredTopicWithName(@PathVariable long id, @PathVariable String topicname) {
-        return studentService.findBoolPreferredTopicByName(id, topicname);
-    }
 
     @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping(path = "/{id}/submitpreferrencetopic/{topicName}")

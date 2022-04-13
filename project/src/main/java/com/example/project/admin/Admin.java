@@ -13,12 +13,15 @@ import java.util.List;
 @Entity
 public class Admin extends Person {
 
-
     public Admin() {
     }
 
     public Admin(String firstName, String lastName, Boolean approved, List<TargetAudience> targetAudience_id) {
         super(firstName, lastName, approved, targetAudience_id);
+    }
+
+    public Admin(String username, String password, String email, String phoneNumber, AppUserRole appUserRole, Boolean locked, Boolean enabled, String country, String city, String streetName, Integer postNumber, Integer streetNumber, String firstName, String lastName, Boolean approved, List<TargetAudience> targetAudience_id) {
+        super(username, password, email, phoneNumber, appUserRole, locked, enabled, country, city, streetName, postNumber, streetNumber, firstName, lastName, approved, targetAudience_id);
     }
 
     public Admin(Long id, String username, String password, String email, String phoneNumber, AppUserRole appUserRole, Boolean locked, Boolean enabled, String country, String city, String streetName, Integer postNumber, Integer streetNumber, String firstName, String lastName, Boolean approved, List<TargetAudience> targetAudience_id) {

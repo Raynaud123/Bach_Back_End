@@ -22,7 +22,7 @@
 //    CommandLineRunner commandLineRunner(AdminRepository repository) {
 //        return args -> {
 //            Admin admin1 = new Admin(
-//                        4L, "admin1", passwordEncoder.encode("pwd"), "admin1@gmail.com", "+32400000000", ADMIN,false, true, "Belgium", "Gent", "StreetNameAdmin1", 9000, 10, "AdminFirstName", "AdminLastName", true, null
+//                        "admin1", passwordEncoder.encode("admin"), "admin1@gmail.com", "+32400000000", ADMIN,false, true, "Belgium", "Ghent", "StreetNameAdmin1", 9000, 10, "AdminFirstName", "AdminLastName", true, null
 //            );
 //
 //            repository.saveAll(

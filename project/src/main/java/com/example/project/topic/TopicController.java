@@ -32,10 +32,13 @@ public class TopicController {
         return topicService.getTopic(id);
     }
 
-    @GetMapping("/info/{topicName}")
-    public Topic getTopic(@PathVariable String topicName) {
-        return topicService.getTopicByString(topicName);
-    }
+//    @GetMapping("/info/{topicId}")
+//    public Topic getTopic(@PathVariable String topicName) {
+//        return topicService.getTopicByString(topicName);
+//    }
+
+    @GetMapping("/info/{topicId}")
+    public Topic getTopicForInfo(@PathVariable Long topicId) { return topicService.getTopic(topicId); }
 
 
 /*

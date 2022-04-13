@@ -6,7 +6,6 @@
 //
 //import java.text.ParseException;
 //import java.text.SimpleDateFormat;
-//import java.util.Date;
 //import java.util.List;
 //
 //@Configuration
@@ -32,7 +31,7 @@
 //
 //    SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
 //
-//    public Phase_Config() throws ParseException {
+//    public Phase_Config() {
 //    }
 //    @Bean("phasebean")
 //    CommandLineRunner commandLineRunner(PhaseRepository repository) {
