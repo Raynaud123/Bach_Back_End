@@ -11,6 +11,7 @@ import lombok.Setter;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import java.io.Serializable;
 import java.util.List;
@@ -22,46 +23,46 @@ import java.util.List;
 @DiscriminatorValue("promotor")
 public class Promotor extends Person implements Serializable {
 
-    @OneToOne
-    Topic topic;
+    @OneToMany
+    List<Topic> topic_lijst;
     @OneToOne
     Student boostedStudent;
 
-    public Promotor(Topic topic, Student boostedStudent) {
-        this.topic = topic;
+    public Promotor(List<Topic> topic_lijst, Student boostedStudent) {
+        this.topic_lijst = topic_lijst;
         this.boostedStudent = boostedStudent;
     }
 
     public Promotor(Long id, String username, String password, String email, String phoneNumber, AppUserRole appUserRole, Boolean locked, Boolean enabled, String country, String city, String streetName, Integer postNumber, Integer streetNumber, String firstName, String lastName, Boolean approved, List<TargetAudience> targetAudience_id){
         super(id, username, password, email, phoneNumber, appUserRole, locked, enabled, country, city, streetName, postNumber, streetNumber, firstName, lastName, approved, targetAudience_id);
-        topic = null;
+        topic_lijst = null;
         boostedStudent = null;
     }
 
-    public Promotor(String firstName, String lastName, Boolean approved, List<TargetAudience> targetAudience_id, Topic topic, Student boostedStudent) {
+    public Promotor(String firstName, String lastName, Boolean approved, List<TargetAudience> targetAudience_id, List<Topic> topic_lijst, Student boostedStudent) {
         super(firstName, lastName, approved, targetAudience_id);
-        this.topic = topic;
+        this.topic_lijst = topic_lijst;
         this.boostedStudent = boostedStudent;
     }
 
-    public Promotor(Long id, String username, String password, String email, String phoneNumber, AppUserRole appUserRole, Boolean locked, Boolean enabled, String country, String city, String streetName, Integer postNumber, Integer streetNumber, String firstName, String lastName, Boolean approved, List<TargetAudience> targetAudience_id, Topic topic, Student boostedStudent) {
+    public Promotor(Long id, String username, String password, String email, String phoneNumber, AppUserRole appUserRole, Boolean locked, Boolean enabled, String country, String city, String streetName, Integer postNumber, Integer streetNumber, String firstName, String lastName, Boolean approved, List<TargetAudience> targetAudience_id, List<Topic> topic_lijst, Student boostedStudent) {
         super(id, username, password, email, phoneNumber, appUserRole, locked, enabled, country, city, streetName, postNumber, streetNumber, firstName, lastName, approved, targetAudience_id);
-        this.topic = topic;
+        this.topic_lijst = topic_lijst;
         this.boostedStudent = boostedStudent;
     }
 
-    public Promotor(String username, String password, String email, String firstName, String lastName, Boolean approved, List<TargetAudience> targetAudience_id, Topic topic, Student boostedStudent) {
+    public Promotor(String username, String password, String email, String firstName, String lastName, Boolean approved, List<TargetAudience> targetAudience_id, List<Topic> topic_lijst, Student boostedStudent) {
         super(username, password, email, firstName, lastName, approved, targetAudience_id);
-        this.topic = topic;
+        this.topic_lijst = topic_lijst;
         this.boostedStudent = boostedStudent;
     }
 
-    public Topic getTopic() {
-        return topic;
+    public List<Topic> getTopic() {
+        return topic_lijst;
     }
 
-    public void setTopic(Topic topic) {
-        this.topic = topic;
+    public void setTopic(List<Topic> topic_lijst) {
+        this.topic_lijst = topic_lijst;
     }
 
     public Student getBoostedStudent() {
