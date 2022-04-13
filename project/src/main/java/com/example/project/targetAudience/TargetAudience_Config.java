@@ -14,7 +14,7 @@ public class TargetAudience_Config {
     public TargetAudience_Config() {
     }
 
-    @Bean
+    @Bean("targetaudiencebean")
     CommandLineRunner commandLineRunner(TargetAudienceRepository repository, CampusRepository campusRepository, CourseRepository courseRepository) {
         return args -> {
             Campus c1 = new Campus("Technologiecampus", "Belgie", 9000, "Gent", "Gebroeders de Smetstraat",1);
