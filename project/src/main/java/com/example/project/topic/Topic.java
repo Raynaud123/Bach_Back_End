@@ -37,11 +37,10 @@ public class Topic implements Serializable {
     //@ManyToMany
     private Long promotor_id;
     //@ManyToMany
-    private Long master_id;
     private Long aantal_studenten;
     @ManyToMany
     private List<Keyword> keyword_list;
-    @OneToMany
+    @ManyToMany
     private List<Student> student_list;
     @ManyToMany
     private List<TargetAudience> targetAudience_list;
@@ -51,13 +50,11 @@ public class Topic implements Serializable {
 
     private Date release_date; // en enkel jaar weergeven
 
-
-    public Topic(Long topic_id, String topicName, Long provider_id, Long promotor_id, Long master_id, Long aantal_studenten, List<Keyword> keyword_list, List<Student> student_list, List<TargetAudience> targetAudience_list, Boolean approved_topic, Boolean hide_topic, String description_topic, Date release_date) {
+    public Topic(Long topic_id, String topicName, Long provider_id, Long promotor_id, Long aantal_studenten, List<Keyword> keyword_list, List<Student> student_list, List<TargetAudience> targetAudience_list, Boolean approved_topic, Boolean hide_topic, String description_topic, Date release_date) {
         this.topic_id = topic_id;
         this.topicName = topicName;
         this.provider_id = provider_id;
         this.promotor_id = promotor_id;
-        this.master_id = master_id;
         this.aantal_studenten = aantal_studenten;
         this.keyword_list = keyword_list;
         this.student_list = student_list;
@@ -105,14 +102,6 @@ public class Topic implements Serializable {
 
     public void setPromotor_id(Long promotor_id) {
         this.promotor_id = promotor_id;
-    }
-
-    public Long getCoordinator_id() {
-        return master_id;
-    }
-
-    public void setCoordinator_id(Long master_id) {
-        this.master_id = master_id;
     }
 
     public List<Keyword> getKeyword_list() {
