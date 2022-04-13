@@ -18,7 +18,7 @@
 //        this.passwordEncoder = passwordEncoder;
 //    }
 //
-//    @Bean
+//    @Bean("adminbean")
 //    CommandLineRunner commandLineRunner(AdminRepository repository) {
 //        return args -> {
 //            Admin admin1 = new Admin(

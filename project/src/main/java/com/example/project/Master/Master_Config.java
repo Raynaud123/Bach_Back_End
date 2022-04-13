@@ -33,7 +33,7 @@
 //        this.passwordEncoder = passwordEncoder;
 //    }
 //
-//    @Bean
+//    @Bean("masterbean")
 //    CommandLineRunner commandLineRunner(MasterRepository repository) {
 //        Topic t5 = topicController.getTopic(5L);
 //
