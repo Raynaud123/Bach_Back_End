@@ -98,7 +98,7 @@
 //
 //            Topic topic5 = new Topic(
 //                    5L,"POWER SAVINGS VIA SMART POWER SETTINGS BASED ON THE ANALYSIS OF NETWORK USAGE",
-//                    11L, 13L, 1L, lijstK5, null, lijstTA5, true, false,
+//                    11L, 5L, 1L, lijstK5, null, lijstTA5, true, false,
 ////                    "Networking components, such as modems, routers, access points, are typically permanently active at maximal performance. Energy savings can be achieved by tuning the energy consumption of these devices to the actual needs of the users. Users do not need connectivity 24x7 at every single location in the home. Today's approaches to reduce energy are very coarse grained and include rime-based power reduction options such as disabling a device between midnight and 5AM. Other options require manual interventions such as disabling network components in a study after working hours. The disadvantage of these brute force approaches is that he user QoE can be negatively impacted in case someone wants to use the network outside of the foreseen schedule.\n" +
 ////                            "\n" +
 ////                            "\n" +
