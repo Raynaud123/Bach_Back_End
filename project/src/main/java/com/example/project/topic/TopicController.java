@@ -43,7 +43,6 @@ public class TopicController {
 
     @GetMapping("/promotor/{id}")
     public List<Topic> getTopicsFromPromotor(@PathVariable int id){
-        System.out.println(id);
         long promotor_id = id;
         return topicService.getTopicPromotorId(promotor_id);
     }
