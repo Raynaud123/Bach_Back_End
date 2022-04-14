@@ -85,6 +85,15 @@ public class StudentService {
         if (studentRepository.count() == 0) System.out.println("No students");
     }
 
+    public List<Topic> findAllPreferredTopics(long id) {
+        for(Student s: studentRepository.findAll()){
+            if(Objects.equals(s.getId(), id)){
+                return s.getPreferredTopics();
+            }
+        }
+        return null;
+    }
+
 
 //    public List<Topic> findPreferredTopics() {
 //        List<Topic> pref = new ArrayList<>();
