@@ -1,8 +1,12 @@
 package com.example.project.topic;
 
+import com.example.project.keyword.Keyword;
+import com.example.project.keyword.KeywordRepository;
 import com.example.project.promotor.Promotor;
 import com.example.project.promotor.PromotorRepository;
 import com.example.project.student.StudentRepository;
+import com.example.project.targetAudience.TargetAudience;
+import com.example.project.targetAudience.TargetAudienceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,8 +24,26 @@ public class TopicService {
     private StudentRepository studentRepository;
     @Autowired
     private PromotorRepository promotorRepository;
+    @Autowired
+    private KeywordRepository keywordRepository;
+    @Autowired
+    private TargetAudienceRepository targetAudienceRepository;
 
-    public void addNewTopic(Topic topic) {
+    public void addNewTopic(TopicPostRequest request) {
+
+        List<Keyword> keywords = new ArrayList<>();
+        List<TargetAudience> targetAudiences = new ArrayList<>();
+
+        for(int i = 0; i < request.keywords.length; i++){
+            keywords.add(keywordRepository.getById(request.keywords[i]));
+        }
+
+        for(int i = 0; i < request.targetAudience.length; i++){
+            targetAudiences.add(targetAudienceRepository.getById(request.targetAudience[i]));
+        }
+
+        Topic topic = new Topic(request.topicName,request.description_topic,request.aantal_studenten, keywords, targetAudiences,request.provider_id);
+
         topicRepository.save(topic);
     }
 

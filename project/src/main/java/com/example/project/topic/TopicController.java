@@ -58,10 +58,9 @@ public class TopicController {
     public List<Topic> getAllApprovedTopics() { System.out.println(topicService.findAllApprovedTopics());
         return topicService.findAllApprovedTopics();  }
 
-//     werkt nog niet -> geblokt door CORS
-    @CrossOrigin(origins = "http://localhost:3000")
+
     @PostMapping
-    public void registerNewTopic(@RequestBody Topic topic) { topicService.addNewTopic(topic); }
+    public void registerNewTopic( @RequestBody TopicPostRequest topic) { topicService.addNewTopic(topic); }
 
 
 
