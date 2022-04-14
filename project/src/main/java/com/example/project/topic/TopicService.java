@@ -1,5 +1,7 @@
 package com.example.project.topic;
 
+import com.example.project.promotor.Promotor;
+import com.example.project.promotor.PromotorRepository;
 import com.example.project.student.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +18,8 @@ public class TopicService {
     private TopicRepository topicRepository;
     @Autowired
     private StudentRepository studentRepository;
+    @Autowired
+    private PromotorRepository promotorRepository;
 
     public void addNewTopic(Topic topic) {
         topicRepository.save(topic);
@@ -84,5 +88,15 @@ public class TopicService {
             }
         }
         return null;
+    }
+
+    public List<Topic> getTopicPromotorId(long promotor_id) {
+//        if (!promotorRepository.existsById(promotor_id)) {
+//            return null;
+//        }
+
+ //       promotorRepository.getById(promotor_id);
+
+         return topicRepository.findByPromotor(promotorRepository.getById(promotor_id));
     }
 }

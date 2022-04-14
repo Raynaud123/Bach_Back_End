@@ -2,6 +2,7 @@ package com.example.project.keyword;
 
 import com.example.project.targetAudience.TargetAudience;
 import com.example.project.targetAudience.TargetAudienceRepository;
+import com.example.project.topic.Topic;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,5 +23,9 @@ public class KeywordService {
             }
         }
         return null;
+    }
+
+    public List<Keyword> getAll() {
+            return keywordRepository.findAll();
     }
 }

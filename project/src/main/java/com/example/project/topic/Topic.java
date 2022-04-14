@@ -1,8 +1,10 @@
 package com.example.project.topic;
 
 import com.example.project.keyword.Keyword;
+import com.example.project.promotor.Promotor;
 import com.example.project.student.Student;
 import com.example.project.targetAudience.TargetAudience;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -34,10 +36,17 @@ public class Topic implements Serializable {
     private String topicName;
     //@ManyToOne
     private Long provider_id;
-    //@ManyToMany
-    private Long promotor_id;
+
+
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name="promotor_id")
+    @JsonIgnore
+    private Promotor promotor;
+
     private Long aantal_studenten;
     @ManyToMany
+//    @JsonIgnore
     private List<Keyword> keyword_list;
     @ManyToMany
     private List<Student> student_list;
@@ -50,11 +59,11 @@ public class Topic implements Serializable {
     private Date release_date; // en enkel jaar weergeven
 
 
-    public Topic(Long topic_id, String topicName, Long provider_id, Long promotor_id, Long aantal_studenten, List<Keyword> keyword_list, List<Student> student_list, List<TargetAudience> targetAudience_list, Boolean approved_topic, Boolean hide_topic, String description_topic, Date release_date) {
+    public Topic(Long topic_id, String topicName, Long provider_id, Promotor promotor, Long aantal_studenten, List<Keyword> keyword_list, List<Student> student_list, List<TargetAudience> targetAudience_list, Boolean approved_topic, Boolean hide_topic, String description_topic, Date release_date) {
         this.topic_id = topic_id;
         this.topicName = topicName;
         this.provider_id = provider_id;
-        this.promotor_id = promotor_id;
+        this.promotor = promotor;
         this.aantal_studenten = aantal_studenten;
         this.keyword_list = keyword_list;
         this.student_list = student_list;
@@ -96,13 +105,6 @@ public class Topic implements Serializable {
         this.provider_id = provider_id;
     }
 
-    public Long getPromotor_id() {
-        return promotor_id;
-    }
-
-    public void setPromotor_id(Long promotor_id) {
-        this.promotor_id = promotor_id;
-    }
 
     public List<Keyword> getKeyword_list() {
         return keyword_list;
@@ -162,5 +164,13 @@ public class Topic implements Serializable {
 
     public void setRelease_date(Date release_date) {
         this.release_date = release_date;
+    }
+
+    public Promotor getPromotor() {
+        return promotor;
+    }
+
+    public void setPromotor(Promotor promotor) {
+        this.promotor = promotor;
     }
 }

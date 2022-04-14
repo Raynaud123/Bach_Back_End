@@ -41,6 +41,12 @@ public class TopicController {
     @GetMapping("/info/{topicId}")
     public Topic getTopicForInfo(@PathVariable Long topicId) { return topicService.getTopic(topicId); }
 
+    @GetMapping("/promotor/{id}")
+    public List<Topic> getTopicsFromPromotor(@PathVariable int id){
+        System.out.println(id);
+        long promotor_id = id;
+        return topicService.getTopicPromotorId(promotor_id);
+    }
 
 /*
     @PutMapping

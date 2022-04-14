@@ -3,6 +3,8 @@
 //import com.example.project.Master.MasterRepository;
 //import com.example.project.keyword.Keyword;
 //import com.example.project.keyword.KeywordController;
+//import com.example.project.promotor.Promotor;
+//import com.example.project.promotor.PromotorController;
 //import com.example.project.targetAudience.TargetAudience;
 //import com.example.project.targetAudience.TargetAudienceController;
 //import com.example.project.topicprovider.TopicProviderController;
@@ -17,6 +19,9 @@
 //
 //@Configuration
 //public class Topic_Config {
+//
+//    @Autowired
+//    private PromotorController promotorController;
 //    @Autowired
 //    private TargetAudienceController targetAudienceController;
 //    @Autowired
@@ -38,6 +43,9 @@
 //        List<TargetAudience> lijstTA4 = new ArrayList<>();    lijstTA4.add(t1);       lijstTA4.add(t3);
 //        List<TargetAudience> lijstTA5 = new ArrayList<>();    lijstTA5.add(t2);
 //
+//        Promotor p1 = promotorController.getPromotorById(4L);
+//
+//
 //        Keyword k1 = keywordController.getKeyword(1L);
 //        Keyword k2 = keywordController.getKeyword(2L);
 //        Keyword k3 = keywordController.getKeyword(3L);
@@ -53,7 +61,7 @@
 //        return args -> {
 //            Topic topic1 = new Topic(
 //                    1L, "Device Security Management",
-//                    11L, 4L,
+//                    11L, p1,
 //                    2L, lijstK1, null, lijstTA1, true, false,
 //
 ////                    "Steeds meer systemen zijn verbonden met het internet, gaande van een slimme weegschaal of vaatwasmachine tot slimme auto’s.\n" +
@@ -67,7 +75,7 @@
 //
 //            Topic topic2 = new Topic(
 //                    2L,"ONTWIKKELING VAN DE AANSTURING VAN EEN MAGNETISCH LAGER IN EEN SMALLSAT REACTIEWIEL/DEVELOPMENT OF A CONTROL SYSTEM FOR MAGNETIC REACTION WHEEL BEARINGS",
-//                    12L, 5L,
+//                    12L, null,
 //                    1L, lijstK2, null, lijstTA2, true, false,
 //
 ////                    "Arcsec ontwikkelt standbepaling- en controlesystemen (Attitude Determination and Control System, ADCS) voor satellieten. Het ADCS is het systeem aan boord van de satelliet dat de oriëntatie van de satelliet kan controleren. Hiermee kunnen payloads gericht worden, of kunnen\n" +
@@ -86,7 +94,7 @@
 //
 //            Topic topic3 = new Topic(
 //                    3L,"Development of an Efficient Wirelessly Rechargeable Utility Robot",
-//                    13L, 6L,
+//                    13L, null,
 //                    2L, lijstK3, null, lijstTA3, true, false,
 //
 ////                    "Ontwikkeling van een draadloos oplaadbare autonome huishoudrobot. Zie bijlage voor meer details.",
@@ -96,7 +104,7 @@
 //
 //            Topic topic4 = new Topic(
 //                    4L,"Security analysis of a digital exam SAAS-platform",
-//                    14L, 7L,
+//                    14L, null,
 //                    1L, lijstK4, null, lijstTA4, true, false,
 //
 ////                    "AssessmentQ is a digital exam platform developed and maintained by Televic Education. 250+ customers are using assessmentQ for organizing online and digital (practice) exams.\n" +
@@ -110,7 +118,7 @@
 //
 //            Topic topic5 = new Topic(
 //                    5L,"POWER SAVINGS VIA SMART POWER SETTINGS BASED ON THE ANALYSIS OF NETWORK USAGE",
-//                    15L, 4L,
+//                    15L, null,
 //                    1L, lijstK5, null, lijstTA5, true, false,
 //
 ////                    "Networking components, such as modems, routers, access points, are typically permanently active at maximal performance. Energy savings can be achieved by tuning the energy consumption of these devices to the actual needs of the users. Users do not need connectivity 24x7 at every single location in the home. Today's approaches to reduce energy are very coarse grained and include rime-based power reduction options such as disabling a device between midnight and 5AM. Other options require manual interventions such as disabling network components in a study after working hours. The disadvantage of these brute force approaches is that he user QoE can be negatively impacted in case someone wants to use the network outside of the foreseen schedule.\n" +
