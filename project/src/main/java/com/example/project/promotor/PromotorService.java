@@ -1,5 +1,6 @@
 package com.example.project.promotor;
 
+import com.example.project.topic.Topic;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -38,4 +39,8 @@ public class PromotorService {
     }
 
     public List<Promotor> findAllPromotors() { return promotorRepository.findAll(); }
+//
+//    public List<Topic> findPromotorTopics(Long id) {
+//
+//    }
 }

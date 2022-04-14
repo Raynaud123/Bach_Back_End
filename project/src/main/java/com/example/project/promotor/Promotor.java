@@ -5,14 +5,12 @@ import com.example.project.person.Person;
 import com.example.project.student.Student;
 import com.example.project.targetAudience.TargetAudience;
 import com.example.project.topic.Topic;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 
@@ -23,8 +21,10 @@ import java.util.List;
 @DiscriminatorValue("promotor")
 public class Promotor extends Person implements Serializable {
 
-    @OneToMany
+    @OneToMany(mappedBy="promotor",cascade = CascadeType.ALL)
+    @JsonIgnore
     List<Topic> topic_lijst;
+
     @OneToOne
     Student boostedStudent;
 
