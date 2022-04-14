@@ -53,23 +53,33 @@ public class StudentService {
         return false;
     }
 
-    public void setPreferrence(Long id, String topicname) {
-        List<Student> all = studentRepository.findAll();
-        for(Student s: all){
+    public void setPreferrence(Long id, Long topicid) {
+        System.out.println("Student id: " + id + " and topicid: " + topicid);
+        Topic t = topicService.getTopic(topicid);
+        for(Student s: studentRepository.findAll()){
             if(Objects.equals(s.getId(), id)){
-                System.out.println(s);
-                if (s.getPreferredTopics().contains(topicService.getTopicByString(topicname))) {
-                    s.getPreferredTopics().remove(topicService.getTopicByString(topicname));
-                    System.out.println("Add: " + topicService.getTopicByString(topicname));
+                System.out.println("Student found: " + s);
+                System.out.println("Student contains: " + topicid + " = " + s.getPreferredTopics().contains(t));
+                if (s.getPreferredTopics().contains(t)) {
+                    s.getPreferredTopics().remove(t);
+                    System.out.println("Remove topicid: " + t.toString());
                 }
                 else {
-                    s.getPreferredTopics().add(topicService.getTopicByString(topicname));
-                    System.out.println("Remove: " + topicService.getTopicByString(topicname));
+                    s.getPreferredTopics().add(t);
+                    System.out.println("Add topicid: " + t.toString());
                 }
-            }
-            else{
-                System.out.println("No student found by id: " + id);
-
+                studentRepository.save(s);
+//                System.out.println("Student contains: " + t.toString() + " = " + s.getPreferredTopics().contains(t));
+//                if (preferred && !s.getPreferredTopics().contains(t)) {
+//                    s.getPreferredTopics().add(t);
+//                    System.out.println("Add topicid: " + t.toString());
+//                }
+//                else {
+//                    s.getPreferredTopics().remove(t);
+//                    System.out.println("Remove topicid: " + t.toString());
+//                    System.out.println("Student without topic: " + s);
+//
+//                }
             }
         }
         if (studentRepository.count() == 0) System.out.println("No students");

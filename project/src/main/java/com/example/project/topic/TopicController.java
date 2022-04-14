@@ -38,9 +38,6 @@ public class TopicController {
         return topicService.findAll();
     }
 
-    @GetMapping("/info/{topicId}")
-    public Topic getTopicForInfo(@PathVariable Long topicId) { return topicService.getTopic(topicId); }
-
 
 /*
     @PutMapping

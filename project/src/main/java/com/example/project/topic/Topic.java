@@ -163,4 +163,23 @@ public class Topic implements Serializable {
     public void setRelease_date(Date release_date) {
         this.release_date = release_date;
     }
+
+
+    @Override
+    public String toString() {
+        return "Topic{" +
+                "topic_id=" + topic_id +
+                ", topicName='" + topicName + '\'' +
+                ", provider_id=" + provider_id +
+                ", promotor_id=" + promotor_id +
+                ", aantal_studenten=" + aantal_studenten +
+                ", keyword_list=" + keyword_list +
+                ", student_list=" + student_list +
+                ", targetAudience_list=" + targetAudience_list +
+                ", approved_topic=" + approved_topic +
+                ", hide_topic=" + hide_topic +
+                ", description_topic='" + description_topic + '\'' +
+                ", release_date=" + release_date +
+                '}';
+    }
 }

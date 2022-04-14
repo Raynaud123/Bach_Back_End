@@ -16,6 +16,8 @@ public class StudentController {
     @Autowired
     private StudentService studentService;
     @Autowired
+    private StudentRepository studentRepository;
+    @Autowired
     private TopicService topicService;
 
 
@@ -23,9 +25,15 @@ public class StudentController {
 //    @GetMapping(path = "/preferred")
 //    public List<Topic> getPreferredTopics() { return studentService.findPreferredTopics(); }
 
-    @GetMapping(path = "/{id}")
-    public List<Topic> getById(@PathVariable long id) {
+    @GetMapping(path = "/topics/{id}")
+    public List<Topic> getTopicsById(@PathVariable long id) {
         return topicService.findById(id);
+    }
+
+    @GetMapping(path = "/{id}")
+    public Student getStudentById(@PathVariable long id) {
+        System.out.println(studentRepository.findById(id));
+        return studentRepository.getById(id);
     }
 
     @GetMapping(path = "/all")
@@ -38,18 +46,9 @@ public class StudentController {
         return studentService.findBoolPreferredTopicByID(id, topicid);
     }
 
-//    @GetMapping(path = "/{id}/preferred/{topicname}")
-//    public boolean getBoolPreferredTopicWithName(@PathVariable long id, @PathVariable String topicname) {
-//        return studentService.findBoolPreferredTopicByName(id, topicname);
-//    }
-
-
     @CrossOrigin(origins = "http://localhost:3000")
-    @PostMapping(path = "/{id}/submitpreferrencetopic/{topicName}")
-    public void setPreferenceTopic(@PathVariable Long id, @PathVariable String topicName) { studentService.setPreferrence(id, topicName);
-        System.out.println("Topic: " + topicName);
+    @PutMapping(path = "/{id}/submitpreferrencetopic/{topicid}")
+    public void setPreferenceTopic(@PathVariable Long id, @PathVariable Long topicid) { studentService.setPreferrence(id, topicid);
     }
-
-
 
 }

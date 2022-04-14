@@ -114,4 +114,15 @@ public class Student extends Person implements Serializable {
     public void setTop3Topic_ids(List<Topic> top3Topic_ids) {
         this.top3Topic_ids = top3Topic_ids;
     }
+
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "master=" + master +
+                ", assignedTopic=" + assignedTopic +
+                ", preferredTopics=" + preferredTopics +
+                ", top3Topic_ids=" + top3Topic_ids +
+                '}';
+    }
 }
