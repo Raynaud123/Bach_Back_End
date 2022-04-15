@@ -44,7 +44,9 @@
 //        List<TargetAudience> lijstTA5 = new ArrayList<>();    lijstTA5.add(t2);
 //
 //        Promotor p1 = promotorController.getPromotorById(4L);
-//
+//        Promotor p2 = promotorController.getPromotorById(5L);
+//        Promotor p3 = promotorController.getPromotorById(6L);
+//        Promotor p4 = promotorController.getPromotorById(7L);
 //
 //        Keyword k1 = keywordController.getKeyword(1L);
 //        Keyword k2 = keywordController.getKeyword(2L);
@@ -75,7 +77,7 @@
 //
 //            Topic topic2 = new Topic(
 //                    2L,"ONTWIKKELING VAN DE AANSTURING VAN EEN MAGNETISCH LAGER IN EEN SMALLSAT REACTIEWIEL/DEVELOPMENT OF A CONTROL SYSTEM FOR MAGNETIC REACTION WHEEL BEARINGS",
-//                    12L, null,
+//                    12L, p2,
 //                    1L, lijstK2, null, lijstTA2, true, false,
 //
 ////                    "Arcsec ontwikkelt standbepaling- en controlesystemen (Attitude Determination and Control System, ADCS) voor satellieten. Het ADCS is het systeem aan boord van de satelliet dat de oriëntatie van de satelliet kan controleren. Hiermee kunnen payloads gericht worden, of kunnen\n" +
@@ -94,7 +96,7 @@
 //
 //            Topic topic3 = new Topic(
 //                    3L,"Development of an Efficient Wirelessly Rechargeable Utility Robot",
-//                    13L, null,
+//                    13L, p3,
 //                    2L, lijstK3, null, lijstTA3, true, false,
 //
 ////                    "Ontwikkeling van een draadloos oplaadbare autonome huishoudrobot. Zie bijlage voor meer details.",
@@ -104,7 +106,7 @@
 //
 //            Topic topic4 = new Topic(
 //                    4L,"Security analysis of a digital exam SAAS-platform",
-//                    14L, null,
+//                    14L, p4,
 //                    1L, lijstK4, null, lijstTA4, true, false,
 //
 ////                    "AssessmentQ is a digital exam platform developed and maintained by Televic Education. 250+ customers are using assessmentQ for organizing online and digital (practice) exams.\n" +
@@ -118,7 +120,7 @@
 //
 //            Topic topic5 = new Topic(
 //                    5L,"POWER SAVINGS VIA SMART POWER SETTINGS BASED ON THE ANALYSIS OF NETWORK USAGE",
-//                    15L, null,
+//                    15L, p1,
 //                    1L, lijstK5, null, lijstTA5, true, false,
 //
 ////                    "Networking components, such as modems, routers, access points, are typically permanently active at maximal performance. Energy savings can be achieved by tuning the energy consumption of these devices to the actual needs of the users. Users do not need connectivity 24x7 at every single location in the home. Today's approaches to reduce energy are very coarse grained and include rime-based power reduction options such as disabling a device between midnight and 5AM. Other options require manual interventions such as disabling network components in a study after working hours. The disadvantage of these brute force approaches is that he user QoE can be negatively impacted in case someone wants to use the network outside of the foreseen schedule.\n" +
