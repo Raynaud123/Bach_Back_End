@@ -34,7 +34,6 @@ public class TopicController {
 
     @GetMapping("/all")
     public List<Topic> getAllTopics() {
-        System.out.println(topicService.findAll());
         return topicService.findAll();
     }
 
@@ -43,8 +42,7 @@ public class TopicController {
 
     @GetMapping("/promotor/{id}")
     public List<Topic> getTopicsFromPromotor(@PathVariable int id){
-        long promotor_id = id;
-        return topicService.getTopicPromotorId(promotor_id);
+        return topicService.getTopicPromotorId(id);
     }
 
 /*

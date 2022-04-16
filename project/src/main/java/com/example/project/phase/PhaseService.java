@@ -25,4 +25,7 @@ public class PhaseService {
         return null;
     }
 
+    public List<Phase> findAllPhases() {
+        return phaseRepository.findAll();
+    }
 }

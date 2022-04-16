@@ -16,7 +16,7 @@ public class KeywordController {
 
 
     @GetMapping("/all")
-    public List<Keyword> getTopic() {
+    public List<Keyword> getKeywords() {
         return keywordService.getAll();
     }
 

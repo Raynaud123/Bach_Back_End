@@ -3,6 +3,8 @@ package com.example.project.phase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @ResponseBody
 @RequestMapping(path = "phase")
@@ -14,5 +16,10 @@ public class PhaseController {
     @GetMapping(path = "/now")
     public Phase getPhase() {
         return phaseService.getPhase();
+    }
+
+    @GetMapping(path = "/all")
+    public List<Phase> getAllPhase() {
+        return phaseService.findAllPhases();
     }
 }
