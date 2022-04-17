@@ -4,7 +4,7 @@ import com.example.project.keyword.Keyword;
 import com.example.project.promotor.Promotor;
 import com.example.project.student.Student;
 import com.example.project.targetAudience.TargetAudience;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -41,7 +41,8 @@ public class Topic implements Serializable {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name="promotor_id")
-    @JsonIgnore
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+    @JsonIdentityReference(alwaysAsId = true)
     private Promotor promotor;
 
     private Long aantal_studenten;

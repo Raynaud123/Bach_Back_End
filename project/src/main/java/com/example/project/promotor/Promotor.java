@@ -5,7 +5,7 @@ import com.example.project.person.Person;
 import com.example.project.student.Student;
 import com.example.project.targetAudience.TargetAudience;
 import com.example.project.topic.Topic;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -22,7 +22,8 @@ import java.util.List;
 public class Promotor extends Person implements Serializable {
 
     @OneToMany(mappedBy="promotor",cascade = CascadeType.ALL)
-    @JsonIgnore
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+    @JsonIdentityReference(alwaysAsId = true)
     List<Topic> topic_lijst;
 
     @OneToOne
