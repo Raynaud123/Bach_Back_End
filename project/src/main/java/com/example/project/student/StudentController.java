@@ -2,9 +2,12 @@ package com.example.project.student;
 
 import com.example.project.topic.Topic;
 import com.example.project.topic.TopicService;
+import com.example.project.topic.UpdateTopicStudentsRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -41,14 +44,27 @@ public class StudentController {
         return studentService.findAllStudents();
     }
 
+    @GetMapping(path = "/{id}/preferred/all")
+    public List<Topic> getAllPreferredTopics(@PathVariable long id) {
+        return studentService.findAllPreferredTopics(id);
+    }
+
     @GetMapping(path = "/{id}/preferred/{topicid}")
     public boolean getBoolPreferredTopic(@PathVariable long id, @PathVariable long topicid) {
         return studentService.findBoolPreferredTopicByID(id, topicid);
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
+    @GetMapping(path = "/{id}/top3")
+    public List<Topic> getTop3(@PathVariable long id) {
+        return studentService.getTop3(id);
+    }
+
     @PutMapping(path = "/{id}/submitpreferrencetopic/{topicid}")
     public void setPreferenceTopic(@PathVariable Long id, @PathVariable Long topicid) { studentService.setPreferrence(id, topicid);
     }
 
+    @PutMapping(path = "/{id}/updatetop3/{topic1id}/{topic2id}/{topic3id}")
+    public void setTop3(@PathVariable Long id, @PathVariable Long topic1id, @PathVariable Long topic2id, @PathVariable Long topic3id) {
+        studentService.setTop3(id, topicService.getTopic(topic1id),topicService.getTopic(topic2id),topicService.getTopic(topic3id));
+    }
 }

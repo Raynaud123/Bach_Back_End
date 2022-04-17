@@ -9,6 +9,7 @@ import com.example.project.topic.TopicService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -83,6 +84,37 @@ public class StudentService {
             }
         }
         if (studentRepository.count() == 0) System.out.println("No students");
+    }
+
+    public List<Topic> findAllPreferredTopics(long id) {
+        for(Student s: studentRepository.findAll()){
+            if(Objects.equals(s.getId(), id)){
+                return s.getPreferredTopics();
+            }
+        }
+        return null;
+    }
+
+    public void setTop3(Long id, Topic topic1, Topic topic2, Topic topic3) {
+        for(Student s: studentRepository.findAll()){
+            if(Objects.equals(s.getId(), id)){
+                List<Topic> top3Nieuw = new ArrayList<>();
+                top3Nieuw.add(topic1);
+                top3Nieuw.add(topic2);
+                top3Nieuw.add(topic3);
+                s.setTop3Topic(top3Nieuw);
+                studentRepository.save(s);
+            }
+        }
+    }
+
+    public List<Topic> getTop3(long id) {
+        for(Student s: studentRepository.findAll()){
+            if(Objects.equals(s.getId(), id)){
+                return s.getTop3Topic();
+            }
+        }
+        return null;
     }
 
 

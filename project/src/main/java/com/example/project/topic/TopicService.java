@@ -58,8 +58,6 @@ public class TopicService {
                 app.add(top);
             }
         }
-
-
         return app;
     }
 

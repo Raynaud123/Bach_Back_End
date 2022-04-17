@@ -9,6 +9,7 @@ import java.util.List;
 
 @RestController
 @ResponseBody
+@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping(path = "topicprovider")
 public class TopicProviderController {
 
@@ -19,12 +20,11 @@ public class TopicProviderController {
         this.topicProviderService = service;
     }
 
-    @GetMapping
+    @GetMapping(path = "/all")
     public List<TopicProvider> getAllTopicProviders(){
         return topicProviderService.findAll();
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping(path = "/{id}")
     public List<TopicProvider> getById(@PathVariable long id) {
         return topicProviderService.findById(id);
