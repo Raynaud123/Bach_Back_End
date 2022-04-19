@@ -28,8 +28,8 @@ public class PromotorController {
     }
 
     @GetMapping("/{id}")
-    public Promotor getPromotorById(@PathVariable long id) {
-        return promotorService.findById(id);
+    public Promotor getPromotorById(@PathVariable int id) {
+        return promotorService.findById((long)id);
     }
 
 //    @GetMapping("/topics/{id}")

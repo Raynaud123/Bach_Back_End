@@ -22,7 +22,7 @@ import java.util.List;
 public class Promotor extends Person implements Serializable {
 
     @OneToMany(mappedBy="promotor",cascade = CascadeType.ALL)
-    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "topic_id")
     @JsonIdentityReference(alwaysAsId = true)
     List<Topic> topic_lijst;
 

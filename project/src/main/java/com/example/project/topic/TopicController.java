@@ -51,6 +51,8 @@ public class TopicController {
         return topicService.boostStudent(id, request);
     }
 
+
+
 /*
     @PutMapping
     public String updatePromotor(@RequestBody UpdateTopicPromotorRequest request) {
