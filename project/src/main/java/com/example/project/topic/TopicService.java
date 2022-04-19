@@ -4,16 +4,15 @@ import com.example.project.keyword.Keyword;
 import com.example.project.keyword.KeywordRepository;
 import com.example.project.promotor.Promotor;
 import com.example.project.promotor.PromotorRepository;
+import com.example.project.student.Student;
 import com.example.project.student.StudentRepository;
 import com.example.project.targetAudience.TargetAudience;
 import com.example.project.targetAudience.TargetAudienceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
+import javax.swing.text.html.Option;
+import java.util.*;
 
 @Service
 public class TopicService {
@@ -118,5 +117,27 @@ public class TopicService {
  //       promotorRepository.getById(promotor_id);
 
          return topicRepository.findByPromotor(promotorRepository.getById(promotor_id));
+    }
+
+    public Topic boostStudent(int id, BoostStudentRequest request) {
+        if (topicRepository.findById((long)id).isPresent()) {
+            Topic topic = topicRepository.getById((long) id);
+            if(studentRepository.findById((long) request.studentId).isPresent()){
+                Student student = studentRepository.getById((long) request.studentId);
+                topic.setBoostedStudent(student);
+                topicRepository.saveAndFlush(topic);
+            }
+            else{
+                System.out.println("Studnet id fout");
+                return null;
+
+            }
+
+            return topic;
+        }
+        else {
+            System.out.println("toic id fout");
+            return null;
+        }
     }
 }

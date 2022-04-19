@@ -37,6 +37,12 @@ public class Topic implements Serializable {
     //@ManyToOne
     private Long provider_id;
 
+    @OneToOne
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+    @JsonIdentityReference(alwaysAsId = true)
+    Student boostedStudent;
+
+
 
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
@@ -72,6 +78,7 @@ public class Topic implements Serializable {
         this.hide_topic = hide_topic;
         this.description_topic = description_topic;
         this.release_date = release_date;
+        this.boostedStudent = null;
     }
 
     public Topic(String topicName, String description_topic, Long aantal_studenten, List<Keyword> keywords, List<TargetAudience> targetAudiences, Long provider_id) {
@@ -82,6 +89,7 @@ public class Topic implements Serializable {
         this.keyword_list = keywords;
         this.targetAudience_list = targetAudiences;
         this.approved_topic = false;
+        this.boostedStudent = null;
     }
 
     public Long getAantal_studenten() {
@@ -200,5 +208,13 @@ public class Topic implements Serializable {
                 ", description_topic='" + description_topic + '\'' +
                 ", release_date=" + release_date +
                 '}';
+    }
+
+    public Student getBoostedStudent() {
+        return boostedStudent;
+    }
+
+    public void setBoostedStudent(Student boostedStudent) {
+        this.boostedStudent = boostedStudent;
     }
 }
