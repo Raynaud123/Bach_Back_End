@@ -46,4 +46,16 @@ public class AdminController {
         return service.findAllTargetAudience();
     }
 
+    @PostMapping(path = "/update/phase/{pid}")
+    @ResponseBody
+    public void updatePhase(@PathVariable long pid,@RequestBody Phase phaseBody) throws ParseException {service.updatePhaseWithBody(pid,phaseBody);}
+
+    @PostMapping(path = "/create/phase")
+    @ResponseBody
+    public void createNewPhase(@RequestBody Phase phaseBody) throws ParseException {service.createPhase(phaseBody);}
+
+    @PostMapping(path = "/delete/phase")
+    @ResponseBody
+    public void deleteOldPhase(@RequestBody Phase phaseBody) throws ParseException {service.deletePhase(phaseBody);}
+
 }

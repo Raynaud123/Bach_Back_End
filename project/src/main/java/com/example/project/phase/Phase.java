@@ -29,12 +29,12 @@ public class Phase {
     private String phase_name;
 
 
-    @JsonFormat(pattern = "dd/MM/yy")
-    @DateTimeFormat(pattern = "dd/MM/yy")
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date begin_deadline;
 
-    @JsonFormat(pattern = "dd/MM/yy")
-    @DateTimeFormat(pattern = "dd/MM/yy")
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date end_deadline;
     private Boolean firstRound;
     private Boolean hide;
