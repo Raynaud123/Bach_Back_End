@@ -37,23 +37,25 @@ public class Phase {
     @DateTimeFormat(pattern = "dd/MM/yy")
     private Date end_deadline;
     private Boolean firstRound;
+    private Boolean hide;
 
 
-    public Phase(Long phase_id, String phase_name, Date begin_deadline, Date end_deadline, Boolean firstRound) {
+    public Phase(Long phase_id, String phase_name, Date begin_deadline, Date end_deadline, Boolean firstRound, Boolean hide) {
         this.phase_id = phase_id;
         this.phase_name = phase_name;
         this.begin_deadline = begin_deadline;
         this.end_deadline = end_deadline;
         this.firstRound = firstRound;
+        this.hide = hide;
     }
 
-    public Phase(String phase_name, Date begin_deadline, Date end_deadline, Boolean firstRound) {
+    public Phase(String phase_name, Date begin_deadline, Date end_deadline, Boolean firstRound, Boolean hide) {
         this.phase_name = phase_name;
         this.begin_deadline = begin_deadline;
         this.end_deadline = end_deadline;
         this.firstRound = firstRound;
+        this.hide = hide;
     }
-
 
     public Long getPhase_id() {
         return phase_id;
@@ -93,5 +95,13 @@ public class Phase {
 
     public void setFirstRound(Boolean firstRound) {
         this.firstRound = firstRound;
+    }
+
+    public Boolean getHide() {
+        return hide;
+    }
+
+    public void setHide(Boolean hide) {
+        this.hide = hide;
     }
 }
