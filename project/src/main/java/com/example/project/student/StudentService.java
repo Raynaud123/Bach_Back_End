@@ -117,6 +117,12 @@ public class StudentService {
         return null;
     }
 
+//    public List<Student> getStudents(int topic_id) {
+//
+//        return studentRepository.getTop3_TopicsById(topic_id);
+//
+//    }
+
 
 //    public List<Topic> findPreferredTopics() {
 //        List<Topic> pref = new ArrayList<>();
