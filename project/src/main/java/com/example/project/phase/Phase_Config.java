@@ -4,32 +4,32 @@
 //import org.springframework.context.annotation.Bean;
 //import org.springframework.context.annotation.Configuration;
 //
-//import java.text.ParseException;
+//
 //import java.text.SimpleDateFormat;
 //import java.util.List;
 //
 //@Configuration
 //public class Phase_Config {
 //
-//    String dateString1 = "08/02/2022";
-//    String dateString2 = "30/03/2022";
-//    String dateString3 = "31/03/2022";
-//    String dateString4 = "01/04/2022";
-//    String dateString5 = "30/04/2022";
-//    String dateString6 = "01/05/2022";
-//    String dateString7 = "15/05/2022";
-//    String dateString8 = "16/05/2022";
-//    String dateString9 = "20/05/2022";
+//    String dateString1 = "08/02/2022 23:55:55";
+//    String dateString2 = "30/03/2022 23:55:55";
+//    String dateString3 = "31/03/2022 23:55:55";
+//    String dateString4 = "01/04/2022 23:55:55";
+//    String dateString5 = "30/04/2022 23:55:55";
+//    String dateString6 = "01/05/2022 23:55:55";
+//    String dateString7 = "15/05/2022 23:55:55";
+//    String dateString8 = "16/05/2022 23:55:55";
+//    String dateString9 = "20/05/2022 23:55:55";
 //
 //
-//    String dateString10 = "15/08/2022";
-//    String dateString11 = "10/09/2022";
-//    String dateString12 = "12/09/2022";
-//    String dateString13 = "18/09/2022";
-//    String dateString14 = "19/09/2022";
-//    String dateString15 = "28/09/2022";
+//    String dateString10 = "15/08/2022 23:55:55";
+//    String dateString11 = "10/09/2022 23:55:55";
+//    String dateString12 = "12/09/2022 23:55:55";
+//    String dateString13 = "18/09/2022 23:55:55";
+//    String dateString14 = "19/09/2022 23:55:55";
+//    String dateString15 = "28/09/2022 23:55:55";
 //
-//    SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+//    SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 //
 //    public Phase_Config() {
 //    }

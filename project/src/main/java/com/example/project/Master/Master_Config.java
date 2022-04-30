@@ -47,10 +47,10 @@
 //
 //        return args -> {
 //            Master master1 = new Master(
-//                        "master1", passwordEncoder.encode("master"), "master1@gmail.com", "+32400000000", MASTER, false, true, "Belgium", "Ghent", "StreetNameMaster1", 9000, 100, "MasterFirstName1", "MasterLastName1", true, lijstTA1, lijstasP1, null, null, null
+//                    1L, "master1", passwordEncoder.encode("master"), "master1@gmail.com", "+32400000000", MASTER, false, true, "Belgium", "Ghent", "StreetNameMaster1", 9000, 100, "MasterFirstName1", "MasterLastName1", true, lijstTA1, lijstasP1, null, null, null
 //            );
 //            Master master2 = new Master(
-//                    "master2", passwordEncoder.encode("master"), "master2@gmail.com", "+32400000000", MASTER, false, true, "Belgium", "Ghent", "StreetNameMaster2", 9000, 100, "MasterFirstName2", "MasterLastName2", true, lijstTA2, null, null, null, null
+//                    2L, "master2", passwordEncoder.encode("master"), "master2@gmail.com", "+32400000000", MASTER, false, true, "Belgium", "Ghent", "StreetNameMaster2", 9000, 100, "MasterFirstName2", "MasterLastName2", true, lijstTA2, null, null, null, null
 //            );
 //
 //            repository.saveAll(
