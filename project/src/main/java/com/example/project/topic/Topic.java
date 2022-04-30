@@ -58,6 +58,15 @@ public class Topic implements Serializable {
     private List<Student> student_list;
     @ManyToMany
     private List<TargetAudience> targetAudience_list;
+
+
+    @ManyToMany
+    @JoinTable(
+            name = "preferred_like",
+            joinColumns = @JoinColumn(name = "student_id"),
+            inverseJoinColumns = @JoinColumn(name = "topic_id"))
+    private List<Student> Top3_Students;
+
     private Boolean approved_topic;
     private Boolean hide_topic;
     private String description_topic;

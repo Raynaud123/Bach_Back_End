@@ -67,4 +67,8 @@ public class StudentController {
     public void setTop3(@PathVariable Long id, @PathVariable Long topic1id, @PathVariable Long topic2id, @PathVariable Long topic3id) {
         studentService.setTop3(id, topicService.getTopic(topic1id),topicService.getTopic(topic2id),topicService.getTopic(topic3id));
     }
+//    @GetMapping("/topics/{topic_id}")
+//    public List<Student> allStudents(@PathVariable int topic_id){
+//        return studentService.getStudents(topic_id);
+//    }
 }

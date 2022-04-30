@@ -1,5 +1,6 @@
 package com.example.project.topic;
 
+import com.example.project.student.Student;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -50,7 +51,6 @@ public class TopicController {
     public Topic boostStudent(@PathVariable int id, @Valid @RequestBody BoostStudentRequest request){
         return topicService.boostStudent(id, request);
     }
-
 
 
 /*
