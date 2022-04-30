@@ -87,7 +87,7 @@ public class AdminService {
                 + " hide: " + phaseBody.getHide());
         if(phaseRepository.findById(pid).isPresent()){
             Phase fase = phaseRepository.findById(pid).get();
-            if(!Objects.equals(phaseBody.getPhase_name(), "") && !Objects.equals(phaseBody.getPhase_name(), null)){
+            if(!Objects.equals(phaseBody.getPhase_name(), "")){
                 System.out.println(fase.getPhase_name() + " en " + phaseBody.getPhase_name());
                 fase.setPhase_name(phaseBody.getPhase_name());
             }
@@ -95,15 +95,20 @@ public class AdminService {
                 System.out.println(fase.getFirstRound() + " en " + phaseBody.getFirstRound());
                 fase.setFirstRound(phaseBody.getFirstRound());
             }
-            if(!Objects.equals(phaseBody.getBegin_deadline(), "") && !Objects.equals(phaseBody.getBegin_deadline(), null)){
-                phaseBody.getBegin_deadline().setHours(0);
+            if(!Objects.equals(phaseBody.getBegin_deadline(), "") && !Objects.equals(phaseBody.getEnd_deadline(), null)){
+                phaseBody.getEnd_deadline().setHours(23);
+                phaseBody.getEnd_deadline().setMinutes(55);
+                phaseBody.getEnd_deadline().setSeconds(55);
                 System.out.println(fase.getBegin_deadline() + " en " + phaseBody.getBegin_deadline());
                 fase.setBegin_deadline(phaseBody.getBegin_deadline());
             }
             if(!Objects.equals(phaseBody.getEnd_deadline(), "") && !Objects.equals(phaseBody.getEnd_deadline(), null)){
-                phaseBody.getEnd_deadline().setHours(0);
+                phaseBody.getEnd_deadline().setHours(23);
+                phaseBody.getEnd_deadline().setMinutes(55);
+                phaseBody.getEnd_deadline().setSeconds(55);
                 System.out.println(fase.getEnd_deadline() + " en " + phaseBody.getEnd_deadline());
                 fase.setEnd_deadline(phaseBody.getEnd_deadline());
+                System.out.println(fase.getEnd_deadline() + " en " + phaseBody.getEnd_deadline());
             }
             if(!Objects.equals(phaseBody.getHide(), null)){
                 System.out.println(fase.getHide() + " en " + phaseBody.getHide());
