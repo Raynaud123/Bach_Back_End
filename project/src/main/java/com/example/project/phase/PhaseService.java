@@ -19,9 +19,11 @@ public class PhaseService {
 
         for(Phase p: all){
             if(today.getTime() <= p.getEnd_deadline().getTime()){
+                System.out.println("Phase id: " + p.getPhase_id());
                 return p;
             }
         }
+
         return null;
     }
 
