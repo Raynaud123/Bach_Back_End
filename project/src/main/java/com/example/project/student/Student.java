@@ -39,27 +39,28 @@ public class Student extends Person implements Serializable {
     @ManyToOne
     @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
     @JsonIdentityReference(alwaysAsId = true)
-
     private Master master;
+
     @OneToOne
     @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
     @JsonIdentityReference(alwaysAsId = true)
     private Topic assignedTopic;
+
     @ManyToMany
     private List<Topic> preferredTopics;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name="topic_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn
     @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
     @JsonIdentityReference(alwaysAsId = true)
     private Topic FirstChoice;
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name="topic_id")
+
+    @ManyToOne(fetch = FetchType.LAZY)
     @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
     @JsonIdentityReference(alwaysAsId = true)
     private Topic SecondChoice;
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name="topic_id")
+
+    @ManyToOne(fetch = FetchType.LAZY)
     @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
     @JsonIdentityReference(alwaysAsId = true)
     private Topic ThirdChoice;

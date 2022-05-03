@@ -56,8 +56,7 @@ public class Topic implements Serializable {
     @ManyToMany
     private List<TargetAudience> targetAudience_list;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name="student_id")
+    @OneToMany(mappedBy="FirstChoice",cascade = CascadeType.ALL)
     @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
     @JsonIdentityReference(alwaysAsId = true)
     private List<Student> StudentsWithChoice1_list;
