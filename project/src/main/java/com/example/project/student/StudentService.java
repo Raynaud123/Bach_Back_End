@@ -9,13 +9,14 @@ import com.example.project.topic.TopicService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 @Service
 public class StudentService {
 
+
+    @Autowired
+    private Topic_choiceRepository topic_choiceRepository;
     @Autowired
     private StudentRepository studentRepository;
     @Autowired
@@ -95,30 +96,42 @@ public class StudentService {
         return null;
     }
 
-    public void setTop3(Long id, Topic topic1, Topic topic2, Topic topic3) {
-        for(Student s: studentRepository.findAll()){
-            if(Objects.equals(s.getId(), id)){
-                s.setFirstChoice(topic1);
-                s.setSecondChoice(topic2);
-                s.setThirdChoice(topic3);
-                studentRepository.save(s);
-            }
+    public Student setTop3(Long id, Topic topic1, Topic topic2, Topic topic3) {
+        Optional<Student> s = studentRepository.findById(id);
+        List<Topic_choice> opTeSlaan = new ArrayList<Topic_choice>();
+        if(s.isPresent()){
+
+            Topic_choice t1  = new Topic_choice(s.get(), topic1, 1);
+            Topic_choice t2 = new Topic_choice(s.get(), topic2, 2);
+            Topic_choice t3 = new Topic_choice(s.get(), topic3, 3);
+            opTeSlaan.add(t2);
+            opTeSlaan.add(t1);
+            opTeSlaan.add(t3);
         }
+
+        topic_choiceRepository.saveAll(opTeSlaan);
+        return s.get();
     }
 
     public List<Topic> getTop3(long id) {
-        List<Topic> top3 = new ArrayList<>();
-        for(Student s: studentRepository.findAll()){
-            if(Objects.equals(s.getId(), id)){
-                if (s.getFirstChoice() != null)
-                    top3.add(s.getFirstChoice());
-                if (s.getSecondChoice() != null)
-                    top3.add(s.getSecondChoice());
-                if (s.getThirdChoice() != null)
-                    top3.add(s.getThirdChoice());
-                return top3;
-            }
+        List<Topic> top3 = new ArrayList<>(3);
+        Optional<Student> s = studentRepository.findById(id);
+        if(s.isPresent()) {
+            List<Topic_choice> jeWeetZelf = topic_choiceRepository.findAllByStudent(s.get());
+
+            do{
+                for (int i = 0; i < jeWeetZelf.size(); i++){
+                   if(jeWeetZelf.get(i).getChoice() == 1 && top3.size() == 0){
+                       top3.add(jeWeetZelf.get(i).getTopic());
+                   }else if(jeWeetZelf.get(i).getChoice() == 2 && top3.size() == 1){
+                       top3.add(jeWeetZelf.get(i).getTopic());
+                   }else if(jeWeetZelf.get(i).getChoice() == 3 && top3.size() == 2){
+                       top3.add(jeWeetZelf.get(i).getTopic());
+                   }
+               }
+            }while (top3.size() != 3);
+
         }
-        return null;
+        return top3;
     }
 }

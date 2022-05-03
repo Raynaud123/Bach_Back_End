@@ -14,6 +14,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -49,33 +50,18 @@ public class Student extends Person implements Serializable {
     @ManyToMany
     private List<Topic> preferredTopics;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn
-    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-    @JsonIdentityReference(alwaysAsId = true)
-    private Topic FirstChoice;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn
-    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-    @JsonIdentityReference(alwaysAsId = true)
-    private Topic SecondChoice;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn
-    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-    @JsonIdentityReference(alwaysAsId = true)
-    private Topic ThirdChoice;
-
+    @OneToMany(
+            mappedBy = "student",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private List<Topic_choice> choices = new ArrayList<>();
 
 
     public Student(Master master, Topic assignedTopic, List<Topic> preferredTopics, Topic FirstChoice, Topic SecondChoice, Topic ThirdChoice) {
         this.master = master;
         this.assignedTopic = assignedTopic;
         this.preferredTopics = preferredTopics;
-        this.FirstChoice = FirstChoice;
-        this.SecondChoice = SecondChoice;
-        this.ThirdChoice = ThirdChoice;
     }
 
     public Student(String firstName, String lastName, Boolean approved, List<TargetAudience> targetAudience_id, Master master, Topic assignedTopic, List<Topic> preferredTopics, Topic FirstChoice, Topic SecondChoice, Topic ThirdChoice) {
@@ -83,11 +69,7 @@ public class Student extends Person implements Serializable {
         this.master = master;
         this.assignedTopic = assignedTopic;
         this.preferredTopics = preferredTopics;
-        this.FirstChoice = FirstChoice;
-        this.SecondChoice = SecondChoice;
-        this.ThirdChoice = ThirdChoice;
     }
-
 
 
     public Student(Long id, String username, String password, String email, String phoneNumber, AppUserRole appUserRole, Boolean locked, Boolean enabled, String country, String city, String streetName, Integer postNumber, Integer streetNumber, String firstName, String lastName, Boolean approved, List<TargetAudience> targetAudience_id, Master master, Topic assignedTopic, List<Topic> preferredTopics, Topic FirstChoice, Topic SecondChoice, Topic ThirdChoice) {
@@ -95,9 +77,6 @@ public class Student extends Person implements Serializable {
         this.master = master;
         this.assignedTopic = assignedTopic;
         this.preferredTopics = preferredTopics;
-        this.FirstChoice = FirstChoice;
-        this.SecondChoice = SecondChoice;
-        this.ThirdChoice = ThirdChoice;
     }
 
 
@@ -125,29 +104,6 @@ public class Student extends Person implements Serializable {
         this.preferredTopics = preferredTopics;
     }
 
-    public Topic getFirstChoice() {
-        return FirstChoice;
-    }
-
-    public void setFirstChoice(Topic firstChoice) {
-        FirstChoice = firstChoice;
-    }
-
-    public Topic getSecondChoice() {
-        return SecondChoice;
-    }
-
-    public void setSecondChoice(Topic secondChoice) {
-        SecondChoice = secondChoice;
-    }
-
-    public Topic getThirdChoice() {
-        return ThirdChoice;
-    }
-
-    public void setThirdChoice(Topic thirdChoice) {
-        ThirdChoice = thirdChoice;
-    }
 
     @Override
     public String toString() {
@@ -155,9 +111,7 @@ public class Student extends Person implements Serializable {
                 "master=" + master +
                 ", assignedTopic=" + assignedTopic +
                 ", preferredTopics=" + preferredTopics +
-                ", FirstChoice=" + FirstChoice +
-                ", SecondChoice=" + SecondChoice +
-                ", ThirdChoice=" + ThirdChoice +
+                ", choices=" + choices +
                 '}';
     }
 }

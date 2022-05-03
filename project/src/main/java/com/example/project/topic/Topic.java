@@ -3,6 +3,7 @@ package com.example.project.topic;
 import com.example.project.keyword.Keyword;
 import com.example.project.promotor.Promotor;
 import com.example.project.student.Student;
+import com.example.project.student.Topic_choice;
 import com.example.project.targetAudience.TargetAudience;
 import com.fasterxml.jackson.annotation.*;
 import lombok.Getter;
@@ -11,6 +12,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -37,6 +39,15 @@ public class Topic implements Serializable {
     //@ManyToOne
     private Long provider_id;
 
+
+    @OneToMany(
+            mappedBy = "topic",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private List<Topic_choice> tags = new ArrayList<>();
+
+
     @OneToOne
     @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
     @JsonIdentityReference(alwaysAsId = true)
@@ -56,20 +67,20 @@ public class Topic implements Serializable {
     @ManyToMany
     private List<TargetAudience> targetAudience_list;
 
-    @OneToMany(mappedBy="FirstChoice",cascade = CascadeType.ALL)
-    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-    @JsonIdentityReference(alwaysAsId = true)
-    private List<Student> StudentsWithChoice1_list;
-
-    @OneToMany(mappedBy="SecondChoice",cascade = CascadeType.ALL)
-    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-    @JsonIdentityReference(alwaysAsId = true)
-    private List<Student> StudentsWithChoice2_list;
-
-    @OneToMany(mappedBy="ThirdChoice",cascade = CascadeType.ALL)
-    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-    @JsonIdentityReference(alwaysAsId = true)
-    private List<Student> StudentsWithChoice3_list;
+//    @OneToMany(mappedBy="FirstChoice",cascade = CascadeType.ALL)
+//    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+//    @JsonIdentityReference(alwaysAsId = true)
+//    private List<Student> StudentsWithChoice1_list;
+//
+//    @OneToMany(mappedBy="SecondChoice",cascade = CascadeType.ALL)
+//    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+//    @JsonIdentityReference(alwaysAsId = true)
+//    private List<Student> StudentsWithChoice2_list;
+//
+//    @OneToMany(mappedBy="ThirdChoice",cascade = CascadeType.ALL)
+//    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+//    @JsonIdentityReference(alwaysAsId = true)
+//    private List<Student> StudentsWithChoice3_list;
 
     private Boolean approved_topic;
     private Boolean hide_topic;
@@ -92,7 +103,6 @@ public class Topic implements Serializable {
         this.description_topic = description_topic;
         this.release_date = release_date;
         this.boostedStudent = null;
-        this.StudentsWithChoice1_list = null;
     }
 
     public Topic(String topicName, String description_topic, Long aantal_studenten, List<Keyword> keywords, List<TargetAudience> targetAudiences, Long provider_id) {
@@ -104,7 +114,6 @@ public class Topic implements Serializable {
         this.targetAudience_list = targetAudiences;
         this.approved_topic = false;
         this.boostedStudent = null;
-        this.StudentsWithChoice1_list = null;
     }
 
     public Long getAantal_studenten() {
@@ -207,13 +216,6 @@ public class Topic implements Serializable {
         this.promotor = promotor;
     }
 
-    public List<Student> getStudentsWithChoice1_list() {
-        return StudentsWithChoice1_list;
-    }
-
-    public void setStudentsWithChoice1_list(List<Student> studentsWithChoice1_list) {
-        StudentsWithChoice1_list = studentsWithChoice1_list;
-    }
 
     @Override
     public String toString() {

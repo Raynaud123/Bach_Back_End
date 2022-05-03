@@ -125,7 +125,6 @@ public class TopicService {
             else{
                 System.out.println("Studnet id fout");
                 return null;
-
             }
 
             return topic;
@@ -136,13 +135,13 @@ public class TopicService {
         }
     }
 
-    public void addStudentToChoice1List(Student student, Long topicId) {
-        if (topicRepository.findById(topicId).isPresent()) {
-            Topic topic = topicRepository.getById(topicId);
-            if (!topic.getStudentsWithChoice1_list().contains(student)) {
-                topic.getStudentsWithChoice1_list().add(student);
-                topicRepository.save(topic);
-            }
-        }
-    }
+//    public void addStudentToChoice1List(Student student, Long topicId) {
+//        if (topicRepository.findById(topicId).isPresent()) {
+//            Topic topic = topicRepository.getById(topicId);
+//            if (!topic.getStudentsWithChoice1_list().contains(student)) {
+//                topic.getStudentsWithChoice1_list().add(student);
+//                topicRepository.save(topic);
+//            }
+//        }
+//    }
 }
