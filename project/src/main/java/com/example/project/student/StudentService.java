@@ -110,13 +110,15 @@ public class StudentService {
         List<Topic> top3 = new ArrayList<>();
         for(Student s: studentRepository.findAll()){
             if(Objects.equals(s.getId(), id)){
-                top3.add(s.getFirstChoice());
-                top3.add(s.getSecondChoice());
-                top3.add(s.getThirdChoice());
+                if (s.getFirstChoice() != null)
+                    top3.add(s.getFirstChoice());
+                if (s.getSecondChoice() != null)
+                    top3.add(s.getSecondChoice());
+                if (s.getThirdChoice() != null)
+                    top3.add(s.getThirdChoice());
                 return top3;
             }
         }
         return null;
     }
-
 }

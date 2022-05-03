@@ -61,6 +61,16 @@ public class Topic implements Serializable {
     @JsonIdentityReference(alwaysAsId = true)
     private List<Student> StudentsWithChoice1_list;
 
+    @OneToMany(mappedBy="SecondChoice",cascade = CascadeType.ALL)
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+    @JsonIdentityReference(alwaysAsId = true)
+    private List<Student> StudentsWithChoice2_list;
+
+    @OneToMany(mappedBy="ThirdChoice",cascade = CascadeType.ALL)
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+    @JsonIdentityReference(alwaysAsId = true)
+    private List<Student> StudentsWithChoice3_list;
+
     private Boolean approved_topic;
     private Boolean hide_topic;
     private String description_topic;
