@@ -42,9 +42,6 @@ public class Topic implements Serializable {
     @JsonIdentityReference(alwaysAsId = true)
     Student boostedStudent;
 
-
-
-
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name="promotor_id")
     @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
@@ -59,8 +56,10 @@ public class Topic implements Serializable {
     @ManyToMany
     private List<TargetAudience> targetAudience_list;
 
-
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name="student_id")
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+    @JsonIdentityReference(alwaysAsId = true)
     private List<Student> StudentsWithChoice1_list;
 
     private Boolean approved_topic;

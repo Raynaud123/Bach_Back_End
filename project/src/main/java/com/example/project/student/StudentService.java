@@ -98,20 +98,22 @@ public class StudentService {
     public void setTop3(Long id, Topic topic1, Topic topic2, Topic topic3) {
         for(Student s: studentRepository.findAll()){
             if(Objects.equals(s.getId(), id)){
-                List<Topic> top3Nieuw = new ArrayList<>();
-                top3Nieuw.add(topic1);
-                top3Nieuw.add(topic2);
-                top3Nieuw.add(topic3);
-                s.setTop3Topic(top3Nieuw);
+                s.setFirstChoice(topic1);
+                s.setSecondChoice(topic2);
+                s.setThirdChoice(topic3);
                 studentRepository.save(s);
             }
         }
     }
 
     public List<Topic> getTop3(long id) {
+        List<Topic> top3 = new ArrayList<>();
         for(Student s: studentRepository.findAll()){
             if(Objects.equals(s.getId(), id)){
-                return s.getTop3Topic();
+                top3.add(s.getFirstChoice());
+                top3.add(s.getSecondChoice());
+                top3.add(s.getThirdChoice());
+                return top3;
             }
         }
         return null;

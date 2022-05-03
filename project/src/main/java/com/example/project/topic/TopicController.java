@@ -61,7 +61,7 @@ public class TopicController {
 
 
     @GetMapping(path = "/approved")
-    public List<Topic> getAllApprovedTopics() { System.out.println(topicService.findAllApprovedTopics());
+    public List<Topic> getAllApprovedTopics() { //System.out.println(topicService.findAllApprovedTopics());
         return topicService.findAllApprovedTopics();  }
 
 

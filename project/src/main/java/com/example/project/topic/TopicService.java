@@ -45,11 +45,8 @@ public class TopicService {
     }
 
     public List<Topic> findAllApprovedTopics() {
-
         List<Topic> all = topicRepository.findAll();
-
         ArrayList<Topic> app = new ArrayList<>();
-
         for(Topic top: all){
             if(top.getApproved_topic() != null && top.getApproved_topic()){
                 app.add(top);
