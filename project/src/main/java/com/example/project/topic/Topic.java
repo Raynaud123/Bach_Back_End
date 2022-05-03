@@ -61,11 +61,7 @@ public class Topic implements Serializable {
 
 
     @ManyToMany
-    @JoinTable(
-            name = "preferred_like",
-            joinColumns = @JoinColumn(name = "student_id"),
-            inverseJoinColumns = @JoinColumn(name = "topic_id"))
-    private List<Student> Top3_Students;
+    private List<Student> StudentsWithChoice1_list;
 
     private Boolean approved_topic;
     private Boolean hide_topic;
@@ -88,6 +84,7 @@ public class Topic implements Serializable {
         this.description_topic = description_topic;
         this.release_date = release_date;
         this.boostedStudent = null;
+        this.StudentsWithChoice1_list = null;
     }
 
     public Topic(String topicName, String description_topic, Long aantal_studenten, List<Keyword> keywords, List<TargetAudience> targetAudiences, Long provider_id) {
@@ -99,6 +96,7 @@ public class Topic implements Serializable {
         this.targetAudience_list = targetAudiences;
         this.approved_topic = false;
         this.boostedStudent = null;
+        this.StudentsWithChoice1_list = null;
     }
 
     public Long getAantal_studenten() {
@@ -201,6 +199,13 @@ public class Topic implements Serializable {
         this.promotor = promotor;
     }
 
+    public List<Student> getStudentsWithChoice1_list() {
+        return StudentsWithChoice1_list;
+    }
+
+    public void setStudentsWithChoice1_list(List<Student> studentsWithChoice1_list) {
+        StudentsWithChoice1_list = studentsWithChoice1_list;
+    }
 
     @Override
     public String toString() {

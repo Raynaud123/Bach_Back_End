@@ -39,7 +39,7 @@ public class Student extends Person implements Serializable {
     private Topic assignedTopic;
     @ManyToMany
     private List<Topic> preferredTopics;
-    @ManyToMany(mappedBy = "Top3_Students")
+    @ManyToMany
     @Column(length = 3)
     private List<Topic> top3Topic;
 

@@ -117,22 +117,4 @@ public class StudentService {
         return null;
     }
 
-//    public List<Student> getStudents(int topic_id) {
-//
-//        return studentRepository.getTop3_TopicsById(topic_id);
-//
-//    }
-
-
-//    public List<Topic> findPreferredTopics() {
-//        List<Topic> pref = new ArrayList<>();
-//        List<Topic> all = topicRepository.findAll();
-//
-//        for(Topic top: all){
-//            if(top.isPreferred()){
-//                pref.add(top);
-//            }
-//        }
-//        return pref;
-//    }
 }

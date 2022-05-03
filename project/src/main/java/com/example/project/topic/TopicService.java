@@ -2,7 +2,6 @@ package com.example.project.topic;
 
 import com.example.project.keyword.Keyword;
 import com.example.project.keyword.KeywordRepository;
-import com.example.project.promotor.Promotor;
 import com.example.project.promotor.PromotorRepository;
 import com.example.project.student.Student;
 import com.example.project.student.StudentRepository;
@@ -11,7 +10,6 @@ import com.example.project.targetAudience.TargetAudienceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.swing.text.html.Option;
 import java.util.*;
 
 @Service
@@ -141,4 +139,13 @@ public class TopicService {
         }
     }
 
+    public void addStudentToChoice1List(Student student, Long topicId) {
+        if (topicRepository.findById(topicId).isPresent()) {
+            Topic topic = topicRepository.getById(topicId);
+            if (!topic.getStudentsWithChoice1_list().contains(student)) {
+                topic.getStudentsWithChoice1_list().add(student);
+                topicRepository.save(topic);
+            }
+        }
+    }
 }
