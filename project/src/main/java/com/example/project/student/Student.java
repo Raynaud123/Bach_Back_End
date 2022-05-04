@@ -24,18 +24,6 @@ import java.util.List;
 @Entity
 @DiscriminatorValue("student")
 public class Student extends Person implements Serializable {
-/*
-    @SequenceGenerator(
-            name = "student_sequence",
-            sequenceName = "student_sequence",
-            allocationSize = 1
-    )
-    @Id
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "student_sequence"
-    )
-    private Long student_id;*/
 
     @ManyToOne
     @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")

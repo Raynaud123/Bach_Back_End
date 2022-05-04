@@ -130,4 +130,8 @@ public class StudentService {
         }
         return top3;
     }
+
+    public Student findStudent(long id) {
+        return studentRepository.getById(id);
+    }
 }
