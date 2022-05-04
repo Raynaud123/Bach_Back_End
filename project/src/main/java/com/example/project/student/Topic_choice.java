@@ -1,7 +1,5 @@
 package com.example.project.student;
 
-import com.example.project.student.Student;
-//import com.example.project.student.Topic_ChoiceID;
 import com.example.project.topic.Topic;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIdentityReference;
@@ -14,7 +12,6 @@ import java.util.Objects;
 @Entity(name = "Topic_choice")
 public class Topic_choice implements Serializable {
 
-
     @SequenceGenerator(
             name = "choice_sequence",
             sequenceName = "choice_sequence",
@@ -26,7 +23,6 @@ public class Topic_choice implements Serializable {
             generator = "choice_sequence"
     )
     private long choice_id;
-
 
     @ManyToOne
     @JoinColumn(name="topic_id")

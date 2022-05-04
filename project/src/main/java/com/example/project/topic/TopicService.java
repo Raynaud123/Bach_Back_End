@@ -7,6 +7,8 @@ import com.example.project.student.Student;
 import com.example.project.student.StudentRepository;
 import com.example.project.targetAudience.TargetAudience;
 import com.example.project.targetAudience.TargetAudienceRepository;
+import com.example.project.topicprovider.TopicProvider;
+import com.example.project.topicprovider.TopicProviderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +23,8 @@ public class TopicService {
     private StudentRepository studentRepository;
     @Autowired
     private PromotorRepository promotorRepository;
+    @Autowired
+    private TopicProviderRepository providerRepository;
     @Autowired
     private KeywordRepository keywordRepository;
     @Autowired
@@ -38,8 +42,8 @@ public class TopicService {
         for(int i = 0; i < request.targetAudience.length; i++){
             targetAudiences.add(targetAudienceRepository.getById(request.targetAudience[i]));
         }
-
-        Topic topic = new Topic(request.topicName,request.description_topic,request.aantal_studenten, keywords, targetAudiences,request.provider_id);
+        TopicProvider tp = providerRepository.getById(request.provider_id);
+        Topic topic = new Topic(request.topicName,request.description_topic,request.aantal_studenten, keywords, targetAudiences,tp);
 
         topicRepository.save(topic);
     }

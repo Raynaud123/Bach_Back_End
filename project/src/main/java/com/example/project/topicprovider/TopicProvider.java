@@ -5,14 +5,14 @@ import com.example.project.appuser.AppUser;
 import com.example.project.appuser.AppUserRole;
 import com.example.project.targetAudience.Campus;
 import com.example.project.topic.Topic;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 
@@ -28,7 +28,9 @@ public class TopicProvider extends AppUser implements Serializable{
     private String Name;
     @ManyToOne
     private Campus campus;          //Enkel nodig als het een onderzoeksgroep is
-    @ManyToMany
+    @OneToMany(mappedBy="provider",cascade = CascadeType.ALL)
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "topic_id")
+    @JsonIdentityReference(alwaysAsId = true)
     private List<Topic> topic_list;
 
 

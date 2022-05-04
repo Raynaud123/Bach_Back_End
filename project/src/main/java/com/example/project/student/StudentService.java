@@ -98,9 +98,8 @@ public class StudentService {
 
     public Student setTop3(Long id, Topic topic1, Topic topic2, Topic topic3) {
         Optional<Student> s = studentRepository.findById(id);
-        List<Topic_choice> opTeSlaan = new ArrayList<Topic_choice>();
+        List<Topic_choice> opTeSlaan = new ArrayList<>();
         if(s.isPresent()){
-
             Topic_choice t1  = new Topic_choice(s.get(), topic1, 1);
             Topic_choice t2 = new Topic_choice(s.get(), topic2, 2);
             Topic_choice t3 = new Topic_choice(s.get(), topic3, 3);
@@ -108,7 +107,6 @@ public class StudentService {
             opTeSlaan.add(t1);
             opTeSlaan.add(t3);
         }
-
         topic_choiceRepository.saveAll(opTeSlaan);
         return s.get();
     }
@@ -118,7 +116,6 @@ public class StudentService {
         Optional<Student> s = studentRepository.findById(id);
         if(s.isPresent()) {
             List<Topic_choice> jeWeetZelf = topic_choiceRepository.findAllByStudent(s.get());
-
             do{
                 for (int i = 0; i < jeWeetZelf.size(); i++){
                    if(jeWeetZelf.get(i).getChoice() == 1 && top3.size() == 0){
@@ -130,7 +127,6 @@ public class StudentService {
                    }
                }
             }while (top3.size() != 3);
-
         }
         return top3;
     }
