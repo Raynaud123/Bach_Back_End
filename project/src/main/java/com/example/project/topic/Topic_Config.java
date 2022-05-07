@@ -1,8 +1,8 @@
 //package com.example.project.topic;
 //
-//import com.example.project.Master.MasterRepository;
 //import com.example.project.keyword.Keyword;
 //import com.example.project.keyword.KeywordController;
+//import com.example.project.master.MasterController;
 //import com.example.project.promotor.Promotor;
 //import com.example.project.promotor.PromotorController;
 //import com.example.project.targetAudience.TargetAudience;
@@ -29,6 +29,8 @@
 //    private KeywordController keywordController;
 //    @Autowired
 //    private TopicProviderController topicProviderController;
+//    @Autowired
+//    private MasterController masterController;
 //
 //    String dateString1 = "10/03/2022";
 //    SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
@@ -46,10 +48,10 @@
 //        List<TargetAudience> lijstTA4 = new ArrayList<>();    lijstTA4.add(t1);       lijstTA4.add(t3);
 //        List<TargetAudience> lijstTA5 = new ArrayList<>();    lijstTA5.add(t2);
 //
-//        Promotor p1 = promotorController.getPromotorById(12);
-//        Promotor p2 = promotorController.getPromotorById(13);
-//        Promotor p3 = promotorController.getPromotorById(14);
-//        Promotor p4 = promotorController.getPromotorById(15);
+//        Promotor p1 = promotorController.getPromotorById(4L);
+//        Promotor p2 = promotorController.getPromotorById(5L);
+//        Promotor p3 = promotorController.getPromotorById(6L);
+//        Promotor p4 = promotorController.getPromotorById(7L);
 //
 //        Keyword k1 = keywordController.getKeyword(1L);
 //        Keyword k2 = keywordController.getKeyword(2L);
@@ -58,7 +60,7 @@
 //        Keyword k5 = keywordController.getKeyword(5L);
 //
 //
-//        TopicProvider ai = topicProviderController.getById(9);
+//        TopicProvider ai = topicProviderController.getById(11);
 //
 //        List<Keyword> lijstK1 = new ArrayList<>();    lijstK1.add(k1);
 //        List<Keyword> lijstK2 = new ArrayList<>();    lijstK2.add(k1);    lijstK2.add(k2);
@@ -142,8 +144,84 @@
 ////                            "We want to base this algorithm on the analysis of actual and historical network traffic in the house. As an example, historical data can reveal when people use their network for video streaming or for less demanding applications. Actual network data can identify which devices are present on the network.",
 //                    "Description5",format.parse(dateString1)
 //            );
+//            Topic t6 = new Topic(
+//                    6L, "TopicName6",
+//                    ai, p1,
+//                    2L, lijstK1, null, lijstTA1, false, false,
+//                    "Description",format.parse(dateString1)
+//            );
+//            Topic t7 = new Topic(
+//                    7L, "TopicName7",
+//                    ai, p2,
+//                    1L, lijstK1, null, lijstTA1, false, false,
+//                    "Description",format.parse(dateString1)
+//            );
+//            Topic t8 = new Topic(
+//                    8L, "TopicName8",
+//                    ai, p3,
+//                    1L, lijstK1, null, lijstTA1, false, false,
+//                    "Description",format.parse(dateString1)
+//            );
+//            Topic t9 = new Topic(
+//                    9L, "TopicName9",
+//                    ai, p4,
+//                    1L, lijstK1, null, lijstTA1, false, false,
+//                    "Description",format.parse(dateString1)
+//            );
+//            Topic t10 = new Topic(
+//                    10L, "TopicName10",
+//                    ai, p1,
+//                    2L, lijstK1, null, lijstTA1, false, false,
+//                    "Description",format.parse(dateString1)
+//            );
+//            Topic t11 = new Topic(
+//                    11L, "TopicName11",
+//                    ai, p2,
+//                    2L, lijstK1, null, lijstTA1, false, false,
+//                    "Description",format.parse(dateString1)
+//            );
+//            Topic t12 = new Topic(
+//                    12L, "TopicName12",
+//                    ai, p3,
+//                    1L, lijstK1, null, lijstTA1, false, false,
+//                    "Description",format.parse(dateString1)
+//            );
+//            Topic t13 = new Topic(
+//                    13L, "TopicName13",
+//                    ai, p4,
+//                    1L, lijstK1, null, lijstTA1, false, false,
+//                    "Description",format.parse(dateString1)
+//            );
+//            Topic t14 = new Topic(
+//                    14L, "TopicName14",
+//                    ai, p1,
+//                    2L, lijstK1, null, lijstTA1, false, false,
+//                    "Description",format.parse(dateString1)
+//            );
+//            Topic t15 = new Topic(
+//                    15L, "TopicName15",
+//                    ai, p2,
+//                    1L, lijstK1, null, lijstTA1, false, false,
+//                    "Description",format.parse(dateString1)
+//            );
+////            masterController.addAwaitApprovedTopic(1L, t6);
+////            masterController.addAwaitApprovedTopic(1L, t7);
+////            masterController.addAwaitApprovedTopic(1L, t8);
+////            masterController.addAwaitApprovedTopic(1L, t9);
+////            masterController.addAwaitApprovedTopic(1L, t10);
+////            masterController.addAwaitApprovedTopic(1L, t11);
+////            masterController.addAwaitApprovedTopic(1L, t12);
+////            masterController.addAwaitApprovedTopic(1L, t13);
+////            masterController.addAwaitApprovedTopic(1L, t14);
+////            masterController.addAwaitApprovedTopic(1L, t15);
+////            masterController.addAwaitApprovedTopic(2L, t10);
+////            masterController.addAwaitApprovedTopic(2L, t11);
+////            masterController.addAwaitApprovedTopic(2L, t12);
+////            masterController.addAwaitApprovedTopic(2L, t13);
+////            masterController.addAwaitApprovedTopic(2L, t14);
+////            masterController.addAwaitApprovedTopic(2L, t15);
 //            repository.saveAll(
-//                    List.of(topic1,topic2,topic3,topic4,topic5)
+//                    List.of(topic1,topic2,topic3,topic4,topic5,t6,t7,t8,t9,t10,t11,t12,t13,t14,t15)
 //            );
 //        };
 //    }
