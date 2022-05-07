@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class NotificationService {
@@ -12,8 +11,14 @@ public class NotificationService {
     private NotificationRepository notificationRepository;
 
 
-    public Optional<Notification> findById(long id) {
-        return notificationRepository.findById(id);
+    public Notification findById(long id) {
+        List<Notification> alln = notificationRepository.findAll();
+        for (Notification n : alln){
+            if (n.getNotification_id() == id) {
+                return n;
+            }
+        }
+        return null;
     }
 
     public List<Notification> getAll() {

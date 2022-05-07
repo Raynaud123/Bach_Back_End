@@ -9,5 +9,6 @@ public enum NotificationObjectSort {
     NOTAPPROVED,
     KEYWORD,
     PHASE,
-    TARGETAUDIENCE
+    TARGETAUDIENCE,
+    TOPIC
 }

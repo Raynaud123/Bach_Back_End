@@ -4,11 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @ResponseBody
-@RequestMapping(path = "keyword")
+@RequestMapping(path = "notification")
 public class NotificationController {
 
     @Autowired
@@ -16,10 +15,10 @@ public class NotificationController {
 
 
     @GetMapping("/all")
-    public List<Notification> getKeywords() {
+    public List<Notification> getNotifications() {
         return notificationService.getAll();
     }
 
     @GetMapping("/{id}")
-    public Optional<Notification> getKeyword(@PathVariable long id) { return notificationService.findById(id); }
+    public Notification getNotification(@PathVariable long id) { return notificationService.findById(id); }
 }
