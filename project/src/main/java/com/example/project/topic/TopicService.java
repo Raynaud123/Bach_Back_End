@@ -123,6 +123,9 @@ public class TopicService {
     }
 
     public List<Topic> getTopicPromotorId(long promotor_id) {
+//        if (!promotorRepository.existsById(promotor_id)) {
+//            return null;
+//        }
 
          return topicRepository.findByPromotor(promotorRepository.findById(promotor_id));
     }

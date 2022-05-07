@@ -32,18 +32,11 @@ public class TopicProvider extends AppUser implements Serializable{
 
 
 
-//    @OneToMany(mappedBy="provider",cascade = CascadeType.ALL)
-//    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "topic_id")
-//    @JsonIdentityReference(alwaysAsId = true)
-//    private List<Topic> topic_list;
-
-
-    public TopicProvider(boolean approved, Boolean isCompany, String name, Campus campus) {
+    public TopicProvider(boolean approved, Boolean isCompany, String name, Campus campus, List<Topic> topic_list) {
         Approved = approved;
         this.isCompany = isCompany;
         Name = name;
         this.campus = campus;
- //       this.topic_list = new ArrayList<>();
     }
 
     public TopicProvider(String username, String password, String email, String phoneNumber, AppUserRole appUserRole, Boolean locked, Boolean enabled, String country, String city, String streetName, Integer postNumber, Integer streetNumber, boolean approved, Boolean isCompany, String name, Campus campus, List<Topic> topic_list) {

@@ -1,8 +1,6 @@
 package com.example.project.student;
 
-import com.example.project.appuser.AppUser;
 import com.example.project.appuser.AppUserRepository;
-import com.example.project.keyword.Keyword;
 import com.example.project.topic.Topic;
 import com.example.project.topic.TopicRepository;
 import com.example.project.topic.TopicService;
@@ -131,7 +129,9 @@ public class StudentService {
         return top3;
     }
 
-    public Student findStudent(long id) {
-        return studentRepository.getById(id);
+    public List<Optional<Student>> findStudent(long id) {
+        List<Optional<Student>> st = new ArrayList<>(1);
+        st.add(studentRepository.findById(id));
+        return st;
     }
 }

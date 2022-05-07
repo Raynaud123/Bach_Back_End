@@ -2,13 +2,11 @@ package com.example.project.student;
 
 import com.example.project.topic.Topic;
 import com.example.project.topic.TopicService;
-import com.example.project.topic.UpdateTopicStudentsRequest;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @ResponseBody
@@ -34,7 +32,7 @@ public class StudentController {
     }
 
     @GetMapping(path = "/{id}")
-    public Student getStudentById(@PathVariable long id) {
+    public List<Optional<Student>> getStudentById(@PathVariable long id) {
 //        System.out.println(studentRepository.findById(id));
         return studentService.findStudent(id);
     }

@@ -162,7 +162,21 @@ public class Topic implements Serializable {
         this.tags = tags;
     }
 
+    public Student getBoostedStudent() {
+        return boostedStudent;
+    }
 
+    public void setBoostedStudent(Student boostedStudent) {
+        this.boostedStudent = boostedStudent;
+    }
+
+    public Promotor getPromotor() {
+        return promotor;
+    }
+
+    public void setPromotor(Promotor promotor) {
+        this.promotor = promotor;
+    }
 
     public Long getAantal_studenten() {
         return aantal_studenten;
@@ -228,13 +242,7 @@ public class Topic implements Serializable {
         this.release_date = release_date;
     }
 
-    public Promotor getPromotor() {
-        return promotor;
-    }
 
-    public void setPromotor(Promotor promotor) {
-        this.promotor = promotor;
-    }
 
 
     @Override
@@ -254,13 +262,6 @@ public class Topic implements Serializable {
                 '}';
     }
 
-    public Student getBoostedStudent() {
-        return boostedStudent;
-    }
-
-    public void setBoostedStudent(Student boostedStudent) {
-        this.boostedStudent = boostedStudent;
-    }
 
     public void addStudent(Student student) {
         this.student_list.add(student);
