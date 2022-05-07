@@ -1,6 +1,7 @@
 package com.example.project.topic;
 
 import java.io.Serializable;
+import java.util.Arrays;
 
 public class TopicPostRequest implements Serializable {
 
@@ -19,5 +20,17 @@ public class TopicPostRequest implements Serializable {
         this.targetAudience = targetAudience;
         this.keywords = keywords;
         this.provider_id = provider_id;
+    }
+
+    @Override
+    public String toString() {
+        return "TopicPostRequest{" +
+                "topicName='" + topicName + '\'' +
+                ", description_topic='" + description_topic + '\'' +
+                ", aantal_studenten=" + aantal_studenten +
+                ", targetAudience=" + Arrays.toString(targetAudience) +
+                ", keywords=" + Arrays.toString(keywords) +
+                ", provider_id=" + provider_id +
+                '}';
     }
 }

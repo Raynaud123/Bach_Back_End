@@ -52,22 +52,15 @@ public class TopicController {
         return topicService.boostStudent(id, request);
     }
 
-
-/*
-    @PutMapping
-    public String updatePromotor(@RequestBody UpdateTopicPromotorRequest request) {
-        return topicService.updatePromotor(request);
-    }*/
-
-
     @GetMapping(path = "/approved")
     public List<Topic> getAllApprovedTopics() { //System.out.println(topicService.findAllApprovedTopics());
         return topicService.findAllApprovedTopics();  }
 
 
     @PostMapping
-    public void registerNewTopic( @RequestBody TopicPostRequest topic) { topicService.addNewTopic(topic); }
-
+    public void registerNewTopic( @RequestBody TopicPostRequest topic) {
+        System.out.println(topic);
+        topicService.addNewTopic(topic); }
 
 
 }

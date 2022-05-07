@@ -20,14 +20,16 @@ public class TopicProviderController {
         this.topicProviderService = service;
     }
 
+
+
     @GetMapping(path = "/all")
     public List<TopicProvider> getAllTopicProviders(){
         return topicProviderService.findAll();
     }
 
     @GetMapping(path = "/{id}")
-    public List<TopicProvider> getById(@PathVariable long id) {
-        return topicProviderService.findById(id);
+    public TopicProvider getById(@PathVariable long id) {
+        return topicProviderService.findById(id).get();
     }
 
     @PostMapping

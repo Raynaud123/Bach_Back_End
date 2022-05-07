@@ -109,13 +109,8 @@ public class TopicService {
     }
 
     public List<Topic> getTopicPromotorId(long promotor_id) {
-//        if (!promotorRepository.existsById(promotor_id)) {
-//            return null;
-//        }
 
- //       promotorRepository.getById(promotor_id);
-
-         return topicRepository.findByPromotor(promotorRepository.getById(promotor_id));
+         return topicRepository.findByPromotor(promotorRepository.findById(promotor_id));
     }
 
     public Topic boostStudent(int id, BoostStudentRequest request) {
@@ -139,13 +134,5 @@ public class TopicService {
         }
     }
 
-//    public void addStudentToChoice1List(Student student, Long topicId) {
-//        if (topicRepository.findById(topicId).isPresent()) {
-//            Topic topic = topicRepository.getById(topicId);
-//            if (!topic.getStudentsWithChoice1_list().contains(student)) {
-//                topic.getStudentsWithChoice1_list().add(student);
-//                topicRepository.save(topic);
-//            }
-//        }
-//    }
+
 }

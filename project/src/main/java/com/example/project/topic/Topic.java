@@ -13,6 +13,9 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -57,10 +60,8 @@ public class Topic implements Serializable {
     @JsonIdentityReference(alwaysAsId = true)
     Student boostedStudent;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name="promotor_id")
-    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-    @JsonIdentityReference(alwaysAsId = true)
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "promotor_id")
     private Promotor promotor;
 
     private Long aantal_studenten;
@@ -71,20 +72,6 @@ public class Topic implements Serializable {
     @ManyToMany
     private List<TargetAudience> targetAudience_list;
 
-//    @OneToMany(mappedBy="FirstChoice",cascade = CascadeType.ALL)
-//    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-//    @JsonIdentityReference(alwaysAsId = true)
-//    private List<Student> StudentsWithChoice1_list;
-//
-//    @OneToMany(mappedBy="SecondChoice",cascade = CascadeType.ALL)
-//    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-//    @JsonIdentityReference(alwaysAsId = true)
-//    private List<Student> StudentsWithChoice2_list;
-//
-//    @OneToMany(mappedBy="ThirdChoice",cascade = CascadeType.ALL)
-//    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-//    @JsonIdentityReference(alwaysAsId = true)
-//    private List<Student> StudentsWithChoice3_list;
 
     private Boolean approved_topic;
     private Boolean hide_topic;
@@ -92,7 +79,7 @@ public class Topic implements Serializable {
 
     private Date release_date; // en enkel jaar weergeven
 
-    public Topic(Long topic_id, String topicName, TopicProvider provider, List<Topic_choice> tags, Student boostedStudent, Promotor promotor, Long aantal_studenten, List<Keyword> keyword_list, List<Student> student_list, List<TargetAudience> targetAudience_list, Boolean approved_topic, Boolean hide_topic, String description_topic, Date release_date) {
+    public Topic(Long topic_id, String topicName, TopicProvider provider, Promotor promotor, Long aantal_studenten, List<Keyword> keyword_list, List<Student> student_list, List<TargetAudience> targetAudience_list, Boolean approved_topic, Boolean hide_topic, String description_topic, Date release_date) {
         this.topic_id = topic_id;
         this.topicName = topicName;
         this.provider = provider;
@@ -104,7 +91,8 @@ public class Topic implements Serializable {
         this.student_list = student_list;
         this.targetAudience_list = targetAudience_list;
         this.approved_topic = approved_topic;
-        this.hide_topic = hide_topic;
+        this.hide_topic = false;
+        this.boostedStudent = null;
         this.description_topic = description_topic;
         this.release_date = release_date;
     }
@@ -113,8 +101,15 @@ public class Topic implements Serializable {
         this.topicName = topicName;
         this.provider = provider;
         this.aantal_studenten = aantal_studenten;
+        this.keyword_list = keywords;
+        this.targetAudience_list = targetAudiences;
+        this.approved_topic = false;
+        this.hide_topic = false;
+        this.release_date = new Date();
+        this.boostedStudent = null;
         this.description_topic = description_topic;
     }
+
 
     public Long getTopic_id() {
         return topic_id;
@@ -148,21 +143,7 @@ public class Topic implements Serializable {
         this.tags = tags;
     }
 
-    public Student getBoostedStudent() {
-        return boostedStudent;
-    }
 
-    public void setBoostedStudent(Student boostedStudent) {
-        this.boostedStudent = boostedStudent;
-    }
-
-    public Promotor getPromotor() {
-        return promotor;
-    }
-
-    public void setPromotor(Promotor promotor) {
-        this.promotor = promotor;
-    }
 
     public Long getAantal_studenten() {
         return aantal_studenten;
@@ -226,6 +207,40 @@ public class Topic implements Serializable {
 
     public void setRelease_date(Date release_date) {
         this.release_date = release_date;
+    }
+
+    public Promotor getPromotor() {
+        return promotor;
+    }
+
+    public void setPromotor(Promotor promotor) {
+        this.promotor = promotor;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Topic{" +
+                "topic_id=" + topic_id +
+                ", topicName='" + topicName + '\'' +
+                ", provider_id=" + provider +
+                ", aantal_studenten=" + aantal_studenten +
+                ", keyword_list=" + keyword_list +
+                ", student_list=" + student_list +
+                ", targetAudience_list=" + targetAudience_list +
+                ", approved_topic=" + approved_topic +
+                ", hide_topic=" + hide_topic +
+                ", description_topic='" + description_topic + '\'' +
+                ", release_date=" + release_date +
+                '}';
+    }
+
+    public Student getBoostedStudent() {
+        return boostedStudent;
+    }
+
+    public void setBoostedStudent(Student boostedStudent) {
+        this.boostedStudent = boostedStudent;
     }
 
     public void addStudent(Student student) {

@@ -33,8 +33,8 @@ public class Company extends TopicProvider implements Serializable {
         this.emailMentor = emailMentor;
     }
 
-    public Company(boolean approved, Boolean isCompany, String name, Campus campus, List<Topic> topic_list, int phoneContact, String firstNameMentor, String lastNameMentor, String emailMentor) {
-        super(approved, isCompany, name, campus, topic_list);
+    public Company(boolean approved, Boolean isCompany, String name, Campus campus, int phoneContact, String firstNameMentor, String lastNameMentor, String emailMentor) {
+        super(approved, isCompany, name, campus);
         this.phoneContact = phoneContact;
         this.firstNameMentor = firstNameMentor;
         this.lastNameMentor = lastNameMentor;

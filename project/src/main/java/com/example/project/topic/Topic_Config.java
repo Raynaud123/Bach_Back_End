@@ -7,6 +7,7 @@
 //import com.example.project.promotor.PromotorController;
 //import com.example.project.targetAudience.TargetAudience;
 //import com.example.project.targetAudience.TargetAudienceController;
+//import com.example.project.topicprovider.TopicProvider;
 //import com.example.project.topicprovider.TopicProviderController;
 //import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.boot.CommandLineRunner;
@@ -26,6 +27,8 @@
 //    private TargetAudienceController targetAudienceController;
 //    @Autowired
 //    private KeywordController keywordController;
+//    @Autowired
+//    private TopicProviderController topicProviderController;
 //
 //    String dateString1 = "10/03/2022";
 //    SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
@@ -43,16 +46,20 @@
 //        List<TargetAudience> lijstTA4 = new ArrayList<>();    lijstTA4.add(t1);       lijstTA4.add(t3);
 //        List<TargetAudience> lijstTA5 = new ArrayList<>();    lijstTA5.add(t2);
 //
-//        Promotor p1 = promotorController.getPromotorById(4);
-//        Promotor p2 = promotorController.getPromotorById(5);
-//        Promotor p3 = promotorController.getPromotorById(6);
-//        Promotor p4 = promotorController.getPromotorById(7);
+//        Promotor p1 = promotorController.getPromotorById(12);
+//        Promotor p2 = promotorController.getPromotorById(13);
+//        Promotor p3 = promotorController.getPromotorById(14);
+//        Promotor p4 = promotorController.getPromotorById(15);
 //
 //        Keyword k1 = keywordController.getKeyword(1L);
 //        Keyword k2 = keywordController.getKeyword(2L);
 //        Keyword k3 = keywordController.getKeyword(3L);
 //        Keyword k4 = keywordController.getKeyword(4L);
 //        Keyword k5 = keywordController.getKeyword(5L);
+//
+//
+//        TopicProvider ai = topicProviderController.getById(11L);
+//
 //        List<Keyword> lijstK1 = new ArrayList<>();    lijstK1.add(k1);
 //        List<Keyword> lijstK2 = new ArrayList<>();    lijstK2.add(k1);    lijstK2.add(k2);
 //        List<Keyword> lijstK3 = new ArrayList<>();    lijstK3.add(k1);    lijstK3.add(k2);    lijstK3.add(k3);
@@ -63,7 +70,7 @@
 //        return args -> {
 //            Topic topic1 = new Topic(
 //                    1L, "Device Security Management",
-//                    17L, p1,
+//                    ai, p1,
 //                    2L, lijstK1, null, lijstTA1, true, false,
 //
 ////                    "Steeds meer systemen zijn verbonden met het internet, gaande van een slimme weegschaal of vaatwasmachine tot slimme auto’s.\n" +
@@ -77,7 +84,7 @@
 //
 //            Topic topic2 = new Topic(
 //                    2L,"ONTWIKKELING VAN DE AANSTURING VAN EEN MAGNETISCH LAGER IN EEN SMALLSAT REACTIEWIEL/DEVELOPMENT OF A CONTROL SYSTEM FOR MAGNETIC REACTION WHEEL BEARINGS",
-//                    18L, p2,
+//                    ai, p2,
 //                    1L, lijstK2, null, lijstTA2, true, false,
 //
 ////                    "Arcsec ontwikkelt standbepaling- en controlesystemen (Attitude Determination and Control System, ADCS) voor satellieten. Het ADCS is het systeem aan boord van de satelliet dat de oriëntatie van de satelliet kan controleren. Hiermee kunnen payloads gericht worden, of kunnen\n" +
@@ -96,7 +103,7 @@
 //
 //            Topic topic3 = new Topic(
 //                    3L,"Development of an Efficient Wirelessly Rechargeable Utility Robot",
-//                    19L, p3,
+//                    ai, p3,
 //                    2L, lijstK3, null, lijstTA3, true, false,
 //
 ////                    "Ontwikkeling van een draadloos oplaadbare autonome huishoudrobot. Zie bijlage voor meer details.",
@@ -106,7 +113,7 @@
 //
 //            Topic topic4 = new Topic(
 //                    4L,"Security analysis of a digital exam SAAS-platform",
-//                    19L, p4,
+//                    ai, p4,
 //                    1L, lijstK4, null, lijstTA4, true, false,
 //
 ////                    "AssessmentQ is a digital exam platform developed and maintained by Televic Education. 250+ customers are using assessmentQ for organizing online and digital (practice) exams.\n" +
@@ -120,7 +127,7 @@
 //
 //            Topic topic5 = new Topic(
 //                    5L,"POWER SAVINGS VIA SMART POWER SETTINGS BASED ON THE ANALYSIS OF NETWORK USAGE",
-//                    18L, p1,
+//                    ai, p1,
 //                    1L, lijstK5, null, lijstTA5, true, false,
 //
 ////                    "Networking components, such as modems, routers, access points, are typically permanently active at maximal performance. Energy savings can be achieved by tuning the energy consumption of these devices to the actual needs of the users. Users do not need connectivity 24x7 at every single location in the home. Today's approaches to reduce energy are very coarse grained and include rime-based power reduction options such as disabling a device between midnight and 5AM. Other options require manual interventions such as disabling network components in a study after working hours. The disadvantage of these brute force approaches is that he user QoE can be negatively impacted in case someone wants to use the network outside of the foreseen schedule.\n" +

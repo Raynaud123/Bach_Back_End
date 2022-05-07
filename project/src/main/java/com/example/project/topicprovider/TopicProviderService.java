@@ -1,11 +1,9 @@
 package com.example.project.topicprovider;
 
 
-import com.example.project.topic.Topic;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -21,8 +19,8 @@ public class TopicProviderService {
     }
 
 
-    public List<TopicProvider> findById(long id) {
-        return topicProviderRepository.findAllById(Collections.singleton(id));
+    public Optional<TopicProvider> findById(long id) {
+        return topicProviderRepository.findById(id);
     }
 
     public List<TopicProvider> findAll() {
