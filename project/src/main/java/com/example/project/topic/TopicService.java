@@ -1,5 +1,7 @@
 package com.example.project.topic;
 
+import com.example.project.appuser.AppUser;
+import com.example.project.appuser.AppUserRepository;
 import com.example.project.keyword.Keyword;
 import com.example.project.keyword.KeywordRepository;
 import com.example.project.promotor.PromotorRepository;
@@ -29,11 +31,15 @@ public class TopicService {
     private KeywordRepository keywordRepository;
     @Autowired
     private TargetAudienceRepository targetAudienceRepository;
+    @Autowired
+    private AppUserRepository appUserRepository;
 
     public void addNewTopic(TopicPostRequest request) {
 
         List<Keyword> keywords = new ArrayList<>();
         List<TargetAudience> targetAudiences = new ArrayList<>();
+
+        Topic topic;
 
         for(int i = 0; i < request.keywords.length; i++){
             keywords.add(keywordRepository.getById(request.keywords[i]));
@@ -42,9 +48,17 @@ public class TopicService {
         for(int i = 0; i < request.targetAudience.length; i++){
             targetAudiences.add(targetAudienceRepository.getById(request.targetAudience[i]));
         }
-        TopicProvider tp = providerRepository.getById(request.provider_id);
-        Topic topic = new Topic(request.topicName,request.description_topic,request.aantal_studenten, keywords, targetAudiences,tp);
-
+        Optional<AppUser> tp = appUserRepository.findById(request.provider_id);
+        if(keywords.isEmpty() && targetAudiences.isEmpty()){
+            topic = new Topic(request.topicName, request.description_topic, request.aantal_studenten,tp.get());
+        }
+        else if(keywords.isEmpty()){
+            topic = new Topic(request.topicName, request.description_topic, request.aantal_studenten,null,targetAudiences,tp.get());
+        }else if(targetAudiences.isEmpty()){
+            topic = new Topic(request.topicName, request.description_topic, request.aantal_studenten,keywords,null,tp.get());
+        }else{
+            topic = new Topic(request.topicName,request.description_topic,request.aantal_studenten, keywords, targetAudiences,tp.get());
+        }
         topicRepository.save(topic);
     }
 

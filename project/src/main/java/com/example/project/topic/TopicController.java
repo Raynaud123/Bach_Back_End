@@ -59,7 +59,6 @@ public class TopicController {
 
     @PostMapping
     public void registerNewTopic( @RequestBody TopicPostRequest topic) {
-        System.out.println(topic);
         topicService.addNewTopic(topic); }
 
 
