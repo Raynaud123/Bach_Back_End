@@ -35,8 +35,8 @@ public class StudentController {
 
     @GetMapping(path = "/{id}")
     public Student getStudentById(@PathVariable long id) {
-        System.out.println(studentRepository.findById(id));
-        return studentRepository.getById(id);
+//        System.out.println(studentRepository.findById(id));
+        return studentService.findStudent(id);
     }
 
     @GetMapping(path = "/all")

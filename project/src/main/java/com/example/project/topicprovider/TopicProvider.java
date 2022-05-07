@@ -28,7 +28,7 @@ public class TopicProvider extends AppUser implements Serializable{
     private String Name;
     @ManyToOne
     private Campus campus;          //Enkel nodig als het een onderzoeksgroep is
-    @OneToMany(mappedBy="provider",cascade = CascadeType.ALL)
+    @OneToMany
     @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "topic_id")
     @JsonIdentityReference(alwaysAsId = true)
     private List<Topic> topic_list;

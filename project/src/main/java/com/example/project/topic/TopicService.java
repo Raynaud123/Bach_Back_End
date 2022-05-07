@@ -42,8 +42,7 @@ public class TopicService {
         for(int i = 0; i < request.targetAudience.length; i++){
             targetAudiences.add(targetAudienceRepository.getById(request.targetAudience[i]));
         }
-        TopicProvider tp = providerRepository.getById(request.provider_id);
-        Topic topic = new Topic(request.topicName,request.description_topic,request.aantal_studenten, keywords, targetAudiences,tp);
+        Topic topic = new Topic(request.topicName,request.description_topic,request.aantal_studenten, keywords, targetAudiences,request.provider_id);
 
         topicRepository.save(topic);
     }

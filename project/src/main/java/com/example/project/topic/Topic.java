@@ -37,11 +37,11 @@ public class Topic implements Serializable {
     private Long topic_id;
 
     private String topicName;
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name="provider_id")
-    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-    @JsonIdentityReference(alwaysAsId = true)
-    private TopicProvider provider;
+//    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+//    @JoinColumn(name="provider_id")
+//    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+//    @JsonIdentityReference(alwaysAsId = true)
+    private Long provider_id;
 
 
     @OneToMany(
@@ -92,10 +92,10 @@ public class Topic implements Serializable {
 
     private Date release_date; // en enkel jaar weergeven
 
-    public Topic(Long topic_id, String topicName, TopicProvider provider, List<Topic_choice> tags, Student boostedStudent, Promotor promotor, Long aantal_studenten, List<Keyword> keyword_list, List<Student> student_list, List<TargetAudience> targetAudience_list, Boolean approved_topic, Boolean hide_topic, String description_topic, Date release_date) {
+    public Topic(Long topic_id, String topicName, Long provider_id, List<Topic_choice> tags, Student boostedStudent, Promotor promotor, Long aantal_studenten, List<Keyword> keyword_list, List<Student> student_list, List<TargetAudience> targetAudience_list, Boolean approved_topic, Boolean hide_topic, String description_topic, Date release_date) {
         this.topic_id = topic_id;
         this.topicName = topicName;
-        this.provider = provider;
+        this.provider_id = provider_id;
         this.tags = tags;
         this.boostedStudent = boostedStudent;
         this.promotor = promotor;
@@ -109,9 +109,9 @@ public class Topic implements Serializable {
         this.release_date = release_date;
     }
 
-    public Topic(String topicName, String description_topic, long aantal_studenten, List<Keyword> keywords, List<TargetAudience> targetAudiences, TopicProvider provider) {
+    public Topic(String topicName, String description_topic, long aantal_studenten, List<Keyword> keywords, List<TargetAudience> targetAudiences, Long provider_id) {
         this.topicName = topicName;
-        this.provider = provider;
+        this.provider_id = provider_id;
         this.aantal_studenten = aantal_studenten;
         this.description_topic = description_topic;
     }
@@ -132,12 +132,12 @@ public class Topic implements Serializable {
         this.topicName = topicName;
     }
 
-    public TopicProvider getProvider() {
-        return provider;
+    public Long getProviderID() {
+        return provider_id;
     }
 
-    public void setProvider(TopicProvider provider) {
-        this.provider = provider;
+    public void setProviderID(Long provider_id) {
+        this.provider_id = provider_id;
     }
 
     public List<Topic_choice> getTags() {
