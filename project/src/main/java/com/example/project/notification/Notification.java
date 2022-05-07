@@ -22,39 +22,9 @@ public class Notification {
             generator = "notification_sequence"
     )
     private Long notification_id;
-    private String notification_msg;
+    private NotificationSort notification_msg;
     private NotificationSort object_name;
     private Long object_id;
 
-    public Long getNotification_id() {
-        return notification_id;
-    }
 
-    public void setNotification_id(Long notification_id) {
-        this.notification_id = notification_id;
-    }
-
-    public String getNotification_msg() {
-        return notification_msg;
-    }
-
-    public void setNotification_msg(String notification_msg) {
-        this.notification_msg = notification_msg;
-    }
-
-    public NotificationSort getObject_name() {
-        return object_name;
-    }
-
-    public void setObject_name(NotificationSort object_name) {
-        this.object_name = object_name;
-    }
-
-    public Long getObject_id() {
-        return object_id;
-    }
-
-    public void setObject_id(Long object_id) {
-        this.object_id = object_id;
-    }
 }

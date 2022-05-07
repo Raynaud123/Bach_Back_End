@@ -1,13 +1,15 @@
 package com.example.project.notification;
 
 public enum NotificationSort {
-    STUDENT,
-    ADMIN,
-    MASTER,
-    COMPANY,
-    PROMOTOR,
+    NEW,
+    DELETED,
+    UPDATED,
+    ASSIGNED,
+    APPROVED,
     NOTAPPROVED,
-    KEYWORD,
-    PHASE,
-    TARGETAUDIENCE
+    AWAITAPPROVED,
+    REJECTED,
+    APPROACHINGDEADLINE,
+    PASSEDDEADLINE,
+
 }
