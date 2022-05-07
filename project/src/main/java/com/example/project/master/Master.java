@@ -1,4 +1,4 @@
-package com.example.project.Master;
+package com.example.project.master;
 
 import com.example.project.appuser.AppUserRole;
 import com.example.project.person.Person;

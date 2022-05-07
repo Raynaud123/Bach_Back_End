@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @RestController
@@ -26,7 +27,7 @@ public class TopicProviderController {
     }
 
     @GetMapping(path = "/{id}")
-    public List<TopicProvider> getById(@PathVariable long id) {
+    public Optional<TopicProvider> getById(@PathVariable long id) {
         return topicProviderService.findById(id);
     }
 

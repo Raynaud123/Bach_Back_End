@@ -1,6 +1,6 @@
 package com.example.project.student;
 
-import com.example.project.Master.Master;
+import com.example.project.master.Master;
 import com.example.project.appuser.AppUserRole;
 import com.example.project.person.Person;
 import com.example.project.targetAudience.TargetAudience;

@@ -129,9 +129,7 @@ public class StudentService {
         return top3;
     }
 
-    public List<Optional<Student>> findStudent(long id) {
-        List<Optional<Student>> st = new ArrayList<>(1);
-        st.add(studentRepository.findById(id));
-        return st;
+    public Optional<Student> findStudent(long id) {
+        return studentRepository.findById(id);
     }
 }

@@ -1,11 +1,10 @@
 package com.example.project.promotor;
 
-import com.example.project.topic.Topic;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
+import java.util.Optional;
 
 @Service
 public class PromotorService {
@@ -28,19 +27,10 @@ public class PromotorService {
         return pwt;
     }
 
-    public Promotor findById(Long id) {
-        List<Promotor> all = promotorRepository.findAll();
-        for(Promotor p: all){
-            if(p.getApproved() != null && Objects.equals(p.getId(), id)){
-                return p;
-            }
-        }
-        return null;
+    public Optional<Promotor> findById(Long id) {
+        return promotorRepository.findById(id);
     }
 
     public List<Promotor> findAllPromotors() { return promotorRepository.findAll(); }
-//
-//    public List<Topic> findPromotorTopics(Long id) {
-//
-//    }
+
 }

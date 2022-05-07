@@ -8,6 +8,7 @@ import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @ResponseBody
@@ -28,8 +29,8 @@ public class PromotorController {
     }
 
     @GetMapping("/{id}")
-    public Promotor getPromotorById(@PathVariable int id) {
-        return promotorService.findById((long)id);
+    public Optional<Promotor> getPromotorById(@PathVariable long id) {
+        return promotorService.findById(id);
     }
 
 //    @GetMapping("/topics/{id}")

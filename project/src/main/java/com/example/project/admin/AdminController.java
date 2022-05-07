@@ -2,6 +2,7 @@ package com.example.project.admin;
 
 
 import com.example.project.phase.Phase;
+import com.example.project.student.Student;
 import com.example.project.targetAudience.TargetAudience;
 import com.example.project.topicprovider.TopicProvider;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.text.ParseException;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "admin")
@@ -20,6 +22,10 @@ public class AdminController {
     private AdminService service;
 
 
+    @GetMapping(path = "/{id}")
+    public Optional<Admin> getAdminById(@PathVariable long id) {
+        return service.findAdmin(id);
+    }
 
     @GetMapping(path = "/topicprovider")
     public List<TopicProvider> getAllTopicProviders() {

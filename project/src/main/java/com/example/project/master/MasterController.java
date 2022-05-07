@@ -1,9 +1,10 @@
-package com.example.project.Master;
+package com.example.project.master;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @ResponseBody
@@ -17,6 +18,11 @@ public class MasterController {
     @GetMapping("/all")
     public List<Master> getAllMasters(){
         return masterService.findAll();
+    }
+
+    @GetMapping("/{id}")
+    public Optional<Master> getMasterById(@PathVariable long id) {
+        return masterService.findById(id);
     }
 
 }
