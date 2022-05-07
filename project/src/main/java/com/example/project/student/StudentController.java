@@ -32,8 +32,7 @@ public class StudentController {
     }
 
     @GetMapping(path = "/{id}")
-    public List<Optional<Student>> getStudentById(@PathVariable long id) {
-//        System.out.println(studentRepository.findById(id));
+    public Optional<Student> getStudentById(@PathVariable long id) {
         return studentService.findStudent(id);
     }
 

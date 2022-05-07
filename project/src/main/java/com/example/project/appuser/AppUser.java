@@ -1,5 +1,6 @@
 package com.example.project.appuser;
 
+import com.example.project.notification.Notification;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -10,6 +11,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 
 
 @Getter
@@ -46,6 +48,9 @@ public class AppUser implements UserDetails {
     private Integer postNumber;
     private Integer streetNumber;
 
+    @ManyToMany
+    private List<Notification> notification_list;
+
     public AppUser(String username, String password, String email, String phoneNumber, AppUserRole appUserRole, Boolean locked, Boolean enabled, String country, String city, String streetName, Integer postNumber, Integer streetNumber) {
         this.username = username;
         this.password = password;
@@ -81,6 +86,23 @@ public class AppUser implements UserDetails {
         this.username = username;
         this.password = password;
         this.email = email;
+    }
+
+    public AppUser(Long id, String username, String password, String email, String phoneNumber, AppUserRole appUserRole, Boolean locked, Boolean enabled, String country, String city, String streetName, Integer postNumber, Integer streetNumber, List<Notification> notification_list) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.appUserRole = appUserRole;
+        this.locked = locked;
+        this.enabled = enabled;
+        this.country = country;
+        this.city = city;
+        this.streetName = streetName;
+        this.postNumber = postNumber;
+        this.streetNumber = streetNumber;
+        this.notification_list = notification_list;
     }
 
     @Override
@@ -219,4 +241,35 @@ public class AppUser implements UserDetails {
         this.streetNumber = streetNumber;
     }
 
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public List<Notification> getNotification_list() {
+        return notification_list;
+    }
+
+    public void setNotification_list(List<Notification> notification_list) {
+        this.notification_list = notification_list;
+    }
+
+    @Override
+    public String toString() {
+        return "AppUser{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", appUserRole=" + appUserRole +
+                ", locked=" + locked +
+                ", enabled=" + enabled +
+                ", country='" + country + '\'' +
+                ", city='" + city + '\'' +
+                ", streetName='" + streetName + '\'' +
+                ", postNumber=" + postNumber +
+                ", streetNumber=" + streetNumber +
+                ", notification_list=" + notification_list +
+                '}';
+    }
 }

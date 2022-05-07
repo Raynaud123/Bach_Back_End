@@ -4,6 +4,7 @@ import com.example.project.phase.Phase;
 import com.example.project.phase.PhaseRepository;
 import com.example.project.promotor.Promotor;
 import com.example.project.promotor.PromotorRepository;
+import com.example.project.student.Student;
 import com.example.project.student.StudentRepository;
 import com.example.project.targetAudience.TargetAudience;
 import com.example.project.targetAudience.TargetAudienceRepository;
@@ -138,5 +139,9 @@ public class AdminService {
 
     public void deletePhase(Phase f) {
         phaseRepository.delete(f);
+    }
+
+    public Optional<Admin> findAdmin(long id) {
+        return repository.findById(id);
     }
 }

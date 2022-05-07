@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @RestController
@@ -19,8 +20,6 @@ public class TopicProviderController {
     public TopicProviderController(TopicProviderService service) {
         this.topicProviderService = service;
     }
-
-
 
     @GetMapping(path = "/all")
     public List<TopicProvider> getAllTopicProviders(){
