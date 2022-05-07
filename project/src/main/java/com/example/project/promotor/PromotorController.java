@@ -1,10 +1,7 @@
 package com.example.project.promotor;
 
-import com.example.project.appuser.AppUser;
-import com.example.project.topic.Topic;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -29,10 +26,13 @@ public class PromotorController {
     }
 
     @GetMapping("/{id}")
-    public Optional<Promotor> getPromotorById(@PathVariable long id) {
-        return promotorService.findById(id);
+    public Optional<Promotor> getPromotorByIdFromFrontend(@PathVariable Long id) {
+        return promotorService.findByIdFromFrontend(id);
     }
 
+    public Promotor getPromotorById(Long id) {
+        return promotorService.findById(id);
+    }
 //    @GetMapping("/topics/{id}")
 //    public List<Topic> getPromotorTopics(@PathVariable Long id){
 //        return promotorService.findPromotorTopics(id);

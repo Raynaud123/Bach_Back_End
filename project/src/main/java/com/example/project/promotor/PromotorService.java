@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -27,10 +28,18 @@ public class PromotorService {
         return pwt;
     }
 
-    public Optional<Promotor> findById(Long id) {
-        return promotorRepository.findById(id);
+    public Promotor findById(Long id) {
+        List<Promotor> all = promotorRepository.findAll();
+        for(Promotor p: all){
+            if(Objects.equals(p.getId(), id))
+                return p;
+        }
+        return null;
     }
 
     public List<Promotor> findAllPromotors() { return promotorRepository.findAll(); }
 
+    public Optional<Promotor> findByIdFromFrontend(Long id) {
+        return promotorRepository.findById(id);
+    }
 }

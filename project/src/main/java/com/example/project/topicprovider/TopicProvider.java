@@ -3,6 +3,7 @@ package com.example.project.topicprovider;
 
 import com.example.project.appuser.AppUser;
 import com.example.project.appuser.AppUserRole;
+import com.example.project.notification.Notification;
 import com.example.project.targetAudience.Campus;
 import com.example.project.topic.Topic;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
@@ -68,6 +69,37 @@ public class TopicProvider extends AppUser implements Serializable{
 
     public TopicProvider(Long id, String username, String password, String email, String phoneNumber, AppUserRole appUserRole, Boolean locked, Boolean enabled, String country, String city, String streetName, Integer postNumber, Integer streetNumber, boolean approved, Boolean isCompany, String name, Campus campus) {
         super(id, username, password, email, phoneNumber, appUserRole, locked, enabled, country, city, streetName, postNumber, streetNumber);
+        Approved = approved;
+        this.isCompany = isCompany;
+        Name = name;
+        this.campus = campus;
+    }
+
+    public TopicProvider(String username, String password, String email, boolean approved, Boolean isCompany, String name, Campus campus) {
+        super(username, password, email);
+        Approved = approved;
+        this.isCompany = isCompany;
+        Name = name;
+        this.campus = campus;
+    }
+
+    public TopicProvider(Long id, String username, String password, String email, String phoneNumber, AppUserRole appUserRole, Boolean locked, Boolean enabled, String country, String city, String streetName, Integer postNumber, Integer streetNumber, List<Notification> notification_list, boolean approved, Boolean isCompany, String name, Campus campus) {
+        super(id, username, password, email, phoneNumber, appUserRole, locked, enabled, country, city, streetName, postNumber, streetNumber, notification_list);
+        Approved = approved;
+        this.isCompany = isCompany;
+        Name = name;
+        this.campus = campus;
+    }
+
+    public TopicProvider(boolean approved, Boolean isCompany, String name, Campus campus) {
+        Approved = approved;
+        this.isCompany = isCompany;
+        Name = name;
+        this.campus = campus;
+    }
+
+    public TopicProvider(String username, String password, String email, String phoneNumber, AppUserRole appUserRole, Boolean locked, Boolean enabled, String country, String city, String streetName, Integer postNumber, Integer streetNumber, boolean approved, Boolean isCompany, String name, Campus campus) {
+        super(username, password, email, phoneNumber, appUserRole, locked, enabled, country, city, streetName, postNumber, streetNumber);
         Approved = approved;
         this.isCompany = isCompany;
         Name = name;

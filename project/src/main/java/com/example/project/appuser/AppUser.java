@@ -105,6 +105,7 @@ public class AppUser implements UserDetails {
         this.notification_list = notification_list;
     }
 
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         SimpleGrantedAuthority authority = new SimpleGrantedAuthority(appUserRole.name());
@@ -139,10 +140,6 @@ public class AppUser implements UserDetails {
     public void setId(Long id) {
         this.id = id;
     }
-
- //   public String getUserName() {
- //       return username;
- //   }
 
     public void setUserName(String userName) {
         this.username = userName;

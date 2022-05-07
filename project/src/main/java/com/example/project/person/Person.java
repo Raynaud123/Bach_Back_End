@@ -2,6 +2,7 @@ package com.example.project.person;
 
 import com.example.project.appuser.AppUser;
 import com.example.project.appuser.AppUserRole;
+import com.example.project.notification.Notification;
 import com.example.project.targetAudience.TargetAudience;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -53,6 +54,14 @@ public class Person extends AppUser implements Serializable {
 
     public Person(String username, String password, String email, String firstName, String lastName, Boolean approved, List<TargetAudience> targetAudience) {
         super(username, password, email);
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.approved = approved;
+        this.targetAudience = targetAudience;
+    }
+
+    public Person(Long id, String username, String password, String email, String phoneNumber, AppUserRole appUserRole, Boolean locked, Boolean enabled, String country, String city, String streetName, Integer postNumber, Integer streetNumber, List<Notification> notification_list, String firstName, String lastName, Boolean approved, List<TargetAudience> targetAudience) {
+        super(id, username, password, email, phoneNumber, appUserRole, locked, enabled, country, city, streetName, postNumber, streetNumber, notification_list);
         this.firstName = firstName;
         this.lastName = lastName;
         this.approved = approved;
