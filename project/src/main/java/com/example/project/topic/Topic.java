@@ -1,5 +1,6 @@
 package com.example.project.topic;
 
+import com.example.project.appuser.AppUser;
 import com.example.project.keyword.Keyword;
 import com.example.project.promotor.Promotor;
 import com.example.project.student.Student;
@@ -13,6 +14,9 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -37,11 +41,14 @@ public class Topic implements Serializable {
     private Long topic_id;
 
     private String topicName;
+
 //    @ManyToOne(fetch = FetchType.LAZY, optional = false)
 //    @JoinColumn(name="provider_id")
 //    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 //    @JsonIdentityReference(alwaysAsId = true)
-    private Long provider_id;
+    @ManyToOne
+    @JoinColumn(name = "provider_id")
+    private AppUser provider;
 
 
     @OneToMany(
@@ -57,10 +64,8 @@ public class Topic implements Serializable {
     @JsonIdentityReference(alwaysAsId = true)
     Student boostedStudent;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name="promotor_id")
-    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-    @JsonIdentityReference(alwaysAsId = true)
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "promotor_id")
     private Promotor promotor;
 
     private Long aantal_studenten;
@@ -71,20 +76,6 @@ public class Topic implements Serializable {
     @ManyToMany
     private List<TargetAudience> targetAudience_list;
 
-//    @OneToMany(mappedBy="FirstChoice",cascade = CascadeType.ALL)
-//    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-//    @JsonIdentityReference(alwaysAsId = true)
-//    private List<Student> StudentsWithChoice1_list;
-//
-//    @OneToMany(mappedBy="SecondChoice",cascade = CascadeType.ALL)
-//    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-//    @JsonIdentityReference(alwaysAsId = true)
-//    private List<Student> StudentsWithChoice2_list;
-//
-//    @OneToMany(mappedBy="ThirdChoice",cascade = CascadeType.ALL)
-//    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-//    @JsonIdentityReference(alwaysAsId = true)
-//    private List<Student> StudentsWithChoice3_list;
 
     private Boolean approved_topic;
     private Boolean hide_topic;
@@ -92,10 +83,10 @@ public class Topic implements Serializable {
 
     private Date release_date; // en enkel jaar weergeven
 
-    public Topic(Long topic_id, String topicName, Long provider_id, List<Topic_choice> tags, Student boostedStudent, Promotor promotor, Long aantal_studenten, List<Keyword> keyword_list, List<Student> student_list, List<TargetAudience> targetAudience_list, Boolean approved_topic, Boolean hide_topic, String description_topic, Date release_date) {
+    public Topic(Long topic_id, String topicName, AppUser provider, Promotor promotor, Long aantal_studenten, List<Keyword> keyword_list, List<Student> student_list, List<TargetAudience> targetAudience_list, Boolean approved_topic, Boolean hide_topic, String description_topic, Date release_date) {
         this.topic_id = topic_id;
         this.topicName = topicName;
-        this.provider_id = provider_id;
+        this.provider = provider;
         this.tags = tags;
         this.boostedStudent = boostedStudent;
         this.promotor = promotor;
@@ -104,17 +95,40 @@ public class Topic implements Serializable {
         this.student_list = student_list;
         this.targetAudience_list = targetAudience_list;
         this.approved_topic = approved_topic;
-        this.hide_topic = hide_topic;
+        this.hide_topic = false;
+        this.boostedStudent = null;
         this.description_topic = description_topic;
         this.release_date = release_date;
     }
 
-    public Topic(String topicName, String description_topic, long aantal_studenten, List<Keyword> keywords, List<TargetAudience> targetAudiences, Long provider_id) {
+    public Topic(String topicName, String description_topic, long aantal_studenten, List<Keyword> keywords, List<TargetAudience> targetAudiences, AppUser provider) {
         this.topicName = topicName;
-        this.provider_id = provider_id;
+        this.provider = provider;
         this.aantal_studenten = aantal_studenten;
+        this.keyword_list = keywords;
+        this.targetAudience_list = targetAudiences;
+        this.approved_topic = false;
+        this.hide_topic = false;
+        this.release_date = new Date();
+        this.boostedStudent = null;
         this.description_topic = description_topic;
     }
+
+    public Topic(String topicName, String description_topic, long aantal_studenten, AppUser appUser) {
+        this.topicName = topicName;
+        this.provider = appUser;
+        this.aantal_studenten = aantal_studenten;
+        this.keyword_list = null;
+        this.targetAudience_list = null;
+        this.approved_topic = false;
+        this.hide_topic = false;
+        this.release_date = new Date();
+        this.boostedStudent = null;
+        this.description_topic = description_topic;
+    }
+
+
+
 
     public Long getTopic_id() {
         return topic_id;
@@ -132,12 +146,12 @@ public class Topic implements Serializable {
         this.topicName = topicName;
     }
 
-    public Long getProviderID() {
-        return provider_id;
+    public AppUser getProvider() {
+        return provider;
     }
 
-    public void setProviderID(Long provider_id) {
-        this.provider_id = provider_id;
+    public void setProvider(TopicProvider provider) {
+        this.provider = provider;
     }
 
     public List<Topic_choice> getTags() {
@@ -227,6 +241,27 @@ public class Topic implements Serializable {
     public void setRelease_date(Date release_date) {
         this.release_date = release_date;
     }
+
+
+
+
+    @Override
+    public String toString() {
+        return "Topic{" +
+                "topic_id=" + topic_id +
+                ", topicName='" + topicName + '\'' +
+                ", provider_id=" + provider +
+                ", aantal_studenten=" + aantal_studenten +
+                ", keyword_list=" + keyword_list +
+                ", student_list=" + student_list +
+                ", targetAudience_list=" + targetAudience_list +
+                ", approved_topic=" + approved_topic +
+                ", hide_topic=" + hide_topic +
+                ", description_topic='" + description_topic + '\'' +
+                ", release_date=" + release_date +
+                '}';
+    }
+
 
     public void addStudent(Student student) {
         this.student_list.add(student);

@@ -14,6 +14,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -28,10 +29,7 @@ public class TopicProvider extends AppUser implements Serializable{
     private String Name;
     @ManyToOne
     private Campus campus;          //Enkel nodig als het een onderzoeksgroep is
-    @OneToMany
-    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "topic_id")
-    @JsonIdentityReference(alwaysAsId = true)
-    private List<Topic> topic_list;
+
 
 
     public TopicProvider(boolean approved, Boolean isCompany, String name, Campus campus, List<Topic> topic_list) {
@@ -39,7 +37,6 @@ public class TopicProvider extends AppUser implements Serializable{
         this.isCompany = isCompany;
         Name = name;
         this.campus = campus;
-        this.topic_list = topic_list;
     }
 
     public TopicProvider(String username, String password, String email, String phoneNumber, AppUserRole appUserRole, Boolean locked, Boolean enabled, String country, String city, String streetName, Integer postNumber, Integer streetNumber, boolean approved, Boolean isCompany, String name, Campus campus, List<Topic> topic_list) {
@@ -48,7 +45,7 @@ public class TopicProvider extends AppUser implements Serializable{
         this.isCompany = isCompany;
         Name = name;
         this.campus = campus;
-        this.topic_list = topic_list;
+ //       this.topic_list = topic_list;
     }
 
     public TopicProvider(Long id, String username, String password, String email, String phoneNumber, AppUserRole appUserRole, Boolean locked, Boolean enabled, String country, String city, String streetName, Integer postNumber, Integer streetNumber, boolean approved, Boolean isCompany, String name, Campus campus, List<Topic> topic_list) {
@@ -57,7 +54,7 @@ public class TopicProvider extends AppUser implements Serializable{
         this.isCompany = isCompany;
         Name = name;
         this.campus = campus;
-        this.topic_list = topic_list;
+ //       this.topic_list = topic_list;
     }
 
     public TopicProvider(String username, String password, String email, boolean approved, Boolean isCompany, String name, Campus campus, List<Topic> topic_list) {
@@ -66,7 +63,15 @@ public class TopicProvider extends AppUser implements Serializable{
         this.isCompany = isCompany;
         Name = name;
         this.campus = campus;
-        this.topic_list = topic_list;
+  //      this.topic_list = topic_list;
+    }
+
+    public TopicProvider(Long id, String username, String password, String email, String phoneNumber, AppUserRole appUserRole, Boolean locked, Boolean enabled, String country, String city, String streetName, Integer postNumber, Integer streetNumber, boolean approved, Boolean isCompany, String name, Campus campus) {
+        super(id, username, password, email, phoneNumber, appUserRole, locked, enabled, country, city, streetName, postNumber, streetNumber);
+        Approved = approved;
+        this.isCompany = isCompany;
+        Name = name;
+        this.campus = campus;
     }
 
     public boolean isApproved() {

@@ -60,12 +60,14 @@ public class Student extends Person implements Serializable {
     }
 
 
-    public Student(Long id, String username, String password, String email, String phoneNumber, AppUserRole appUserRole, Boolean locked, Boolean enabled, String country, String city, String streetName, Integer postNumber, Integer streetNumber, String firstName, String lastName, Boolean approved, List<TargetAudience> targetAudience_id, Master master, Topic assignedTopic, List<Topic> preferredTopics, Topic FirstChoice, Topic SecondChoice, Topic ThirdChoice) {
+    public Student(Long id, String username, String password, String email, String phoneNumber, AppUserRole appUserRole, Boolean locked, Boolean enabled, String country, String city, String streetName, Integer postNumber, Integer streetNumber, String firstName, String lastName, Boolean approved, List<TargetAudience> targetAudience_id, Master master, Topic assignedTopic, List<Topic> preferredTopics) {
         super(id, username, password, email, phoneNumber, appUserRole, locked, enabled, country, city, streetName, postNumber, streetNumber, firstName, lastName, approved, targetAudience_id);
         this.master = master;
         this.assignedTopic = assignedTopic;
         this.preferredTopics = preferredTopics;
     }
+
+
 
 
     public Master getMaster() {

@@ -27,8 +27,8 @@ public class TopicProviderController {
     }
 
     @GetMapping(path = "/{id}")
-    public Optional<TopicProvider> getById(@PathVariable long id) {
-        return topicProviderService.findById(id);
+    public TopicProvider getById(@PathVariable long id) {
+        return topicProviderService.findById(id).get();
     }
 
     @PostMapping

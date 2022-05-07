@@ -7,4 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional(readOnly = true)
 @Repository
 public interface PromotorRepository extends JpaRepository<Promotor, Long> {
+
+    Promotor findById(long id);
+
 }
