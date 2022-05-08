@@ -88,13 +88,4 @@ public class Topic_choice implements Serializable {
         return Objects.hash(topic, student, choice);
     }
 
-    @Override
-    public String toString() {
-        return "Topic_choice{" +
-                "choice_id=" + choice_id +
-                ", topic=" + topic +
-                ", student=" + student +
-                ", choice=" + choice +
-                '}';
-    }
 }

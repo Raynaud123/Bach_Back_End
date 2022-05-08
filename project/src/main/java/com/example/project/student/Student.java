@@ -94,14 +94,4 @@ public class Student extends Person implements Serializable {
         this.preferredTopics = preferredTopics;
     }
 
-
-    @Override
-    public String toString() {
-        return "Student{" +
-                "master=" + master +
-                ", assignedTopic=" + assignedTopic +
-                ", preferredTopics=" + preferredTopics +
-                ", choices=" + choices +
-                '}';
-    }
 }

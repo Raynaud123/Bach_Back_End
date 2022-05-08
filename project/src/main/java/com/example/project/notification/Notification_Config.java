@@ -52,9 +52,17 @@
 //                    9L, NotificationSort.AWAITAPPROVED, NotificationObjectSort.TOPIC, 14L,format.parse(dateString1));
 //            Notification n10 = new Notification(
 //                    10L, NotificationSort.AWAITAPPROVED, NotificationObjectSort.TOPIC, 15L,format.parse(dateString1));
+//            Notification n11 = new Notification(
+//                    11L, NotificationSort.AWAITAPPROVED, NotificationObjectSort.PROMOTOR, 6L,format.parse(dateString1));
+//            Notification n12 = new Notification(
+//                    12L, NotificationSort.AWAITAPPROVED, NotificationObjectSort.PROMOTOR, 7L,format.parse(dateString1));
+//            Notification n13 = new Notification(
+//                    13L, NotificationSort.AWAITAPPROVED, NotificationObjectSort.COMPANY, 15L,format.parse(dateString1));
+//            Notification n14 = new Notification(
+//                    14L, NotificationSort.AWAITAPPROVED, NotificationObjectSort.COMPANY, 16L,format.parse(dateString1));
 //
 //            repository.saveAll(
-//                    List.of(n1, n2,n3,n4,n5,n6,n7,n8,n9,n10)
+//                    List.of(n1, n2,n3,n4,n5,n6,n7,n8,n9,n10,n11,n12,n13,n14)
 //            );
 //        };
 //    }

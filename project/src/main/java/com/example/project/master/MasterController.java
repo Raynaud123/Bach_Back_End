@@ -39,4 +39,12 @@ public class MasterController {
     @ResponseBody
     public void approveTopic(@PathVariable Long masterid,@PathVariable Long topicid, @PathVariable Boolean approve){masterService.approveTopicById(masterid,topicid,approve);}
 
+    @PutMapping(path = "/{masterid}/approve/{approve}/promotor/{promotorid}")
+    @ResponseBody
+    public void approvePromotor(@PathVariable Long masterid,@PathVariable Long promotorid, @PathVariable Boolean approve){masterService.approvePromotorById(masterid,promotorid,approve);}
+
+    @PutMapping(path = "/{masterid}/approve/{approve}/topicprovider/{companyid}")
+    @ResponseBody
+    public void approveCompany(@PathVariable Long masterid,@PathVariable Long companyid, @PathVariable Boolean approve){masterService.approveCompanyById(masterid,companyid,approve);}
+
 }
