@@ -2,23 +2,28 @@ package com.example.project.master;
 
 import com.example.project.appuser.AppUserRepository;
 import com.example.project.notification.Notification;
+import com.example.project.notification.NotificationObjectSort;
+import com.example.project.phase.Phase;
 import com.example.project.topic.Topic;
+import com.example.project.topic.TopicRepository;
+import com.example.project.topic.TopicService;
+import com.example.project.topic.UpdateTopicApproveRequest;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class MasterService {
 
     private final MasterRepository masterRepository;
     private final AppUserRepository appUserRepository;
+    private final TopicRepository topicRepository;
 
-    public MasterService(MasterRepository masterRepository, AppUserRepository appUserRepository) {
+
+    public MasterService(MasterRepository masterRepository, AppUserRepository appUserRepository, TopicRepository topicRepository) {
         this.masterRepository = masterRepository;
         this.appUserRepository = appUserRepository;
+        this.topicRepository = topicRepository;
     }
 
     public List<Master> findAll() {
@@ -57,5 +62,34 @@ public class MasterService {
             }
         }
         return null;
+    }
+
+    public void approveTopicById(Long masterid, Long topicid, Boolean approve) {
+        System.out.println("Masterid: " + masterid);
+        System.out.println("Topicid: " + topicid);
+        System.out.println("Approve: " + approve);
+        if(topicRepository.findById(topicid).isPresent()){
+            Topic t = topicRepository.findById(topicid).get();
+            t.setApproved_topic(approve);
+
+            List<Master> all = masterRepository.findAll();
+            Notification not = null;
+            for (Master m : all){
+                if (Objects.equals(m.getId(), masterid)) {
+                    if (!m.getNotification_list().isEmpty() && m.getNotification_list() != null){
+                        for (Notification n : m.getNotification_list()){
+                            if (Objects.equals(n.getObject_id(), topicid) && n.getObject_name() == NotificationObjectSort.TOPIC){
+                                not = n;
+                            }
+                        }
+                        m.getNotification_list().remove(not);
+                        masterRepository.save(m);
+                    }
+                }
+            }
+            topicRepository.save(t);
+        }else {
+            throw new IllegalStateException();
+        }
     }
 }

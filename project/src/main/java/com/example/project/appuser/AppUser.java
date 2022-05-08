@@ -48,7 +48,7 @@ public class AppUser implements UserDetails {
     private Integer postNumber;
     private Integer streetNumber;
 
-    @ManyToMany
+    @OneToMany
     private List<Notification> notification_list;
 
     public AppUser(String username, String password, String email, String phoneNumber, AppUserRole appUserRole, Boolean locked, Boolean enabled, String country, String city, String streetName, Integer postNumber, Integer streetNumber) {

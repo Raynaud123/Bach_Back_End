@@ -28,7 +28,7 @@ public class Notification {
     private NotificationSort notification_msg;
     private NotificationObjectSort object_name;
     private Long object_id;
-    @JsonFormat(pattern = "yyyy-MM-dd  HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     @DateTimeFormat(pattern = "yyyy-MM-dd  HH:mm:ss")
     private Date addedDate;
 

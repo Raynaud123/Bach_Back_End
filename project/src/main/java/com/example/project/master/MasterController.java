@@ -1,12 +1,11 @@
 package com.example.project.master;
 
 import com.example.project.notification.Notification;
-import com.example.project.topic.Topic;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
+import java.util.Map;
 
 @RestController
 @ResponseBody
@@ -35,5 +34,9 @@ public class MasterController {
     public List<Notification> getNotifications(@PathVariable Long id) {
         return masterService.getNotifications(id);
     }
+
+    @PutMapping(path = "/{masterid}/approve/{approve}/topic/{topicid}")
+    @ResponseBody
+    public void approveTopic(@PathVariable Long masterid,@PathVariable Long topicid, @PathVariable Boolean approve){masterService.approveTopicById(masterid,topicid,approve);}
 
 }
