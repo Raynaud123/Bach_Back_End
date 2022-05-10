@@ -46,22 +46,22 @@ public class Student extends Person implements Serializable {
     private List<Topic_choice> choices = new ArrayList<>();
 
 
-    public Student(Master master, Topic assignedTopic, List<Topic> preferredTopics, Topic FirstChoice, Topic SecondChoice, Topic ThirdChoice) {
+    public Student(Master master, Topic assignedTopic, List<Topic> preferredTopics) {
         this.master = master;
         this.assignedTopic = assignedTopic;
         this.preferredTopics = preferredTopics;
     }
 
-    public Student(String firstName, String lastName, Boolean approved, List<TargetAudience> targetAudience_id, Master master, Topic assignedTopic, List<Topic> preferredTopics, Topic FirstChoice, Topic SecondChoice, Topic ThirdChoice) {
-        super(firstName, lastName, approved, targetAudience_id);
+    public Student(String firstName, String lastName,  List<TargetAudience> targetAudience_id, Master master, Topic assignedTopic, List<Topic> preferredTopics) {
+        super(firstName, lastName, targetAudience_id);
         this.master = master;
         this.assignedTopic = assignedTopic;
         this.preferredTopics = preferredTopics;
     }
 
 
-    public Student(Long id, String username, String password, String email, String phoneNumber, AppUserRole appUserRole, Boolean locked, Boolean enabled, String country, String city, String streetName, Integer postNumber, Integer streetNumber, String firstName, String lastName, Boolean approved, List<TargetAudience> targetAudience_id, Master master, Topic assignedTopic, List<Topic> preferredTopics) {
-        super(id, username, password, email, phoneNumber, appUserRole, locked, enabled, country, city, streetName, postNumber, streetNumber, firstName, lastName, approved, targetAudience_id);
+    public Student(Long id, String username, String password, String email, String phoneNumber, AppUserRole appUserRole, String country, String city, String streetName, Integer postNumber, Integer streetNumber, String firstName, String lastName,  List<TargetAudience> targetAudience_id, Master master, Topic assignedTopic, List<Topic> preferredTopics) {
+        super(id, username, password, email, phoneNumber, appUserRole, country, city, streetName, postNumber, streetNumber, firstName, lastName,  targetAudience_id);
         this.master = master;
         this.assignedTopic = assignedTopic;
         this.preferredTopics = preferredTopics;

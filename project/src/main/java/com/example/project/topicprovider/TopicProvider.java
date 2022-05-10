@@ -40,8 +40,8 @@ public class TopicProvider extends AppUser implements Serializable{
         this.campus = campus;
     }
 
-    public TopicProvider(String username, String password, String email, String phoneNumber, AppUserRole appUserRole, Boolean locked, Boolean enabled, String country, String city, String streetName, Integer postNumber, Integer streetNumber, boolean approved, Boolean isCompany, String name, Campus campus, List<Topic> topic_list) {
-        super(username, password, email, phoneNumber, appUserRole, locked, enabled, country, city, streetName, postNumber, streetNumber);
+    public TopicProvider(String username, String password, String email, String phoneNumber, AppUserRole appUserRole,  String country, String city, String streetName, Integer postNumber, Integer streetNumber, boolean approved, Boolean isCompany, String name, Campus campus, List<Topic> topic_list) {
+        super(username, password, email, phoneNumber, appUserRole, country, city, streetName, postNumber, streetNumber);
         Approved = approved;
         this.isCompany = isCompany;
         Name = name;
@@ -49,8 +49,8 @@ public class TopicProvider extends AppUser implements Serializable{
  //       this.topic_list = topic_list;
     }
 
-    public TopicProvider(Long id, String username, String password, String email, String phoneNumber, AppUserRole appUserRole, Boolean locked, Boolean enabled, String country, String city, String streetName, Integer postNumber, Integer streetNumber, boolean approved, Boolean isCompany, String name, Campus campus, List<Topic> topic_list) {
-        super(id, username, password, email, phoneNumber, appUserRole, locked, enabled, country, city, streetName, postNumber, streetNumber);
+    public TopicProvider(Long id, String username, String password, String email, String phoneNumber, AppUserRole appUserRole, String country, String city, String streetName, Integer postNumber, Integer streetNumber, boolean approved, Boolean isCompany, String name, Campus campus, List<Topic> topic_list) {
+        super(id, username, password, email, phoneNumber, appUserRole, country, city, streetName, postNumber, streetNumber);
         Approved = approved;
         this.isCompany = isCompany;
         Name = name;
@@ -68,7 +68,7 @@ public class TopicProvider extends AppUser implements Serializable{
     }
 
     public TopicProvider(Long id, String username, String password, String email, String phoneNumber, AppUserRole appUserRole, Boolean locked, Boolean enabled, String country, String city, String streetName, Integer postNumber, Integer streetNumber, boolean approved, Boolean isCompany, String name, Campus campus) {
-        super(id, username, password, email, phoneNumber, appUserRole, locked, enabled, country, city, streetName, postNumber, streetNumber);
+        super(id, username, password, email, phoneNumber, appUserRole, country, city, streetName, postNumber, streetNumber);
         Approved = approved;
         this.isCompany = isCompany;
         Name = name;
@@ -84,7 +84,7 @@ public class TopicProvider extends AppUser implements Serializable{
     }
 
     public TopicProvider(Long id, String username, String password, String email, String phoneNumber, AppUserRole appUserRole, Boolean locked, Boolean enabled, String country, String city, String streetName, Integer postNumber, Integer streetNumber, List<Notification> notification_list, boolean approved, Boolean isCompany, String name, Campus campus) {
-        super(id, username, password, email, phoneNumber, appUserRole, locked, enabled, country, city, streetName, postNumber, streetNumber, notification_list);
+        super(id, username, password, email, phoneNumber, appUserRole,  country, city, streetName, postNumber, streetNumber, notification_list);
         Approved = approved;
         this.isCompany = isCompany;
         Name = name;
@@ -99,7 +99,7 @@ public class TopicProvider extends AppUser implements Serializable{
     }
 
     public TopicProvider(String username, String password, String email, String phoneNumber, AppUserRole appUserRole, Boolean locked, Boolean enabled, String country, String city, String streetName, Integer postNumber, Integer streetNumber, boolean approved, Boolean isCompany, String name, Campus campus) {
-        super(username, password, email, phoneNumber, appUserRole, locked, enabled, country, city, streetName, postNumber, streetNumber);
+        super(username, password, email, phoneNumber, appUserRole, country, city, streetName, postNumber, streetNumber);
         Approved = approved;
         this.isCompany = isCompany;
         Name = name;
