@@ -1,10 +1,13 @@
 package com.example.project.topicprovider;
 
 
+import com.example.project.exceptions.IdNotFoundRequestException;
+import com.example.project.exceptions.NietApprovedRequestException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -19,8 +22,13 @@ public class TopicProviderService {
     }
 
 
-    public Optional<TopicProvider> findById(long id) {
-        return topicProviderRepository.findById(id);
+    public TopicProvider findById(long id) throws IdNotFoundRequestException {
+        if(topicProviderRepository.findById(id).isPresent()){
+            return topicProviderRepository.findById(id).get();
+        }else  {
+            throw new IdNotFoundRequestException("Id is niet gevonden");
+        }
+
     }
 
     public List<TopicProvider> findAll() {
@@ -36,9 +44,6 @@ public class TopicProviderService {
         topicProviderRepository.saveAndFlush(topicProvider);
     }
 
-    public void findTopicsFromTopicProviderById(long id) {
-
-    }
 
     public TopicProvider getTopicProvider(Long id) {
         List<TopicProvider> all = topicProviderRepository.findAll();
@@ -48,6 +53,18 @@ public class TopicProviderService {
             }
         }
         return null;
+    }
+
+    public Optional<TopicProvider> findByNotHidedId(long id) throws NietApprovedRequestException, IdNotFoundRequestException {
+        Optional<TopicProvider> topic = topicProviderRepository.findById(id);
+        if(topic.isPresent()){
+            if(topic.get().isApproved()){
+                return topic;
+            }else{
+                throw new NietApprovedRequestException("Topicprovider met " + id + " is niet approved");
+            }
+        }
+        throw new IdNotFoundRequestException("Topicprovider met " + id + " niet gevonden");
     }
 
 //    public void addTopic(long id, Topic topic) {

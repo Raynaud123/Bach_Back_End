@@ -39,8 +39,7 @@ public class AppUser implements UserDetails {
     private String phoneNumber;
     @Enumerated(EnumType.STRING)
     private AppUserRole appUserRole;
-    private Boolean locked = false;
-    private Boolean enabled = false;
+    private Boolean hide = false;
 
     private String country;
     private String city;
@@ -51,14 +50,13 @@ public class AppUser implements UserDetails {
     @OneToMany
     private List<Notification> notification_list;
 
-    public AppUser(String username, String password, String email, String phoneNumber, AppUserRole appUserRole, Boolean locked, Boolean enabled, String country, String city, String streetName, Integer postNumber, Integer streetNumber) {
+    public AppUser(String username, String password, String email, String phoneNumber, AppUserRole appUserRole, String country, String city, String streetName, Integer postNumber, Integer streetNumber) {
         this.username = username;
         this.password = password;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.appUserRole = appUserRole;
-        this.locked = locked;
-        this.enabled = enabled;
+        this.hide = false;
         this.country = country;
         this.city = city;
         this.streetName = streetName;
@@ -66,15 +64,14 @@ public class AppUser implements UserDetails {
         this.streetNumber = streetNumber;
     }
 
-    public AppUser(Long id, String username, String password, String email, String phoneNumber, AppUserRole appUserRole, Boolean locked, Boolean enabled, String country, String city, String streetName, Integer postNumber, Integer streetNumber) {
+    public AppUser(Long id, String username, String password, String email, String phoneNumber, AppUserRole appUserRole, String country, String city, String streetName, Integer postNumber, Integer streetNumber) {
         this.id = id;
         this.username = username;
         this.password = password;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.appUserRole = appUserRole;
-        this.locked = locked;
-        this.enabled = enabled;
+        this.hide = false;
         this.country = country;
         this.city = city;
         this.streetName = streetName;
@@ -88,15 +85,14 @@ public class AppUser implements UserDetails {
         this.email = email;
     }
 
-    public AppUser(Long id, String username, String password, String email, String phoneNumber, AppUserRole appUserRole, Boolean locked, Boolean enabled, String country, String city, String streetName, Integer postNumber, Integer streetNumber, List<Notification> notification_list) {
+    public AppUser(Long id, String username, String password, String email, String phoneNumber, AppUserRole appUserRole, String country, String city, String streetName, Integer postNumber, Integer streetNumber, List<Notification> notification_list) {
         this.id = id;
         this.username = username;
         this.password = password;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.appUserRole = appUserRole;
-        this.locked = locked;
-        this.enabled = enabled;
+        this.hide = false;
         this.country = country;
         this.city = city;
         this.streetName = streetName;
@@ -182,21 +178,6 @@ public class AppUser implements UserDetails {
         this.appUserRole = appUserRole;
     }
 
-    public Boolean getLocked() {
-        return locked;
-    }
-
-    public void setLocked(Boolean locked) {
-        this.locked = locked;
-    }
-
-    public Boolean getEnabled() {
-        return enabled;
-    }
-
-    public void setEnabled(Boolean enabled) {
-        this.enabled = enabled;
-    }
 
     public String getCountry() {
         return country;
@@ -260,8 +241,7 @@ public class AppUser implements UserDetails {
                 ", email='" + email + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", appUserRole=" + appUserRole +
-                ", locked=" + locked +
-                ", enabled=" + enabled +
+                ", hide=" + hide +
                 ", country='" + country + '\'' +
                 ", city='" + city + '\'' +
                 ", streetName='" + streetName + '\'' +
@@ -269,5 +249,13 @@ public class AppUser implements UserDetails {
                 ", streetNumber=" + streetNumber +
                 ", notification_list=" + notification_list +
                 '}';
+    }
+
+    public Boolean getHide() {
+        return hide;
+    }
+
+    public void setHide(Boolean hide) {
+        this.hide = hide;
     }
 }

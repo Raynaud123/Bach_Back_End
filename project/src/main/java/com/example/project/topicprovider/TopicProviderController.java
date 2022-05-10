@@ -1,11 +1,11 @@
 package com.example.project.topicprovider;
 
-import com.example.project.topic.Topic;
+import com.example.project.exceptions.IdNotFoundRequestException;
+import com.example.project.exceptions.NietApprovedRequestException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 
 @RestController
@@ -26,9 +26,15 @@ public class TopicProviderController {
         return topicProviderService.findAll();
     }
 
+
     @GetMapping(path = "/{id}")
-    public TopicProvider getById(@PathVariable long id) {
-        return topicProviderService.findById(id).get();
+    public TopicProvider getById(@PathVariable long id) throws IdNotFoundRequestException {
+        return topicProviderService.findById(id);
+    }
+
+    @GetMapping(path = "/approved/{id}")
+    public TopicProvider getByHidedId(@PathVariable long id) throws NietApprovedRequestException, IdNotFoundRequestException {
+        return topicProviderService.findByNotHidedId(id).get();
     }
 
     @PostMapping
