@@ -1,5 +1,7 @@
 package com.example.project.topic;
 
+import com.example.project.exceptions.IdNotFoundRequestException;
+import com.example.project.exceptions.NietApprovedRequestException;
 import com.example.project.student.Student;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +32,7 @@ public class TopicController {
         return topicService.updateTopicAssignment(topic_id, request);
     }
     @GetMapping("/{id}")
-    public Topic getTopic(@PathVariable Long id) {
+    public Topic getTopic(@PathVariable Long id) throws NietApprovedRequestException, IdNotFoundRequestException {
         return topicService.getTopic(id);
     }
 
@@ -40,7 +42,7 @@ public class TopicController {
     }
 
     @GetMapping("/info/{topicId}")
-    public Topic getTopicForInfo(@PathVariable Long topicId) { return topicService.getTopic(topicId); }
+    public Topic getTopicForInfo(@PathVariable Long topicId) throws NietApprovedRequestException, IdNotFoundRequestException { return topicService.getTopic(topicId); }
 
     @GetMapping("/promotor/{id}")
     public List<Topic> getTopicsFromPromotor(@PathVariable int id){

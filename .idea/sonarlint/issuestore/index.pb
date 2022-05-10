@@ -3,8 +3,6 @@
 Mproject/src/main/java/com/example/project/student/Topic_choiceRepository.java,8\2\8264b35ec51a2624af7433ca5b99dd5810b869d5
 s
 Cproject/src/main/java/com/example/project/student/Topic_choice.java,c\7\c7e96b8607b560d3d925639181ac7307328a2364
-u
-Eproject/src/main/java/com/example/project/student/StudentService.java,d\2\d2082d8ba635d80e684b6287c394a63f597db735
 q
 Aproject/src/main/java/com/example/project/ProjectApplication.java,a\2\a2627d3d6f4bcc4a822c53ea67be5ed6ade9b2cf
 t

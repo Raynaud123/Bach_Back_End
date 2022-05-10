@@ -1,5 +1,7 @@
 package com.example.project.student;
 
+import com.example.project.exceptions.IdNotFoundRequestException;
+import com.example.project.exceptions.NietApprovedRequestException;
 import com.example.project.topic.Topic;
 import com.example.project.topic.TopicService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,11 +59,11 @@ public class StudentController {
     }
 
     @PutMapping(path = "/{id}/submitpreferrencetopic/{topicid}")
-    public void setPreferenceTopic(@PathVariable Long id, @PathVariable Long topicid) { studentService.setPreferrence(id, topicid);
+    public void setPreferenceTopic(@PathVariable Long id, @PathVariable Long topicid) throws NietApprovedRequestException, IdNotFoundRequestException { studentService.setPreferrence(id, topicid);
     }
 
     @PutMapping(path = "/{id}/updatetop3/{topic1id}/{topic2id}/{topic3id}")
-    public void setTop3(@PathVariable Long id, @PathVariable Long topic1id, @PathVariable Long topic2id, @PathVariable Long topic3id) {
+    public void setTop3(@PathVariable Long id, @PathVariable Long topic1id, @PathVariable Long topic2id, @PathVariable Long topic3id) throws NietApprovedRequestException, IdNotFoundRequestException {
         studentService.setTop3(id, topicService.getTopic(topic1id),topicService.getTopic(topic2id),topicService.getTopic(topic3id));
     }
 //    @GetMapping("/topics/{topic_id}")

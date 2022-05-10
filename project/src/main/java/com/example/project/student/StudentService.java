@@ -1,6 +1,8 @@
 package com.example.project.student;
 
 import com.example.project.appuser.AppUserRepository;
+import com.example.project.exceptions.IdNotFoundRequestException;
+import com.example.project.exceptions.NietApprovedRequestException;
 import com.example.project.topic.Topic;
 import com.example.project.topic.TopicRepository;
 import com.example.project.topic.TopicService;
@@ -53,7 +55,7 @@ public class StudentService {
         return false;
     }
 
-    public void setPreferrence(Long id, Long topicid) {
+    public void setPreferrence(Long id, Long topicid) throws NietApprovedRequestException, IdNotFoundRequestException {
         System.out.println("Student id: " + id + " and topicid: " + topicid);
         Topic t = topicService.getTopic(topicid);
         for(Student s: studentRepository.findAll()){

@@ -2,6 +2,8 @@ package com.example.project.topic;
 
 import com.example.project.appuser.AppUser;
 import com.example.project.appuser.AppUserRepository;
+import com.example.project.exceptions.IdNotFoundRequestException;
+import com.example.project.exceptions.NietApprovedRequestException;
 import com.example.project.keyword.Keyword;
 import com.example.project.keyword.KeywordRepository;
 import com.example.project.promotor.PromotorRepository;
@@ -102,14 +104,25 @@ public class TopicService {
     }
 
 
-    public Topic getTopic(Long id) {
-        List<Topic> all = topicRepository.findAll();
-        for(Topic top: all){
-            if(Objects.equals(top.getTopic_id(), id)){
-                return top;
+    public Topic getTopic(Long id) throws IdNotFoundRequestException, NietApprovedRequestException {
+        if(topicRepository.findById(id).isPresent()){
+            if(topicRepository.findById(id).get().getApproved_topic() && !topicRepository.findById(id).get().getHide_topic()){
+                return topicRepository.findById(id).get();
+            }else {
+                throw new NietApprovedRequestException("Je bent niet approved");
             }
+        }else {
+            throw new IdNotFoundRequestException("Dit id: "+ id +" is niet gevonden");
         }
-        return null;
+
+
+//        List<Topic> all = topicRepository.findAll();
+//        for(Topic top: all){
+//            if(Objects.equals(top.getTopic_id(), id)){
+//                return top;
+//            }
+//        }
+//        return null;
     }
 
     public Topic getTopicByString(String topicName) {
