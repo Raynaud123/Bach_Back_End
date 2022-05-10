@@ -26,9 +26,15 @@ public class TopicProviderController {
         return topicProviderService.findAll();
     }
 
+
     @GetMapping(path = "/{id}")
-    public TopicProvider getById(@PathVariable long id) throws NietApprovedRequestException, IdNotFoundRequestException {
-        return topicProviderService.findById(id).get();
+    public TopicProvider getById(@PathVariable long id) throws IdNotFoundRequestException {
+        return topicProviderService.findById(id);
+    }
+
+    @GetMapping(path = "/approved/{id}")
+    public TopicProvider getByHidedId(@PathVariable long id) throws NietApprovedRequestException, IdNotFoundRequestException {
+        return topicProviderService.findByNotHidedId(id).get();
     }
 
     @PostMapping
