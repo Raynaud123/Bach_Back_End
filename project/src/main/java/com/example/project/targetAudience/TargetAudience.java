@@ -26,14 +26,14 @@ public class TargetAudience {
     private Campus campus;
     @OneToOne(cascade = CascadeType.ALL)
     private Course course;
-    private Boolean hide_targetAudience;
+    private Boolean hide;
 
 
     public TargetAudience(Long targetAudience_id, Campus campus, Course course, Boolean hide_targetAudience) {
         this.targetAudience_id = targetAudience_id;
         this.campus = campus;
         this.course = course;
-        this.hide_targetAudience = hide_targetAudience;
+        this.hide = hide_targetAudience;
     }
 
 //    public void addCampus(Campus c){
@@ -67,10 +67,10 @@ public class TargetAudience {
     }
 
     public Boolean getHide_targetAudience() {
-        return hide_targetAudience;
+        return hide;
     }
 
     public void setHide_targetAudience(Boolean hide_targetAudience) {
-        this.hide_targetAudience = hide_targetAudience;
+        this.hide = hide_targetAudience;
     }
 }
