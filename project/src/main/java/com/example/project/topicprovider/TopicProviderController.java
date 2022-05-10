@@ -34,7 +34,7 @@ public class TopicProviderController {
 
     @GetMapping(path = "/approved/{id}")
     public TopicProvider getByHidedId(@PathVariable long id) throws NietApprovedRequestException, IdNotFoundRequestException {
-        return topicProviderService.findByNotHidedId(id).get();
+        return topicProviderService.findByNotHidedId(id);
     }
 
     @PostMapping

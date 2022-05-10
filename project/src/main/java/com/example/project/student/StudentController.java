@@ -43,6 +43,11 @@ public class StudentController {
         return studentService.findAllStudents();
     }
 
+    @GetMapping(path = "/hided/all")
+    public List<Student> getAllNotHidedStudents() {
+        return studentService.findAllNotHidedStudents();
+    }
+
     @GetMapping(path = "/{id}/preferred/all")
     public List<Topic> getAllPreferredTopics(@PathVariable long id) {
         return studentService.findAllPreferredTopics(id);

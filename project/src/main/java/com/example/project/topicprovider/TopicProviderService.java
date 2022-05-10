@@ -55,11 +55,11 @@ public class TopicProviderService {
         return null;
     }
 
-    public Optional<TopicProvider> findByNotHidedId(long id) throws NietApprovedRequestException, IdNotFoundRequestException {
+    public TopicProvider findByNotHidedId(long id) throws NietApprovedRequestException, IdNotFoundRequestException {
         Optional<TopicProvider> topic = topicProviderRepository.findById(id);
         if(topic.isPresent()){
             if(topic.get().isApproved()){
-                return topic;
+                return topic.get();
             }else{
                 throw new NietApprovedRequestException("Topicprovider met " + id + " is niet approved");
             }

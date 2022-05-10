@@ -134,4 +134,16 @@ public class StudentService {
     public Optional<Student> findStudent(long id) {
         return studentRepository.findById(id);
     }
+
+    public List<Student> findAllNotHidedStudents() {
+        List<Student> all = studentRepository.findAll();
+        List<Student> returnStu = new ArrayList<>();
+
+        for(Student s: all){
+            if(!s.getHide()){
+                returnStu.add(s);
+            }
+        }
+        return returnStu;
+    }
 }

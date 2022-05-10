@@ -65,6 +65,7 @@ public class TopicService {
     }
 
     public List<Topic> findAllApprovedTopics() {
+        //Nog checken als topicprovider approved is.
         List<Topic> all = topicRepository.findAll();
         ArrayList<Topic> app = new ArrayList<>();
         for(Topic top: all){
@@ -106,7 +107,8 @@ public class TopicService {
 
     public Topic getTopic(Long id) throws IdNotFoundRequestException, NietApprovedRequestException {
         if(topicRepository.findById(id).isPresent()){
-            if(topicRepository.findById(id).get().getApproved_topic() && !topicRepository.findById(id).get().getHide_topic()){
+            //Nog checken als topicprovider is enabled.
+            if(Boolean.TRUE.equals(topicRepository.findById(id).get().getApproved_topic()) && Boolean.TRUE.equals(!topicRepository.findById(id).get().getHide_topic())){
                 return topicRepository.findById(id).get();
             }else {
                 throw new NietApprovedRequestException("Je bent niet approved");
