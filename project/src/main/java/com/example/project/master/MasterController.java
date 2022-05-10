@@ -1,5 +1,6 @@
-package com.example.project.master;
+package com.example.project.Master;
 
+import com.example.project.exceptions.IdNotFoundRequestException;
 import com.example.project.notification.Notification;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -37,14 +38,14 @@ public class MasterController {
 
     @PutMapping(path = "/{masterid}/approve/{approve}/topic/{topicid}")
     @ResponseBody
-    public void approveTopic(@PathVariable Long masterid,@PathVariable Long topicid, @PathVariable Boolean approve){masterService.approveTopicById(masterid,topicid,approve);}
+    public void approveTopic(@PathVariable Long masterid,@PathVariable Long topicid, @PathVariable Boolean approve) throws IdNotFoundRequestException {masterService.approveTopicById(masterid,topicid,approve);}
 
     @PutMapping(path = "/{masterid}/approve/{approve}/promotor/{promotorid}")
     @ResponseBody
-    public void approvePromotor(@PathVariable Long masterid,@PathVariable Long promotorid, @PathVariable Boolean approve){masterService.approvePromotorById(masterid,promotorid,approve);}
+    public void approvePromotor(@PathVariable Long masterid,@PathVariable Long promotorid, @PathVariable Boolean approve) throws IdNotFoundRequestException {masterService.approvePromotorById(masterid,promotorid,approve);}
 
     @PutMapping(path = "/{masterid}/approve/{approve}/topicprovider/{companyid}")
     @ResponseBody
-    public void approveCompany(@PathVariable Long masterid,@PathVariable Long companyid, @PathVariable Boolean approve){masterService.approveCompanyById(masterid,companyid,approve);}
+    public void approveCompany(@PathVariable Long masterid,@PathVariable Long companyid, @PathVariable Boolean approve) throws IdNotFoundRequestException {masterService.approveCompanyById(masterid,companyid,approve);}
 
 }

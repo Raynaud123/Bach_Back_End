@@ -41,8 +41,8 @@ public class Company extends TopicProvider implements Serializable {
         this.emailMentor = emailMentor;
     }
 
-    public Company(String username, String password, String email, String phoneNumber, AppUserRole appUserRole, Boolean locked, Boolean enabled, String country, String city, String streetName, Integer postNumber, Integer streetNumber, boolean approved, Boolean isCompany, String name, Campus campus, List<Topic> topic_list, int phoneContact, String firstNameMentor, String lastNameMentor, String emailMentor) {
-        super(username, password, email, phoneNumber, appUserRole, locked, enabled, country, city, streetName, postNumber, streetNumber, approved, isCompany, name, campus, topic_list);
+    public Company(String username, String password, String email, String phoneNumber, AppUserRole appUserRole,  String country, String city, String streetName, Integer postNumber, Integer streetNumber, boolean approved, Boolean isCompany, String name, Campus campus, List<Topic> topic_list, int phoneContact, String firstNameMentor, String lastNameMentor, String emailMentor) {
+        super(username, password, email, phoneNumber, appUserRole,country, city, streetName, postNumber, streetNumber, approved, isCompany, name, campus, topic_list);
         this.phoneContact = phoneContact;
         this.firstNameMentor = firstNameMentor;
         this.lastNameMentor = lastNameMentor;
@@ -50,7 +50,7 @@ public class Company extends TopicProvider implements Serializable {
     }
 
     public Company(Long id, String username, String password, String email, String phoneNumber, AppUserRole appUserRole, Boolean locked, Boolean enabled, String country, String city, String streetName, Integer postNumber, Integer streetNumber, boolean approved, Boolean isCompany, String name, Campus campus, List<Topic> topic_list, int phoneContact, String firstNameMentor, String lastNameMentor, String emailMentor) {
-        super(id, username, password, email, phoneNumber, appUserRole, locked, enabled, country, city, streetName, postNumber, streetNumber, approved, isCompany, name, campus, topic_list);
+        super(id, username, password, email, phoneNumber, appUserRole, country, city, streetName, postNumber, streetNumber, approved, isCompany, name, campus, topic_list);
         this.phoneContact = phoneContact;
         this.firstNameMentor = firstNameMentor;
         this.lastNameMentor = lastNameMentor;

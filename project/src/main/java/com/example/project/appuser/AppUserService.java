@@ -1,6 +1,7 @@
 package com.example.project.appuser;
 
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -15,6 +16,7 @@ import java.util.Optional;
 @AllArgsConstructor
 public class AppUserService implements UserDetailsService {
 
+    @Autowired
     private final AppUserRepository appUserRepository;
  //   private final org.springframework.security.crypto.password.PasswordEncoder PasswordEncoder;
 
@@ -73,8 +75,6 @@ public class AppUserService implements UserDetailsService {
     }
 
 
-    public int enableAppUser(String email) {
-        return appUserRepository.enableAppUser(email);
-    }
+
 
 }

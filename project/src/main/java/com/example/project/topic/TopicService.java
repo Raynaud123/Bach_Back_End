@@ -123,11 +123,17 @@ public class TopicService {
     }
 
     public List<Topic> getTopicPromotorId(long promotor_id) {
-//        if (!promotorRepository.existsById(promotor_id)) {
-//            return null;
-//        }
 
-         return topicRepository.findByPromotor(promotorRepository.findById(promotor_id));
+        List<Topic> allTopics = topicRepository.findByPromotor(promotorRepository.findById(promotor_id));
+        List<Topic> returnTopics = new ArrayList<Topic>();
+
+        for (Topic p: allTopics){
+            if(p.getApproved_topic() && !p.getHide_topic()){
+                returnTopics.add(p);
+            }
+        }
+
+         return returnTopics;
     }
 
     public Topic boostStudent(int id, BoostStudentRequest request) {

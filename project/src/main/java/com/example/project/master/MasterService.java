@@ -1,6 +1,7 @@
-package com.example.project.master;
+package com.example.project.Master;
 
 import com.example.project.appuser.AppUserRepository;
+import com.example.project.exceptions.IdNotFoundRequestException;
 import com.example.project.notification.Notification;
 import com.example.project.notification.NotificationObjectSort;
 import com.example.project.promotor.Promotor;
@@ -9,6 +10,7 @@ import com.example.project.topic.Topic;
 import com.example.project.topic.TopicRepository;
 import com.example.project.topicprovider.TopicProvider;
 import com.example.project.topicprovider.TopicProviderRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -16,10 +18,15 @@ import java.util.*;
 @Service
 public class MasterService {
 
+    @Autowired
     private final MasterRepository masterRepository;
+    @Autowired
     private final AppUserRepository appUserRepository;
+    @Autowired
     private final TopicRepository topicRepository;
+    @Autowired
     private final PromotorRepository promotorRepository;
+    @Autowired
     private final TopicProviderRepository topicProviderRepository;
 
 
@@ -69,7 +76,7 @@ public class MasterService {
         return null;
     }
 
-    public void approveTopicById(Long masterid, Long topicid, Boolean approve) {
+    public void approveTopicById(Long masterid, Long topicid, Boolean approve) throws IdNotFoundRequestException {
 //        System.out.println("Masterid: " + masterid);
 //        System.out.println("Topicid: " + topicid);
 //        System.out.println("Approve: " + approve);
@@ -94,11 +101,11 @@ public class MasterService {
             }
             topicRepository.save(t);
         }else {
-            throw new IllegalStateException();
+            throw new IdNotFoundRequestException("Id " + topicid + "niet gevonden");
         }
     }
 
-    public void approvePromotorById(Long masterid, Long promotorid, Boolean approve) {
+    public void approvePromotorById(Long masterid, Long promotorid, Boolean approve) throws IdNotFoundRequestException {
 //        System.out.println("Masterid: " + masterid);
 //        System.out.println("promotorid: " + promotorid);
 //        System.out.println("Approve: " + approve);
@@ -123,11 +130,11 @@ public class MasterService {
             }
             promotorRepository.save(p);
         }else {
-            throw new IllegalStateException();
+            throw new IdNotFoundRequestException("Id " + promotorid + "niet gevonden");
         }
     }
 
-    public void approveCompanyById(Long masterid, Long companyid, Boolean approve) {
+    public void approveCompanyById(Long masterid, Long companyid, Boolean approve) throws IdNotFoundRequestException {
 //        System.out.println("Masterid: " + masterid);
 //        System.out.println("companyid: " + companyid);
 //        System.out.println("Approve: " + approve);
@@ -152,7 +159,7 @@ public class MasterService {
             }
             topicProviderRepository.save(t);
         }else {
-            throw new IllegalStateException();
+            throw new IdNotFoundRequestException("Id " + masterid + "niet gevonden");
         }
     }
 }

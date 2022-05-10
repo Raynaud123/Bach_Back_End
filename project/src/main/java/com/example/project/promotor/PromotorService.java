@@ -21,7 +21,7 @@ public class PromotorService {
         ArrayList<Promotor> pwt = new ArrayList<>();
 
         for(Promotor p: all){
-            if(p.getApproved() != null && p.getTopic() != null && p.getEnabled()){
+            if(p.isApproved() && p.getTopic() != null){
                 pwt.add(p);
             }
         }
