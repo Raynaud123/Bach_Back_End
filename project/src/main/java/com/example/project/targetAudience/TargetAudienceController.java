@@ -30,5 +30,9 @@ public class TargetAudienceController {
     @GetMapping(path = "/all")
     public List<TargetAudience> findAllTargetAudiences() { return targetAudienceService.findAll(); }
 
+    @GetMapping(path = "/hided/all")
+    public List<TargetAudience> findAllNotHidedTargetAudiences() { return targetAudienceService.findAllNotHided(); }
+
+
     public TargetAudience getTargetAudience(long i) { return targetAudienceService.findById(i); }
 }

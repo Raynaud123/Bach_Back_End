@@ -2,6 +2,7 @@ package com.example.project.topic;
 
 import com.example.project.appuser.AppUser;
 import com.example.project.appuser.AppUserRepository;
+import com.example.project.appuser.AppUserRole;
 import com.example.project.exceptions.IdNotFoundRequestException;
 import com.example.project.exceptions.NietApprovedRequestException;
 import com.example.project.keyword.Keyword;
@@ -50,31 +51,50 @@ public class TopicService {
         for(int i = 0; i < request.targetAudience.length; i++){
             targetAudiences.add(targetAudienceRepository.getById(request.targetAudience[i]));
         }
-        Optional<AppUser> tp = appUserRepository.findById(request.provider_id);
+//        Optional<AppUser> tp = appUserRepository.findById(request.provider_id);
         if(keywords.isEmpty() && targetAudiences.isEmpty()){
-            topic = new Topic(request.topicName, request.description_topic, request.aantal_studenten,tp.get());
+            topic = new Topic(request.topicName, request.description_topic, request.aantal_studenten,request.provider_id);
         }
         else if(keywords.isEmpty()){
-            topic = new Topic(request.topicName, request.description_topic, request.aantal_studenten,null,targetAudiences,tp.get());
+            topic = new Topic(request.topicName, request.description_topic, request.aantal_studenten,null,targetAudiences,request.provider_id);
         }else if(targetAudiences.isEmpty()){
-            topic = new Topic(request.topicName, request.description_topic, request.aantal_studenten,keywords,null,tp.get());
+            topic = new Topic(request.topicName, request.description_topic, request.aantal_studenten,keywords,null,request.provider_id);
         }else{
-            topic = new Topic(request.topicName,request.description_topic,request.aantal_studenten, keywords, targetAudiences,tp.get());
+            topic = new Topic(request.topicName,request.description_topic,request.aantal_studenten, keywords, targetAudiences,request.provider_id);
         }
         topicRepository.save(topic);
     }
 
     public List<Topic> findAllApprovedTopics() {
-        //Nog checken als topicprovider approved is.
         List<Topic> all = topicRepository.findAll();
         ArrayList<Topic> app = new ArrayList<>();
         for(Topic top: all){
-            if(top.getApproved_topic() != null && top.getApproved_topic()){
-                app.add(top);
+
+            AppUser test = appUserRepository.findById(top.getProvider()).get();
+            if(test.getAppUserRole() == AppUserRole.PROMOTOR){
+                if(Boolean.TRUE.equals(top.getApproved_topic()) && Boolean.TRUE.equals(!top.getHide_topic())){
+                    app.add(top);
+                }
+            }else if(test.getAppUserRole() == AppUserRole.COMPANY){
+                TopicProvider topicP = providerRepository.findById(top.getProvider()).get();
+                if(topicP.getCompany()){
+                    if(Boolean.TRUE.equals(top.getApproved_topic()) && Boolean.TRUE.equals(!top.getHide_topic()) && topicP.isApproved()){
+                        app.add(top);
+                    }
+                }else{
+                    if(Boolean.TRUE.equals(top.getApproved_topic()) && Boolean.TRUE.equals(!top.getHide_topic())){
+                        app.add(top);
+                    }
+                }
             }
+
         }
         return app;
-    }
+//            if(top.getApproved_topic() != null && top.getApproved_topic()){
+//                app.add(top);
+//            }
+        }
+
 
     public String updateApprove(UpdateTopicApproveRequest request) {
         Long id = request.getTopic_id();
@@ -108,23 +128,40 @@ public class TopicService {
     public Topic getTopic(Long id) throws IdNotFoundRequestException, NietApprovedRequestException {
         if(topicRepository.findById(id).isPresent()){
             //Nog checken als topicprovider is enabled.
-            if(Boolean.TRUE.equals(topicRepository.findById(id).get().getApproved_topic()) && Boolean.TRUE.equals(!topicRepository.findById(id).get().getHide_topic())){
-                return topicRepository.findById(id).get();
-            }else {
-                throw new NietApprovedRequestException("Je bent niet approved");
+            Topic t = topicRepository.findById(id).get();
+            AppUser test = appUserRepository.findById(t.getProvider()).get();
+            if(test.getAppUserRole() == AppUserRole.PROMOTOR){
+                if(Boolean.TRUE.equals(t.getApproved_topic()) && Boolean.TRUE.equals(!t.getHide_topic())){
+                    return t;
+                }else {
+                    throw new NietApprovedRequestException("Je bent niet approved");
+                }
+            }else if(test.getAppUserRole() == AppUserRole.COMPANY){
+                    TopicProvider topicP = providerRepository.findById(t.getProvider()).get();
+                    if(topicP.getCompany()){
+                        if(Boolean.TRUE.equals(t.getApproved_topic()) && Boolean.TRUE.equals(!t.getHide_topic()) && topicP.isApproved()){
+                            return t;
+                        }else {
+                            throw new NietApprovedRequestException("Je bent niet approved");
+                        }
+                    }else{
+                        if(Boolean.TRUE.equals(t.getApproved_topic()) && Boolean.TRUE.equals(!t.getHide_topic())){
+                            return t;
+                        }else {
+                            throw new NietApprovedRequestException("Je bent niet approved");
+                        }
+                    }
             }
         }else {
             throw new IdNotFoundRequestException("Dit id: "+ id +" is niet gevonden");
         }
-
-
 //        List<Topic> all = topicRepository.findAll();
 //        for(Topic top: all){
 //            if(Objects.equals(top.getTopic_id(), id)){
 //                return top;
 //            }
 //        }
-//        return null;
+        return null;
     }
 
     public Topic getTopicByString(String topicName) {

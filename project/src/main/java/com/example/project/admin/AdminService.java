@@ -2,7 +2,7 @@ package com.example.project.admin;
 
 import com.example.project.keyword.Keyword;
 import com.example.project.keyword.KeywordRepository;
-import com.example.project.master.MasterRepository;
+import com.example.project.Master.MasterRepository;
 import com.example.project.phase.Phase;
 import com.example.project.phase.PhaseRepository;
 import com.example.project.promotor.Promotor;

@@ -4,6 +4,7 @@ import com.example.project.topic.Topic;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
@@ -34,4 +35,16 @@ public class TargetAudienceService {
     }
 
 
+    public List<TargetAudience> findAllNotHided() {
+        List<TargetAudience> all = targetAudienceRepository.findAll();
+        List<TargetAudience> returnTa = new ArrayList<>();
+
+        for (TargetAudience t: all){
+            if(Boolean.FALSE.equals(t.getHide())){
+                returnTa.add(t);
+            }
+        }
+        return returnTa;
+
+    }
 }
