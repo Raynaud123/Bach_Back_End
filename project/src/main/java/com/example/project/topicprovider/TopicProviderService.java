@@ -1,6 +1,8 @@
 package com.example.project.topicprovider;
 
 
+import com.example.project.exceptions.IdNotFoundException;
+import com.example.project.exceptions.NietApprovedException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,8 +21,17 @@ public class TopicProviderService {
     }
 
 
-    public Optional<TopicProvider> findById(long id) {
-        return topicProviderRepository.findById(id);
+    public Optional<TopicProvider> findById(long id) throws IdNotFoundException, NietApprovedException {
+
+        Optional<TopicProvider> topic = topicProviderRepository.findById(id);
+        if(topic.isPresent()){
+            if(topic.get().isApproved()){
+                return topic;
+            }else{
+                throw new NietApprovedException("Topicprovider met " + id + " is niet approved");
+            }
+        }
+        throw new IdNotFoundException("Topicprovider met " + id + " niet gevonden");
     }
 
     public List<TopicProvider> findAll() {

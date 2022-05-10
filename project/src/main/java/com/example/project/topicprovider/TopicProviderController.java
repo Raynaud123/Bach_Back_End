@@ -1,5 +1,7 @@
 package com.example.project.topicprovider;
 
+import com.example.project.exceptions.IdNotFoundException;
+import com.example.project.exceptions.NietApprovedException;
 import com.example.project.topic.Topic;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -27,7 +29,7 @@ public class TopicProviderController {
     }
 
     @GetMapping(path = "/{id}")
-    public TopicProvider getById(@PathVariable long id) {
+    public TopicProvider getById(@PathVariable long id) throws NietApprovedException, IdNotFoundException {
         return topicProviderService.findById(id).get();
     }
 
