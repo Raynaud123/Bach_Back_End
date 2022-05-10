@@ -1,5 +1,8 @@
 package com.example.project.admin;
 
+import com.example.project.keyword.Keyword;
+import com.example.project.keyword.KeywordRepository;
+import com.example.project.master.MasterRepository;
 import com.example.project.phase.Phase;
 import com.example.project.phase.PhaseRepository;
 import com.example.project.promotor.Promotor;
@@ -33,6 +36,10 @@ public class AdminService {
     private PromotorRepository promotorRepository;
     @Autowired
     private StudentRepository studentRepository;
+    @Autowired
+    private KeywordRepository keywordRepository;
+    @Autowired
+    private MasterRepository masterRepository;
 
     public List<TopicProvider> findAllTopicProviders() {
         return topicProviderRepository.findAll();
@@ -143,5 +150,108 @@ public class AdminService {
 
     public Optional<Admin> findAdmin(long id) {
         return repository.findById(id);
+    }
+
+    public void createTargetAudience(TargetAudience taBody) {
+        System.out.print("taBody: getCampus_name:" + taBody.getCampus().getCampus_name()
+                + " getCity: " + taBody.getCampus().getCity()
+                + " getCountry: " + taBody.getCampus().getCountry()
+                + " getPostNumber: " + taBody.getCampus().getPostNumber()
+                + " getStreetName: " + taBody.getCampus().getStreetName()
+                + " getStreetNumber: " + taBody.getCampus().getStreetNumber()
+                + " getCourse_name: " + taBody.getCourse().getCourse_name()
+                + " getAbbriviationName: " + taBody.getCourse().getAbbriviationName()
+                + " hide: " + taBody.getHide());
+        TargetAudience ta = new TargetAudience(
+                taBody.getCampus(),
+                taBody.getCourse(),
+                taBody.getHide()
+        );
+        targetAudienceRepository.save(ta);
+    }
+
+    public void updateTargetAudienceWithBody(long taid, TargetAudience taBody) {
+        System.out.print("taBody: getCampus_name:" + taBody.getCampus().getCampus_name()
+                + " getCity: " + taBody.getCampus().getCity()
+                + " getCountry: " + taBody.getCampus().getCountry()
+                + " getPostNumber: " + taBody.getCampus().getPostNumber()
+                + " getStreetName: " + taBody.getCampus().getStreetName()
+                + " getStreetNumber: " + taBody.getCampus().getStreetNumber()
+                + " getCourse_name: " + taBody.getCourse().getCourse_name()
+                + " getAbbriviationName: " + taBody.getCourse().getAbbriviationName()
+                + " hide: " + taBody.getHide());
+        if(targetAudienceRepository.findById(taid).isPresent()){
+            TargetAudience ta = targetAudienceRepository.findById(taid).get();
+            if(!Objects.equals(taBody.getCampus().getCampus_name(), "")){
+                System.out.println(ta.getCampus().getCampus_name() + " en " + taBody.getCampus().getCampus_name());
+                ta.getCampus().setCampus_name(taBody.getCampus().getCampus_name());
+            }
+            if(!Objects.equals(taBody.getCampus().getCountry(), "")){
+                System.out.println(ta.getCampus().getCountry() + " en " + taBody.getCampus().getCountry());
+                ta.getCampus().setCountry(taBody.getCampus().getCountry());
+            }
+            if(!Objects.equals(taBody.getCampus().getCity(), "")){
+                System.out.println(ta.getCampus().getCity() + " en " + taBody.getCampus().getCity());
+                ta.getCampus().setCity(taBody.getCampus().getCity());
+            }
+            if(!Objects.equals(taBody.getCampus().getStreetName(), "")){
+                System.out.println(ta.getCampus().getStreetName() + " en " + taBody.getCampus().getStreetName());
+                ta.getCampus().setStreetName(taBody.getCampus().getStreetName());
+            }
+            if(!Objects.equals(taBody.getCourse().getCourse_name(), "")){
+                System.out.println(ta.getCourse().getCourse_name() + " en " + taBody.getCourse().getCourse_name());
+                ta.getCourse().setCourse_name(taBody.getCourse().getCourse_name());
+            }
+            if(!Objects.equals(taBody.getCourse().getAbbriviationName(), "")){
+                System.out.println(ta.getCourse().getAbbriviationName() + " en " + taBody.getCourse().getAbbriviationName());
+                ta.getCourse().setAbbriviationName(taBody.getCourse().getAbbriviationName());
+            }
+            if(!Objects.equals(taBody.getCampus().getPostNumber(), -1)){
+                System.out.println(ta.getCampus().getPostNumber() + " en " + taBody.getCampus().getPostNumber());
+                ta.getCampus().setPostNumber(taBody.getCampus().getPostNumber());
+            }
+            if(!Objects.equals(taBody.getCampus().getStreetNumber(), -1)){
+                System.out.println(ta.getCampus().getStreetNumber() + " en " + taBody.getCampus().getStreetNumber());
+                ta.getCampus().setStreetNumber(taBody.getCampus().getStreetNumber());
+            }
+            if(!Objects.equals(taBody.getHide(), null)){
+                System.out.println(ta.getHide() + " en " + taBody.getHide());
+                ta.setHide(taBody.getHide());
+            }
+            targetAudienceRepository.save(ta);
+        }else {
+            throw new IllegalStateException();
+        }
+    }
+
+    public void deleteTargetAudience(TargetAudience ta) {
+        targetAudienceRepository.delete(ta);
+    }
+
+    public void createKeyword(Keyword kBody) {
+        Keyword k = new Keyword(
+                kBody.getKeyword_name(),
+                kBody.getHide()
+        );
+        keywordRepository.save(k);
+    }
+
+    public void updateKeywordWithBody(long kid, Keyword keywordBody) {
+        if(keywordRepository.findById(kid).isPresent()){
+            Keyword k = keywordRepository.findById(kid).get();
+            if(!Objects.equals(keywordBody.getKeyword_name(), "")){
+                k.setKeyword_name(keywordBody.getKeyword_name());
+            }
+            if(!Objects.equals(keywordBody.getHide(), null)){
+                k.setHide(keywordBody.getHide());
+            }
+            keywordRepository.save(k);
+        }else {
+            throw new IllegalStateException();
+        }
+    }
+
+    public void deleteKeyword(Keyword k) {
+        keywordRepository.delete(k);
     }
 }

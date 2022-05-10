@@ -250,6 +250,7 @@ public class AppUser implements UserDetails {
         this.notification_list = notification_list;
     }
 
+
     @Override
     public String toString() {
         return "AppUser{" +

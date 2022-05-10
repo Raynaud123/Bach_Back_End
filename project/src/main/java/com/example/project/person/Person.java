@@ -100,5 +100,4 @@ public class Person extends AppUser implements Serializable {
         this.targetAudience = targetAudience;
     }
 
-
 }

@@ -24,8 +24,20 @@ public class Master extends Person implements Serializable {
     public Master() {
     }
 
+    public Master(String firstName, String lastName, Boolean approved, List<TargetAudience> targetAudience) {
+        super(firstName, lastName, approved, targetAudience);
+    }
+
+    public Master(String username, String password, String email, String phoneNumber, AppUserRole appUserRole, Boolean locked, Boolean enabled, String country, String city, String streetName, Integer postNumber, Integer streetNumber, String firstName, String lastName, Boolean approved, List<TargetAudience> targetAudience) {
+        super(username, password, email, phoneNumber, appUserRole, locked, enabled, country, city, streetName, postNumber, streetNumber, firstName, lastName, approved, targetAudience);
+    }
+
     public Master(Long id, String username, String password, String email, String phoneNumber, AppUserRole appUserRole, Boolean locked, Boolean enabled, String country, String city, String streetName, Integer postNumber, Integer streetNumber, String firstName, String lastName, Boolean approved, List<TargetAudience> targetAudience) {
         super(id, username, password, email, phoneNumber, appUserRole, locked, enabled, country, city, streetName, postNumber, streetNumber, firstName, lastName, approved, targetAudience);
+    }
+
+    public Master(String username, String password, String email, String firstName, String lastName, Boolean approved, List<TargetAudience> targetAudience) {
+        super(username, password, email, firstName, lastName, approved, targetAudience);
     }
 
     public Master(Long id, String username, String password, String email, String phoneNumber, AppUserRole appUserRole, Boolean locked, Boolean enabled, String country, String city, String streetName, Integer postNumber, Integer streetNumber, List<Notification> notification_list, String firstName, String lastName, Boolean approved, List<TargetAudience> targetAudience) {

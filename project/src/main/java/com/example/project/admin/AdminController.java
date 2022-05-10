@@ -1,6 +1,7 @@
 package com.example.project.admin;
 
 
+import com.example.project.keyword.Keyword;
 import com.example.project.phase.Phase;
 import com.example.project.student.Student;
 import com.example.project.targetAudience.TargetAudience;
@@ -63,5 +64,29 @@ public class AdminController {
     @PostMapping(path = "/delete/phase")
     @ResponseBody
     public void deleteOldPhase(@RequestBody Phase phaseBody) throws ParseException {service.deletePhase(phaseBody);}
+
+    @PostMapping(path = "/update/targetaudience/{taid}")
+    @ResponseBody
+    public void updateTargetAudience(@PathVariable long taid,@RequestBody TargetAudience TABody) throws ParseException {service.updateTargetAudienceWithBody(taid,TABody);}
+
+    @PostMapping(path = "/create/targetaudience")
+    @ResponseBody
+    public void createNewTargetAudience(@RequestBody TargetAudience TABody) throws ParseException {service.createTargetAudience(TABody);}
+
+    @PostMapping(path = "/delete/targetaudience")
+    @ResponseBody
+    public void deleteOldTargetAudience(@RequestBody TargetAudience TABody) throws ParseException {service.deleteTargetAudience(TABody);}
+
+    @PostMapping(path = "/update/keywprd/{kid}")
+    @ResponseBody
+    public void updateKeyword(@PathVariable long kid,@RequestBody Keyword keywordBody) throws ParseException {service.updateKeywordWithBody(kid,keywordBody);}
+
+    @PostMapping(path = "/create/keyword")
+    @ResponseBody
+    public void createNewKeyword(@RequestBody Keyword KBody) throws ParseException {service.createKeyword(KBody);}
+
+    @PostMapping(path = "/delete/keyword")
+    @ResponseBody
+    public void deleteOldKeyword(@RequestBody Keyword KBody) throws ParseException {service.deleteKeyword(KBody);}
 
 }

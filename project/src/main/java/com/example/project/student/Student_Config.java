@@ -1,9 +1,8 @@
 //package com.example.project.student;
 //
-//import com.example.project.Master.MasterRepository;
+//import com.example.project.master.MasterRepository;
 //import com.example.project.targetAudience.TargetAudience;
 //import com.example.project.targetAudience.TargetAudienceController;
-//import com.example.project.topic.Topic;
 //import com.example.project.topic.TopicController;
 //import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.boot.CommandLineRunner;
