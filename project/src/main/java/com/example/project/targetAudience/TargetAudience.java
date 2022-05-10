@@ -29,19 +29,19 @@ public class TargetAudience {
     private Boolean hide;
 
 
-    public TargetAudience(Long targetAudience_id, Campus campus, Course course, Boolean hide_targetAudience) {
+    public TargetAudience(Long targetAudience_id, Campus campus, Course course, Boolean hide) {
         this.targetAudience_id = targetAudience_id;
         this.campus = campus;
         this.course = course;
-        this.hide = hide_targetAudience;
+        this.hide = hide;
     }
 
-//    public void addCampus(Campus c){
-//        campus.add(c);
-//    }
-//    public void addCourse(Course c){
-//        course.add(c);
-//    }
+    public TargetAudience(Campus campus, Course course, Boolean hide) {
+        this.campus = campus;
+        this.course = course;
+        this.hide = hide;
+    }
+
     public Long getTargetAudience_id() {
         return targetAudience_id;
     }
@@ -66,11 +66,11 @@ public class TargetAudience {
         this.course = course;
     }
 
-    public Boolean getHide_targetAudience() {
+    public Boolean getHide() {
         return hide;
     }
 
-    public void setHide_targetAudience(Boolean hide_targetAudience) {
-        this.hide = hide_targetAudience;
+    public void setHide(Boolean hide) {
+        this.hide = hide;
     }
 }

@@ -30,4 +30,9 @@ public class Keyword {
         this.keyword_name = keyword_name;
         this.hide = hide;
     }
+
+    public Keyword(String keyword_name, Boolean hide) {
+        this.keyword_name = keyword_name;
+        this.hide = hide;
+    }
 }
