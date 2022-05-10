@@ -4,17 +4,20 @@ import com.example.project.appuser.AppUser;
 import com.example.project.appuser.AppUserRepository;
 import com.example.project.appuser.AppUserRole;
 import com.example.project.exceptions.IdNotFoundRequestException;
+import com.example.project.exceptions.NietApprovedException;
 import com.example.project.exceptions.NietApprovedRequestException;
+import com.example.project.exceptions.NietTop3TopicExceptionRequest;
 import com.example.project.keyword.Keyword;
 import com.example.project.keyword.KeywordRepository;
 import com.example.project.promotor.PromotorRepository;
-import com.example.project.student.Student;
-import com.example.project.student.StudentRepository;
+import com.example.project.student.*;
 import com.example.project.targetAudience.TargetAudience;
 import com.example.project.targetAudience.TargetAudienceRepository;
 import com.example.project.topicprovider.TopicProvider;
 import com.example.project.topicprovider.TopicProviderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -36,6 +39,8 @@ public class TopicService {
     private TargetAudienceRepository targetAudienceRepository;
     @Autowired
     private AppUserRepository appUserRepository;
+    @Autowired
+    Topic_choiceRepository topic_choiceRepository;
 
     public void addNewTopic(TopicPostRequest request) {
 
@@ -107,14 +112,73 @@ public class TopicService {
         else return "Topic not found";
     }
 
-    public Topic updateTopicAssignment(Long topic_id, UpdateTopicStudentsRequest request) {
-        Topic storedTopic = topicRepository.getById(topic_id);
-        Long storedID = request.getStudent_id();
-        storedTopic.addStudent(studentRepository.getById(storedID));
+    public ResponseEntity<Object> updateTopicAssignment(Long topic_id, UpdateTopicStudentsRequest request) throws NietTop3TopicExceptionRequest, IdNotFoundRequestException, NietApprovedRequestException {
+        if (topicRepository.findById(topic_id).isPresent()){
+            Topic storedTopic = topicRepository.getById(topic_id);
+            if(request.getAantalStudenten() == 1){
+                Long storedID = request.getStudent_id()[0];
+                if(studentRepository.findById(storedID).isPresent() && storedTopic.getApproved_topic()){
+                    Student s = studentRepository.findById(storedID).get();
+                    List<Topic_choice> choices = topic_choiceRepository.findAllByStudent(s);
+                    int keuze = 0;
+                    for (Topic_choice topic_choice : choices){
+                        if(topic_choice.getTopic().getTopic_id() == topic_id){
+                            keuze = topic_choice.getChoice();
+                        }
+                    }
+                    if(keuze != 0){
+                        storedTopic.addStudent(studentRepository.getById(storedID));
+                        Topic updated = topicRepository.save(storedTopic);
+                        KeuzeReturn object = new KeuzeReturn(keuze,updated);
+                        return new ResponseEntity(object, HttpStatus.OK);
+                    }else if (keuze == 0){
+                        throw new NietTop3TopicExceptionRequest("Dit is geen topic uit de top 3 van de student");
+                    }
+                }else if (!storedTopic.getApproved_topic()){
+                    throw new NietApprovedRequestException("Topic is niet approved");
+                }
+                else{
+                    throw new IdNotFoundRequestException(storedID + "is niet present in de database");
+                }
+            }else if(request.getAantalStudenten()==2){
+                Long storedIDéén = request.getStudent_id()[0];
+                Long storedIDtwee = request.getStudent_id()[1];
+                if(studentRepository.findById(storedIDéén).isPresent() && storedTopic.getApproved_topic() && studentRepository.findById(storedIDtwee).isPresent()){
+                    Student één = studentRepository.findById(storedIDéén).get();
+                    Student twee= studentRepository.findById(storedIDtwee).get();
+                    List<Topic_choice> éénchoices = topic_choiceRepository.findAllByStudent(één);
+                    int keuze = 0;
+                    for (Topic_choice topic_choice : éénchoices){
+                        if(topic_choice.getTopic().getTopic_id() == topic_id){
+                            keuze = topic_choice.getChoice();
+                        }
+                    }
+                    List<Topic_choice> choices = topic_choiceRepository.findAllByStudent(twee);
+                    int keuzetwee = 0;
+                    for (Topic_choice topic_choice : choices){
+                        if(topic_choice.getTopic().getTopic_id() == topic_id){
+                            keuzetwee = topic_choice.getChoice();
+                        }
+                    }
+                    if(keuze != 0 && keuzetwee != 0){
+                        storedTopic.addStudent(studentRepository.getById(storedIDéén));
+                        storedTopic.addStudent(studentRepository.getById(storedIDtwee));
+                        Topic updated = topicRepository.save(storedTopic);
 
-        topicRepository.save(storedTopic);
-        return storedTopic;
-    }
+                        KeuzeTweeReturn object = new KeuzeTweeReturn(keuze,keuzetwee,updated);
+                        return new ResponseEntity(object, HttpStatus.OK);
+                    }else if (keuze == 0 || keuzetwee == 0){
+                        throw new NietTop3TopicExceptionRequest("Dit is geen topic uit de top 3 van de student");
+                    }
+                }
+
+            }}
+            else {
+                throw new IdNotFoundRequestException("Topic is niet aanwezig in db");
+            }
+            return null;
+            }
+
 
     public List<Topic> findById(long id) {
         return topicRepository.findAllById(Collections.singleton(id));
@@ -129,14 +193,15 @@ public class TopicService {
         if(topicRepository.findById(id).isPresent()){
             //Nog checken als topicprovider is enabled.
             Topic t = topicRepository.findById(id).get();
-            AppUser test = appUserRepository.findById(t.getProvider()).get();
-            if(test.getAppUserRole() == AppUserRole.PROMOTOR){
-                if(Boolean.TRUE.equals(t.getApproved_topic()) && Boolean.TRUE.equals(!t.getHide_topic())){
-                    return t;
-                }else {
-                    throw new NietApprovedRequestException("Je bent niet approved");
-                }
-            }else if(test.getAppUserRole() == AppUserRole.COMPANY){
+            if(appUserRepository.findById(t.getProvider()).isPresent()){
+                AppUser test = appUserRepository.findById(t.getProvider()).get();
+                if(test.getAppUserRole() == AppUserRole.PROMOTOR){
+                    if(Boolean.TRUE.equals(t.getApproved_topic()) && Boolean.TRUE.equals(!t.getHide_topic())){
+                        return t;
+                    }else {
+                        throw new NietApprovedRequestException("Je bent niet approved");
+                    }
+                }else if(test.getAppUserRole() == AppUserRole.COMPANY){
                     TopicProvider topicP = providerRepository.findById(t.getProvider()).get();
                     if(topicP.getCompany()){
                         if(Boolean.TRUE.equals(t.getApproved_topic()) && Boolean.TRUE.equals(!t.getHide_topic()) && topicP.isApproved()){
@@ -151,7 +216,9 @@ public class TopicService {
                             throw new NietApprovedRequestException("Je bent niet approved");
                         }
                     }
+                }
             }
+
         }else {
             throw new IdNotFoundRequestException("Dit id: "+ id +" is niet gevonden");
         }

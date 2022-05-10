@@ -146,4 +146,15 @@ public class StudentService {
         }
         return returnStu;
     }
+
+    public int isPresentInTop3(Long topic_id, Student s) {
+        List<Topic_choice> choices = topic_choiceRepository.findAllByStudent(s);
+        int contains = 0;
+        for (Topic_choice topic_choice : choices){
+            if(topic_choice.getTopic().getTopic_id() == topic_id){
+                contains = topic_choice.getChoice();
+            }
+        }
+        return contains;
+    }
 }

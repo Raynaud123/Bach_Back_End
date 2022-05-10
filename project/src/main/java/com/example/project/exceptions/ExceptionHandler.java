@@ -26,4 +26,12 @@ public class ExceptionHandler {
         return new ResponseEntity<Object>(z, org.springframework.http.HttpStatus.valueOf(HttpStatus.SC_BAD_REQUEST));
     }
 
+    @org.springframework.web.bind.annotation.ExceptionHandler(value = {NietTop3TopicExceptionRequest.class})
+    public ResponseEntity<Object> NietTop3TopicException(NietTop3TopicExceptionRequest e){
+        //create payload
+        NietTop3TopicException z = new NietTop3TopicException(e.getMessage(), HttpStatus.SC_BAD_REQUEST, ZonedDateTime.now(ZoneId.of("Z")));
+        //return response
+        return new ResponseEntity<Object>(z, org.springframework.http.HttpStatus.valueOf(HttpStatus.SC_BAD_REQUEST));
+    }
+
 }

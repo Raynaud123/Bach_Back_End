@@ -30,7 +30,7 @@ public class Student extends Person implements Serializable {
     @JsonIdentityReference(alwaysAsId = true)
     private Master master;
 
-    @OneToOne
+    @ManyToOne
     @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
     @JsonIdentityReference(alwaysAsId = true)
     private Topic assignedTopic;

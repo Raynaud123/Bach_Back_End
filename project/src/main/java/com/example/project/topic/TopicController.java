@@ -2,10 +2,12 @@ package com.example.project.topic;
 
 import com.example.project.exceptions.IdNotFoundRequestException;
 import com.example.project.exceptions.NietApprovedRequestException;
+import com.example.project.exceptions.NietTop3TopicExceptionRequest;
 import com.example.project.student.Student;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,7 +30,7 @@ public class TopicController {
     }
 
     @PutMapping(path = "/{topic_id}", consumes = {MediaType.APPLICATION_JSON_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE})
-    public Topic updateTopicAssignment(@PathVariable Long topic_id, @Valid @RequestBody UpdateTopicStudentsRequest request) {
+    public ResponseEntity<Object> updateTopicAssignment(@PathVariable Long topic_id, @Valid @RequestBody UpdateTopicStudentsRequest request) throws NietTop3TopicExceptionRequest, NietApprovedRequestException, IdNotFoundRequestException {
         return topicService.updateTopicAssignment(topic_id, request);
     }
     @GetMapping("/{id}")
