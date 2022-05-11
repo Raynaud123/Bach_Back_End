@@ -2,18 +2,16 @@ package com.example.project.admin;
 
 import com.example.project.keyword.Keyword;
 import com.example.project.keyword.KeywordRepository;
-import com.example.project.Master.MasterRepository;
+import com.example.project.master.MasterRepository;
 import com.example.project.phase.Phase;
 import com.example.project.phase.PhaseRepository;
 import com.example.project.promotor.Promotor;
 import com.example.project.promotor.PromotorRepository;
-import com.example.project.student.Student;
 import com.example.project.student.StudentRepository;
 import com.example.project.targetAudience.TargetAudience;
 import com.example.project.targetAudience.TargetAudienceRepository;
 import com.example.project.topicprovider.TopicProvider;
 import com.example.project.topicprovider.TopicProviderRepository;
-import com.sun.tools.jconsole.JConsoleContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,6 +1,6 @@
 package com.example.project.student;
 
-import com.example.project.Master.Master;
+import com.example.project.master.Master;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;

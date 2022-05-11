@@ -1,4 +1,4 @@
-package com.example.project.Master;
+package com.example.project.master;
 
 import com.example.project.exceptions.IdNotFoundRequestException;
 import com.example.project.notification.Notification;
@@ -35,6 +35,7 @@ public class MasterController {
     public List<Notification> getNotifications(@PathVariable Long id) {
         return masterService.getNotifications(id);
     }
+
 
     @PutMapping(path = "/{masterid}/approve/{approve}/topic/{topicid}")
     @ResponseBody

@@ -1,4 +1,4 @@
-package com.example.project.Master;
+package com.example.project.master;
 
 import com.example.project.appuser.AppUserRepository;
 import com.example.project.exceptions.IdNotFoundRequestException;
@@ -77,9 +77,6 @@ public class MasterService {
     }
 
     public void approveTopicById(Long masterid, Long topicid, Boolean approve) throws IdNotFoundRequestException {
-//        System.out.println("Masterid: " + masterid);
-//        System.out.println("Topicid: " + topicid);
-//        System.out.println("Approve: " + approve);
         if(topicRepository.findById(topicid).isPresent()){
             Topic t = topicRepository.findById(topicid).get();
             t.setApproved_topic(approve);
@@ -106,9 +103,6 @@ public class MasterService {
     }
 
     public void approvePromotorById(Long masterid, Long promotorid, Boolean approve) throws IdNotFoundRequestException {
-//        System.out.println("Masterid: " + masterid);
-//        System.out.println("promotorid: " + promotorid);
-//        System.out.println("Approve: " + approve);
         if(promotorRepository.findById(promotorid).isPresent()){
             Promotor p = promotorRepository.findById(promotorid).get();
             p.setApproved(approve);
@@ -135,9 +129,8 @@ public class MasterService {
     }
 
     public void approveCompanyById(Long masterid, Long companyid, Boolean approve) throws IdNotFoundRequestException {
-//        System.out.println("Masterid: " + masterid);
-//        System.out.println("companyid: " + companyid);
-//        System.out.println("Approve: " + approve);
+        System.out.println(masterid);
+        System.out.println(masterid);
         if(topicProviderRepository.findById(companyid).isPresent()){
             TopicProvider t = topicProviderRepository.findById(companyid).get();
             t.setApproved(approve);
@@ -162,4 +155,9 @@ public class MasterService {
             throw new IdNotFoundRequestException("Id " + masterid + "niet gevonden");
         }
     }
+
+    public void testFunctie(int lll){
+        System.out.println("kqjkdfjjqfdjmqd");
+    }
+
 }
