@@ -287,7 +287,7 @@ public class TopicService {
             for (TargetAudience t: targetAudiences){
                 List<Topic> opgehaald = topicRepository.findByTargetAudiences(t);
                 for(Topic top: opgehaald){
-                    if(Boolean.TRUE.equals(!top.getHide_topic() && top.getApproved_topic()) && !topics.contains(top)){
+                    if(Boolean.TRUE.equals(!top.getHide_topic() && top.getApproved_topic()) && !topics.contains(top) && top.getStudent_list().isEmpty()){
                         topics.add(top);
                     }
                 }
