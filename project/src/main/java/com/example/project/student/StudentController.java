@@ -49,7 +49,7 @@ public class StudentController {
     }
 
     @GetMapping(path = "/hided/{id}")
-    public List<Student> getAllNotHidedMasterProefIdStudents(@PathVariable long id) {
+    public List<Student> getAllNotHidedMasterProefIdStudents(@PathVariable long id) throws IdNotFoundRequestException {
         return studentService.findAllNotHidedMasterproefIDStudents(id);
     }
 

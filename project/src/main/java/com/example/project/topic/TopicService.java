@@ -9,6 +9,7 @@ import com.example.project.exceptions.NietApprovedRequestException;
 import com.example.project.exceptions.NietTop3TopicExceptionRequest;
 import com.example.project.keyword.Keyword;
 import com.example.project.keyword.KeywordRepository;
+import com.example.project.person.PersonRepository;
 import com.example.project.promotor.PromotorRepository;
 import com.example.project.student.*;
 import com.example.project.targetAudience.TargetAudience;
@@ -40,7 +41,9 @@ public class TopicService {
     @Autowired
     private AppUserRepository appUserRepository;
     @Autowired
-    Topic_choiceRepository topic_choiceRepository;
+    private Topic_choiceRepository topic_choiceRepository;
+    @Autowired
+    private PersonRepository personRepository;
 
     public void addNewTopic(TopicPostRequest request) {
 
@@ -277,4 +280,22 @@ public class TopicService {
     }
 
 
+    public List<Topic> getTopicsByMaster(long id) throws IdNotFoundRequestException {
+        if (personRepository.findById(id).isPresent()){
+            List<TargetAudience> targetAudiences = personRepository.findById(id).get().getTargetAudience();
+            List<Topic> topics = new ArrayList<>();
+            for (TargetAudience t: targetAudiences){
+                List<Topic> opgehaald = topicRepository.findByTargetAudiences(t);
+                for(Topic top: opgehaald){
+                    if(Boolean.TRUE.equals(!top.getHide_topic() && top.getApproved_topic()) && !topics.contains(top)){
+                        topics.add(top);
+                    }
+                }
+            }
+
+        return topics;
+        }else{
+            throw new IdNotFoundRequestException("Id van master is niet gevonden");
+        }
+    }
 }

@@ -74,7 +74,7 @@ public class Topic implements Serializable {
     @ManyToMany
     private List<Student> student_list;
     @ManyToMany
-    private List<TargetAudience> targetAudience_list;
+    private List<TargetAudience> targetAudiences;
 
 
     private Boolean approved_topic;
@@ -93,7 +93,7 @@ public class Topic implements Serializable {
         this.aantal_studenten = aantal_studenten;
         this.keyword_list = keyword_list;
         this.student_list = student_list;
-        this.targetAudience_list = targetAudience_list;
+        this.targetAudiences = targetAudience_list;
         this.approved_topic = approved_topic;
         this.hide_topic = false;
         this.boostedStudent = null;
@@ -106,7 +106,7 @@ public class Topic implements Serializable {
         this.provider = provider;
         this.aantal_studenten = aantal_studenten;
         this.keyword_list = keywords;
-        this.targetAudience_list = targetAudiences;
+        this.targetAudiences = targetAudiences;
         this.approved_topic = false;
         this.hide_topic = false;
         this.release_date = new Date();
@@ -119,7 +119,7 @@ public class Topic implements Serializable {
         this.provider = appUser;
         this.aantal_studenten = aantal_studenten;
         this.keyword_list = null;
-        this.targetAudience_list = null;
+        this.targetAudiences = null;
         this.approved_topic = false;
         this.hide_topic = false;
         this.release_date = new Date();
@@ -203,11 +203,11 @@ public class Topic implements Serializable {
     }
 
     public List<TargetAudience> getTargetAudience_list() {
-        return targetAudience_list;
+        return targetAudiences;
     }
 
     public void setTargetAudience_list(List<TargetAudience> targetAudience_list) {
-        this.targetAudience_list = targetAudience_list;
+        this.targetAudiences = targetAudience_list;
     }
 
     public Boolean getApproved_topic() {
@@ -254,7 +254,7 @@ public class Topic implements Serializable {
                 ", aantal_studenten=" + aantal_studenten +
                 ", keyword_list=" + keyword_list +
                 ", student_list=" + student_list +
-                ", targetAudience_list=" + targetAudience_list +
+                ", targetAudience_list=" + targetAudiences +
                 ", approved_topic=" + approved_topic +
                 ", hide_topic=" + hide_topic +
                 ", description_topic='" + description_topic + '\'' +

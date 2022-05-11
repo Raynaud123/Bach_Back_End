@@ -161,17 +161,19 @@ public class StudentService {
         return contains;
     }
 
-    public List<Student> findAllNotHidedMasterproefIDStudents(long id) {
-        List<Student> studenten = studentRepository.findAllByMaster(masterRepository.findById(id).get());
-        List<Student> returnStu = new ArrayList<>();
+    public List<Student> findAllNotHidedMasterproefIDStudents(long id) throws IdNotFoundRequestException {
+        if(masterRepository.findById(id).isPresent()){
+            List<Student> studenten = studentRepository.findAllByMaster(masterRepository.findById(id).get());
+            List<Student> returnStu = new ArrayList<>();
 
-        for(Student s: studenten){
-            if(!s.getHide()){
-                returnStu.add(s);
+            for(Student s: studenten){
+                if(!s.getHide() && s.isEmpty()){
+                    returnStu.add(s);
+                }
             }
+            return returnStu;
+        }else{
+            throw new IdNotFoundRequestException("Masterid niet gevonden");
         }
-        return returnStu;
-
-
     }
 }

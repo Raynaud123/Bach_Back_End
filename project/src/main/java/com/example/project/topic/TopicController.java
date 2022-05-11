@@ -60,6 +60,8 @@ public class TopicController {
     public List<Topic> getAllApprovedTopics() { //System.out.println(topicService.findAllApprovedTopics());
         return topicService.findAllApprovedTopics();  }
 
+    @GetMapping(path = "/hided/{id}")
+    public List<Topic> getAllMasterTopics(@PathVariable long id) throws IdNotFoundRequestException {return topicService.getTopicsByMaster(id);}
 
     @PostMapping
     public void registerNewTopic( @RequestBody TopicPostRequest topic) {

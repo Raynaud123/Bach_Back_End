@@ -2,6 +2,7 @@ package com.example.project.student;
 
 import com.example.project.Master.Master;
 import com.example.project.appuser.AppUserRole;
+import com.example.project.notification.Notification;
 import com.example.project.person.Person;
 import com.example.project.targetAudience.TargetAudience;
 import com.example.project.topic.Topic;
@@ -67,7 +68,53 @@ public class Student extends Person implements Serializable {
         this.preferredTopics = preferredTopics;
     }
 
+    public Student(Master master, List<Topic> preferredTopics, List<Topic_choice> choices) {
+        this.master = master;
+        this.preferredTopics = preferredTopics;
+        this.choices = choices;
+    }
 
+    public Student(String firstName, String lastName, List<TargetAudience> targetAudience, Master master, List<Topic> preferredTopics, List<Topic_choice> choices) {
+        super(firstName, lastName, targetAudience);
+        this.master = master;
+        this.preferredTopics = preferredTopics;
+        this.choices = choices;
+    }
+
+    public Student(String username, String password, String email, String phoneNumber, AppUserRole appUserRole, String country, String city, String streetName, Integer postNumber, Integer streetNumber, String firstName, String lastName, List<TargetAudience> targetAudience, Master master, List<Topic> preferredTopics, List<Topic_choice> choices) {
+        super(username, password, email, phoneNumber, appUserRole, country, city, streetName, postNumber, streetNumber, firstName, lastName, targetAudience);
+        this.master = master;
+        this.preferredTopics = preferredTopics;
+        this.choices = choices;
+    }
+
+    public Student(Long id, String username, String password, String email, String phoneNumber, AppUserRole appUserRole, String country, String city, String streetName, Integer postNumber, Integer streetNumber, String firstName, String lastName, List<TargetAudience> targetAudience, Master master, List<Topic> preferredTopics, List<Topic_choice> choices) {
+        super(id, username, password, email, phoneNumber, appUserRole, country, city, streetName, postNumber, streetNumber, firstName, lastName, targetAudience);
+        this.master = master;
+        this.preferredTopics = preferredTopics;
+        this.choices = choices;
+    }
+
+    public Student(String username, String password, String email, String firstName, String lastName, List<TargetAudience> targetAudience, Master master, List<Topic> preferredTopics, List<Topic_choice> choices) {
+        super(username, password, email, firstName, lastName, targetAudience);
+        this.master = master;
+        this.preferredTopics = preferredTopics;
+        this.choices = choices;
+    }
+
+    public Student(Long id, String username, String password, String email, String phoneNumber, AppUserRole appUserRole, String country, String city, String streetName, Integer postNumber, Integer streetNumber, List<Notification> notification_list, String firstName, String lastName, List<TargetAudience> targetAudience, Master master, List<Topic> preferredTopics, List<Topic_choice> choices) {
+        super(id, username, password, email, phoneNumber, appUserRole, country, city, streetName, postNumber, streetNumber, notification_list, firstName, lastName, targetAudience);
+        this.master = master;
+        this.preferredTopics = preferredTopics;
+        this.choices = choices;
+        this.assignedTopic = null;
+    }
+
+    public boolean isEmpty(){
+        if(assignedTopic == null){
+            return  true;
+        }else return false;
+}
 
 
     public Master getMaster() {
