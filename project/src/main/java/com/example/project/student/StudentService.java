@@ -1,5 +1,6 @@
 package com.example.project.student;
 
+import com.example.project.Master.MasterRepository;
 import com.example.project.appuser.AppUserRepository;
 import com.example.project.exceptions.IdNotFoundRequestException;
 import com.example.project.exceptions.NietApprovedRequestException;
@@ -15,6 +16,8 @@ import java.util.*;
 public class StudentService {
 
 
+    @Autowired
+    private MasterRepository masterRepository;
     @Autowired
     private Topic_choiceRepository topic_choiceRepository;
     @Autowired
@@ -156,5 +159,19 @@ public class StudentService {
             }
         }
         return contains;
+    }
+
+    public List<Student> findAllNotHidedMasterproefIDStudents(long id) {
+        List<Student> studenten = studentRepository.findAllByMaster(masterRepository.findById(id).get());
+        List<Student> returnStu = new ArrayList<>();
+
+        for(Student s: studenten){
+            if(!s.getHide()){
+                returnStu.add(s);
+            }
+        }
+        return returnStu;
+
+
     }
 }
