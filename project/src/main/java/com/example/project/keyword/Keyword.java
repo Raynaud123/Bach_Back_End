@@ -35,12 +35,4 @@ public class Keyword {
         this.keyword_name = keyword_name;
         this.hide = hide;
     }
-
-    public Boolean getHide() {
-        return hide;
-    }
-
-    public void setHide(Boolean hide) {
-        this.hide = hide;
-    }
 }
