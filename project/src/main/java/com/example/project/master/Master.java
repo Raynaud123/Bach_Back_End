@@ -1,14 +1,10 @@
-package com.example.project.Master;
+package com.example.project.master;
 
 import com.example.project.appuser.AppUserRole;
 import com.example.project.notification.Notification;
 import com.example.project.person.Person;
-import com.example.project.promotor.Promotor;
 import com.example.project.targetAudience.TargetAudience;
-import com.example.project.topic.Topic;
-import com.example.project.topicprovider.TopicProvider;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;

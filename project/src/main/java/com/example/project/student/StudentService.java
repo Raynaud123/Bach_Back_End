@@ -1,6 +1,6 @@
 package com.example.project.student;
 
-import com.example.project.Master.MasterRepository;
+import com.example.project.master.MasterRepository;
 import com.example.project.appuser.AppUserRepository;
 import com.example.project.exceptions.IdNotFoundRequestException;
 import com.example.project.exceptions.NietApprovedRequestException;
