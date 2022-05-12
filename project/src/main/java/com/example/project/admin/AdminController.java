@@ -5,6 +5,7 @@ import com.example.project.keyword.Keyword;
 import com.example.project.phase.Phase;
 import com.example.project.student.Student;
 import com.example.project.targetAudience.TargetAudience;
+import com.example.project.topic.Topic;
 import com.example.project.topicprovider.TopicProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -77,7 +78,7 @@ public class AdminController {
     @ResponseBody
     public void deleteOldTargetAudience(@RequestBody TargetAudience TABody) throws ParseException {service.deleteTargetAudience(TABody);}
 
-    @PostMapping(path = "/update/keywprd/{kid}")
+    @PostMapping(path = "/update/keyword/{kid}")
     @ResponseBody
     public void updateKeyword(@PathVariable long kid,@RequestBody Keyword keywordBody) throws ParseException {service.updateKeywordWithBody(kid,keywordBody);}
 
@@ -88,5 +89,17 @@ public class AdminController {
     @PostMapping(path = "/delete/keyword")
     @ResponseBody
     public void deleteOldKeyword(@RequestBody Keyword KBody) throws ParseException {service.deleteKeyword(KBody);}
+
+    @PostMapping(path = "/update/topic/{kid}")
+    @ResponseBody
+    public void updateTopic(@PathVariable long kid,@RequestBody Topic Body) throws ParseException {service.updateTopicWithBody(kid,Body);}
+
+    @PostMapping(path = "/create/topic")
+    @ResponseBody
+    public void createNewTopic(@RequestBody Topic Body) throws ParseException {service.createTopic(Body);}
+
+    @PostMapping(path = "/delete/topic")
+    @ResponseBody
+    public void deleteOldTopic(@RequestBody Topic Body) throws ParseException {service.deleteTopic(Body);}
 
 }

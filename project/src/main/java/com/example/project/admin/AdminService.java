@@ -10,6 +10,8 @@ import com.example.project.promotor.PromotorRepository;
 import com.example.project.student.StudentRepository;
 import com.example.project.targetAudience.TargetAudience;
 import com.example.project.targetAudience.TargetAudienceRepository;
+import com.example.project.topic.Topic;
+import com.example.project.topic.TopicRepository;
 import com.example.project.topicprovider.TopicProvider;
 import com.example.project.topicprovider.TopicProviderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +40,8 @@ public class AdminService {
     private KeywordRepository keywordRepository;
     @Autowired
     private MasterRepository masterRepository;
+    @Autowired
+    private TopicRepository topicRepository;
 
     public List<TopicProvider> findAllTopicProviders() {
         return topicProviderRepository.findAll();
@@ -251,5 +255,41 @@ public class AdminService {
 
     public void deleteKeyword(Keyword k) {
         keywordRepository.delete(k);
+    }
+
+    public void createTopic(Topic body) {
+        System.out.print("getTopicName:" + body.getTopicName()
+                + " getProvider: " + body.getProvider()
+                + " getPromotor: " + body.getPromotor()
+                + " getAantal_studenten: " + body.getAantal_studenten()
+                + " getKeyword_list: " + body.getKeyword_list()
+                + " getStudent_list(): " + body.getStudent_list()
+                + " getTargetAudiences: " + body.getTargetAudiences()
+                + " getApproved_topic: " + body.getApproved_topic()
+                + " getHide_topic: " + body.getHide_topic()
+                + " getDescription_topic: " + body.getDescription_topic()
+                + " getRelease_date: " + body.getRelease_date()
+        );
+        Topic t = new Topic(
+                body.getTopicName(),
+                body.getProvider(),
+                body.getPromotor(),
+                body.getAantal_studenten(),
+                body.getKeyword_list(),
+                body.getStudent_list(),
+                body.getTargetAudiences(),
+                body.getApproved_topic(),
+                body.getHide_topic(),
+                body.getDescription_topic(),
+                body.getRelease_date()
+        );
+        topicRepository.save(t);
+    }
+
+    public void updateTopicWithBody(long kid, Topic body) {
+    }
+
+    public void deleteTopic(Topic body) {
+        topicRepository.delete(body);
     }
 }
