@@ -3,10 +3,7 @@ package com.example.project.topic;
 import com.example.project.appuser.AppUser;
 import com.example.project.appuser.AppUserRepository;
 import com.example.project.appuser.AppUserRole;
-import com.example.project.exceptions.IdNotFoundRequestException;
-import com.example.project.exceptions.NietApprovedException;
-import com.example.project.exceptions.NietApprovedRequestException;
-import com.example.project.exceptions.NietTop3TopicExceptionRequest;
+import com.example.project.exceptions.*;
 import com.example.project.keyword.Keyword;
 import com.example.project.keyword.KeywordRepository;
 import com.example.project.person.PersonRepository;
@@ -16,6 +13,7 @@ import com.example.project.targetAudience.TargetAudience;
 import com.example.project.targetAudience.TargetAudienceRepository;
 import com.example.project.topicprovider.TopicProvider;
 import com.example.project.topicprovider.TopicProviderRepository;
+import net.bytebuddy.implementation.bytecode.Throw;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -258,25 +256,36 @@ public class TopicService {
          return returnTopics;
     }
 
-    public Topic boostStudent(int id, BoostStudentRequest request) {
+    public Topic boostStudent(int id, BoostStudentRequest request) throws IdNotFoundRequestException {
         if (topicRepository.findById((long)id).isPresent()) {
             Topic topic = topicRepository.getById((long) id);
-            if(studentRepository.findById((long) request.studentId).isPresent()){
-                Student student = studentRepository.getById((long) request.studentId);
-                topic.setBoostedStudent(student);
-                topicRepository.saveAndFlush(topic);
-            }
-            else{
-                System.out.println("Studnet id fout");
-                return null;
-            }
+            if(request.getStudentId().length == 1){
+                if(studentRepository.findById((long)request.getStudentId()[0]).isPresent()){
+                    Student student = studentRepository.getById((long) request.getStudentId()[0]);
+                    topic.setBoostedStudent(student);
+                    topic.addStudent(student);
+                    topicRepository.saveAndFlush(topic);
+                }
+                else{
+                    throw new IdNotFoundRequestException("Student Id klopt niet");
+                }
 
-            return topic;
-        }
+                return topic;
+            }
+            else if (request.getStudentId().length == 2){
+                if(studentRepository.findById((long)request.getStudentId()[0]).isPresent() && studentRepository.findById((long) request.getStudentId()[1]).isPresent()){
+
+
+                }
+                else {
+                    throw new IdNotFoundRequestException("Student Id klopt niet");
+                }
+            }
+            }
         else {
-            System.out.println("toic id fout");
-            return null;
+            throw new IdNotFoundRequestException("Topic id klopt niet");
         }
+        return null;
     }
 
 
@@ -287,7 +296,7 @@ public class TopicService {
             for (TargetAudience t: targetAudiences){
                 List<Topic> opgehaald = topicRepository.findByTargetAudiences(t);
                 for(Topic top: opgehaald){
-                    if(Boolean.TRUE.equals(!top.getHide_topic() && top.getApproved_topic()) && !topics.contains(top) && top.getStudent_list().isEmpty()){
+                    if(Boolean.TRUE.equals(!top.getHide_topic() && top.getApproved_topic()) && !topics.contains(top) && (top.getStudent_list().size() != top.getAantal_studenten())){
                         topics.add(top);
                     }
                 }
