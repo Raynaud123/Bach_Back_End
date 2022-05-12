@@ -60,7 +60,7 @@
 //        Keyword k5 = keywordController.getKeyword(5L);
 //
 //
-//        TopicProvider ai = topicProviderController.getById(11);
+//        Long ai = 11L;
 //
 //        List<Keyword> lijstK1 = new ArrayList<>();    lijstK1.add(k1);
 //        List<Keyword> lijstK2 = new ArrayList<>();    lijstK2.add(k1);    lijstK2.add(k2);

@@ -1,5 +1,7 @@
 //package com.example.project.promotor;
 //
+//import com.example.project.appuser.AppUserRole;
+//import com.example.project.student.Student;
 //import com.example.project.targetAudience.TargetAudience;
 //import com.example.project.targetAudience.TargetAudienceController;
 //import com.example.project.topic.Topic;
@@ -55,16 +57,16 @@
 //
 //        return args -> {
 //            Promotor promotor1 = new Promotor(
-//                    4L, "promotor1", passwordEncoder.encode("promotor"), "promotor1@gmail.com", "+32400000000", PROMOTOR, false, true, "Belgium", "Ghent", "StreetNamePromotor1", 9000, 99, "PromotorFirstName1", "PromotorLastName1", true, lijstTA1, null, null
+//                    4L, "promotor1", passwordEncoder.encode("promotor"), "promotor1@gmail.com", "+32400000000", PROMOTOR, "Belgium", "Ghent", "StreetNamePromotor1", 9000, 99, "PromotorFirstName1", "PromotorLastName1", true, lijstTA1
 //            );
 //            Promotor promotor2 = new Promotor(
-//                    5L, "promotor2", passwordEncoder.encode("promotor"), "promotor2@gmail.com", "+32400000000", PROMOTOR, false, true, "Belgium", "Ghent", "StreetNamePromotor2", 9000, 101, "PromotorFirstName2", "PromotorLastName2", true, lijstTA1, null, null
+//                    5L, "promotor2", passwordEncoder.encode("promotor"), "promotor2@gmail.com", "+32400000000", PROMOTOR, "Belgium", "Ghent", "StreetNamePromotor2", 9000, 101, "PromotorFirstName2", "PromotorLastName2", true, lijstTA1
 //            );
 //            Promotor promotor3 = new Promotor(
-//                    6L, "promotor3", passwordEncoder.encode("promotor"), "promotor3@gmail.com", "+32400000000", PROMOTOR, false, true, "Belgium", "Ghent", "StreetNamePromotor3", 9000, 102, "PromotorFirstName3", "PromotorLastName3", true, lijstTA2, null, null
+//                    6L, "promotor3", passwordEncoder.encode("promotor"), "promotor3@gmail.com", "+32400000000", PROMOTOR, "Belgium", "Ghent", "StreetNamePromotor3", 9000, 102, "PromotorFirstName3", "PromotorLastName3", true, lijstTA2
 //            );
 //            Promotor promotor4 = new Promotor(
-//                    7L, "promotor4", passwordEncoder.encode("promotor"), "promotor4@gmail.com", "+32400000000", PROMOTOR, false, true, "Belgium", "Ghent", "StreetNamePromotor4", 9000, 103, "PromotorFirstName4", "PromotorLastName4", true, lijstTA3, null, null
+//                    7L, "promotor4", passwordEncoder.encode("promotor"), "promotor4@gmail.com", "+32400000000", PROMOTOR, "Belgium", "Ghent", "StreetNamePromotor4", 9000, 103, "PromotorFirstName4", "PromotorLastName4", true, lijstTA3
 //            );
 //
 //            repository.saveAll(

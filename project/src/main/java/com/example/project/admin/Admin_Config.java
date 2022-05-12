@@ -1,5 +1,7 @@
 //package com.example.project.admin;
 //
+//import com.example.project.appuser.AppUserRole;
+//import com.example.project.targetAudience.TargetAudience;
 //import org.springframework.boot.CommandLineRunner;
 //import org.springframework.context.annotation.Bean;
 //import org.springframework.context.annotation.Configuration;
@@ -22,7 +24,7 @@
 //    CommandLineRunner commandLineRunner(AdminRepository repository) {
 //        return args -> {
 //            Admin admin1 = new Admin(
-//                        3L, "admin1", passwordEncoder.encode("admin"), "admin1@gmail.com", "+32400000000", ADMIN,false, true, "Belgium", "Ghent", "StreetNameAdmin1", 9000, 10, "AdminFirstName", "AdminLastName", true, null
+//                        3L, "admin1", passwordEncoder.encode("admin"), "admin1@gmail.com", "+32400000000", ADMIN, "Belgium", "Ghent", "StreetNameAdmin1", 9000, 10, "AdminFirstName", "AdminLastName", null
 //            );
 //
 //            repository.saveAll(

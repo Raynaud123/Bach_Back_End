@@ -1,8 +1,11 @@
 //package com.example.project.student;
 //
+//import com.example.project.appuser.AppUserRole;
+//import com.example.project.master.Master;
 //import com.example.project.master.MasterRepository;
 //import com.example.project.targetAudience.TargetAudience;
 //import com.example.project.targetAudience.TargetAudienceController;
+//import com.example.project.topic.Topic;
 //import com.example.project.topic.TopicController;
 //import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.boot.CommandLineRunner;
@@ -52,16 +55,13 @@
 //
 //        return args -> {
 //            Student student1 = new Student(
-//                    8L,"RaynaudCornille", passwordEncoder.encode("pwdRC"), "raynaud@gmail.com", "+32400000000", STUDENT, false, false, "Belgium", "Gent", "streetNameRC", 9000, 1, "Raynaud", "Cornille", true, lijstTA1,
-//                    masterRepository.getById(1L), null, null
+//                    8L,"RaynaudCornille", passwordEncoder.encode("pwdRC"), "raynaud@gmail.com", "+32400000000", STUDENT,"Belgium", "Gent", "streetNameRC", 9000, 1, null, "Raynaud", "Cornille", lijstTA1, masterRepository.getById(1L), null, null
 //            );
 //            Student student2 = new Student(
-//                    9L,"MariekeBeke", passwordEncoder.encode("pwdMB"), "marieke@gmail.com", "+32400000000", STUDENT, false, false, "Belgium", "Gent", "streetNameMB", 9000, 2, "Marieke", "Beke", true, lijstTA2,
-//                    masterRepository.getById(2L),null, null
+//                    9L,"MariekeBeke", passwordEncoder.encode("pwdMB"), "marieke@gmail.com", "+32400000000", STUDENT, "Belgium", "Gent", "streetNameMB", 9000, 2, null,"Marieke", "Beke", lijstTA2, masterRepository.getById(2L),null, null
 //            );
 //            Student student3 = new Student(
-//                    10L,"MartheSpriet", passwordEncoder.encode("pwdMS"), "marthe@gmail.com", "+32400000000", STUDENT, false, false, "Belgium", "Gent", "streetNameMS", 9000, 3, "Marthe", "Spriet", true, lijstTA3,
-//                    masterRepository.getById(1L),null, null
+//                    10L,"MartheSpriet", passwordEncoder.encode("pwdMS"), "marthe@gmail.com", "+32400000000", STUDENT, "Belgium", "Gent", "streetNameMS", 9000, 3, null, "Marthe", "Spriet", lijstTA3, masterRepository.getById(1L),null, null
 //            );
 //            repository.saveAll(
 //                    List.of(student1,student2,student3)
