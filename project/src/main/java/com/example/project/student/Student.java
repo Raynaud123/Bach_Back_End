@@ -31,10 +31,8 @@ public class Student extends Person implements Serializable {
     @JsonIdentityReference(alwaysAsId = true)
     private Master master;
 
-    @ManyToOne
-    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-    @JsonIdentityReference(alwaysAsId = true)
-    private Topic assignedTopic;
+
+    private Boolean assignedTopic;
 
     @ManyToMany
     private List<Topic> preferredTopics;
@@ -49,14 +47,14 @@ public class Student extends Person implements Serializable {
 
     public Student(Master master, Topic assignedTopic, List<Topic> preferredTopics) {
         this.master = master;
-        this.assignedTopic = assignedTopic;
+        this.assignedTopic = false;
         this.preferredTopics = preferredTopics;
     }
 
     public Student(String firstName, String lastName,  List<TargetAudience> targetAudience_id, Master master, Topic assignedTopic, List<Topic> preferredTopics) {
         super(firstName, lastName, targetAudience_id);
         this.master = master;
-        this.assignedTopic = assignedTopic;
+        this.assignedTopic = false;
         this.preferredTopics = preferredTopics;
     }
 
@@ -64,7 +62,7 @@ public class Student extends Person implements Serializable {
     public Student(Long id, String username, String password, String email, String phoneNumber, AppUserRole appUserRole, String country, String city, String streetName, Integer postNumber, Integer streetNumber, String firstName, String lastName,  List<TargetAudience> targetAudience_id, Master master, Topic assignedTopic, List<Topic> preferredTopics) {
         super(id, username, password, email, phoneNumber, appUserRole, country, city, streetName, postNumber, streetNumber, firstName, lastName,  targetAudience_id);
         this.master = master;
-        this.assignedTopic = assignedTopic;
+        this.assignedTopic = false;
         this.preferredTopics = preferredTopics;
     }
 
@@ -110,12 +108,6 @@ public class Student extends Person implements Serializable {
         this.assignedTopic = null;
     }
 
-    public boolean isEmpty(){
-        if(assignedTopic == null){
-            return  true;
-        }else return false;
-}
-
 
     public Master getMaster() {
         return master;
@@ -125,11 +117,11 @@ public class Student extends Person implements Serializable {
         this.master = master;
     }
 
-    public Topic getAssignedTopic() {
+    public Boolean getAssignedTopic() {
         return assignedTopic;
     }
 
-    public void setAssignedTopic(Topic assignedTopic) {
+    public void setAssignedTopic(Boolean assignedTopic) {
         this.assignedTopic = assignedTopic;
     }
 

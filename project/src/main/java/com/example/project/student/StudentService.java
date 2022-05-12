@@ -167,7 +167,7 @@ public class StudentService {
             List<Student> returnStu = new ArrayList<>();
 
             for(Student s: studenten){
-                if(!s.getHide() && s.isEmpty()){
+                if(!s.getHide() && !s.getAssignedTopic()){
                     returnStu.add(s);
                 }
             }

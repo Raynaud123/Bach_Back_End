@@ -71,7 +71,7 @@ public class Topic implements Serializable {
     private Long aantal_studenten;
     @ManyToMany
     private List<Keyword> keyword_list;
-    @ManyToMany
+    @OneToMany
     private List<Student> student_list;
     @ManyToMany
     private List<TargetAudience> targetAudiences;

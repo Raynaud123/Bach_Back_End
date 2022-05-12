@@ -128,8 +128,11 @@ public class TopicService {
                         }
                     }
                     if(keuze != 0){
-                        storedTopic.addStudent(studentRepository.getById(storedID));
+                        Student k = studentRepository.getById(storedID);
+                        k.setAssignedTopic(true);
+                        storedTopic.addStudent(k);
                         Topic updated = topicRepository.save(storedTopic);
+                        studentRepository.save(k);
                         KeuzeReturn object = new KeuzeReturn(keuze,updated);
                         return new ResponseEntity(object, HttpStatus.OK);
                     }else if (keuze == 0){
@@ -162,10 +165,15 @@ public class TopicService {
                         }
                     }
                     if(keuze != 0 && keuzetwee != 0){
-                        storedTopic.addStudent(studentRepository.getById(storedIDéén));
-                        storedTopic.addStudent(studentRepository.getById(storedIDtwee));
+                        Student k = studentRepository.getById(storedIDéén);
+                        k.setAssignedTopic(true);
+                        Student l = studentRepository.getById(storedIDtwee);
+                        l.setAssignedTopic(true);
+                        storedTopic.addStudent(k);
+                        storedTopic.addStudent(l);
                         Topic updated = topicRepository.save(storedTopic);
-
+                        studentRepository.save(k);
+                        studentRepository.save(l);
                         KeuzeTweeReturn object = new KeuzeTweeReturn(keuze,keuzetwee,updated);
                         return new ResponseEntity(object, HttpStatus.OK);
                     }else if (keuze == 0 || keuzetwee == 0){
