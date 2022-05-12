@@ -219,7 +219,6 @@ public class TopicService {
                     }
                 }
             }
-
         }else {
             throw new IdNotFoundRequestException("Dit id: "+ id +" is niet gevonden");
         }
@@ -305,6 +304,14 @@ public class TopicService {
         return topics;
         }else{
             throw new IdNotFoundRequestException("Id van master is niet gevonden");
+        }
+    }
+
+    public Topic getTopicForMaster(Long id) throws IdNotFoundRequestException {
+        if(topicRepository.findById(id).isPresent()){
+            return topicRepository.findById(id).get();
+        }else {
+            throw new IdNotFoundRequestException("Dit id: "+ id +" is niet gevonden");
         }
     }
 }

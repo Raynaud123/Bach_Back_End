@@ -202,12 +202,12 @@ public class Topic implements Serializable {
         this.student_list = student_list;
     }
 
-    public List<TargetAudience> getTargetAudience_list() {
+    public List<TargetAudience> getTargetAudiences() {
         return targetAudiences;
     }
 
-    public void setTargetAudience_list(List<TargetAudience> targetAudience_list) {
-        this.targetAudiences = targetAudience_list;
+    public void setTargetAudiences(List<TargetAudience> targetAudiences) {
+        this.targetAudiences = targetAudiences;
     }
 
     public Boolean getApproved_topic() {
@@ -254,7 +254,7 @@ public class Topic implements Serializable {
                 ", aantal_studenten=" + aantal_studenten +
                 ", keyword_list=" + keyword_list +
                 ", student_list=" + student_list +
-                ", targetAudience_list=" + targetAudiences +
+                ", targetAudiences=" + targetAudiences +
                 ", approved_topic=" + approved_topic +
                 ", hide_topic=" + hide_topic +
                 ", description_topic='" + description_topic + '\'' +

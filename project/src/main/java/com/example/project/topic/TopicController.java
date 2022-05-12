@@ -37,6 +37,10 @@ public class TopicController {
     public Topic getTopic(@PathVariable Long id) throws NietApprovedRequestException, IdNotFoundRequestException {
         return topicService.getTopic(id);
     }
+    @GetMapping("/master/{id}")
+    public Topic getTopicForMaster(@PathVariable Long id) throws IdNotFoundRequestException {
+        return topicService.getTopicForMaster(id);
+    }
 
     @GetMapping("/all")
     public List<Topic> getAllTopics() {
