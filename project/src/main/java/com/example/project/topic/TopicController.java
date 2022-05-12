@@ -52,7 +52,7 @@ public class TopicController {
     }
 
     @PutMapping("/boost/{id}")
-    public Topic boostStudent(@PathVariable int id, @Valid @RequestBody BoostStudentRequest request){
+    public Topic boostStudent(@PathVariable int id, @Valid @RequestBody BoostStudentRequest request) throws IdNotFoundRequestException {
         return topicService.boostStudent(id, request);
     }
 
