@@ -1,5 +1,10 @@
 package com.example.project.promotor;
 
+import com.example.project.exceptions.IdNotFoundRequestException;
+import com.example.project.targetAudience.TargetAudience;
+import com.example.project.topic.Topic;
+import com.example.project.topic.TopicRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -11,6 +16,8 @@ import java.util.Optional;
 public class PromotorService {
 
     private PromotorRepository promotorRepository;
+    @Autowired
+    private TopicRepository topicRepository;
 
     public PromotorService(PromotorRepository promotorRepository) { this.promotorRepository = promotorRepository; }
 
@@ -41,5 +48,35 @@ public class PromotorService {
 
     public Optional<Promotor> findByIdFromFrontend(Long id) {
         return promotorRepository.findById(id);
+    }
+
+    public List<Promotor> findTargetPromotors(long topicid) throws IdNotFoundRequestException {
+        List<Promotor> promotors = new ArrayList<Promotor>();
+        if(topicRepository.findById(topicid).isPresent()){
+            Topic t = topicRepository.findById(topicid).get();
+
+            List<Promotor> prom = promotorRepository.findAll();
+            for(Promotor pr: prom){
+                if(pr.isApproved() && !pr.getHide()){
+                    if(containsTarget(pr,t)){
+                        promotors.add(pr);
+                    }
+                }
+            }
+            return promotors;
+        }
+        else throw new IdNotFoundRequestException("Id van topic niet gevonden");
+    }
+
+
+    public boolean containsTarget(Promotor pr,Topic t){
+        List<TargetAudience> topicsTarget = t.getTargetAudiences();
+        List<TargetAudience> promTarget = pr.getTargetAudience();
+        boolean gelijken=false;
+        for (TargetAudience target : topicsTarget){
+            if(promTarget.contains(target)) {gelijken =true;
+            break;}
+        }
+        return gelijken;
     }
 }

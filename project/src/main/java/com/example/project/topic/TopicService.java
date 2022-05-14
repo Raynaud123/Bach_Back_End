@@ -11,21 +11,18 @@ import com.example.project.notification.NotificationObjectSort;
 import com.example.project.notification.NotificationRepository;
 import com.example.project.notification.NotificationSort;
 import com.example.project.person.PersonRepository;
+import com.example.project.promotor.Promotor;
 import com.example.project.promotor.PromotorRepository;
 import com.example.project.student.*;
 import com.example.project.targetAudience.TargetAudience;
 import com.example.project.targetAudience.TargetAudienceRepository;
 import com.example.project.topicprovider.TopicProvider;
 import com.example.project.topicprovider.TopicProviderRepository;
-import net.bytebuddy.implementation.bytecode.Throw;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 @Service
@@ -140,6 +137,7 @@ public class TopicService {
                         Student k = studentRepository.getById(storedID);
                         k.setAssignedTopic(true);
                         storedTopic.addStudent(k);
+                        storedTopic.addBoostedStudent(k);
                         Topic updated = topicRepository.save(storedTopic);
                         addNotificationAssignment(k);
                         studentRepository.save(k);
@@ -157,7 +155,7 @@ public class TopicService {
             }else if(request.getAantalStudenten()==2){
                 Long storedIDéén = request.getStudent_id()[0];
                 Long storedIDtwee = request.getStudent_id()[1];
-                if(studentRepository.findById(storedIDéén).isPresent() && storedTopic.getApproved_topic() && studentRepository.findById(storedIDtwee).isPresent()){
+                if(Boolean.TRUE.equals(studentRepository.findById(storedIDéén).isPresent() && storedTopic.getApproved_topic()) && studentRepository.findById(storedIDtwee).isPresent()){
                     Student één = studentRepository.findById(storedIDéén).get();
                     Student twee= studentRepository.findById(storedIDtwee).get();
                     List<Topic_choice> éénchoices = topic_choiceRepository.findAllByStudent(één);
@@ -181,6 +179,8 @@ public class TopicService {
                         l.setAssignedTopic(true);
                         storedTopic.addStudent(k);
                         storedTopic.addStudent(l);
+                        storedTopic.addBoostedStudent(l);
+                        storedTopic.addBoostedStudent(k);
                         Topic updated = topicRepository.save(storedTopic);
                         addNotificationAssignment(k);
                         addNotificationAssignment(l);
@@ -269,7 +269,7 @@ public class TopicService {
 
     public List<Topic> getTopicPromotorId(long promotor_id) {
 
-        List<Topic> allTopics = topicRepository.findByPromotor(promotorRepository.findById(promotor_id));
+        List<Topic> allTopics = topicRepository.findByPromotor(promotorRepository.findById(promotor_id).get());
         List<Topic> returnTopics = new ArrayList<Topic>();
 
         for (Topic p: allTopics){
@@ -284,49 +284,58 @@ public class TopicService {
     public Topic boostStudent(int id, BoostStudentRequest request) throws IdNotFoundRequestException {
         if (topicRepository.findById((long)id).isPresent()) {
             Topic topic = topicRepository.getById((long) id);
-            if(request.getStudentId().length == 1){
-                if(studentRepository.findById((long)request.getStudentId()[0]).isPresent()){
+            if(!topic.getHide_topic() && Boolean.TRUE.equals(topic.getApproved_topic())){
+                if(request.getStudentId().length == 1){
+                    if(studentRepository.findById((long)request.getStudentId()[0]).isPresent()){
+                        Student k = studentRepository.getById((long) request.getStudentId()[0]);
+                        if(isPresentInTop3(Long.valueOf(id),k) > 0 && containsTarget(k,topic)){
+                            k.setAssignedTopic(true);
+                            topic.addStudent(k);
+                            topic.addBoostedStudent(k);
+                            Topic updated = topicRepository.save(topic);
+                            addNotificationAssignment(k);
+                            studentRepository.save(k);
+                            return updated;
+                        }
+                    }
+                    else{
+                        throw new IdNotFoundRequestException("Student Id klopt niet");
+                    }
+                }
+                else if (request.getStudentId().length == 2){
+                    if(studentRepository.findById((long)request.getStudentId()[0]).isPresent() && studentRepository.findById((long) request.getStudentId()[1]).isPresent()){
 
+                        Student k = studentRepository.getById((long)request.getStudentId()[0]);
+                        Student l = studentRepository.getById((long) request.getStudentId()[1]);
+                        if(isPresentInTop3((long) id,k) > 0 && containsTarget(k,topic) && isPresentInTop3((long) id,l) > 0 && containsTarget(l,topic)){
+                            k.setAssignedTopic(true);
+                            l.setAssignedTopic(true);
+                            topic.addStudent(k);
+                            topic.addStudent(l);
+                            topic.addBoostedStudent(k);
+                            topic.addBoostedStudent(l);
+                            Topic updated = topicRepository.save(topic);
+                            addNotificationAssignment(k);
+                            addNotificationAssignment(l);
+                            studentRepository.save(k);
+                            studentRepository.save(l);
+                        return updated;}
+                    }
+                    else {
+                        throw new IdNotFoundRequestException("Student Id klopt niet");
+                    }
+                }
+            }
+            else {
+                throw new IdNotFoundRequestException("Topic id klopt niet");
+            }
+            }else throw new IllegalStateException("Topic is niet approved");
 
-                    Student k = studentRepository.getById((long) request.getStudentId()[0]);
-                    k.setAssignedTopic(true);
-                    topic.addStudent(k);
-                    Topic updated = topicRepository.save(topic);
-                    addNotificationAssignment(k);
-                    studentRepository.save(k);
-                    return updated;
-                }
-                else{
-                    throw new IdNotFoundRequestException("Student Id klopt niet");
-                }
-            }
-            else if (request.getStudentId().length == 2){
-                if(studentRepository.findById((long)request.getStudentId()[0]).isPresent() && studentRepository.findById((long) request.getStudentId()[1]).isPresent()){
-                    Student k = studentRepository.getById((long)request.getStudentId()[0]);
-                    k.setAssignedTopic(true);
-                    Student l = studentRepository.getById((long) request.getStudentId()[1]);
-                    l.setAssignedTopic(true);
-                    topic.addStudent(k);
-                    topic.addStudent(l);
-                    Topic updated = topicRepository.save(topic);
-                    addNotificationAssignment(k);
-                    addNotificationAssignment(l);
-                    studentRepository.save(k);
-                    studentRepository.save(l);
-                }
-                else {
-                    throw new IdNotFoundRequestException("Student Id klopt niet");
-                }
-            }
-            }
-        else {
-            throw new IdNotFoundRequestException("Topic id klopt niet");
-        }
         return null;
     }
 
 
-    public List<Topic> getTopicsByMaster(long id) throws IdNotFoundRequestException {
+    public List<Topic> getTopicsByMasterWithoutStudents(long id) throws IdNotFoundRequestException {
         if (personRepository.findById(id).isPresent()){
             List<TargetAudience> targetAudiences = personRepository.findById(id).get().getTargetAudience();
             List<Topic> topics = new ArrayList<>();
@@ -370,5 +379,71 @@ public class TopicService {
             throw new IdNotFoundRequestException("Dit id: "+ studentid +" is niet gevonden");
      }
         return null;
+    }
+
+    public List<Topic> getTopicsByMasterWithPromotor(long id) throws IdNotFoundRequestException {
+        if (personRepository.findById(id).isPresent()){
+            List<TargetAudience> targetAudiences = personRepository.findById(id).get().getTargetAudience();
+            List<Topic> topics = new ArrayList<>();
+            for (TargetAudience t: targetAudiences){
+                List<Topic> opgehaald = topicRepository.findByTargetAudiences(t);
+                for(Topic top: opgehaald){
+                    if(Boolean.TRUE.equals(!top.getHide_topic() && top.getApproved_topic()) && !topics.contains(top) && top.getPromotor() == null){
+                        topics.add(top);
+                    }
+                }
+            }
+
+            return topics;
+        }else{
+            throw new IdNotFoundRequestException("Id van master is niet gevonden");
+        }
+    }
+
+    public Topic assingProm(long prom_id, long topic_id) throws IdNotFoundRequestException {
+        if(topicRepository.findById(topic_id).isPresent()){
+            Topic t = topicRepository.findById(topic_id).get();
+            if(promotorRepository.findById(prom_id).isPresent()){
+                Promotor pr = promotorRepository.findById(prom_id).get();
+                if(Boolean.TRUE.equals(t.getPromotor() == null && containsTarget(pr,t) && pr.isApproved() && t.getApproved_topic() && !pr.getHide()) && Boolean.TRUE.equals(!t.getHide_topic())){
+                    t.setPromotor(pr);
+                    Topic update = topicRepository.save(t);
+                    return update;
+                }else throw new IllegalStateException("Topic heeft al prom");
+            }else throw new IdNotFoundRequestException("Id van prom is niet gevonden");
+        }else throw new IdNotFoundRequestException("Id van topic is niet gevonden");
+    }
+
+    public boolean containsTarget(Promotor pr,Topic t){
+        List<TargetAudience> topicsTarget = t.getTargetAudiences();
+        List<TargetAudience> promTarget = pr.getTargetAudience();
+        boolean gelijken=false;
+        for (TargetAudience target : topicsTarget){
+            if(promTarget.contains(target)) {gelijken =true;
+                break;}
+        }
+        return gelijken;
+    }
+
+    public boolean containsTarget(Student pr,Topic t){
+        List<TargetAudience> topicsTarget = t.getTargetAudiences();
+        List<TargetAudience> promTarget = pr.getTargetAudience();
+        boolean gelijken=false;
+        for (TargetAudience target : topicsTarget){
+            if(promTarget.contains(target)) {gelijken =true;
+                break;}
+        }
+        return gelijken;
+    }
+
+    public int isPresentInTop3(Long topic_id, Student s){
+        List<Topic_choice> choices = topic_choiceRepository.findAllByStudent(s);
+        int contains = 0;
+        for (Topic_choice topic_choice : choices){
+            if(topic_choice.getTopic().getTopic_id() == topic_id){
+                contains = topic_choice.getChoice();
+            }
+        }
+        return contains;
     }
 }

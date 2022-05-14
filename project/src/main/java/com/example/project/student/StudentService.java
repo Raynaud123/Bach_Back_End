@@ -205,4 +205,23 @@ public class StudentService {
         }
         return gelijken;
     }
+
+    public List<Student> findAllChoice3TopicStudenten(long topicid) throws IdNotFoundRequestException {
+        if(topicRepository.findById(topicid).isPresent()){
+            Topic t = topicRepository.findById(topicid).get();
+            if(t.getApproved_topic() && !t.getHide_topic()){
+                List<Student> studenten = new ArrayList<>();
+                List<Student> all = studentRepository.findAll();
+                for (Student s: all){
+                    if(!s.getHide() && !s.getAssignedTopic() && isTargetaudience(topicid,s)){
+                        if(isPresentInTop3(topicid,s)>0){
+                            studenten.add(s);
+                        }
+                    }
+                }
+                return studenten;
+            }
+        }else throw new IdNotFoundRequestException("TopicId is niet present");
+        return null;
+    }
 }

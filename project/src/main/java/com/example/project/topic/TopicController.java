@@ -5,6 +5,7 @@ import com.example.project.exceptions.NietApprovedRequestException;
 import com.example.project.exceptions.NietTop3TopicExceptionRequest;
 import com.example.project.student.Student;
 import lombok.AllArgsConstructor;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -60,8 +61,12 @@ public class TopicController {
     }
 
     @PutMapping("/boost/{id}")
-    public Topic boostStudent(@PathVariable int id, @Valid @RequestBody BoostStudentRequest request) throws IdNotFoundRequestException {
+    public Topic boostStudent(@PathVariable int id, @NotNull @Valid @RequestBody BoostStudentRequest request) throws IdNotFoundRequestException {
         return topicService.boostStudent(id, request);
+    }
+    @PutMapping("/assing/{prom_id}/{topic_id}")
+    public Topic assign(@PathVariable long prom_id,@PathVariable long topic_id) throws IdNotFoundRequestException {
+        return topicService.assingProm(prom_id,topic_id);
     }
 
     @GetMapping(path = "/approved")
@@ -69,7 +74,11 @@ public class TopicController {
         return topicService.findAllApprovedTopics();  }
 
     @GetMapping(path = "/hided/{id}")
-    public List<Topic> getAllMasterTopics(@PathVariable long id) throws IdNotFoundRequestException {return topicService.getTopicsByMaster(id);}
+    public List<Topic> getAllMasterTopics(@PathVariable long id) throws IdNotFoundRequestException {return topicService.getTopicsByMasterWithoutStudents(id);}
+
+    @GetMapping(path = "/hided/promotor/{id}")
+    public List<Topic> getAllMasterTopicsWithoutProm(@PathVariable long id) throws IdNotFoundRequestException {return topicService.getTopicsByMasterWithPromotor(id);}
+
 
     @PostMapping
     public void registerNewTopic( @RequestBody TopicPostRequest topic) {

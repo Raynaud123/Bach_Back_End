@@ -59,10 +59,10 @@ public class Topic implements Serializable {
     private List<Topic_choice> tags = new ArrayList<>();
 
 
-    @OneToOne
+    @OneToMany
     @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
     @JsonIdentityReference(alwaysAsId = true)
-    Student boostedStudent;
+    private List<Student> boostedStudent;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "promotor_id")
@@ -90,7 +90,7 @@ public class Topic implements Serializable {
         this.topicName = topicName;
         this.provider = provider;
         this.tags = tags;
-        this.boostedStudent = boostedStudent;
+        this.boostedStudent = null;
         this.promotor = promotor;
         this.aantal_studenten = aantal_studenten;
         this.keyword_list = keyword_list;
@@ -106,7 +106,6 @@ public class Topic implements Serializable {
         this.topicName = topicName;
         this.provider = provider;
         this.tags = tags;
-        this.boostedStudent = boostedStudent;
         this.promotor = promotor;
         this.aantal_studenten = aantal_studenten;
         this.keyword_list = keyword_list;
@@ -180,13 +179,6 @@ public class Topic implements Serializable {
         this.tags = tags;
     }
 
-    public Student getBoostedStudent() {
-        return boostedStudent;
-    }
-
-    public void setBoostedStudent(Student boostedStudent) {
-        this.boostedStudent = boostedStudent;
-    }
 
     public Promotor getPromotor() {
         return promotor;
@@ -283,5 +275,9 @@ public class Topic implements Serializable {
 
     public void addStudent(Student student) {
         this.student_list.add(student);
+    }
+
+    public void addBoostedStudent(Student boostedStudent) {
+        this.boostedStudent.add(boostedStudent);
     }
 }
