@@ -11,21 +11,18 @@ import com.example.project.notification.NotificationObjectSort;
 import com.example.project.notification.NotificationRepository;
 import com.example.project.notification.NotificationSort;
 import com.example.project.person.PersonRepository;
+import com.example.project.promotor.Promotor;
 import com.example.project.promotor.PromotorRepository;
 import com.example.project.student.*;
 import com.example.project.targetAudience.TargetAudience;
 import com.example.project.targetAudience.TargetAudienceRepository;
 import com.example.project.topicprovider.TopicProvider;
 import com.example.project.topicprovider.TopicProviderRepository;
-import net.bytebuddy.implementation.bytecode.Throw;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 @Service
@@ -269,7 +266,7 @@ public class TopicService {
 
     public List<Topic> getTopicPromotorId(long promotor_id) {
 
-        List<Topic> allTopics = topicRepository.findByPromotor(promotorRepository.findById(promotor_id));
+        List<Topic> allTopics = topicRepository.findByPromotor(promotorRepository.findById(promotor_id).get());
         List<Topic> returnTopics = new ArrayList<Topic>();
 
         for (Topic p: allTopics){
@@ -391,5 +388,30 @@ public class TopicService {
         }else{
             throw new IdNotFoundRequestException("Id van master is niet gevonden");
         }
+    }
+
+    public Topic assingProm(long prom_id, long topic_id) throws IdNotFoundRequestException {
+        if(topicRepository.findById(topic_id).isPresent()){
+            Topic t = topicRepository.findById(topic_id).get();
+            if(promotorRepository.findById(prom_id).isPresent()){
+                Promotor pr = promotorRepository.findById(prom_id).get();
+                if(Boolean.TRUE.equals(t.getPromotor() == null && containsTarget(pr,t) && pr.isApproved() && t.getApproved_topic() && !pr.getHide()) && Boolean.TRUE.equals(!t.getHide_topic())){
+                    t.setPromotor(pr);
+                    Topic update = topicRepository.save(t);
+                    return update;
+                }else throw new IllegalStateException("Topic heeft al prom");
+            }else throw new IdNotFoundRequestException("Id van prom is niet gevonden");
+        }else throw new IdNotFoundRequestException("Id van topic is niet gevonden");
+    }
+
+    public boolean containsTarget(Promotor pr,Topic t){
+        List<TargetAudience> topicsTarget = t.getTargetAudiences();
+        List<TargetAudience> promTarget = pr.getTargetAudience();
+        boolean gelijken=false;
+        for (TargetAudience target : topicsTarget){
+            if(promTarget.contains(target)) {gelijken =true;
+                break;}
+        }
+        return gelijken;
     }
 }

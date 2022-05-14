@@ -63,6 +63,10 @@ public class TopicController {
     public Topic boostStudent(@PathVariable int id, @Valid @RequestBody BoostStudentRequest request) throws IdNotFoundRequestException {
         return topicService.boostStudent(id, request);
     }
+    @PutMapping("/assing/{prom_id}/{topic_id}")
+    public Topic assign(@PathVariable long prom_id,@PathVariable long topic_id) throws IdNotFoundRequestException {
+        return topicService.assingProm(prom_id,topic_id);
+    }
 
     @GetMapping(path = "/approved")
     public List<Topic> getAllApprovedTopics() { //System.out.println(topicService.findAllApprovedTopics());
