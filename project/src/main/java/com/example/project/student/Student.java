@@ -62,12 +62,13 @@ public class Student extends Person implements Serializable {
     public Student(Long id, String username, String password, String email, String phoneNumber, AppUserRole appUserRole, String country, String city, String streetName, Integer postNumber, Integer streetNumber, String firstName, String lastName,  List<TargetAudience> targetAudience_id, Master master, Topic assignedTopic, List<Topic> preferredTopics) {
         super(id, username, password, email, phoneNumber, appUserRole, country, city, streetName, postNumber, streetNumber, firstName, lastName,  targetAudience_id);
         this.master = master;
-        this.assignedTopic = false;
+
         this.preferredTopics = preferredTopics;
     }
 
     public Student(Master master, List<Topic> preferredTopics, List<Topic_choice> choices) {
         this.master = master;
+        this.assignedTopic = false;
         this.preferredTopics = preferredTopics;
         this.choices = choices;
     }
@@ -75,6 +76,7 @@ public class Student extends Person implements Serializable {
     public Student(String firstName, String lastName, List<TargetAudience> targetAudience, Master master, List<Topic> preferredTopics, List<Topic_choice> choices) {
         super(firstName, lastName, targetAudience);
         this.master = master;
+        this.assignedTopic = false;
         this.preferredTopics = preferredTopics;
         this.choices = choices;
     }
@@ -82,6 +84,7 @@ public class Student extends Person implements Serializable {
     public Student(String username, String password, String email, String phoneNumber, AppUserRole appUserRole, String country, String city, String streetName, Integer postNumber, Integer streetNumber, String firstName, String lastName, List<TargetAudience> targetAudience, Master master, List<Topic> preferredTopics, List<Topic_choice> choices) {
         super(username, password, email, phoneNumber, appUserRole, country, city, streetName, postNumber, streetNumber, firstName, lastName, targetAudience);
         this.master = master;
+        this.assignedTopic = false;
         this.preferredTopics = preferredTopics;
         this.choices = choices;
     }
@@ -89,6 +92,7 @@ public class Student extends Person implements Serializable {
     public Student(Long id, String username, String password, String email, String phoneNumber, AppUserRole appUserRole, String country, String city, String streetName, Integer postNumber, Integer streetNumber, String firstName, String lastName, List<TargetAudience> targetAudience, Master master, List<Topic> preferredTopics, List<Topic_choice> choices) {
         super(id, username, password, email, phoneNumber, appUserRole, country, city, streetName, postNumber, streetNumber, firstName, lastName, targetAudience);
         this.master = master;
+        this.assignedTopic = false;
         this.preferredTopics = preferredTopics;
         this.choices = choices;
     }
@@ -96,6 +100,7 @@ public class Student extends Person implements Serializable {
     public Student(String username, String password, String email, String firstName, String lastName, List<TargetAudience> targetAudience, Master master, List<Topic> preferredTopics, List<Topic_choice> choices) {
         super(username, password, email, firstName, lastName, targetAudience);
         this.master = master;
+        this.assignedTopic = false;
         this.preferredTopics = preferredTopics;
         this.choices = choices;
     }
@@ -105,7 +110,7 @@ public class Student extends Person implements Serializable {
         this.master = master;
         this.preferredTopics = preferredTopics;
         this.choices = choices;
-        this.assignedTopic = null;
+        this.assignedTopic = false;
     }
 
 
