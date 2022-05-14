@@ -1,5 +1,6 @@
 package com.example.project.master;
 
+import com.example.project.appuser.AppUser;
 import com.example.project.appuser.AppUserRepository;
 import com.example.project.exceptions.IdNotFoundRequestException;
 import com.example.project.notification.Notification;
@@ -101,6 +102,7 @@ public class MasterService {
                 }
             }
             topicRepository.save(t);
+            addApprovedTopicNotificationProvider(appUserRepository.getById(t.getProvider()), approve, topicid);
         }else {
             throw new IdNotFoundRequestException("Id " + topicid + "niet gevonden");
         }
@@ -152,6 +154,17 @@ public class MasterService {
         Notification n = new Notification(ns, NotificationObjectSort.COMPANY, tp.getId(), new Date());
         notificationRepository.save(n);
         tp.getNotification_list().add(n);
+    }
+    private void addApprovedTopicNotificationProvider(AppUser a, Boolean approve, Long topicid) {
+        NotificationSort ns;
+        if (approve)
+            ns = NotificationSort.APPROVED;
+        else
+            ns = NotificationSort.NOTAPPROVED;
+        Notification n = new Notification(ns, NotificationObjectSort.TOPIC, topicid, new Date());
+        notificationRepository.save(n);
+        a.getNotification_list().add(n);
+        appUserRepository.save(a);
     }
 
     public void approveCompanyById(Long masterid, Long companyid, Boolean approve) throws IdNotFoundRequestException {
