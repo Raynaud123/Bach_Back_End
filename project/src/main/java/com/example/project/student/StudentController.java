@@ -60,6 +60,11 @@ public class StudentController {
      return studentService.findAllNotHidedMasterproefIDStudents(id,topicid);
     }
 
+    @GetMapping(path = "/hided/boost/{topicid}")
+    public List<Student> getAllChoice3TopicStudenten(@PathVariable long topicid) throws IdNotFoundRequestException {
+        return studentService.findAllChoice3TopicStudenten(topicid);
+    }
+
     @GetMapping(path = "/{id}/preferred/all")
     public List<Topic> getAllPreferredTopics(@PathVariable long id) {
         return studentService.findAllPreferredTopics(id);
