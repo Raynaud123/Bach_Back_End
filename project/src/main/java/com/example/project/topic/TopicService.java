@@ -326,7 +326,7 @@ public class TopicService {
     }
 
 
-    public List<Topic> getTopicsByMaster(long id) throws IdNotFoundRequestException {
+    public List<Topic> getTopicsByMasterWithoutStudents(long id) throws IdNotFoundRequestException {
         if (personRepository.findById(id).isPresent()){
             List<TargetAudience> targetAudiences = personRepository.findById(id).get().getTargetAudience();
             List<Topic> topics = new ArrayList<>();
@@ -372,5 +372,24 @@ public class TopicService {
             throw new IdNotFoundRequestException("Dit id: "+ studentid +" is niet gevonden");
      }
         return null;
+    }
+
+    public List<Topic> getTopicsByMasterWithPromotor(long id) throws IdNotFoundRequestException {
+        if (personRepository.findById(id).isPresent()){
+            List<TargetAudience> targetAudiences = personRepository.findById(id).get().getTargetAudience();
+            List<Topic> topics = new ArrayList<>();
+            for (TargetAudience t: targetAudiences){
+                List<Topic> opgehaald = topicRepository.findByTargetAudiences(t);
+                for(Topic top: opgehaald){
+                    if(Boolean.TRUE.equals(!top.getHide_topic() && top.getApproved_topic()) && !topics.contains(top) && top.getPromotor() == null){
+                        topics.add(top);
+                    }
+                }
+            }
+
+            return topics;
+        }else{
+            throw new IdNotFoundRequestException("Id van master is niet gevonden");
+        }
     }
 }
