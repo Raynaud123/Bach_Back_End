@@ -4,6 +4,8 @@ import com.example.project.appuser.AppUserRepository;
 import com.example.project.exceptions.IdNotFoundRequestException;
 import com.example.project.notification.Notification;
 import com.example.project.notification.NotificationObjectSort;
+import com.example.project.notification.NotificationRepository;
+import com.example.project.notification.NotificationSort;
 import com.example.project.promotor.Promotor;
 import com.example.project.promotor.PromotorRepository;
 import com.example.project.topic.Topic;
@@ -28,6 +30,8 @@ public class MasterService {
     private final PromotorRepository promotorRepository;
     @Autowired
     private final TopicProviderRepository topicProviderRepository;
+    @Autowired
+    private NotificationRepository notificationRepository;
 
 
     public MasterService(MasterRepository masterRepository, AppUserRepository appUserRepository, TopicRepository topicRepository, PromotorRepository promotorRepository, TopicProviderRepository topicProviderRepository) {
@@ -122,10 +126,32 @@ public class MasterService {
                     }
                 }
             }
+            addApprovedNotificationPromotor(p, approve);
             promotorRepository.save(p);
         }else {
             throw new IdNotFoundRequestException("Id " + promotorid + "niet gevonden");
         }
+    }
+
+    private void addApprovedNotificationPromotor(Promotor p, Boolean approve) {
+        NotificationSort ns;
+        if (approve)
+            ns = NotificationSort.APPROVED;
+        else
+            ns = NotificationSort.NOTAPPROVED;
+        Notification n = new Notification(ns, NotificationObjectSort.PROMOTOR, p.getId(), new Date());
+        notificationRepository.save(n);
+        p.getNotification_list().add(n);
+    }
+    private void addApprovedNotificationTopicProvider(TopicProvider tp, Boolean approve) {
+        NotificationSort ns;
+        if (approve)
+            ns = NotificationSort.APPROVED;
+        else
+            ns = NotificationSort.NOTAPPROVED;
+        Notification n = new Notification(ns, NotificationObjectSort.COMPANY, tp.getId(), new Date());
+        notificationRepository.save(n);
+        tp.getNotification_list().add(n);
     }
 
     public void approveCompanyById(Long masterid, Long companyid, Boolean approve) throws IdNotFoundRequestException {
@@ -150,6 +176,7 @@ public class MasterService {
                     }
                 }
             }
+            addApprovedNotificationTopicProvider(t, approve);
             topicProviderRepository.save(t);
         }else {
             throw new IdNotFoundRequestException("Id " + masterid + "niet gevonden");
