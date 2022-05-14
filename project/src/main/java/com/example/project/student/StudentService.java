@@ -110,26 +110,28 @@ public class StudentService {
             opTeSlaan.add(t1);
             opTeSlaan.add(t3);
         }
-        topic_choiceRepository.saveAll(opTeSlaan);
+        topic_choiceRepository.saveAllAndFlush(opTeSlaan);
         return s.get();
     }
 
     public List<Topic> getTop3(long id) {
         List<Topic> top3 = new ArrayList<>(3);
-        Optional<Student> s = studentRepository.findById(id);
-        if(s.isPresent()) {
-            List<Topic_choice> jeWeetZelf = topic_choiceRepository.findAllByStudent(s.get());
-            do{
-                for (int i = 0; i < jeWeetZelf.size(); i++){
-                   if(jeWeetZelf.get(i).getChoice() == 1 && top3.size() == 0){
-                       top3.add(jeWeetZelf.get(i).getTopic());
-                   }else if(jeWeetZelf.get(i).getChoice() == 2 && top3.size() == 1){
-                       top3.add(jeWeetZelf.get(i).getTopic());
-                   }else if(jeWeetZelf.get(i).getChoice() == 3 && top3.size() == 2){
-                       top3.add(jeWeetZelf.get(i).getTopic());
-                   }
-               }
-            }while (top3.size() != 3);
+        if(studentRepository.findById(id).isPresent()) {
+            Student s = studentRepository.findById(id).get();
+            List<Topic_choice> jeWeetZelf = topic_choiceRepository.findAllByStudent(s);
+            if (!jeWeetZelf.isEmpty()){
+                do{
+                    for (int i = 0; i < jeWeetZelf.size(); i++){
+                        if(jeWeetZelf.get(i).getChoice() == 1 && top3.size() == 0){
+                            top3.add(jeWeetZelf.get(i).getTopic());
+                        }else if(jeWeetZelf.get(i).getChoice() == 2 && top3.size() == 1){
+                            top3.add(jeWeetZelf.get(i).getTopic());
+                        }else if(jeWeetZelf.get(i).getChoice() == 3 && top3.size() == 2){
+                            top3.add(jeWeetZelf.get(i).getTopic());
+                        }
+                    }
+                }while (top3.size() != 3);
+            }
         }
         return top3;
     }
