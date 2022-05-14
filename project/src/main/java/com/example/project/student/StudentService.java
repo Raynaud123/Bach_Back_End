@@ -4,6 +4,7 @@ import com.example.project.master.MasterRepository;
 import com.example.project.appuser.AppUserRepository;
 import com.example.project.exceptions.IdNotFoundRequestException;
 import com.example.project.exceptions.NietApprovedRequestException;
+import com.example.project.targetAudience.TargetAudience;
 import com.example.project.topic.Topic;
 import com.example.project.topic.TopicRepository;
 import com.example.project.topic.TopicService;
@@ -163,19 +164,36 @@ public class StudentService {
         return contains;
     }
 
-    public List<Student> findAllNotHidedMasterproefIDStudents(long id) throws IdNotFoundRequestException {
+    public List<Student> findAllNotHidedMasterproefIDStudents(long id, long topicid) throws IdNotFoundRequestException {
         if(masterRepository.findById(id).isPresent()){
             List<Student> studenten = studentRepository.findAllByMaster(masterRepository.findById(id).get());
             List<Student> returnStu = new ArrayList<>();
-
-            for(Student s: studenten){
-                if(!s.getHide() && !s.getAssignedTopic()){
-                    returnStu.add(s);
+            if(topicRepository.findById(topicid).isPresent()){
+                Topic t = topicRepository.findById(topicid).get();
+                for(Student s: studenten){
+                    if(!s.getHide() && !s.getAssignedTopic()){
+                        if(isPresentInTop3(topicid,s) > 0 && isTargetaudience(topicid,s)){
+                            returnStu.add(s);
+                        }
+                    }
                 }
+                return returnStu;
+            }else {
+                throw new IdNotFoundRequestException("id niet gevonden");
             }
-            return returnStu;
         }else{
             throw new IdNotFoundRequestException("Masterid niet gevonden");
         }
+    }
+
+    private boolean isTargetaudience(long topicid, Student s) {
+        Topic t = topicRepository.findById(topicid).get();
+        List<TargetAudience> topicsTarget = t.getTargetAudiences();
+        List<TargetAudience> studentsTarget = s.getTargetAudience();
+        boolean gelijken = false;
+        for (TargetAudience target : topicsTarget){
+            if(studentsTarget.contains(target)) {gelijken =true;}
+        }
+        return gelijken;
     }
 }
