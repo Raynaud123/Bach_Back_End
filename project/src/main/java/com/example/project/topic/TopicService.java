@@ -370,8 +370,6 @@ public class TopicService {
                     for (Student s: t.getStudent_list()){
                         if(Objects.equals(s.getId(), studentid)){
                             return t;
-                        }else {
-                            throw new NietApprovedRequestException("Je bent niet approved");
                         }
                     }
                 }
