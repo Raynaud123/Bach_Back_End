@@ -30,6 +30,7 @@ public class Promotor extends Person implements Serializable {
 //    @OneToOne
 //    Student boostedStudent;
 
+
     boolean approved;
 
     public Promotor(List<Topic> topic_lijst, Student boostedStudent) {
