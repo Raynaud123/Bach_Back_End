@@ -72,6 +72,8 @@ public class Topic implements Serializable {
     @ManyToMany
     private List<Keyword> keyword_list;
     @OneToMany
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+    @JsonIdentityReference(alwaysAsId = true)
     private List<Student> student_list;
     @ManyToMany
     private List<TargetAudience> targetAudiences;

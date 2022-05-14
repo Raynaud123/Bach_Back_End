@@ -286,21 +286,33 @@ public class TopicService {
             Topic topic = topicRepository.getById((long) id);
             if(request.getStudentId().length == 1){
                 if(studentRepository.findById((long)request.getStudentId()[0]).isPresent()){
-                    Student student = studentRepository.getById((long) request.getStudentId()[0]);
-                    topic.setBoostedStudent(student);
-                    topic.addStudent(student);
-                    topicRepository.saveAndFlush(topic);
+
+
+                    Student k = studentRepository.getById((long) request.getStudentId()[0]);
+                    k.setAssignedTopic(true);
+                    topic.addStudent(k);
+                    Topic updated = topicRepository.save(topic);
+                    addNotificationAssignment(k);
+                    studentRepository.save(k);
+                    return updated;
                 }
                 else{
                     throw new IdNotFoundRequestException("Student Id klopt niet");
                 }
-
-                return topic;
             }
             else if (request.getStudentId().length == 2){
                 if(studentRepository.findById((long)request.getStudentId()[0]).isPresent() && studentRepository.findById((long) request.getStudentId()[1]).isPresent()){
-
-
+                    Student k = studentRepository.getById((long)request.getStudentId()[0]);
+                    k.setAssignedTopic(true);
+                    Student l = studentRepository.getById((long) request.getStudentId()[1]);
+                    l.setAssignedTopic(true);
+                    topic.addStudent(k);
+                    topic.addStudent(l);
+                    Topic updated = topicRepository.save(topic);
+                    addNotificationAssignment(k);
+                    addNotificationAssignment(l);
+                    studentRepository.save(k);
+                    studentRepository.save(l);
                 }
                 else {
                     throw new IdNotFoundRequestException("Student Id klopt niet");
@@ -342,23 +354,23 @@ public class TopicService {
     }
 
     public Topic getAssignedTopic(Long studentid) throws IdNotFoundRequestException, NietApprovedRequestException {
-//        if(appUserRepository.findById(studentid).isPresent()){
-//            AppUser test = appUserRepository.findById(studentid).get();
-//            if(test.getAppUserRole() == AppUserRole.STUDENT){
-//                for (Topic t: topicRepository.findAll()){
-//                    for (Student s: t.getStudent_list()){
-//                        if(Objects.equals(s.getId(), studentid)){
-//                            return t;
-//                        }else {
-//                            throw new NietApprovedRequestException("Je bent niet approved");
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//        else {
-//            throw new IdNotFoundRequestException("Dit id: "+ studentid +" is niet gevonden");
-//        }
+        if(appUserRepository.findById(studentid).isPresent()){
+            AppUser test = appUserRepository.findById(studentid).get();
+            if(test.getAppUserRole() == AppUserRole.STUDENT){
+                for (Topic t: topicRepository.findAll()){
+                    for (Student s: t.getStudent_list()){
+                        if(Objects.equals(s.getId(), studentid)){
+                            return t;
+                        }else {
+                            throw new NietApprovedRequestException("Je bent niet approved");
+                        }
+                    }
+                }
+            }
+        }
+        else {
+            throw new IdNotFoundRequestException("Dit id: "+ studentid +" is niet gevonden");
+     }
         return null;
     }
 }
