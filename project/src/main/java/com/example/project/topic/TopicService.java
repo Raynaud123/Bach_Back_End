@@ -6,6 +6,10 @@ import com.example.project.appuser.AppUserRole;
 import com.example.project.exceptions.*;
 import com.example.project.keyword.Keyword;
 import com.example.project.keyword.KeywordRepository;
+import com.example.project.notification.Notification;
+import com.example.project.notification.NotificationObjectSort;
+import com.example.project.notification.NotificationRepository;
+import com.example.project.notification.NotificationSort;
 import com.example.project.person.PersonRepository;
 import com.example.project.promotor.PromotorRepository;
 import com.example.project.student.*;
@@ -19,6 +23,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 @Service
@@ -42,6 +49,8 @@ public class TopicService {
     private Topic_choiceRepository topic_choiceRepository;
     @Autowired
     private PersonRepository personRepository;
+    @Autowired
+    private NotificationRepository notificationRepository;
 
     public void addNewTopic(TopicPostRequest request) {
 
@@ -132,6 +141,7 @@ public class TopicService {
                         k.setAssignedTopic(true);
                         storedTopic.addStudent(k);
                         Topic updated = topicRepository.save(storedTopic);
+                        addNotificationAssignment(k);
                         studentRepository.save(k);
                         KeuzeReturn object = new KeuzeReturn(keuze,updated);
                         return new ResponseEntity(object, HttpStatus.OK);
@@ -172,6 +182,8 @@ public class TopicService {
                         storedTopic.addStudent(k);
                         storedTopic.addStudent(l);
                         Topic updated = topicRepository.save(storedTopic);
+                        addNotificationAssignment(k);
+                        addNotificationAssignment(l);
                         studentRepository.save(k);
                         studentRepository.save(l);
                         KeuzeTweeReturn object = new KeuzeTweeReturn(keuze,keuzetwee,updated);
@@ -187,6 +199,12 @@ public class TopicService {
             }
             return null;
             }
+
+    private void addNotificationAssignment(Student s) {
+        Notification n = new Notification(NotificationSort.ASSIGNED, NotificationObjectSort.STUDENT, s.getId(), new Date());
+        notificationRepository.save(n);
+        s.getNotification_list().add(n);
+    }
 
 
     public List<Topic> findById(long id) {

@@ -3,6 +3,7 @@ package com.example.project.topicprovider;
 
 import com.example.project.exceptions.IdNotFoundRequestException;
 import com.example.project.exceptions.NietApprovedRequestException;
+import com.example.project.notification.Notification;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

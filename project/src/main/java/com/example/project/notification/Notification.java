@@ -41,6 +41,13 @@ public class Notification {
         this.addedDate = addedDate;
     }
 
+    public Notification(NotificationSort notification_msg, NotificationObjectSort object_name, Long object_id, Date addedDate) {
+        this.notification_msg = notification_msg;
+        this.object_name = object_name;
+        this.object_id = object_id;
+        this.addedDate = addedDate;
+    }
+
     public Long getNotification_id() {
         return notification_id;
     }
