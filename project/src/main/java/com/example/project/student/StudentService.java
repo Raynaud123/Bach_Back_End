@@ -104,13 +104,22 @@ public class StudentService {
         Optional<Student> s = studentRepository.findById(id);
         List<Topic_choice> opTeSlaan = new ArrayList<>();
         if(s.isPresent()){
-            Topic_choice t1  = new Topic_choice(s.get(), topic1, 1);
-            Topic_choice t2 = new Topic_choice(s.get(), topic2, 2);
-            Topic_choice t3 = new Topic_choice(s.get(), topic3, 3);
-            opTeSlaan.add(t2);
-            opTeSlaan.add(t1);
-            opTeSlaan.add(t3);
+            if (s.get().getChoices().size()>0){
+                s.get().getChoices().get(0).setTopic(topic1);
+                s.get().getChoices().get(1).setTopic(topic2);
+                s.get().getChoices().get(2).setTopic(topic3);
+            }
+            else{
+                Topic_choice t1  = new Topic_choice(s.get(), topic1, 1);
+                Topic_choice t2 = new Topic_choice(s.get(), topic2, 2);
+                Topic_choice t3 = new Topic_choice(s.get(), topic3, 3);
+                opTeSlaan.add(t1);
+                opTeSlaan.add(t2);
+                opTeSlaan.add(t3);
+            }
+
         }
+        studentRepository.saveAndFlush(s.get());
         topic_choiceRepository.saveAllAndFlush(opTeSlaan);
         return s.get();
     }

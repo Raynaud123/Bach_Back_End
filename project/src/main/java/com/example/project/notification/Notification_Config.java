@@ -1,16 +1,8 @@
 //package com.example.project.notification;
 //
-//import com.example.project.master.Master;
-//import com.example.project.master.MasterRepository;
-//import com.example.project.targetAudience.TargetAudience;
-//import com.example.project.targetAudience.TargetAudienceController;
-//import com.example.project.topic.Topic;
-//import com.example.project.topic.TopicController;
-//import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.boot.CommandLineRunner;
 //import org.springframework.context.annotation.Bean;
 //import org.springframework.context.annotation.Configuration;
-//import org.springframework.security.crypto.password.PasswordEncoder;
 //
 //import java.text.SimpleDateFormat;
 //import java.util.List;
@@ -19,14 +11,9 @@
 //@Configuration
 //public class Notification_Config {
 //
-//    private final PasswordEncoder passwordEncoder;
 //
 //    String dateString1 = "07/05/2022 23:55:55";
 //    SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-//
-//    public Notification_Config(PasswordEncoder passwordEncoder) {
-//        this.passwordEncoder = passwordEncoder;
-//    }
 //
 //    @Bean("notificationbean")
 //    CommandLineRunner commandLineRunner(NotificationRepository repository) {
@@ -60,9 +47,12 @@
 //                    13L, NotificationSort.AWAITAPPROVED, NotificationObjectSort.COMPANY, 15L,format.parse(dateString1));
 //            Notification n14 = new Notification(
 //                    14L, NotificationSort.AWAITAPPROVED, NotificationObjectSort.COMPANY, 16L,format.parse(dateString1));
-//
+//            Notification n15 = new Notification(
+//                    15L, NotificationSort.ASSIGNED, NotificationObjectSort.STUDENT, 17L, format.parse(dateString1));
+//            Notification n16 = new Notification(
+//                    16L, NotificationSort.ASSIGNED, NotificationObjectSort.STUDENT, 17L, format.parse(dateString1));
 //            repository.saveAll(
-//                    List.of(n1, n2,n3,n4,n5,n6,n7,n8,n9,n10,n11,n12,n13,n14)
+//                    List.of(n1, n2,n3,n4,n5,n6,n7,n8,n9,n10,n11,n12,n13,n14,n15,n16)
 //            );
 //        };
 //    }
