@@ -127,8 +127,8 @@ public class StudentService {
     public List<Topic> getTop3(long id) {
         List<Topic> top3 = new ArrayList<>(3);
         if(studentRepository.findById(id).isPresent()) {
-            Student s = studentRepository.findById(id).get();
-            List<Topic_choice> jeWeetZelf = topic_choiceRepository.findAllByStudent(s);
+            Optional<Student> s = studentRepository.findById(id);
+            List<Topic_choice> jeWeetZelf = topic_choiceRepository.findAllByStudent(s.get());
             if (!jeWeetZelf.isEmpty()){
                 do{
                     for (int i = 0; i < jeWeetZelf.size(); i++){

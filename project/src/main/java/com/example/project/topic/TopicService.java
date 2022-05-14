@@ -340,4 +340,25 @@ public class TopicService {
             throw new IdNotFoundRequestException("Dit id: "+ id +" is niet gevonden");
         }
     }
+
+    public Topic getAssignedTopic(Long studentid) throws IdNotFoundRequestException, NietApprovedRequestException {
+//        if(appUserRepository.findById(studentid).isPresent()){
+//            AppUser test = appUserRepository.findById(studentid).get();
+//            if(test.getAppUserRole() == AppUserRole.STUDENT){
+//                for (Topic t: topicRepository.findAll()){
+//                    for (Student s: t.getStudent_list()){
+//                        if(Objects.equals(s.getId(), studentid)){
+//                            return t;
+//                        }else {
+//                            throw new NietApprovedRequestException("Je bent niet approved");
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//        else {
+//            throw new IdNotFoundRequestException("Dit id: "+ studentid +" is niet gevonden");
+//        }
+        return null;
+    }
 }
