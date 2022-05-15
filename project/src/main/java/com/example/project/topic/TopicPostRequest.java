@@ -10,6 +10,7 @@ public class TopicPostRequest implements Serializable {
     private long aantal_studenten;
     private long[] targetAudience;
     private long[] keywords;
+    private long promotor_id;
     private long provider_id;
     private String firstname;
     private String lastname;
@@ -30,6 +31,7 @@ public class TopicPostRequest implements Serializable {
         this.lastname = lastname;
         this.email = email;
         this.tel = tel;
+        this.promotor_id = Long.MAX_VALUE;
     }
     public TopicPostRequest(String topicName, String description_topic, int aantal_studenten, long[] targetAudience, long[] keywords, long provider_id) {
         this.topicName = topicName;
@@ -42,8 +44,18 @@ public class TopicPostRequest implements Serializable {
         this.lastname = null;
         this.email = null;
         this.tel = null;
+        this.promotor_id = Long.MAX_VALUE;
     }
 
+    public TopicPostRequest(String topicName, String description_topic, long aantal_studenten, long[] targetAudience, long[] keywords, long promotor_id, long provider_id) {
+        this.topicName = topicName;
+        this.description_topic = description_topic;
+        this.aantal_studenten = aantal_studenten;
+        this.targetAudience = targetAudience;
+        this.keywords = keywords;
+        this.promotor_id = promotor_id;
+        this.provider_id = provider_id;
+    }
 
 
     @Override
@@ -136,5 +148,13 @@ public class TopicPostRequest implements Serializable {
 
     public void setTel(String tel) {
         this.tel = tel;
+    }
+
+    public long getPromotor_id() {
+        return promotor_id;
+    }
+
+    public void setPromotor_id(long promotor_id) {
+        this.promotor_id = promotor_id;
     }
 }

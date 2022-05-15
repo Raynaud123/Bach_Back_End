@@ -117,7 +117,19 @@ public class Topic implements Serializable {
         this.description_topic = description_topic;
         this.release_date = release_date;
     }
-
+    public Topic(String topicName, String description_topic, long aantal_studenten, List<Keyword> keywords, List<TargetAudience> targetAudiences, long provider,Promotor pr) {
+        this.topicName = topicName;
+        this.provider = provider;
+        this.aantal_studenten = aantal_studenten;
+        this.keyword_list = keywords;
+        this.targetAudiences = targetAudiences;
+        this.approved_topic = false;
+        this.hide_topic = false;
+        this.release_date = new Date();
+        this.boostedStudent = null;
+        this.description_topic = description_topic;
+        this.promotor=pr;
+    }
     public Topic(String topicName, String description_topic, long aantal_studenten, List<Keyword> keywords, List<TargetAudience> targetAudiences, long provider) {
         this.topicName = topicName;
         this.provider = provider;
@@ -130,7 +142,19 @@ public class Topic implements Serializable {
         this.boostedStudent = null;
         this.description_topic = description_topic;
     }
-
+    public Topic(String topicName, String description_topic, long aantal_studenten, long appUser, Promotor pr) {
+        this.topicName = topicName;
+        this.provider = appUser;
+        this.promotor=pr;
+        this.aantal_studenten = aantal_studenten;
+        this.keyword_list = null;
+        this.targetAudiences = null;
+        this.approved_topic = false;
+        this.hide_topic = false;
+        this.release_date = new Date();
+        this.boostedStudent = null;
+        this.description_topic = description_topic;
+    }
     public Topic(String topicName, String description_topic, long aantal_studenten, long appUser) {
         this.topicName = topicName;
         this.provider = appUser;

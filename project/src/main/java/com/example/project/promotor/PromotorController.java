@@ -1,6 +1,7 @@
 package com.example.project.promotor;
 
 import com.example.project.exceptions.IdNotFoundRequestException;
+import com.example.project.student.Student;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -24,6 +25,12 @@ public class PromotorController {
     @GetMapping(path = "/hided/{topicid}")
     public List<Promotor> getTargetPromotors(@PathVariable long topicid) throws IdNotFoundRequestException {
         return promotorService.findTargetPromotors(topicid);
+    }
+
+
+    @GetMapping(path = "/student/{id}")
+    public List<Promotor> getTargetPromotorsStudent(@PathVariable long id) throws IdNotFoundRequestException {
+        return promotorService.findTargetPromotorsStudent(id);
     }
 
     @GetMapping(path = "/withtopic")

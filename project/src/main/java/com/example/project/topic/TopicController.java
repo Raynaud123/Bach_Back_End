@@ -5,7 +5,6 @@ import com.example.project.exceptions.NietApprovedRequestException;
 import com.example.project.exceptions.NietTop3TopicExceptionRequest;
 import com.example.project.student.Student;
 import lombok.AllArgsConstructor;
-import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +12,7 @@ import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import java.text.ParseException;
 import java.util.List;
 

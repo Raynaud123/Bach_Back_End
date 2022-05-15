@@ -70,24 +70,41 @@ public class TopicService {
             targetAudiences.add(targetAudienceRepository.getById(request.getTargetAudience()[i]));
         }
 //        Optional<AppUser> tp = appUserRepository.findById(request.provider_id);
-        if(keywords.isEmpty() && targetAudiences.isEmpty()){
+        if(request.getPromotor_id() == Long.MAX_VALUE){
+            if(keywords.isEmpty() && targetAudiences.isEmpty()){
                 topic = new Topic(request.getTopicName(), request.getDescription_topic(), request.getAantal_studenten(),request.getProvider_id());
+            }
+            else if(keywords.isEmpty()){
+                topic = new Topic(request.getTopicName(), request.getDescription_topic(), request.getAantal_studenten(),null,targetAudiences,request.getProvider_id());
+            }else if(targetAudiences.isEmpty()){
+                topic = new Topic(request.getTopicName(), request.getDescription_topic(), request.getAantal_studenten(),keywords,null,request.getProvider_id());
+            }else{
+                topic = new Topic(request.getTopicName(),request.getDescription_topic(),request.getAantal_studenten(), keywords, targetAudiences,request.getProvider_id());
+            }
+            if(request.getFirstname() != null && providerRepository.findById(request.getProvider_id()).isPresent()){
+                TopicProvider t = providerRepository.findById(request.getProvider_id()).get();
+                Company comp = new Company(request.getEmail(),request.getFirstname(),request.getTel(),request.getLastname());
+                t.addBegeleider(comp);
+                companyRepository.saveAndFlush(comp);
+                providerRepository.save(t);
+            }
+            topicRepository.save(topic);
+        }else {
+            if(promotorRepository.findById(request.getPromotor_id()).isPresent()){
+                Promotor pr= promotorRepository.findById(request.getPromotor_id()).get();
+                if(keywords.isEmpty() && targetAudiences.isEmpty()){
+                    topic = new Topic(request.getTopicName(), request.getDescription_topic(), request.getAantal_studenten(),request.getProvider_id(),pr);
+                }
+                else if(keywords.isEmpty()){
+                    topic = new Topic(request.getTopicName(), request.getDescription_topic(), request.getAantal_studenten(),null,targetAudiences,request.getProvider_id(),pr);
+                }else if(targetAudiences.isEmpty()){
+                    topic = new Topic(request.getTopicName(), request.getDescription_topic(), request.getAantal_studenten(),keywords,null,request.getProvider_id(),pr);
+                }else{
+                    topic = new Topic(request.getTopicName(),request.getDescription_topic(),request.getAantal_studenten(), keywords, targetAudiences,request.getProvider_id(),pr);
+                }
+                topicRepository.save(topic);
+            }else throw new IdNotFoundRequestException("Promotor Id bestaat niet");
         }
-        else if(keywords.isEmpty()){
-            topic = new Topic(request.getTopicName(), request.getDescription_topic(), request.getAantal_studenten(),null,targetAudiences,request.getProvider_id());
-        }else if(targetAudiences.isEmpty()){
-            topic = new Topic(request.getTopicName(), request.getDescription_topic(), request.getAantal_studenten(),keywords,null,request.getProvider_id());
-        }else{
-            topic = new Topic(request.getTopicName(),request.getDescription_topic(),request.getAantal_studenten(), keywords, targetAudiences,request.getProvider_id());
-        }
-        if(request.getFirstname() != null && providerRepository.findById(request.getProvider_id()).isPresent()){
-            TopicProvider t = providerRepository.findById(request.getProvider_id()).get();
-            Company comp = new Company(request.getEmail(),request.getFirstname(),request.getTel(),request.getLastname());
-            t.addBegeleider(comp);
-            companyRepository.saveAndFlush(comp);
-            providerRepository.save(t);
-        }
-        topicRepository.save(topic);
     }
 
     public List<Topic> findAllApprovedTopics() {
