@@ -3,7 +3,6 @@ package com.example.project.admin;
 
 import com.example.project.keyword.Keyword;
 import com.example.project.phase.Phase;
-import com.example.project.student.Student;
 import com.example.project.targetAudience.TargetAudience;
 import com.example.project.topic.Topic;
 import com.example.project.topicprovider.TopicProvider;
@@ -88,18 +87,18 @@ public class AdminController {
 
     @PostMapping(path = "/delete/keyword")
     @ResponseBody
-    public void deleteOldKeyword(@RequestBody Keyword KBody) throws ParseException {service.deleteKeyword(KBody);}
+    public void deleteOldKeyword(@RequestBody Keyword KBody) {service.deleteKeyword(KBody);}
 
     @PostMapping(path = "/update/topic/{kid}")
     @ResponseBody
-    public void updateTopic(@PathVariable long kid,@RequestBody Topic Body) throws ParseException {service.updateTopicWithBody(kid,Body);}
+    public void updateTopic(@PathVariable long kid,@RequestBody UpdateTopicRequest updateTopicRequest) throws ParseException {service.updateTopicWithBody(kid,updateTopicRequest);}
 
     @PostMapping(path = "/create/topic")
     @ResponseBody
-    public void createNewTopic(@RequestBody Topic Body) throws ParseException {service.createTopic(Body);}
+    public void createNewTopic(@RequestBody UpdateTopicRequest updateTopicRequest) throws ParseException {service.createTopic(updateTopicRequest);}
 
     @PostMapping(path = "/delete/topic")
     @ResponseBody
-    public void deleteOldTopic(@RequestBody Topic Body) throws ParseException {service.deleteTopic(Body);}
+    public void deleteOldTopic(@RequestBody Topic Body) {service.deleteTopic(Body);}
 
 }
