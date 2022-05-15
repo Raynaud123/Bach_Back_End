@@ -8,7 +8,7 @@ import java.util.List;
 
 @Service
 public class PhaseService {
-    private PhaseRepository phaseRepository;
+    private final PhaseRepository phaseRepository;
 
     public PhaseService(PhaseRepository phaseRepository) {
         this.phaseRepository = phaseRepository;
@@ -19,8 +19,7 @@ public class PhaseService {
         Date today = new Date();
 
         for(Phase p: all){
-            if(today.getTime() <= p.getEnd_deadline().getTime()){
-                System.out.println("Phase id: " + p.getPhase_id());
+            if(today.compareTo(p.getEnd_deadline()) <= 0){
                 return p;
             }
         }
