@@ -3,6 +3,7 @@ package com.example.project.admin;
 
 import com.example.project.keyword.Keyword;
 import com.example.project.phase.Phase;
+import com.example.project.student.Student;
 import com.example.project.targetAudience.TargetAudience;
 import com.example.project.topic.Topic;
 import com.example.project.topicprovider.TopicProvider;
@@ -100,5 +101,17 @@ public class AdminController {
     @PostMapping(path = "/delete/topic")
     @ResponseBody
     public void deleteOldTopic(@RequestBody Topic Body) {service.deleteTopic(Body);}
+
+    @PostMapping(path = "/update/student/{sid}")
+    @ResponseBody
+    public void updateStudent(@PathVariable long sid,@RequestBody UpdateStudentRequest updateStudentRequest) throws ParseException {service.updateStudentWithBody(sid,updateStudentRequest);}
+
+    @PostMapping(path = "/create/student")
+    @ResponseBody
+    public void createNewStudent(@RequestBody UpdateStudentRequest updateStudentRequest) throws ParseException {service.createStudent(updateStudentRequest);}
+
+    @PostMapping(path = "/delete/student")
+    @ResponseBody
+    public void deleteOldStudent(@RequestBody Student Body) {service.deleteStudent(Body);}
 
 }

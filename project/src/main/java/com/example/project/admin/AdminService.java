@@ -277,6 +277,44 @@ public class AdminService {
         System.out.print(t);
         topicRepository.save(t);
     }
+    public void updateTopicWithBody(long kid, UpdateTopicRequest r) throws ParseException {
+        Topic t = topicRepository.findById(kid).get();
+        if (!Objects.equals(r.getTopicName(), "")){
+            t.setTopicName(r.getTopicName());
+        }
+        if (r.getProvider() != null && r.getProvider() != -1 ){
+            t.setProvider(r.getProvider());
+        }
+        if (r.getPromotor() != null && r.getPromotor() != -1){
+            t.setPromotor(promotorRepository.getById(r.getPromotor()));
+        }
+        t.setAantal_studenten(r.getAantal_studenten());
+        if (r.getKeyword_list() != null){
+            t.setKeyword_list(getKeywords(r.getKeyword_list()));
+        }
+        if (r.getStudent_list() != null){
+            t.setStudent_list(getSudents(r.getStudent_list()));
+        }
+        if (r.getTargetAudiences() != null){
+            t.setTargetAudiences(getTA(r.getTargetAudiences()));
+        }
+        if (r.getApproved_topic() != null){
+            t.setApproved_topic(r.getApproved_topic());
+        }
+        if (r.getHide_topic() != null){
+            t.setHide_topic(r.getHide_topic());
+        }
+        if (!Objects.equals(r.getDescription_topic(), "")){
+            t.setDescription_topic(r.getDescription_topic());
+        }
+        if (!Objects.equals(r.getRelease_date(), "")){
+            t.setRelease_date(getDatum(r.getRelease_date()));
+        }
+        topicRepository.save(t);
+    }
+    public void deleteTopic(Topic body) {
+        topicRepository.delete(body);
+    }
 
     private Promotor getPromotor(Long promotor) {
         if (promotor != -1 || promotor != null){
@@ -284,18 +322,6 @@ public class AdminService {
         }
         return null;
     }
-
-//    private List<Topic_choice> getTopicCoices(Long[] tags) {
-//        if (tags != null){
-//            List<Topic_choice> tas = new ArrayList<>();
-//            for (int i = 0; i<tags.length; i++){
-//                tas.add(new Topic_choice());
-//            }
-//            return tas;
-//        }
-//        return null;
-//    }
-
     private Date getDatum(String release_date) throws ParseException {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         return format.parse(release_date);
@@ -332,43 +358,14 @@ public class AdminService {
         return null;
     }
 
-    public void updateTopicWithBody(long kid, UpdateTopicRequest r) throws ParseException {
-        Topic t = topicRepository.findById(kid).get();
-        if (!Objects.equals(r.getTopicName(), "")){
-            t.setTopicName(r.getTopicName());
-        }
-        if (r.getProvider() != null && r.getProvider() != -1 ){
-            t.setProvider(r.getProvider());
-        }
-        if (r.getPromotor() != null && r.getPromotor() != -1){
-            t.setPromotor(promotorRepository.getById(r.getPromotor()));
-        }
-        t.setAantal_studenten(r.getAantal_studenten());
-        if (r.getKeyword_list() != null){
-            t.setKeyword_list(getKeywords(r.getKeyword_list()));
-        }
-        if (r.getStudent_list() != null){
-            t.setStudent_list(getSudents(r.getStudent_list()));
-        }
-        if (r.getTargetAudiences() != null){
-            t.setTargetAudiences(getTA(r.getTargetAudiences()));
-        }
-        if (r.getApproved_topic() != null){
-            t.setApproved_topic(r.getApproved_topic());
-        }
-        if (r.getHide_topic() != null){
-            t.setHide_topic(r.getHide_topic());
-        }
-        if (!Objects.equals(r.getDescription_topic(), "")){
-            t.setDescription_topic(r.getDescription_topic());
-        }
-        if (!Objects.equals(r.getRelease_date(), "")){
-            t.setRelease_date(getDatum(r.getRelease_date()));
-        }
-        topicRepository.save(t);
-    }
 
-    public void deleteTopic(Topic body) {
-        topicRepository.delete(body);
+    public void updateStudentWithBody(long sid, UpdateStudentRequest updateStudentRequest) {
+    //TODO
+    }
+    public void createStudent(UpdateStudentRequest updateStudentRequest) {
+    //TODO
+    }
+    public void deleteStudent(Student s) {
+        studentRepository.delete(s);
     }
 }
