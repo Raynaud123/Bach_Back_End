@@ -13,6 +13,7 @@ import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.text.ParseException;
 import java.util.List;
 
 @RestController
@@ -31,7 +32,7 @@ public class TopicController {
     }
 
     @PutMapping(path = "/{topic_id}", consumes = {MediaType.APPLICATION_JSON_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<Object> updateTopicAssignment(@PathVariable Long topic_id, @Valid @RequestBody UpdateTopicStudentsRequest request) throws NietTop3TopicExceptionRequest, NietApprovedRequestException, IdNotFoundRequestException {
+    public ResponseEntity<Object> updateTopicAssignment(@PathVariable Long topic_id, @Valid @RequestBody UpdateTopicStudentsRequest request) throws NietTop3TopicExceptionRequest, NietApprovedRequestException, IdNotFoundRequestException, ParseException {
         return topicService.updateTopicAssignment(topic_id, request);
     }
     @GetMapping("/{id}")
@@ -61,7 +62,7 @@ public class TopicController {
     }
 
     @PutMapping("/boost/{id}")
-    public Topic boostStudent(@PathVariable int id, @NotNull @Valid @RequestBody BoostStudentRequest request) throws IdNotFoundRequestException {
+    public Topic boostStudent(@PathVariable int id, @NotNull @Valid @RequestBody BoostStudentRequest request) throws IdNotFoundRequestException{
         return topicService.boostStudent(id, request);
     }
     @PutMapping("/assing/{prom_id}/{topic_id}")

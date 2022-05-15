@@ -25,6 +25,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Service
@@ -130,7 +132,7 @@ public class TopicService {
         else return "Topic not found";
     }
 
-    public ResponseEntity<Object> updateTopicAssignment(Long topic_id, UpdateTopicStudentsRequest request) throws NietTop3TopicExceptionRequest, IdNotFoundRequestException, NietApprovedRequestException {
+    public ResponseEntity<Object> updateTopicAssignment(Long topic_id, UpdateTopicStudentsRequest request) throws NietTop3TopicExceptionRequest, IdNotFoundRequestException, NietApprovedRequestException, ParseException {
         if (topicRepository.findById(topic_id).isPresent()){
             Topic storedTopic = topicRepository.getById(topic_id);
             if(request.getAantalStudenten() == 1){
@@ -150,7 +152,7 @@ public class TopicService {
                         storedTopic.addStudent(k);
                         storedTopic.addBoostedStudent(k);
                         Topic updated = topicRepository.save(storedTopic);
-                        addNotificationAssignment(k);
+                        addNotificationAssignment(k, storedTopic);
                         studentRepository.save(k);
                         KeuzeReturn object = new KeuzeReturn(keuze,updated);
                         return new ResponseEntity(object, HttpStatus.OK);
@@ -193,8 +195,8 @@ public class TopicService {
                         storedTopic.addBoostedStudent(l);
                         storedTopic.addBoostedStudent(k);
                         Topic updated = topicRepository.save(storedTopic);
-                        addNotificationAssignment(k);
-                        addNotificationAssignment(l);
+                        addNotificationAssignment(k, storedTopic);
+                        addNotificationAssignment(l, storedTopic);
                         studentRepository.save(k);
                         studentRepository.save(l);
                         KeuzeTweeReturn object = new KeuzeTweeReturn(keuze,keuzetwee,updated);
@@ -211,10 +213,13 @@ public class TopicService {
             return null;
             }
 
-    private void addNotificationAssignment(Student s) {
-        Notification n = new Notification(NotificationSort.ASSIGNED, NotificationObjectSort.STUDENT, s.getId(), new Date());
+    private void addNotificationAssignment(Student s, Topic storedTopic) throws ParseException {
+        String dateString1 = "2022/05/20 23:55:55";
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Notification n = new Notification(NotificationSort.ASSIGNED, NotificationObjectSort.STUDENT, s.getId(),format.parse(dateString1));
         notificationRepository.save(n);
         s.getNotification_list().add(n);
+        //appUserRepository.getById(storedTopic.getProvider()).getNotification_list().add(n);
     }
 
 
@@ -292,7 +297,7 @@ public class TopicService {
          return returnTopics;
     }
 
-    public Topic boostStudent(int id, BoostStudentRequest request) throws IdNotFoundRequestException {
+    public Topic boostStudent(int id, BoostStudentRequest request) throws IdNotFoundRequestException{
         if (topicRepository.findById((long)id).isPresent()) {
             Topic topic = topicRepository.getById((long) id);
             if(!topic.getHide_topic() && Boolean.TRUE.equals(topic.getApproved_topic())){
@@ -304,7 +309,6 @@ public class TopicService {
                             topic.addStudent(k);
                             topic.addBoostedStudent(k);
                             Topic updated = topicRepository.save(topic);
-                            addNotificationAssignment(k);
                             studentRepository.save(k);
                             return updated;
                         }
@@ -326,8 +330,6 @@ public class TopicService {
                             topic.addBoostedStudent(k);
                             topic.addBoostedStudent(l);
                             Topic updated = topicRepository.save(topic);
-                            addNotificationAssignment(k);
-                            addNotificationAssignment(l);
                             studentRepository.save(k);
                             studentRepository.save(l);
                         return updated;}
