@@ -8,8 +8,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 
@@ -19,57 +18,65 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @DiscriminatorValue("company")
-public class Company extends TopicProvider implements Serializable {
+public class Company implements Serializable {
 
-    private int phoneContact;
+    @SequenceGenerator(
+            name = "company_sequence",
+            sequenceName = "company_sequence",
+            allocationSize = 1
+    )
+    @Id
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "company_sequence"
+    )
+    private long id;
+
+    private String phoneContact;
     private String firstNameMentor;
     private String lastNameMentor;
     private String emailMentor;
 
-    public Company(int phoneContact, String firstNameMentor, String lastNameMentor, String emailMentor) {
+    public Company(String phoneContact, String firstNameMentor, String lastNameMentor, String emailMentor) {
         this.phoneContact = phoneContact;
         this.firstNameMentor = firstNameMentor;
         this.lastNameMentor = lastNameMentor;
         this.emailMentor = emailMentor;
     }
 
-    public Company(boolean approved, Boolean isCompany, String name, Campus campus, int phoneContact, String firstNameMentor, String lastNameMentor, String emailMentor) {
-        super(approved, isCompany, name, campus);
+    public Company(boolean approved, Boolean isCompany, String name, Campus campus, String phoneContact, String firstNameMentor, String lastNameMentor, String emailMentor) {
         this.phoneContact = phoneContact;
         this.firstNameMentor = firstNameMentor;
         this.lastNameMentor = lastNameMentor;
         this.emailMentor = emailMentor;
     }
 
-    public Company(String username, String password, String email, String phoneNumber, AppUserRole appUserRole,  String country, String city, String streetName, Integer postNumber, Integer streetNumber, boolean approved, Boolean isCompany, String name, Campus campus, List<Topic> topic_list, int phoneContact, String firstNameMentor, String lastNameMentor, String emailMentor) {
-        super(username, password, email, phoneNumber, appUserRole,country, city, streetName, postNumber, streetNumber, approved, isCompany, name, campus, topic_list);
+    public Company(String username, String password, String email, String phoneNumber, AppUserRole appUserRole,  String country, String city, String streetName, Integer postNumber, Integer streetNumber, boolean approved, Boolean isCompany, String name, Campus campus, List<Topic> topic_list, String phoneContact, String firstNameMentor, String lastNameMentor, String emailMentor) {
         this.phoneContact = phoneContact;
         this.firstNameMentor = firstNameMentor;
         this.lastNameMentor = lastNameMentor;
         this.emailMentor = emailMentor;
     }
 
-    public Company(Long id, String username, String password, String email, String phoneNumber, AppUserRole appUserRole, Boolean locked, Boolean enabled, String country, String city, String streetName, Integer postNumber, Integer streetNumber, boolean approved, Boolean isCompany, String name, Campus campus, List<Topic> topic_list, int phoneContact, String firstNameMentor, String lastNameMentor, String emailMentor) {
-        super(id, username, password, email, phoneNumber, appUserRole, country, city, streetName, postNumber, streetNumber, approved, isCompany, name, campus, topic_list);
+    public Company(Long id, String username, String password, String email, String phoneNumber, AppUserRole appUserRole, Boolean locked, Boolean enabled, String country, String city, String streetName, Integer postNumber, Integer streetNumber, boolean approved, Boolean isCompany, String name, Campus campus, List<Topic> topic_list, String phoneContact, String firstNameMentor, String lastNameMentor, String emailMentor) {
         this.phoneContact = phoneContact;
         this.firstNameMentor = firstNameMentor;
         this.lastNameMentor = lastNameMentor;
         this.emailMentor = emailMentor;
     }
 
-    public Company(String username, String password, String email, boolean approved, Boolean isCompany, String name, Campus campus, List<Topic> topic_list, int phoneContact, String firstNameMentor, String lastNameMentor, String emailMentor) {
-        super(username, password, email, approved, isCompany, name, campus, topic_list);
+    public Company(String username, String password, String email, boolean approved, Boolean isCompany, String name, Campus campus, List<Topic> topic_list, String phoneContact, String firstNameMentor, String lastNameMentor, String emailMentor) {
         this.phoneContact = phoneContact;
         this.firstNameMentor = firstNameMentor;
         this.lastNameMentor = lastNameMentor;
         this.emailMentor = emailMentor;
     }
 
-    public int getPhoneContact() {
+    public String getPhoneContact() {
         return phoneContact;
     }
 
-    public void setPhoneContact(int phoneContact) {
+    public void setPhoneContact(String phoneContact) {
         this.phoneContact = phoneContact;
     }
 

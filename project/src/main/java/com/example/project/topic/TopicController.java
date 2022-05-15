@@ -81,7 +81,7 @@ public class TopicController {
 
 
     @PostMapping
-    public void registerNewTopic( @RequestBody TopicPostRequest topic) {
+    public void registerNewTopic( @RequestBody TopicPostRequest topic) throws IdNotFoundRequestException {
         topicService.addNewTopic(topic); }
 
 

@@ -16,6 +16,8 @@ import com.example.project.promotor.PromotorRepository;
 import com.example.project.student.*;
 import com.example.project.targetAudience.TargetAudience;
 import com.example.project.targetAudience.TargetAudienceRepository;
+import com.example.project.topicprovider.Company;
+import com.example.project.topicprovider.CompanyRepository;
 import com.example.project.topicprovider.TopicProvider;
 import com.example.project.topicprovider.TopicProviderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,31 +50,40 @@ public class TopicService {
     private PersonRepository personRepository;
     @Autowired
     private NotificationRepository notificationRepository;
+    @Autowired
+    private CompanyRepository companyRepository;
 
-    public void addNewTopic(TopicPostRequest request) {
+    public void addNewTopic(TopicPostRequest request) throws IdNotFoundRequestException {
 
         List<Keyword> keywords = new ArrayList<>();
         List<TargetAudience> targetAudiences = new ArrayList<>();
 
         Topic topic;
 
-        for(int i = 0; i < request.keywords.length; i++){
-            keywords.add(keywordRepository.getById(request.keywords[i]));
+        for(int i = 0; i < request.getKeywords().length; i++){
+            keywords.add(keywordRepository.getById(request.getKeywords()[i]));
         }
 
-        for(int i = 0; i < request.targetAudience.length; i++){
-            targetAudiences.add(targetAudienceRepository.getById(request.targetAudience[i]));
+        for(int i = 0; i < request.getTargetAudience().length; i++){
+            targetAudiences.add(targetAudienceRepository.getById(request.getTargetAudience()[i]));
         }
 //        Optional<AppUser> tp = appUserRepository.findById(request.provider_id);
         if(keywords.isEmpty() && targetAudiences.isEmpty()){
-            topic = new Topic(request.topicName, request.description_topic, request.aantal_studenten,request.provider_id);
+                topic = new Topic(request.getTopicName(), request.getDescription_topic(), request.getAantal_studenten(),request.getProvider_id());
         }
         else if(keywords.isEmpty()){
-            topic = new Topic(request.topicName, request.description_topic, request.aantal_studenten,null,targetAudiences,request.provider_id);
+            topic = new Topic(request.getTopicName(), request.getDescription_topic(), request.getAantal_studenten(),null,targetAudiences,request.getProvider_id());
         }else if(targetAudiences.isEmpty()){
-            topic = new Topic(request.topicName, request.description_topic, request.aantal_studenten,keywords,null,request.provider_id);
+            topic = new Topic(request.getTopicName(), request.getDescription_topic(), request.getAantal_studenten(),keywords,null,request.getProvider_id());
         }else{
-            topic = new Topic(request.topicName,request.description_topic,request.aantal_studenten, keywords, targetAudiences,request.provider_id);
+            topic = new Topic(request.getTopicName(),request.getDescription_topic(),request.getAantal_studenten(), keywords, targetAudiences,request.getProvider_id());
+        }
+        if(request.getFirstname() != null && providerRepository.findById(request.getProvider_id()).isPresent()){
+            TopicProvider t = providerRepository.findById(request.getProvider_id()).get();
+            Company comp = new Company(request.getEmail(),request.getFirstname(),request.getTel(),request.getLastname());
+            t.addBegeleider(comp);
+            companyRepository.saveAndFlush(comp);
+            providerRepository.save(t);
         }
         topicRepository.save(topic);
     }

@@ -26,7 +26,9 @@ import java.util.List;
 public class TopicProvider extends AppUser implements Serializable{
 
     private boolean Approved;
-    private Boolean isCompany;    //Company of Onderzoeksgroep
+    private Boolean isCompany;//Company of Onderzoeksgroep
+    @OneToMany
+    private List<Company> begeleiders;
     private String Name;
     @ManyToOne
     private Campus campus;          //Enkel nodig als het een onderzoeksgroep is
@@ -136,5 +138,17 @@ public class TopicProvider extends AppUser implements Serializable{
 
     public void setCampus(Campus campus) {
         this.campus = campus;
+    }
+
+    public List<Company> getBegeleiders() {
+        return begeleiders;
+    }
+
+    public void setBegeleiders(List<Company> begeleiders) {
+        this.begeleiders = begeleiders;
+    }
+
+    public void addBegeleider(Company c){
+        begeleiders.add(c);
     }
 }
