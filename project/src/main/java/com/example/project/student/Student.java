@@ -116,7 +116,7 @@ public class Student extends Person implements Serializable {
     }
 
     public Student(String firstName, String lastName, String streetName, Integer streetNumber, String phoneNumber, Integer postNumber, String country, String city, String email, Master master, List<TargetAudience> ta) {
-        super(email, phoneNumber, country, city, streetName, postNumber, streetNumber, firstName, lastName, ta);
+        super(email, phoneNumber, STUDENT, country, city, streetName, postNumber, streetNumber, firstName, lastName, ta);
         this.master = master;
     }
 
