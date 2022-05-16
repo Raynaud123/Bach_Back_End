@@ -386,10 +386,13 @@ public class TopicService {
 
     public Topic getTopicForMaster(Long id) throws IdNotFoundRequestException {
         if(topicRepository.findById(id).isPresent()){
-            return topicRepository.findById(id).get();
+            if(!topicRepository.findById(id).get().getHide_topic()){
+                return topicRepository.findById(id).get();
+            }
         }else {
             throw new IdNotFoundRequestException("Dit id: "+ id +" is niet gevonden");
         }
+        return null;
     }
 
     public Topic getAssignedTopic(Long studentid) throws IdNotFoundRequestException, NietApprovedRequestException {
