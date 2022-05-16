@@ -24,35 +24,9 @@
 //            Notification n2 = new Notification(
 //                    2L, NotificationSort.AWAITAPPROVED, NotificationObjectSort.TOPIC, 7L,format.parse(dateString1));
 //            Notification n3 = new Notification(
-//                    3L, NotificationSort.AWAITAPPROVED, NotificationObjectSort.TOPIC, 8L,format.parse(dateString1));
-//            Notification n4 = new Notification(
-//                    4L, NotificationSort.AWAITAPPROVED, NotificationObjectSort.TOPIC, 9L,format.parse(dateString1));
-//            Notification n5 = new Notification(
-//                    5L, NotificationSort.AWAITAPPROVED, NotificationObjectSort.TOPIC, 10L,format.parse(dateString1));
-//            Notification n6 = new Notification(
-//                    6L, NotificationSort.AWAITAPPROVED, NotificationObjectSort.TOPIC, 11L,format.parse(dateString1));
-//            Notification n7 = new Notification(
-//                    7L, NotificationSort.AWAITAPPROVED, NotificationObjectSort.TOPIC, 12L,format.parse(dateString1));
-//            Notification n8 = new Notification(
-//                    8L, NotificationSort.AWAITAPPROVED, NotificationObjectSort.TOPIC, 13L,format.parse(dateString1));
-//            Notification n9 = new Notification(
-//                    9L, NotificationSort.AWAITAPPROVED, NotificationObjectSort.TOPIC, 14L,format.parse(dateString1));
-//            Notification n10 = new Notification(
-//                    10L, NotificationSort.AWAITAPPROVED, NotificationObjectSort.TOPIC, 15L,format.parse(dateString1));
-//            Notification n11 = new Notification(
-//                    11L, NotificationSort.AWAITAPPROVED, NotificationObjectSort.PROMOTOR, 6L,format.parse(dateString1));
-//            Notification n12 = new Notification(
-//                    12L, NotificationSort.AWAITAPPROVED, NotificationObjectSort.PROMOTOR, 7L,format.parse(dateString1));
-//            Notification n13 = new Notification(
-//                    13L, NotificationSort.AWAITAPPROVED, NotificationObjectSort.COMPANY, 15L,format.parse(dateString1));
-//            Notification n14 = new Notification(
-//                    14L, NotificationSort.AWAITAPPROVED, NotificationObjectSort.COMPANY, 16L,format.parse(dateString1));
-//            Notification n15 = new Notification(
-//                    15L, NotificationSort.ASSIGNED, NotificationObjectSort.STUDENT, 17L, format.parse(dateString1));
-//            Notification n16 = new Notification(
-//                    16L, NotificationSort.ASSIGNED, NotificationObjectSort.STUDENT, 17L, format.parse(dateString1));
+//                    3L, NotificationSort.AWAITAPPROVED, NotificationObjectSort.COMPANY, 16L,format.parse(dateString1));
 //            repository.saveAll(
-//                    List.of(n1, n2,n3,n4,n5,n6,n7,n8,n9,n10,n11,n12,n13,n14,n15,n16)
+//                    List.of(n1, n2,n3)
 //            );
 //        };
 //    }

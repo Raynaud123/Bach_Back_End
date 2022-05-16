@@ -94,6 +94,7 @@ public class TopicService {
                 providerRepository.save(t);
             }
             topicRepository.save(topic);
+            sendNotToMaster(topic);
         }else {
             if(promotorRepository.findById(request.getPromotor_id()).isPresent()){
                 Promotor pr= promotorRepository.findById(request.getPromotor_id()).get();
@@ -122,7 +123,7 @@ public class TopicService {
                 }
             }
         }
-        Notification n = new Notification(NotificationSort.NEW, NotificationObjectSort.TOPIC, topic.getTopic_id(), new Date());
+        Notification n = new Notification(NotificationSort.AWAITAPPROVED, NotificationObjectSort.TOPIC, topic.getTopic_id(), new Date());
         notificationRepository.save(n);
         for (Master m : listM){
             m.getNotification_list().add(n);
