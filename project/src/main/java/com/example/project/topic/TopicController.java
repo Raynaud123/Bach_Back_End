@@ -88,6 +88,9 @@ public class TopicController {
     @GetMapping(path = "/hided/{id}")
     public List<Topic> getAllMasterTopics(@PathVariable long id) throws IdNotFoundRequestException {return topicService.getTopicsByMasterWithoutStudents(id);}
 
+    @GetMapping(path ="/hided/master/{id}")
+    public List<Topic> getAllMasterAllTopics(@PathVariable long id) throws IdNotFoundRequestException {return topicService.getAllTopicsByMaster(id);}
+
     @GetMapping(path = "/hided/promotor/{id}")
     public List<Topic> getAllMasterTopicsWithoutProm(@PathVariable long id) throws IdNotFoundRequestException {return topicService.getTopicsByMasterWithPromotor(id);}
 

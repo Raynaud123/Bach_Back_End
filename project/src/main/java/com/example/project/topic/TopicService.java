@@ -527,5 +527,22 @@ public class TopicService {
     }
 
 
+    public List<Topic> getAllTopicsByMaster(long id) throws IdNotFoundRequestException {
+        if (personRepository.findById(id).isPresent()){
+            List<TargetAudience> targetAudiences = personRepository.findById(id).get().getTargetAudience();
+            List<Topic> topics = new ArrayList<>();
+            for (TargetAudience t: targetAudiences){
+                List<Topic> opgehaald = topicRepository.findByTargetAudiences(t);
+                for(Topic top: opgehaald){
+                    if(Boolean.TRUE.equals(!top.getHide_topic()) && !topics.contains(top)){
+                        topics.add(top);
+                    }
+                }
+            }
 
+            return topics;
+        }else{
+            throw new IdNotFoundRequestException("Id van master is niet gevonden");
+        }
+    }
 }

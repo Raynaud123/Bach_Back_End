@@ -21,4 +21,5 @@ public interface TopicRepository extends JpaRepository<Topic, Long> {
     List<Topic> findByPromotor(Promotor id);
 
     List<Topic> findByProvider(long id);
+
 }
