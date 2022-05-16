@@ -545,4 +545,41 @@ public class TopicService {
             throw new IdNotFoundRequestException("Id van master is niet gevonden");
         }
     }
+
+    public Topic getRightTopic(Long id) throws NietApprovedRequestException, IdNotFoundRequestException {
+        if(topicRepository.findById(id).isPresent()){
+            //Nog checken als topicprovider is enabled.
+            Topic t = topicRepository.findById(id).get();
+            if(appUserRepository.findById(t.getProvider()).isPresent()){
+                AppUser test = appUserRepository.findById(t.getProvider()).get();
+                if(test.getAppUserRole() == AppUserRole.PROMOTOR){
+                    if(Boolean.TRUE.equals(!t.getHide_topic())){
+                        return t;
+                    }else {
+                        throw new NietApprovedRequestException("Je bent niet approved");
+                    }
+                }else if(test.getAppUserRole() == AppUserRole.COMPANY){
+                    TopicProvider topicP = providerRepository.findById(t.getProvider()).get();
+                    if(topicP.getCompany()){
+                        if(Boolean.TRUE.equals(!t.getHide_topic())){
+                            return t;
+                        }else {
+                            throw new NietApprovedRequestException("Je bent niet approved");
+                        }
+                    }else{
+                        if(Boolean.TRUE.equals(!t.getHide_topic())){
+                            return t;
+                        }else {
+                            throw new NietApprovedRequestException("Je bent niet approved");
+                        }
+                    }
+                }
+            }
+        }else {
+            throw new IdNotFoundRequestException("Dit id: "+ id +" is niet gevonden");
+        }
+
+        return null;
+
+    }
 }
