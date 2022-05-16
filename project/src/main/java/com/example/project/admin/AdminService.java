@@ -5,6 +5,10 @@ import com.example.project.keyword.Keyword;
 import com.example.project.keyword.KeywordRepository;
 import com.example.project.master.Master;
 import com.example.project.master.MasterRepository;
+import com.example.project.notification.Notification;
+import com.example.project.notification.NotificationObjectSort;
+import com.example.project.notification.NotificationRepository;
+import com.example.project.notification.NotificationSort;
 import com.example.project.phase.Phase;
 import com.example.project.phase.PhaseRepository;
 import com.example.project.promotor.Promotor;
@@ -46,6 +50,10 @@ public class AdminService {
     private MasterRepository masterRepository;
     @Autowired
     private TopicRepository topicRepository;
+    @Autowired
+    private AdminRepository adminRepository;
+    @Autowired
+    private NotificationRepository notificationRepository;
 
     public List<TopicProvider> findAllTopicProviders() {
         return topicProviderRepository.findAll();
@@ -572,5 +580,14 @@ public class AdminService {
     }
     public void deleteProvider(TopicProvider body) {
         topicProviderRepository.delete(body);
+    }
+
+    public void askHelpFromAdmin(Long masterid) {
+        Notification n = new Notification(NotificationSort.HELP, NotificationObjectSort.MASTER, masterid, new Date());
+        notificationRepository.save(n);
+        for (Admin a : adminRepository.findAll()){
+            a.getNotification_list().add(n);
+            adminRepository.save(a);
+        }
     }
 }

@@ -11,5 +11,5 @@ public enum NotificationSort {
     REJECTED,
     APPROACHINGDEADLINE,
     PASSEDDEADLINE,
-
+    HELP
 }

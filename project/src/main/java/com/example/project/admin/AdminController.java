@@ -1,6 +1,7 @@
 package com.example.project.admin;
 
 
+import com.example.project.exceptions.IdNotFoundRequestException;
 import com.example.project.keyword.Keyword;
 import com.example.project.master.Master;
 import com.example.project.phase.Phase;
@@ -136,5 +137,9 @@ public class AdminController {
     @PostMapping(path = "/delete/topicprovider")
     @ResponseBody
     public void deleteOldProvider(@RequestBody TopicProvider Body) {service.deleteProvider(Body);}
+
+    @PostMapping(path = "/help/{masterid}")
+    @ResponseBody
+    public void approveCompany(@PathVariable Long masterid) throws IdNotFoundRequestException {service.askHelpFromAdmin(masterid);}
 
 }
