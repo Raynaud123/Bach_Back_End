@@ -7,6 +7,7 @@ import com.example.project.phase.Phase;
 import com.example.project.phase.PhaseRepository;
 import com.example.project.promotor.Promotor;
 import com.example.project.promotor.PromotorRepository;
+import com.example.project.student.Student;
 import com.example.project.student.StudentRepository;
 import com.example.project.targetAudience.TargetAudience;
 import com.example.project.targetAudience.TargetAudienceRepository;
@@ -257,39 +258,114 @@ public class AdminService {
         keywordRepository.delete(k);
     }
 
-    public void createTopic(Topic body) {
-        System.out.print("getTopicName:" + body.getTopicName()
-                + " getProvider: " + body.getProvider()
-                + " getPromotor: " + body.getPromotor()
-                + " getAantal_studenten: " + body.getAantal_studenten()
-                + " getKeyword_list: " + body.getKeyword_list()
-                + " getStudent_list(): " + body.getStudent_list()
-                + " getTargetAudiences: " + body.getTargetAudiences()
-                + " getApproved_topic: " + body.getApproved_topic()
-                + " getHide_topic: " + body.getHide_topic()
-                + " getDescription_topic: " + body.getDescription_topic()
-                + " getRelease_date: " + body.getRelease_date()
-        );
+    public void createTopic(UpdateTopicRequest r) throws ParseException {
+        System.out.print(r);
         Topic t = new Topic(
-                body.getTopicName(),
-                body.getProvider(),
-                body.getPromotor(),
-                body.getAantal_studenten(),
-                body.getKeyword_list(),
-                body.getStudent_list(),
-                body.getTargetAudiences(),
-                body.getApproved_topic(),
-                body.getHide_topic(),
-                body.getDescription_topic(),
-                body.getRelease_date()
+                r.getTopicName(),
+                r.getProvider(),
+                getPromotor(r.getPromotor()),
+                r.getAantal_studenten(),
+                getKeywords(r.getKeyword_list()),
+                getSudents(r.getStudent_list()),
+                getTA(r.getTargetAudiences()),
+                r.getApproved_topic(),
+                r.getHide_topic(),
+                r.getDescription_topic(),
+                getDatum(r.getRelease_date())
+                //getTopicCoices(r.getTags())
         );
+        System.out.print(t);
         topicRepository.save(t);
     }
-
-    public void updateTopicWithBody(long kid, Topic body) {
+    public void updateTopicWithBody(long kid, UpdateTopicRequest r) throws ParseException {
+        Topic t = topicRepository.findById(kid).get();
+        if (!Objects.equals(r.getTopicName(), "")){
+            t.setTopicName(r.getTopicName());
+        }
+        if (r.getProvider() != null && r.getProvider() != -1 ){
+            t.setProvider(r.getProvider());
+        }
+        if (r.getPromotor() != null && r.getPromotor() != -1){
+            t.setPromotor(promotorRepository.getById(r.getPromotor()));
+        }
+        t.setAantal_studenten(r.getAantal_studenten());
+        if (r.getKeyword_list() != null){
+            t.setKeyword_list(getKeywords(r.getKeyword_list()));
+        }
+        if (r.getStudent_list() != null){
+            t.setStudent_list(getSudents(r.getStudent_list()));
+        }
+        if (r.getTargetAudiences() != null){
+            t.setTargetAudiences(getTA(r.getTargetAudiences()));
+        }
+        if (r.getApproved_topic() != null){
+            t.setApproved_topic(r.getApproved_topic());
+        }
+        if (r.getHide_topic() != null){
+            t.setHide_topic(r.getHide_topic());
+        }
+        if (!Objects.equals(r.getDescription_topic(), "")){
+            t.setDescription_topic(r.getDescription_topic());
+        }
+        if (!Objects.equals(r.getRelease_date(), "")){
+            t.setRelease_date(getDatum(r.getRelease_date()));
+        }
+        topicRepository.save(t);
     }
-
     public void deleteTopic(Topic body) {
         topicRepository.delete(body);
+    }
+
+    private Promotor getPromotor(Long promotor) {
+        if (promotor != -1 || promotor != null){
+            return promotorRepository.getById(promotor);
+        }
+        return null;
+    }
+    private Date getDatum(String release_date) throws ParseException {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        return format.parse(release_date);
+    }
+    private List<TargetAudience> getTA(Long[] targetAudiences) {
+        if (targetAudiences != null){
+            List<TargetAudience> tas = new ArrayList<>();
+            for (int i = 0; i<targetAudiences.length; i++){
+                tas.add(targetAudienceRepository.getById(targetAudiences[i]));
+            }
+            return tas;
+        }
+        return null;
+    }
+    private List<Student> getSudents(Long[] student_list) {
+        if(student_list != null) {
+            List<Student> students = new ArrayList<>();
+            for (int i = 0; i<student_list.length; i++){
+                if (!students.contains(studentRepository.getById(student_list[i])))
+                    students.add(studentRepository.getById(student_list[i]));
+            }
+            return students;
+        }
+        return null;
+    }
+    private List<Keyword> getKeywords(Long[] klist) {
+        if(klist != null) {
+            List<Keyword> keywords = new ArrayList<>();
+            for (int i = 0; i < klist.length; i++) {
+                keywords.add(keywordRepository.getById(klist[i]));
+            }
+            return keywords;
+        }
+        return null;
+    }
+
+
+    public void updateStudentWithBody(long sid, UpdateStudentRequest updateStudentRequest) {
+    //TODO
+    }
+    public void createStudent(UpdateStudentRequest updateStudentRequest) {
+    //TODO
+    }
+    public void deleteStudent(Student s) {
+        studentRepository.delete(s);
     }
 }

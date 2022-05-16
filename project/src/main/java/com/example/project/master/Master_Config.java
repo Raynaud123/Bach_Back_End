@@ -37,26 +37,15 @@
 //        Notification n1 = notificationController.getNotification(1L);
 //        Notification n2 = notificationController.getNotification(2L);
 //        Notification n3 = notificationController.getNotification(3L);
-//        Notification n4 = notificationController.getNotification(4L);
-//        Notification n5 = notificationController.getNotification(5L);
-//        Notification n6 = notificationController.getNotification(6L);
-//        Notification n7 = notificationController.getNotification(7L);
-//        Notification n8 = notificationController.getNotification(8L);
-//        Notification n9 = notificationController.getNotification(9L);
-//        Notification n10 = notificationController.getNotification(10L);
-//        Notification n11 = notificationController.getNotification(11L);
-//        Notification n12 = notificationController.getNotification(12L);
-//        Notification n13 = notificationController.getNotification(13L);
-//        Notification n14 = notificationController.getNotification(14L);
 //
-//        List<Notification> lijstNotification1 = new ArrayList<>();      lijstNotification1.add(n1);  lijstNotification1.add(n2);  lijstNotification1.add(n3);  lijstNotification1.add(n4);  lijstNotification1.add(n5);lijstNotification1.add(n6);lijstNotification1.add(n7);lijstNotification1.add(n8);lijstNotification1.add(n9);lijstNotification1.add(n10);lijstNotification1.add(n11);lijstNotification1.add(n12);lijstNotification1.add(n13);lijstNotification1.add(n14);
+//        List<Notification> lijstNotification1 = new ArrayList<>();      lijstNotification1.add(n1);  lijstNotification1.add(n2);  lijstNotification1.add(n3);
 //
 //
 //        TargetAudience ta1 = targetAudienceController.getTargetAudience(1L);
 //        TargetAudience ta2 = targetAudienceController.getTargetAudience(10L);
 //
 //        List<TargetAudience> lijstTA1 = new ArrayList<>();    lijstTA1.add(ta1);
-//        List<TargetAudience> lijstTA2 = new ArrayList<>();    lijstTA1.add(ta2);
+//        List<TargetAudience> lijstTA2 = new ArrayList<>();    lijstTA2.add(ta2);
 //
 //        return args -> {
 //            Master master1 = new Master(

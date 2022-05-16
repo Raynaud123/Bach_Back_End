@@ -88,18 +88,30 @@ public class AdminController {
 
     @PostMapping(path = "/delete/keyword")
     @ResponseBody
-    public void deleteOldKeyword(@RequestBody Keyword KBody) throws ParseException {service.deleteKeyword(KBody);}
+    public void deleteOldKeyword(@RequestBody Keyword KBody) {service.deleteKeyword(KBody);}
 
     @PostMapping(path = "/update/topic/{kid}")
     @ResponseBody
-    public void updateTopic(@PathVariable long kid,@RequestBody Topic Body) throws ParseException {service.updateTopicWithBody(kid,Body);}
+    public void updateTopic(@PathVariable long kid,@RequestBody UpdateTopicRequest updateTopicRequest) throws ParseException {service.updateTopicWithBody(kid,updateTopicRequest);}
 
     @PostMapping(path = "/create/topic")
     @ResponseBody
-    public void createNewTopic(@RequestBody Topic Body) throws ParseException {service.createTopic(Body);}
+    public void createNewTopic(@RequestBody UpdateTopicRequest updateTopicRequest) throws ParseException {service.createTopic(updateTopicRequest);}
 
     @PostMapping(path = "/delete/topic")
     @ResponseBody
-    public void deleteOldTopic(@RequestBody Topic Body) throws ParseException {service.deleteTopic(Body);}
+    public void deleteOldTopic(@RequestBody Topic Body) {service.deleteTopic(Body);}
+
+    @PostMapping(path = "/update/student/{sid}")
+    @ResponseBody
+    public void updateStudent(@PathVariable long sid,@RequestBody UpdateStudentRequest updateStudentRequest) throws ParseException {service.updateStudentWithBody(sid,updateStudentRequest);}
+
+    @PostMapping(path = "/create/student")
+    @ResponseBody
+    public void createNewStudent(@RequestBody UpdateStudentRequest updateStudentRequest) throws ParseException {service.createStudent(updateStudentRequest);}
+
+    @PostMapping(path = "/delete/student")
+    @ResponseBody
+    public void deleteOldStudent(@RequestBody Student Body) {service.deleteStudent(Body);}
 
 }

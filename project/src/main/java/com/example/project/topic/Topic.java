@@ -105,7 +105,6 @@ public class Topic implements Serializable {
     public Topic(String topicName, Long provider, Promotor promotor, Long aantal_studenten, List<Keyword> keyword_list, List<Student> student_list, List<TargetAudience> targetAudience_list, Boolean approved_topic, Boolean hide_topic, String description_topic, Date release_date) {
         this.topicName = topicName;
         this.provider = provider;
-        this.tags = tags;
         this.promotor = promotor;
         this.aantal_studenten = aantal_studenten;
         this.keyword_list = keyword_list;
@@ -116,6 +115,21 @@ public class Topic implements Serializable {
         this.boostedStudent = null;
         this.description_topic = description_topic;
         this.release_date = release_date;
+    }
+    public Topic(String topicName, Long provider, Promotor promotor, Long aantal_studenten, List<Keyword> keyword_list, List<Student> student_list, List<TargetAudience> targetAudience_list, Boolean approved_topic, Boolean hide_topic, String description_topic, Date release_date, List<Topic_choice> tags) {
+        this.topicName = topicName;
+        this.provider = provider;
+        this.promotor = promotor;
+        this.aantal_studenten = aantal_studenten;
+        this.keyword_list = keyword_list;
+        this.student_list = student_list;
+        this.targetAudiences = targetAudience_list;
+        this.approved_topic = approved_topic;
+        this.hide_topic = false;
+        this.boostedStudent = null;
+        this.description_topic = description_topic;
+        this.release_date = release_date;
+        this.tags = tags;
     }
     public Topic(String topicName, String description_topic, long aantal_studenten, List<Keyword> keywords, List<TargetAudience> targetAudiences, long provider,Promotor pr) {
         this.topicName = topicName;
