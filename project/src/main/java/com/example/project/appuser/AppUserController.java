@@ -4,6 +4,9 @@ package com.example.project.appuser;
 import com.example.project.security.AuthenticationRequest;
 import com.example.project.security.AuthenticationResponse;
 import com.example.project.security.JwtUtil;
+import com.example.project.topicprovider.Company;
+import com.example.project.topicprovider.TopicProvider;
+import com.example.project.topicprovider.TopicProviderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -28,6 +31,8 @@ public class AppUserController {
     private JwtUtil jwtTokenUtil;
     @Autowired
     private AppUserRepository appUserRepository;
+    @Autowired
+    private TopicProviderRepository topicProviderRepository;
 
 
     @PostMapping(path = "/authenticate")
@@ -50,10 +55,10 @@ public class AppUserController {
 
     @PostMapping(path = "/register")
     public AppUser register(@RequestBody RegisterRequest registerRequest) throws Exception {
-        AppUser test;
+        TopicProvider test;
         try {
-            test = new AppUser(registerRequest.getUsername(), registerRequest.getPassword(), registerRequest.getEmail());
-            service.singUpUser(test);
+            test = new TopicProvider(registerRequest.getUsername(), registerRequest.getPassword());
+            topicProviderRepository.save(test);
         } catch (Exception e) {
             throw new Exception("Registration Failed");
         }

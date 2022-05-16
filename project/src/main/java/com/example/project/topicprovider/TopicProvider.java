@@ -108,6 +108,14 @@ public class TopicProvider extends AppUser implements Serializable{
         this.campus = campus;
     }
 
+    public TopicProvider(String username, String password) {
+        super(username, password, null, null, AppUserRole.COMPANY,null, null, null, null, null);
+        this.approved = false;
+        this.isCompany = true;
+        this.name = null;
+        this.campus = null;
+    }
+
     public boolean isApproved() {
         return approved;
     }
