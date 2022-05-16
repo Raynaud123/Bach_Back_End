@@ -6,6 +6,8 @@ import com.example.project.appuser.AppUserRole;
 import com.example.project.exceptions.*;
 import com.example.project.keyword.Keyword;
 import com.example.project.keyword.KeywordRepository;
+import com.example.project.master.Master;
+import com.example.project.master.MasterRepository;
 import com.example.project.notification.Notification;
 import com.example.project.notification.NotificationObjectSort;
 import com.example.project.notification.NotificationRepository;
@@ -54,6 +56,9 @@ public class TopicService {
     private NotificationRepository notificationRepository;
     @Autowired
     private CompanyRepository companyRepository;
+    @Autowired
+    private MasterRepository masterRepository;
+
 
     public void addNewTopic(TopicPostRequest request) throws IdNotFoundRequestException {
 
@@ -70,7 +75,7 @@ public class TopicService {
             targetAudiences.add(targetAudienceRepository.getById(request.getTargetAudience()[i]));
         }
 //        Optional<AppUser> tp = appUserRepository.findById(request.provider_id);
-        if(request.getPromotor_id() == Long.MAX_VALUE){
+        if(request.getPromotor_id() == -1){
             if(keywords.isEmpty() && targetAudiences.isEmpty()){
                 topic = new Topic(request.getTopicName(), request.getDescription_topic(), request.getAantal_studenten(),request.getProvider_id());
             }
@@ -103,7 +108,25 @@ public class TopicService {
                     topic = new Topic(request.getTopicName(),request.getDescription_topic(),request.getAantal_studenten(), keywords, targetAudiences,request.getProvider_id(),pr);
                 }
                 topicRepository.save(topic);
+                sendNotToMaster(topic);
             }else throw new IdNotFoundRequestException("Promotor Id bestaat niet");
+        }
+    }
+
+    private void sendNotToMaster(Topic topic) {
+        List<Master> listM = new ArrayList<>();
+        for (Master master : masterRepository.findAll()){
+            for(TargetAudience ta: topic.getTargetAudiences()){
+                if (master.getTargetAudience().contains(ta)){
+                    listM.add(master);
+                }
+            }
+        }
+        Notification n = new Notification(NotificationSort.NEW, NotificationObjectSort.TOPIC, topic.getTopic_id(), new Date());
+        notificationRepository.save(n);
+        for (Master m : listM){
+            m.getNotification_list().add(n);
+            masterRepository.save(m);
         }
     }
 
@@ -231,9 +254,7 @@ public class TopicService {
             }
 
     private void addNotificationAssignment(Student s, Topic storedTopic) throws ParseException {
-        String dateString1 = "2022/05/20 23:55:55";
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Notification n = new Notification(NotificationSort.ASSIGNED, NotificationObjectSort.STUDENT, s.getId(),format.parse(dateString1));
+        Notification n = new Notification(NotificationSort.ASSIGNED, NotificationObjectSort.STUDENT, storedTopic.getTopic_id(),new Date());
         notificationRepository.save(n);
         s.getNotification_list().add(n);
         //appUserRepository.getById(storedTopic.getProvider()).getNotification_list().add(n);
