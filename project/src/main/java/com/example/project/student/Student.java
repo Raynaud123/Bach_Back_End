@@ -18,6 +18,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.project.appuser.AppUserRole.STUDENT;
+
 
 @Getter
 @Setter
@@ -111,6 +113,11 @@ public class Student extends Person implements Serializable {
         this.preferredTopics = preferredTopics;
         this.choices = choices;
         this.assignedTopic = false;
+    }
+
+    public Student(String firstName, String lastName, String streetName, Integer streetNumber, String phoneNumber, Integer postNumber, String country, String city, String email, Master master, List<TargetAudience> ta) {
+        super(email, phoneNumber, country, city, streetName, postNumber, streetNumber, firstName, lastName, ta);
+        this.master = master;
     }
 
 

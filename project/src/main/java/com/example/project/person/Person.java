@@ -14,6 +14,8 @@ import javax.persistence.ManyToMany;
 import java.io.Serializable;
 import java.util.List;
 
+import static com.example.project.appuser.AppUserRole.STUDENT;
+
 
 @Getter
 @Setter
@@ -60,6 +62,13 @@ public class Person extends AppUser implements Serializable {
         this.firstName = firstName;
         this.lastName = lastName;
         this.targetAudience = targetAudience;
+    }
+
+    public Person(String email, String phoneNumber, String country, String city, String streetName, Integer postNumber, Integer streetNumber, String firstName, String lastName, List<TargetAudience> ta) {
+        super(email, phoneNumber, STUDENT ,country, city, streetName, postNumber, streetNumber);
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.targetAudience = ta;
     }
 
     public String getFirstName() {

@@ -1,7 +1,9 @@
 package com.example.project.admin;
 
+import com.example.project.appuser.AppUserRole;
 import com.example.project.keyword.Keyword;
 import com.example.project.keyword.KeywordRepository;
+import com.example.project.master.Master;
 import com.example.project.master.MasterRepository;
 import com.example.project.phase.Phase;
 import com.example.project.phase.PhaseRepository;
@@ -9,6 +11,7 @@ import com.example.project.promotor.Promotor;
 import com.example.project.promotor.PromotorRepository;
 import com.example.project.student.Student;
 import com.example.project.student.StudentRepository;
+import com.example.project.student.Topic_choice;
 import com.example.project.targetAudience.TargetAudience;
 import com.example.project.targetAudience.TargetAudienceRepository;
 import com.example.project.topic.Topic;
@@ -357,15 +360,71 @@ public class AdminService {
         }
         return null;
     }
-
-
-    public void updateStudentWithBody(long sid, UpdateStudentRequest updateStudentRequest) {
-    //TODO
+    private Master getMaster(Long master) {
+        if (master != -1 || master != null){
+            return masterRepository.getById(master);
+        }
+        return null;
     }
-    public void createStudent(UpdateStudentRequest updateStudentRequest) {
-    //TODO
+
+
+    public void updateStudentWithBody(long sid, UpdateStudentRequest r) {
+        System.out.println(r);
+        Student t = studentRepository.findById(sid).get();
+        if (!Objects.equals(r.getFirstName(), "")){
+            t.setFirstName(r.getFirstName());
+        }
+        if (!Objects.equals(r.getLastName(), "")){
+            t.setLastName(r.getLastName());
+        }
+        if (r.getTargetAudience() != null){
+            t.setTargetAudience(getTA(r.getTargetAudience()));
+        }
+        if (r.getMaster() != null){
+            t.setMaster(getMaster(r.getMaster()));
+        }
+        if (!Objects.equals(r.getCity(), "")){
+            t.setCity(r.getCity());
+        }
+        if (!Objects.equals(r.getCountry(), "")){
+            t.setCountry(r.getCountry());
+        }
+        if (!Objects.equals(r.getEmail(), "")){
+            t.setEmail(r.getEmail());
+        }
+        if (!Objects.equals(r.getStreetName(), "")){
+            t.setStreetName(r.getStreetName());
+        }
+        if (!Objects.equals(r.getPhoneNumber(), "0")){
+            t.setPhoneNumber(r.getPhoneNumber());
+        }
+        if (!Objects.equals(r.getPostNumber(), 0)){
+            t.setPostNumber(r.getPostNumber());
+        }
+        if (!Objects.equals(r.getStreetNumber(), 0)){
+            t.setStreetNumber(r.getStreetNumber());
+        }
+        studentRepository.save(t);
+    }
+    public void createStudent(UpdateStudentRequest r) {
+        System.out.println(r);
+        Student s = new Student(
+                r.getFirstName(),
+                r.getLastName(),
+                r.getStreetName(),
+                r.getStreetNumber(),
+                r.getPhoneNumber(),
+                r.getPostNumber(),
+                r.getCountry(),
+                r.getCity(),
+                r.getEmail(),
+                getMaster(r.getMaster()),
+                getTA(r.getTargetAudience())
+        );
+        studentRepository.save(s);
     }
     public void deleteStudent(Student s) {
+        System.out.println(s);
         studentRepository.delete(s);
     }
 }

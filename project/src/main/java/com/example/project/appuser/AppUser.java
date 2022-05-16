@@ -101,6 +101,18 @@ public class AppUser implements UserDetails {
         this.notification_list = notification_list;
     }
 
+    public AppUser(String email, String phoneNumber, AppUserRole appUserRole, String country, String city, String streetName, Integer postNumber, Integer streetNumber) {
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.appUserRole = appUserRole;
+        this.hide = false;
+        this.country = country;
+        this.city = city;
+        this.streetName = streetName;
+        this.postNumber = Math.toIntExact(postNumber);
+        this.streetNumber = Math.toIntExact(streetNumber);
+    }
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

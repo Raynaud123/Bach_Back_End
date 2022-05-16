@@ -14,15 +14,13 @@ public class UpdateStudentRequest {
     private final String lastName;
     private final Long[] targetAudience;
     private final String streetName;
-    private final Long streetNumber;
-    private final Long postNumber;
-    private final Long phoneNumber;
+    private final Integer streetNumber;
+    private final Integer postNumber;
+    private final String phoneNumber;
     private final String city;
     private final String country;
     private final String email;
-    private final Long assignedTopic;
     private final Long master;
-    private final Boolean approved;
 
     public String getFirstName() {
         return firstName;
@@ -40,15 +38,15 @@ public class UpdateStudentRequest {
         return streetName;
     }
 
-    public Long getStreetNumber() {
+    public Integer getStreetNumber() {
         return streetNumber;
     }
 
-    public Long getPostNumber() {
+    public Integer getPostNumber() {
         return postNumber;
     }
 
-    public Long getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
@@ -64,17 +62,10 @@ public class UpdateStudentRequest {
         return email;
     }
 
-    public Long getAssignedTopic() {
-        return assignedTopic;
-    }
-
     public Long getMaster() {
         return master;
     }
 
-    public Boolean getApproved() {
-        return approved;
-    }
 
     @Override
     public String toString() {
@@ -89,9 +80,7 @@ public class UpdateStudentRequest {
                 ", city='" + city + '\'' +
                 ", country='" + country + '\'' +
                 ", email='" + email + '\'' +
-                ", assignedTopic=" + assignedTopic +
                 ", master=" + master +
-                ", approved=" + approved +
                 '}';
     }
 }
