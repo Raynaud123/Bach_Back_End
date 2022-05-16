@@ -113,6 +113,21 @@ public class AppUser implements UserDetails {
         this.streetNumber = Math.toIntExact(streetNumber);
     }
 
+    public AppUser(AppUserRole a) {
+        this.username = null;
+        this.password = null;
+        this.email = null;
+        this.phoneNumber = null;
+        this.appUserRole = a;
+        this.hide = false;
+        this.country = null;
+        this.city = null;
+        this.streetName = null;
+        this.postNumber = null;
+        this.streetNumber = null;
+        this.notification_list = null;
+    }
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

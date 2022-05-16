@@ -15,6 +15,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.project.appuser.AppUserRole.MASTER;
+import static com.example.project.appuser.AppUserRole.PROMOTOR;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -61,6 +64,11 @@ public class Promotor extends Person implements Serializable {
     public Promotor(String username, String password, String email, String firstName, String lastName, Boolean approved, List<TargetAudience> targetAudience_id, List<Topic> topic_lijst, Student boostedStudent) {
         super(username, password, email, firstName, lastName, targetAudience_id);
         approved = true;
+    }
+
+    public Promotor(String firstName, String lastName, String streetName, Integer streetNumber, String phoneNumber, Integer postNumber, String country, String city, String email, List<TargetAudience> ta, Boolean approve) {
+        super(email, phoneNumber, PROMOTOR, country, city, streetName, postNumber, streetNumber, firstName, lastName,  ta);
+        approved = approve;
     }
 
     public List<Topic> getTopic() {

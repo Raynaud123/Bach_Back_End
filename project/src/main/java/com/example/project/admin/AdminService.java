@@ -133,7 +133,6 @@ public class AdminService {
             throw new IllegalStateException();
         }
     }
-
     public void createPhase(Phase phaseBody) {
         System.out.print("Phasebody: name:" + phaseBody.getPhase_name()
                 + " round: " + phaseBody.getFirstRound()
@@ -149,7 +148,6 @@ public class AdminService {
         );
         phaseRepository.save(fase);
     }
-
     public void deletePhase(Phase f) {
         phaseRepository.delete(f);
     }
@@ -175,7 +173,6 @@ public class AdminService {
         );
         targetAudienceRepository.save(ta);
     }
-
     public void updateTargetAudienceWithBody(long taid, TargetAudience taBody) {
         System.out.print("taBody: getCampus_name:" + taBody.getCampus().getCampus_name()
                 + " getCity: " + taBody.getCampus().getCity()
@@ -229,7 +226,6 @@ public class AdminService {
             throw new IllegalStateException();
         }
     }
-
     public void deleteTargetAudience(TargetAudience ta) {
         targetAudienceRepository.delete(ta);
     }
@@ -241,7 +237,6 @@ public class AdminService {
         );
         keywordRepository.save(k);
     }
-
     public void updateKeywordWithBody(long kid, Keyword keywordBody) {
         if(keywordRepository.findById(kid).isPresent()){
             Keyword k = keywordRepository.findById(kid).get();
@@ -256,7 +251,6 @@ public class AdminService {
             throw new IllegalStateException();
         }
     }
-
     public void deleteKeyword(Keyword k) {
         keywordRepository.delete(k);
     }
@@ -330,11 +324,21 @@ public class AdminService {
         return format.parse(release_date);
     }
     private List<TargetAudience> getTA(Long[] targetAudiences) {
-        if (targetAudiences != null){
+        if (targetAudiences.length!=0){
             List<TargetAudience> tas = new ArrayList<>();
             for (int i = 0; i<targetAudiences.length; i++){
+                System.out.println(targetAudiences[i]);
                 tas.add(targetAudienceRepository.getById(targetAudiences[i]));
             }
+            System.out.println(tas);
+            return tas;
+        }
+        return null;
+    }
+    private List<TargetAudience> getTAOne(TargetAudience ta) {
+        if (ta != null){
+            List<TargetAudience> tas = new ArrayList<>();
+            tas.add(ta);
             return tas;
         }
         return null;
@@ -361,7 +365,7 @@ public class AdminService {
         return null;
     }
     private Master getMaster(Long master) {
-        if (master != -1 || master != null){
+        if (master != -1 && master != null){
             return masterRepository.getById(master);
         }
         return null;
@@ -426,5 +430,147 @@ public class AdminService {
     public void deleteStudent(Student s) {
         System.out.println(s);
         studentRepository.delete(s);
+    }
+
+    public void createMaster(UpdateMasterRequest r) {
+        System.out.println(r);
+        Master m = new Master(
+                r.getFirstName(),
+                r.getLastName(),
+                r.getStreetName(),
+                r.getStreetNumber(),
+                r.getPhoneNumber(),
+                r.getPostNumber(),
+                r.getCountry(),
+                r.getCity(),
+                r.getEmail(),
+                getTA(r.getTargetAudience())
+        );
+        masterRepository.save(m);
+    }
+    public void updateMasterWithBody(long mid, UpdateMasterRequest r) {
+        System.out.println(r);
+        Master t = masterRepository.findById(mid).get();
+        if (!Objects.equals(r.getFirstName(), "")){
+            t.setFirstName(r.getFirstName());
+        }
+        if (!Objects.equals(r.getLastName(), "")){
+            t.setLastName(r.getLastName());
+        }
+        if (r.getTargetAudience() != null){
+            t.setTargetAudience(getTA(r.getTargetAudience()));
+        }
+        if (!Objects.equals(r.getCity(), "")){
+            t.setCity(r.getCity());
+        }
+        if (!Objects.equals(r.getCountry(), "")){
+            t.setCountry(r.getCountry());
+        }
+        if (!Objects.equals(r.getEmail(), "")){
+            t.setEmail(r.getEmail());
+        }
+        if (!Objects.equals(r.getStreetName(), "")){
+            t.setStreetName(r.getStreetName());
+        }
+        if (!Objects.equals(r.getPhoneNumber(), "0")){
+            t.setPhoneNumber(r.getPhoneNumber());
+        }
+        if (!Objects.equals(r.getPostNumber(), 0)){
+            t.setPostNumber(r.getPostNumber());
+        }
+        if (!Objects.equals(r.getStreetNumber(), 0)){
+            t.setStreetNumber(r.getStreetNumber());
+        }
+        masterRepository.save(t);
+    }
+    public void deleteMaster(Master m) {
+        masterRepository.delete(m);
+    }
+
+    public void createPromotor(UpdatePromotorRequest r) {
+        System.out.println(r);
+        Promotor p = new Promotor(
+                r.getFirstName(),
+                r.getLastName(),
+                r.getStreetName(),
+                r.getStreetNumber(),
+                r.getPhoneNumber(),
+                r.getPostNumber(),
+                r.getCountry(),
+                r.getCity(),
+                r.getEmail(),
+                getTA(r.getTargetAudience()),
+                r.getApprove()
+        );
+        promotorRepository.save(p);
+    }
+    public void updatePromotorWithBody(long pid, UpdatePromotorRequest r) {
+        System.out.println(r);
+        Promotor t = promotorRepository.findById(pid).get();
+        if (!Objects.equals(r.getFirstName(), "")){
+            t.setFirstName(r.getFirstName());
+        }
+        if (!Objects.equals(r.getLastName(), "")){
+            t.setLastName(r.getLastName());
+        }
+        if (r.getTargetAudience() != null){
+            t.setTargetAudience(getTA(r.getTargetAudience()));
+        }
+        if (!Objects.equals(r.getCity(), "")){
+            t.setCity(r.getCity());
+        }
+        if (!Objects.equals(r.getCountry(), "")){
+            t.setCountry(r.getCountry());
+        }
+        if (!Objects.equals(r.getEmail(), "")){
+            t.setEmail(r.getEmail());
+        }
+        if (!Objects.equals(r.getStreetName(), "")){
+            t.setStreetName(r.getStreetName());
+        }
+        if (!Objects.equals(r.getPhoneNumber(), "0")){
+            t.setPhoneNumber(r.getPhoneNumber());
+        }
+        if (!Objects.equals(r.getPostNumber(), 0)){
+            t.setPostNumber(r.getPostNumber());
+        }
+        if (!Objects.equals(r.getStreetNumber(), 0)){
+            t.setStreetNumber(r.getStreetNumber());
+        }
+        if (!Objects.equals(r.getApprove(), null)){
+            t.setApproved(r.getApprove());
+        }
+        promotorRepository.save(t);
+    }
+    public void deletePromotor(Promotor p) {
+        promotorRepository.delete(p);
+    }
+
+
+    public void createProvider(UpdateProviderRequest r) {
+        System.out.println(r);
+        TopicProvider p = new TopicProvider(
+                r.getName(),
+                r.getIsCompany(),
+                r.getApproved()
+        );
+        topicProviderRepository.save(p);
+    }
+    public void updateProviderWithBody(long pid, UpdateProviderRequest r) {
+        System.out.println(r);
+        TopicProvider t = topicProviderRepository.findById(pid).get();
+        if (!Objects.equals(r.getName(), "")){
+            t.setName(r.getName());
+        }
+        if (!Objects.equals(r.getApproved(), null)){
+            t.setApproved(r.getApproved());
+        }
+        if (!Objects.equals(r.getIsCompany(), null)){
+            t.setIsCompany(r.getIsCompany());
+        }
+        topicProviderRepository.save(t);
+    }
+    public void deleteProvider(TopicProvider body) {
+        topicProviderRepository.delete(body);
     }
 }

@@ -18,6 +18,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.project.appuser.AppUserRole.COMPANY;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -114,6 +116,15 @@ public class TopicProvider extends AppUser implements Serializable{
         this.isCompany = true;
         this.name = null;
         this.campus = null;
+    }
+
+    public TopicProvider(String name, Boolean isCompany, Boolean approved) {
+        super(COMPANY);
+        this.approved = approved;
+        this.isCompany = isCompany;
+        this.name = name;
+        this.campus = null;
+        this.begeleiders = null;
     }
 
     public boolean isApproved() {

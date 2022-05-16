@@ -11,6 +11,8 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 
+import static com.example.project.appuser.AppUserRole.MASTER;
+
 @Getter
 @Setter
 @Entity
@@ -40,4 +42,7 @@ public class Master extends Person implements Serializable {
         super(id, username, password, email, phoneNumber, appUserRole, country, city, streetName, postNumber, streetNumber, notification_list, firstName, lastName,  targetAudience);
     }
 
+    public Master(String firstName, String lastName, String streetName, Integer streetNumber, String phoneNumber, Integer postNumber, String country, String city, String email, List<TargetAudience> ta) {
+        super(email, phoneNumber, MASTER, country, city, streetName, postNumber, streetNumber, firstName, lastName,  ta);
+    }
 }

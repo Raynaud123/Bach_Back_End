@@ -64,8 +64,8 @@ public class Person extends AppUser implements Serializable {
         this.targetAudience = targetAudience;
     }
 
-    public Person(String email, String phoneNumber, String country, String city, String streetName, Integer postNumber, Integer streetNumber, String firstName, String lastName, List<TargetAudience> ta) {
-        super(email, phoneNumber, STUDENT ,country, city, streetName, postNumber, streetNumber);
+    public Person(String email, String phoneNumber, AppUserRole apr, String country, String city, String streetName, Integer postNumber, Integer streetNumber, String firstName, String lastName, List<TargetAudience> ta) {
+        super(email, phoneNumber, apr ,country, city, streetName, postNumber, streetNumber);
         this.firstName = firstName;
         this.lastName = lastName;
         this.targetAudience = ta;
