@@ -501,4 +501,31 @@ public class TopicService {
         }
         return contains;
     }
+
+    public List<Topic> getNotApproveTopic(Long id) {
+        List<Topic> topics = topicRepository.findByProvider(id);
+        List<Topic> returnss = new ArrayList<>();
+
+        for(Topic to : topics){
+            if(!to.getHide_topic() && !to.getApproved_topic()){
+                returnss.add(to);
+            }
+        }
+        return returnss;
+    }
+
+    public List<Topic> getApproveTopic(Long id){
+        List<Topic> topics = topicRepository.findByProvider(id);
+        List<Topic> returnss = new ArrayList<>();
+
+        for(Topic to : topics){
+            if(!to.getHide_topic() && Boolean.TRUE.equals(to.getApproved_topic())){
+                returnss.add(to);
+            }
+        }
+        return returnss;
+    }
+
+
+
 }
