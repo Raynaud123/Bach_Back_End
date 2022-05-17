@@ -117,10 +117,10 @@ public class AdminService {
                 System.out.println(fase.getFirstRound() + " en " + phaseBody.getFirstRound());
                 fase.setFirstRound(phaseBody.getFirstRound());
             }
-            if(!Objects.equals(phaseBody.getBegin_deadline(), "") && !Objects.equals(phaseBody.getEnd_deadline(), null)){
-                phaseBody.getEnd_deadline().setHours(23);
-                phaseBody.getEnd_deadline().setMinutes(55);
-                phaseBody.getEnd_deadline().setSeconds(55);
+            if(!Objects.equals(phaseBody.getBegin_deadline(), "") && !Objects.equals(phaseBody.getBegin_deadline(), null)){
+                phaseBody.getBegin_deadline().setHours(0);
+                phaseBody.getBegin_deadline().setMinutes(0);
+                phaseBody.getBegin_deadline().setSeconds(0);
                 System.out.println(fase.getBegin_deadline() + " en " + phaseBody.getBegin_deadline());
                 fase.setBegin_deadline(phaseBody.getBegin_deadline());
             }
